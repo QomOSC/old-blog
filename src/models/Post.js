@@ -21,6 +21,11 @@ const schema = new Schema({
     required: false,
     trim: true
   },
+  avatar: {
+    type: String,
+    trim: true,
+    required: false
+  },
   createdAt: {
     type: Date,
     default: Date.now

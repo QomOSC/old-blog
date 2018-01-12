@@ -37,12 +37,12 @@ const schema = new Schema({
   },
   type: {
     type: Number,
-    enum: [1, 2],
+    enum: [1, 2, 3],
     required: true,
     trim: true,
     default: 1
   },
-  image: {
+  avatar: {
     type: String,
     trim: true,
     required: false

@@ -1,15 +1,15 @@
 import { Router } from 'express';
-import { Post } from '../models';
 
-const { login } = rootRequire('./perms');
+const { Post } = rootRequire('./models');
+const { logged } = rootRequire('./perms');
 
 const router = new Router();
-router.get('/post', login, (req, res) => {
+router.get('/post', logged, (req, res) => {
   res.render('post.njk');
   console.log(req.member.user);
 });
 
-router.post('/post', login, (req, res) => {
+router.post('/post', logged, (req, res) => {
   const post = new Post({
     title: req.body.title,
     content: req.body.content,
