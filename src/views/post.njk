@@ -1,0 +1,16 @@
+{% extends './layouts/index.njk' %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+  <form action="/post" method="post">
+    <input type="text" name="title" placeholder="title">
+    <textarea name="content" rows="8" cols="80"></textarea>
+    <input type="text" name="minutes" placeholder="minutes">
+    <input type="submit" value="sabt">
+  </form>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
