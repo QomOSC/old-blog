@@ -1,5 +1,7 @@
 import { Router } from 'express';
-import { Member } from '../models';
+
+const { Member } = rootRequire('./models');
+const { crypt } = rootRequire('./utils');
 
 const router = new Router();
 
@@ -8,11 +10,13 @@ router.get('/signup', (req, res) => {
 });
 
 router.post('/signup', (req, res) => {
+  req.body.email = req.body.email.toLowerCase();
+
   const member = new Member({
     fname: req.body.fname,
     lname: req.body.lname,
     email: req.body.email,
-    password: req.body.password
+    password: crypt.encrypt(req.body.password, req.body.email)
   });
 
   member.save().then(() => {

@@ -1,0 +1,55 @@
+{% extends locals.path + '/index.njk' %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+<form action="/u/setting" method="post">
+  <input
+    type="text"
+    name="fname"
+    required
+    value="{{ member.fname }}"
+    placeholder="first name">
+
+  <input
+    type="text"
+    name="lname"
+    required
+    value="{{ member.lname }}"
+    placeholder="last name">
+
+  <input
+    type="email"
+    name="email"
+    required
+    value="{{ member.email }}"
+    placeholder="email">
+
+  <input type="submit" value="done">
+</form>
+
+<form action="/u/setting/password" method="post">
+  <input
+    type="password"
+    name="password"
+    required
+    placeholder="Old password">
+
+  <input
+    type="password"
+    name="newpassword"
+    required
+    placeholder="New Password">
+    
+  <input type="submit" value="done">
+</form>
+
+<form action="/u/setting/delete" method="post">
+  <input type="submit" value="Delete Account">
+</form>
+
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

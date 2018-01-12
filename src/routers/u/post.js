@@ -5,8 +5,7 @@ const { logged } = rootRequire('./perms');
 
 const router = new Router();
 router.get('/post', logged, (req, res) => {
-  res.render('post.njk');
-  console.log(req.member.user);
+  res.render('u/post.njk');
 });
 
 router.post('/post', logged, (req, res) => {

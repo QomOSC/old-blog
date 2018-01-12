@@ -6,7 +6,7 @@ const { Member } = rootRequire('./models');
 const router = new Router();
 
 router.get('/u/addmember', perms.logged, perms.u.admin, (req, res) => {
-  res.render('addmember.njk');
+  res.render('u/addmember.njk');
 });
 
 router.post('/u/addmember', perms.logged, perms.u.admin, (req, res) => {

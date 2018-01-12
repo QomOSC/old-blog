@@ -5,7 +5,7 @@ const { logged } = rootRequire('./perms');
 const router = new Router();
 
 router.get('/u', logged, (req, res) => {
-  res.render('u.njk', {
+  res.render('u/u.njk', {
     member: req.member.user
   });
 });
