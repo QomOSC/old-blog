@@ -1,5 +1,5 @@
 {
   "port": "8010",
-  "db": "mongodb://localhost/bird",
+  "db": "mongodb://localhost/qomocs",
   "title": "example"
 }

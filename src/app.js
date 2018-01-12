@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import express from 'express';
 import bodyParser from 'body-parser';
 import session from 'express-session';
@@ -11,21 +12,30 @@ import flash from 'connect-flash';
 import helmet from 'helmet';
 
 import config from './config.json';
-import routers from './routers/';
 import replies from './replies';
+import UserManager from './utils/UserManager';
+
+/**
+ * setting global rootRequire and import some stuff
+ */
+
+global.rootRequire = name => require(path.resolve(__dirname, name));
+const routers = require('./routers');
 
 /**
  * setting up db
  */
- mongoose.Promise = global.Promise;
- mongoose.connect(config.db, {
-   useMongoClient: true,
- });
+mongoose.Promise = global.Promise;
+mongoose.connect(config.db, {
+ useMongoClient: true,
+});
 
 const app = express();
 
-app.listen(config.port, () => {
-  console.log(`Server has been started on port: ${config.port}`);
+let server;
+
+server = app.listen(config.port, () => {
+    console.log(`Server has been started on port ${config.port}`);
 });
 
 /**
@@ -34,8 +44,8 @@ app.listen(config.port, () => {
 app.use(helmet());
 
 /**
-* static files
-*/
+ * static files
+ */
 app.use('/files', express.static(path.resolve(__dirname, './public')));
 
 /**
@@ -60,16 +70,16 @@ app.use(cookieParser());
 let MongoStore = connectMongo(session);
 
 app.use(session({
-  secret: 'SecretKey',
+  secret: 'QIFu{W\'(![m#k5xVfL%dwGAADGDE564%?sKb]JTqeN0Uz.9vH4ahjM1l~',
   resave: true,
   saveUninitialized: false,
   cookie: {
-    maxAge: 1000 * 60 * 60 * 24 * 2 // two days
+    maxAge: 60 * 60 * 1000 * 24
   },
   store: new MongoStore({
-  host: '127.0.0.1',
-    port: '27017',
-    url: config.db
+    host: '127.0.0.1',
+      port: '27017',
+      url: config.db
   })
 }));
 
@@ -79,10 +89,6 @@ app.use(session({
 app.use(flash());
 
 /**
-app.use(passport.initialize());
-app.use(passport.session());
-
-/**
  * nunjucks
  */
 app.set('engine', nunjucks.configure(path.resolve(__dirname, './views'), {
@@ -90,9 +96,9 @@ app.set('engine', nunjucks.configure(path.resolve(__dirname, './views'), {
 }));
 
 /**
-* add default variable to templates
-* and add locals and tagCreator to res
-*/
+ * add default variable to templates
+ * and add locals and tagCreator to res
+ */
 
 function addTag(name, attribute) {
   let att = [];
@@ -107,7 +113,9 @@ function addTag(name, attribute) {
 app.use((req, res, next) => {
   res.localSource = {
     header: [],
-    footer: []
+    footer: [],
+    path: path.resolve(__dirname, 'views', 'layouts'),
+    report: JSON.stringify(req.flash('report') || [])
   };
 
   app.get('engine').addGlobal('locals', res.localSource);
@@ -137,14 +145,44 @@ app.use((req, res, next) => {
 });
 
 /**
+ * add LoginManager
+ */
+
+function* getUserDoc(users) {
+  for (let user of users) {
+    yield user.load();
+  }
+}
+
+app.use((req, res, next) => {
+  req.member = new UserManager('member', req.session, 'Member');
+
+  let iterator = getUserDoc([req.member]);
+  (function loop() {
+    let go = iterator.next();
+
+    if (go.done) {
+      next();
+    } else {
+      go.value.then(loop);
+    }
+  })();
+});
+
+app.use((req, res, next) => {
+  req.middle = {};
+
+  next();
+});
+
+/**
  * routers
  */
 
-for (let router in routers) {
-  app.use(routers[router]);
+for (let router of routers) {
+  app.use(router);
 }
 
-
 app.use((req, res) => {
-  res.reply.notFound();
+   res.reply.notFound();
 });
