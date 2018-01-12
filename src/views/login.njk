@@ -1,0 +1,15 @@
+{% extends './layouts/index.njk' %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+  <form action="/login" method="post">
+    <input type="email" name="email" placeholder="email">
+    <input type="password" name="password" placeholder="password">
+    <input type="submit" value="login">
+  </form>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
