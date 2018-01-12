@@ -1,0 +1,15 @@
+{% extends locals.path + '/index.njk' %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+<a href="/post">Post some shit</a>
+{% if member.type >= 2 %}
+<a href="/u/addmember">Add another member</a>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script>console.log('{{ member }}')</script>
+{% endblock %}

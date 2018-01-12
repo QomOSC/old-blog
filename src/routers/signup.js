@@ -16,11 +16,10 @@ router.post('/signup', (req, res) => {
   });
 
   member.save().then(() => {
-    req.member.login(member);    
-    res.json({ body: req.body, sent: true });
-  }).catch(e => {
-    console.log(e);
-    res.json({ body: req.body, sent: false });
+    req.member.login(member);
+    res.redirect('/u');
+  }).catch(() => {
+    res.json({ body: req.body, done: false });
   });
 });
 

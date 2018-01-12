@@ -17,9 +17,9 @@ router.post('/login', login, (req, res) => {
     password: req.body.password
   }).then(member => {
     req.member.login(member);
-    res.send('You are in');
+    res.redirect('/u');
   }).catch(() => {
-    res.send('Damn it');
+    res.json({ body: req.body, done: false });
   });
 });
 
