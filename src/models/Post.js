@@ -5,9 +5,20 @@ const schema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Member'
   },
+  title: {
+    type: String,
+    required: true,
+    maxlength: 100,
+    trim: true
+  },
   content: {
     type: String,
     required: true,
+    trim: true
+  },
+  minutes: {
+    type: Number,
+    required: false,
     trim: true
   },
   createdAt: {

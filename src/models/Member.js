@@ -3,19 +3,17 @@ import mongoose, { Schema } from 'mongoose';
 const emailValidate = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; //eslint-disable-line
 
 const schema = new Schema({
-  name: {
-    first: {
-      type: String,
-      trim: true,
-      required: [true, 'First name required'],
-      maxlength: 50
-    },
-    last: {
-      type: String,
-      trim: true,
-      required: [true, 'Last name required'],
-      maxlength: 50
-    }
+  fname: {
+    type: String,
+    trim: true,
+    required: [true, 'First name required'],
+    maxlength: 50
+  },
+  lname: {
+    type: String,
+    trim: true,
+    required: [true, 'Last name required'],
+    maxlength: 50
   },
   email: {
     type: String,
@@ -41,11 +39,13 @@ const schema = new Schema({
     type: Number,
     enum: [1, 2],
     required: true,
-    trim: true
+    trim: true,
+    default: 1
   },
   image: {
     type: String,
-    trim: true
+    trim: true,
+    required: false
   },
   createdAt: {
     type: Date,
