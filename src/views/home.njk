@@ -1,0 +1,18 @@
+{% extends locals.path + '/index.njk' %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+{% for i in doc %}
+<div style="border: 1px solid red;">
+  <h1>{{ i.title }}</h1>
+  <h3>{{ i.content }}</h3>
+  <h5>{{ i.minutes }} minutes read</h5>
+  <p>{{ createdAt }}</p>
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

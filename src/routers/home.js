@@ -1,9 +1,16 @@
 import { Router } from 'express';
 
+const { Post } = rootRequire('./models');
+
 const router = new Router();
 
 router.get('/', (req, res) => {
-  res.send('This is the main page');
+
+  Post.find({}).then(doc => {
+    res.render('home.njk', { doc });
+  }).catch(() => {
+    res.send('err');
+  });
 });
 
 export default router;
