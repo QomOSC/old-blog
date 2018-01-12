@@ -1,0 +1,92 @@
+#!/usr/bin/env node
+
+var bird = require('commander');
+var fs = require('fs-extra');
+var replace = require('replace');
+var { version } = require('./package.json');
+
+
+function addrouter(name) {
+  fs.copy(
+    './templates/router.js',
+    `./src/routers/${name}.js`
+  ).then(() => {
+    replace({
+      regex: '@@replacement@@',
+      replacement: name,
+      paths: [`./src/routers/${name}.js`],
+      recursive: true,
+      silent: true,
+    });
+  }).catch(e => console.log(e));
+}
+
+function addview(name) {
+  fs.copy(
+    './templates/view.njk',
+    `./src/views/${name}.njk`
+  ).catch(e => console.log(e));
+}
+
+function addmodel(name) {
+  fs.copy(
+    './templates/model.js',
+    `./src/models/${name}.js`
+  ).then(() => {
+    replace({
+      regex: '@@replacement@@',
+      replacement: name,
+      paths: [`./src/models/${name}.js`],
+      recursive: true,
+      silent: true,
+    });
+  }).catch(e => console.log(e));
+}
+
+bird
+  .version(version)
+  .usage('<command>');
+
+bird
+  .command('router <name>')
+  .description('add new router')
+  .action(name => {
+    addrouter(name);
+  });
+
+bird
+  .command('view <name>')
+  .description('add new a view')
+  .action(name => {
+    addview(name);
+  });
+
+bird
+  .command('model <name>')
+  .description('add new a model')
+  .action(name => {
+    addmodel(name);
+  });
+
+bird
+  .command('perm <name>')
+  .description('add new a permission')
+  .action(name => {
+    fs.copy(
+      './templates/perm.js',
+      `./src/perms/${name}.js`
+    );
+  });
+
+
+bird
+  .command('full <name>')
+  .description('add new router, model and perm all together')
+  .action(name => {
+    addrouter(name);
+    addview(name);
+    addmodel(name);
+  });
+
+
+bird.parse(process.argv);
