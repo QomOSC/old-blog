@@ -1,0 +1,26 @@
+{% extends locals.path + '/index.njk' %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+{% if authorposts | join === "" %}
+  <h1>You don't have any posts</h1>
+{% else %}
+{% for i in authorposts %}
+<div style="border: 1px solid red;">
+  <a href="/post/{{ i._id }}">{{ i.title }}</a>
+  <h3>{{ i.content }}</h3>
+  <h5>{{ i.minutes }} minutes read</h5>
+  <p>{{ createdAt }}</p>
+  <form action="/u/post/delete/{{ i._id }}" method="post">
+    <input type="hidden" name="id" value="{{ i._id }}">
+    <button id="delete-post" type="submit">Delete</button>
+  </form>
+</div>
+{% endfor %}
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

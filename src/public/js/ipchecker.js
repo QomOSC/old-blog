@@ -1,6 +1,6 @@
 fetch('https://freegeoip.net/json/').then(res => res.json()).then(ip => {
 
-  fetch(`/post/${URL}`, {
+  fetch(`/viewpost/${URL}`, {
     method: 'POST',
     headers: new Headers({
       'Content-Type': 'application/json'

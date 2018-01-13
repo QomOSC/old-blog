@@ -4,12 +4,12 @@ const { Post } = rootRequire('./models');
 
 const router = new Router();
 
-router.get('/post/:id', (req, res) => {
+router.get('/viewpost/:id', (req, res) => {
   req.params.id = req.params.id.toLowerCase();
 
   Post.findOne({ _id: req.params.id }).then(post => {
       if (post) {
-        res.render('post.njk', {
+        res.render('viewpost.njk', {
           post
         });
       } else {
@@ -20,7 +20,7 @@ router.get('/post/:id', (req, res) => {
   });
 });
 
-router.post('/post/:id', (req, res) => {
+router.post('/viewpost/:id', (req, res) => {
   req.params.id = req.params.id.toLowerCase();
 
   Post.findOne({ _id: req.params.id }).then(post => {

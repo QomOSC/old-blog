@@ -4,12 +4,13 @@
 {% endblock %}
 
 {% block content %}
-<a href="/post">Post some shit</a>
+<a href="/u/post/add">Post some shit</a>
 {% if member.type >= 2 %}
 <a href="/u/addmember">Add another member</a>
 {% endif %}
 <a href="/u/setting">Setting</a>
 <a href="/u/logout">Logout</a>
+<a href="/u/post/all">My posts</a>
 {% endblock %}
 
 {% block scripts %}

@@ -4,11 +4,11 @@ const { Post } = rootRequire('./models');
 const { logged } = rootRequire('./perms');
 
 const router = new Router();
-router.get('/post', logged, (req, res) => {
-  res.render('u/post.njk');
+router.get('/u/post/add', logged, (req, res) => {
+  res.render('u/post/add.njk');
 });
 
-router.post('/post', logged, (req, res) => {
+router.post('/u/post/add', logged, (req, res) => {
   const post = new Post({
     title: req.body.title,
     content: req.body.content,
