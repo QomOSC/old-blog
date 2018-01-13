@@ -3,7 +3,8 @@ import mongoose, { Schema } from 'mongoose';
 const schema = new Schema({
   author: {
     type: Schema.Types.ObjectId,
-    ref: 'Member'
+    ref: 'Member',
+    required: true
   },
   title: {
     type: String,
@@ -35,6 +36,11 @@ const schema = new Schema({
     required: true,
     maxlength: 100,
     trim: true
+  }],
+  likes: [{
+    type: String,
+    unique: true,
+    maxlength: 100
   }]
 });
 

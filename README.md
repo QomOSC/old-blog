@@ -6,6 +6,8 @@ Then install the dependencies using `yarn install` command, and:
 
 ```[sudo] npm install -g gulp nodemon```
 
+Remember, you must have MongoDB installed on your machine.
+
 And to run the project, run `npm run devserver` command.
 
 [Contributing](https://github.com/QomOSC/blog/blob/master/CONTRIBUTING.md)

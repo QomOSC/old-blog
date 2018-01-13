@@ -10,7 +10,8 @@ router.get('/viewpost/:id', (req, res) => {
   Post.findOne({ _id: req.params.id }).then(post => {
       if (post) {
         res.render('viewpost.njk', {
-          post
+          post,
+          member: req.member.user
         });
       } else {
         res.reply.notFound();

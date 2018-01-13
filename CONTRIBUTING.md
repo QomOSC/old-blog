@@ -29,3 +29,11 @@ Note: In this project we're using nunjucks template, so your files must have .nj
 ### Permissions
 
 To add a permission, add the file to `src/perms/`
+
+## Before you push
+
+Make sure that your files are lint.
+
+You can lint js files in `src/public/js` files using `gulp client:lint` command.
+
+And Other JS files using `gulp server:lint` command.
