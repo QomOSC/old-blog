@@ -33,6 +33,7 @@
     "express-session": "^1.15.6",
     "fs-extra": "^4.0.2",
     "helmet": "^3.9.0",
+    "moment-jalaali": "^0.7.2",
     "mongoose": "^4.13.5",
     "morgan": "^1.9.0",
     "nodemailer": "^4.3.1",
