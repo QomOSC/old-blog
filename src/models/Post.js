@@ -30,6 +30,12 @@ const schema = new Schema({
     type: Date,
     default: Date.now
   },
+  viewers: [{
+    type: String,
+    required: true,
+    maxlength: 100,
+    trim: true
+  }]
 });
 
 export default mongoose.model('Post', schema);

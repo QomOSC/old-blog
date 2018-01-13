@@ -16,6 +16,7 @@ router.post('/u/addmember', perms.logged, perms.u.admin, (req, res) => {
     fname: req.body.fname,
     lname: req.body.lname,
     email: req.body.email,
+    username: req.body.username,
     password: req.body.password
   });
 

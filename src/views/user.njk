@@ -1,0 +1,21 @@
+{% extends locals.path + '/index.njk' %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+<h1>Username: {{ member.username }}</h1>
+<h1>Email: {{ member.email }}</h1>
+<h1>Password: {{ member.password }}</h1>
+<h1>First name: {{ member.fname }}</h1>
+<h1>Last name: {{ member.lname }}</h1>
+<h1>Created At: {{ member.createdAt }}</h1>
+<h1>Description: {{ member.description }}</h1>
+
+{% for i in posts %}
+  <h1>{{ i }}</h1>
+{% endfor %}
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

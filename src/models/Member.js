@@ -35,6 +35,18 @@ const schema = new Schema({
     required: [true, 'Password required'],
     maxlength: 400
   },
+  username: {
+    type: String,
+    required: true,
+    trim: true,
+    maxlength: 100
+  },
+  description: {
+    type: String,
+    trim: true,
+    required: false,
+    maxlength: 250
+  },
   type: {
     type: Number,
     enum: [1, 2, 3],

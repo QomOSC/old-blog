@@ -16,6 +16,7 @@ router.post('/signup', (req, res) => {
     fname: req.body.fname,
     lname: req.body.lname,
     email: req.body.email,
+    username: req.body.username,
     password: crypt.encrypt(req.body.password, req.body.email)
   });
 

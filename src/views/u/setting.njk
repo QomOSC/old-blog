@@ -20,6 +20,20 @@
     placeholder="last name">
 
   <input
+    type="text"
+    name="username"
+    required
+    value="{{ member.username }}"
+    placeholder="username">
+
+  <input
+    type="text"
+    name="description"
+    required
+    value="{{ member.description }}"
+    placeholder="Description">
+
+  <input
     type="email"
     name="email"
     required
@@ -41,7 +55,7 @@
     name="newpassword"
     required
     placeholder="New Password">
-    
+
   <input type="submit" value="done">
 </form>
 

@@ -7,7 +7,10 @@ const router = new Router();
 router.get('/', (req, res) => {
 
   Post.find({}).then(doc => {
-    res.render('home.njk', { doc });
+    res.render('home.njk', {
+      member: req.member.user,
+      doc
+    });
   }).catch(() => {
     res.send('err');
   });

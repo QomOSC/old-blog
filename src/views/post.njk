@@ -1,0 +1,20 @@
+{% extends locals.path + '/index.njk' %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+<h1>Author: {{ post.author }}</h1>
+<h1>Minutes: {{ post.minutes }}</h1>
+<h1>Created at: {{ post.createdAt }}</h1>
+<h1>Description: {{ post.title }}</h1>
+<p>Content: {{ post.content }}</p>
+<p>Views: {{ post.viewers | length }}</p>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  const URL = '{{ post._id }}';
+</script>
+<script src='/files/js/ipchecker.js'></script>
+{% endblock %}

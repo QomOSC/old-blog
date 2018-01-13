@@ -6,12 +6,15 @@
 {% block content %}
 {% for i in doc %}
 <div style="border: 1px solid red;">
-  <h1>{{ i.title }}</h1>
+  <a href="/post/{{ i._id }}">{{ i.title }}</a>
   <h3>{{ i.content }}</h3>
   <h5>{{ i.minutes }} minutes read</h5>
   <p>{{ createdAt }}</p>
 </div>
 {% endfor %}
+{% if member %}
+  <h1>Hello {{ member.fname }}</h1>
+{% endif %}
 {% endblock %}
 
 {% block scripts %}

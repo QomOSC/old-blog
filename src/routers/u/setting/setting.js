@@ -14,6 +14,7 @@ router.post('/u/setting', logged, (req, res) => {
     member.fname = req.body.fname;
     member.lname = req.body.lname;
     member.email = req.body.email.toLowerCase();
+    member.description = req.body.description;
 
     member.save().then(() => {
       res.send('done');
