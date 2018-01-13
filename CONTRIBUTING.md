@@ -20,7 +20,7 @@ Note: CSS files must have .less extension in /src/public/css/, except /src/publi
 
 To add utilities you should add files to src/utils/
 
-## View
+### View
 
 To add html files you should add them to /src/views/
 
