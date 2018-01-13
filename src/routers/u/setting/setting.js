@@ -6,7 +6,7 @@ const { Member } = rootRequire('./models');
 const router = new Router();
 
 router.get('/u/setting', logged, (req, res) => {
-  res.render('u/setting.njk', { member: req.member.user });
+  res.render('u/setting/setting.njk', { member: req.member.user });
 });
 
 router.post('/u/setting', logged, (req, res) => {
