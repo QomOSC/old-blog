@@ -8,7 +8,7 @@ Then install the dependencies using `yarn install` command, and:
 
 Remember, you must have MongoDB installed on your machine.
 
-And to run the project, run `npm run devserver` command.
+And to run the project, run `gulp full:dev && npm run devserver` command.
 
 [Contributing](https://github.com/QomOSC/blog/blob/master/CONTRIBUTING.md)
 
