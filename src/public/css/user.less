@@ -1,0 +1,66 @@
+body {
+  display: flex;
+}
+
+#user-panel {
+  text-align: center;
+  margin: 10px;
+  border-radius: 3px;
+  width: 300px;
+  height: 500px;
+  background-color: white;
+  color: #555;
+
+  img {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+#user-id {
+  direction: ltr;
+  font-size: 20px;
+}
+
+#works {
+  width: 80%;
+  height: auto;
+  margin: 10px;
+  background-color: white;
+  color: #111;
+}
+
+.post-box {
+  margin: 15px;
+  border: 1px solid #eee;
+  width: 250px;
+  height: 400px;
+
+  img {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+.post-content {
+  overflow: hidden;
+}
+
+.recent-posts {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (min-width: 120px) and (max-width: 580px) {
+  body {
+    flex-direction: column;
+  }
+
+  .recent-posts {
+    flex-direction: column;
+  }
+
+  #works {
+    width: 95%;
+  }
+}
