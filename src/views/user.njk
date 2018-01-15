@@ -20,17 +20,7 @@
     {% for i in posts %}
       <div class="post-box">
         <img src="/files/image/matin.jpg" alt="عکس کاربر">
-        <h2>{{ i.title }}</h2>
-        <p class="post-content">{{ i.content }}</p>
-      </div>
-      <div class="post-box">
-        <img src="/files/image/matin.jpg" alt="عکس کاربر">
-        <h2>{{ i.title }}</h2>
-        <p class="post-content">{{ i.content }}</p>
-      </div>
-      <div class="post-box">
-        <img src="/files/image/matin.jpg" alt="عکس کاربر">
-        <h2>{{ i.title }}</h2>
+        <h2 class="post-title">{{ i.title }}</h2>
         <p class="post-content">{{ i.content }}</p>
       </div>
     {% endfor %}
