@@ -4,12 +4,17 @@
 {% endblock %}
 
 {% block content %}
-  <form action="/login" method="post">
-    <input type="email" name="email" placeholder="email">
-    <input type="password" name="password" placeholder="password">
-    <input type="submit" value="login">
+  <form action="/login" method="post" name="login-form">
+    <input type="email" name="email" placeholder="ایمیل">
+    <input type="password" name="password" placeholder="رمز">
+    <p id="svg-captcha"></p>
+    <input type="password" name="captcha" placeholder="کد امنیتی">
+    <input type="submit" value="ورود">
   </form>
 {% endblock %}
 
 {% block scripts %}
+<script src="/files/js/lib/validator.js"></script>
+<script src="/files/js/lib/checkstatus.js"></script>
+  <script src="/files/js/login.js"></script>
 {% endblock %}

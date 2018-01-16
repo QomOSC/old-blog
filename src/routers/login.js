@@ -13,25 +13,35 @@ router.get('/login', login, (req, res) => {
 router.post('/login', login, (req, res) => {
   req.body.email = req.body.email.toLowerCase();
 
+  if (req.body.captcha === req.session.captcha) {
+    Member.findOne({
+      email: req.body.email
+    }).then(member => {
+      if (member) {
 
-  Member.findOne({
-    email: req.body.email
-  }).then(member => {
-    if (member) {
-      const encryptedPass = crypt.decrypt(member.password, member.email);
+        if (crypt.decrypt(member.password, member.email)
+          === req.body.password) {
+          req.member.login(member);
 
-      if (encryptedPass === req.body.password) {
-        req.member.login(member);
-        res.redirect('/u');
+          // OK
+          req.session.captcha = null;
+          res.json({ type: 0 });
+        } else {
+          // Wrong Password
+          res.json({ type: 2, text: 0 });
+        }
       } else {
-        res.json({ body: req.body, done: false });
+        // User Not Found
+        res.json({ type: 2, text: 1 });
       }
-    } else {
-      res.json({ body: req.body, done: false });
-    }
-  }).catch(() => {
-    res.json({ body: req.body, done: false });
-  });
+    }).catch(() => {
+      // Error
+      res.json({ type: 2, text: 2 });
+    });
+  } else {
+    // Wrong Captcha
+    res.json({ type: 2, text: 3 });
+  }
 });
 
 export default router;
