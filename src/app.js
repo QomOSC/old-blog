@@ -20,6 +20,7 @@ import UserManager from './utils/UserManager';
  */
 
 global.rootRequire = name => require(path.resolve(__dirname, name));
+
 const routers = require('./routers');
 
 /**
