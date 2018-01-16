@@ -1,15 +1,16 @@
 import { Router } from 'express';
 
+const { login } = rootRequire('./perms');
 const { Member } = rootRequire('./models');
 const { crypt } = rootRequire('./utils');
 
 const router = new Router();
 
-router.get('/signup', (req, res) => {
+router.get('/signup', login, (req, res) => {
   res.render('signup.njk');
 });
 
-router.post('/signup', (req, res) => {
+router.post('/signup', login, (req, res) => {
   req.body.email = req.body.email.toLowerCase();
 
   const member = new Member({

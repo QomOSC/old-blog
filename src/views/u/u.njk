@@ -4,13 +4,17 @@
 {% endblock %}
 
 {% block content %}
-<a href="/u/post/add">Post some shit</a>
+<a href="/u/post/add">پست کن</a>
+<p></p>
 {% if member.type >= 2 %}
-<a href="/u/addmember">Add another member</a>
+<a href="/u/addmember">اضافه کردن عضو جدید</a>
+<p></p>
 {% endif %}
-<a href="/u/setting">Setting</a>
-<a href="/u/logout">Logout</a>
-<a href="/u/post/all">My posts</a>
+<a href="/u/post/all">پست های من</a>
+<p></p>
+<a href="/u/setting">تنظیمات</a>
+<p></p>
+<a href="/u/logout">خروج</a>
 {% endblock %}
 
 {% block scripts %}

@@ -4,7 +4,10 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="/files/css/font-fa.css">
     <link rel="stylesheet" href="/files/css/main.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/files/css/header.css">
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Qom OCS</title>
     <title>{{ title }}</title>
     {% for item in locals.header %}
       {{ item | safe }}
@@ -14,7 +17,19 @@
     {% endblock %}
   </head>
   <body>
-
+    <header>
+      <div id="icon-container" onclick="changeIcon(this)">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div>
+      <ul id="header-list">
+        <li><a href="/login">ورود</a></li>
+        <li><a href="/signup">عضویت</a></li>
+      </ul>
+      <a href="/" id="long-title-name" class="title">Qom Open Source Community</a>
+      <a href="/" id="short-title-name" class="title">QOM OSC</a>
+    </header>
     {% block content %}
     {% endblock %}
 
