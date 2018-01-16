@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/files/css/header.css">
     <meta name="viewport"
     content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="files/css/lib/izi.min.css">
     <title>Qom OCS</title>
     <title>{{ title }}</title>
     {% for item in locals.header %}
@@ -18,6 +19,9 @@
   </head>
   <body>
     <header>
+      {% if member %}
+        <a href="/u" id="user-fname">{{ member.fname }}</a>
+      {% else %}
       <div id="icon-container" onclick="changeIcon(this)">
         <div class="bar1"></div>
         <div class="bar2"></div>
@@ -27,6 +31,7 @@
         <li><a href="/login">ورود</a></li>
         <li><a href="/signup">عضویت</a></li>
       </ul>
+      {% endif %}
       <a href="/" id="long-title-name" class="title">Qom Open Source Community</a>
       <a href="/" id="short-title-name" class="title">QOM OSC</a>
     </header>
@@ -37,6 +42,7 @@
       {{ item | safe }}
     {% endfor %}
 
+    <script src="/files/js/lib/izi.min.js"></script>
     {% block scripts %}
     {% endblock %}
   </body>

@@ -1,18 +1,33 @@
-{% extends locals.path + '/index.njk' %}
+{% extends locals.path + '/u.njk' %}
 
 {% block head %}
 <link rel="stylesheet" href="/files/css/user.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 {% endblock %}
 
 {% block content %}
 <div id="user-panel">
   <h1>{{ member.fname }} {{ member.lname }}</h1>
   <img src="/files/image/matin.jpg" alt="عکس کاربر">
-  <p id="user-email">{{ member.email }}</p>
-  <p id="user-id">@matinkaboli</p>
-  <p id="user-description"> {{ member.description }}</p>
-  <br>
-  <p>مدت حظور کاربر: {{ member.createdAt }}</p>
+  <p id="user-description"> </p>
+  <table id="user-info">
+    <tr>
+      <td><i class="fa fa-envelope" aria-hidden="true"></i></td>
+      <td>{{ member.email }}</td>
+    </tr>
+    <tr>
+      <td><i class="fa fa-user" aria-hidden="true"></i></td>
+      <td>{{ member.username}}</td>
+    </tr>
+    <tr>
+      <td><i class="fa fa-info" aria-hidden="true"></i></td>
+      <td>{{ member.description }}</td>
+    </tr>
+    <tr>
+      <td><i class="fa fa-clock-o" aria-hidden="true"></i></td>
+      <td>مدت حظور: {{ member.createdAt }}</td>
+    </tr>
+  </table>
 </div>
 <div id="works">
   <h1>پست های اخیر</h1>

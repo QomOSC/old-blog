@@ -53,7 +53,7 @@ router.get('/user/:username', (req, res) => {
           }
 
           next.value.then(loop);
-        }());
+        })();
 
       } else {
         res.reply.notFound();
