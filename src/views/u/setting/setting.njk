@@ -1,6 +1,18 @@
 {% extends locals.path + '/u.njk' %}
 
 {% block head %}
+<link rel="stylesheet" href="/files/css/lib/cropper.css">
+<script src="/files/js/lib/cropper.js"></script>
+<style>
+.container {
+  max-width: 700px;
+  max-height: 500px;
+}
+
+img {
+  max-width: 100%;
+}
+</style>
 {% endblock %}
 
 {% block content %}
@@ -63,7 +75,19 @@
   <input type="submit" value="Delete Account">
 </form>
 
+<p>
+  <input type="file" id="upload" value="Upload">
+  <input type="submit" id="crop" value="Crop">
+</p>
+<div class="container">
+    <img id="preview">
+  <div class="container">
+    <img id="done">
+  </div>
+</div>
+
 {% endblock %}
 
 {% block scripts %}
+<script src="/files/js/upload-image.js"></script>
 {% endblock %}
