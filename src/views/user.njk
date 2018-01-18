@@ -1,4 +1,4 @@
-{% extends locals.path + '/u.njk' %}
+{% extends locals.path + '/index.njk' %}
 
 {% block head %}
 <link rel="stylesheet" href="/files/css/user.css">
@@ -6,43 +6,45 @@
 {% endblock %}
 
 {% block content %}
-<div id="user-panel">
-  <h1>{{ member.fname }} {{ member.lname }}</h1>
-  {% if member.avatar %}
-  <img src="/files/image/matin.jpg" alt="عکس کاربر">
-  {% endif %}
-  <p id="user-description"></p>
-  <table id="user-info">
-    <tr>
-      <td><i class="fa fa-envelope" aria-hidden="true"></i></td>
-      <td>{{ member.email }}</td>
-    </tr>
-    <tr>
-      <td><i class="fa fa-user" aria-hidden="true"></i></td>
-      <td>{{ member.username}}</td>
-    </tr>
-      {% if member.description %}
+<div id="container">
+  <div id="user-panel">
+    <h1>{{ member.fname }} {{ member.lname }}</h1>
+    {% if member.avatar %}
+    <img src="/files/image/matin.jpg" alt="عکس کاربر">
+    {% endif %}
+    <p id="user-description"></p>
+    <table id="user-info">
       <tr>
-        <td><i class="fa fa-info" aria-hidden="true"></i></td>
-        <td>{{ member.description }}</td>
+        <td title="ایمیل"><i class="fa fa-envelope" aria-hidden="true"></i></td>
+        <td>{{ member.email }}</td>
       </tr>
-      {% endif %}
-    <tr>
-      <td><i class="fa fa-clock-o" aria-hidden="true"></i></td>
-      <td>مدت حظور: {{ member.createdAt }}</td>
-    </tr>
-  </table>
-</div>
-<div id="works">
-  <h1>پست های اخیر</h1>
-  <div class="recent-posts">
-    {% for i in posts %}
-      <div class="post-box">
-        <img src="/files/image/matin.jpg" alt="عکس کاربر">
-        <h2 class="post-title">{{ i.title }}</h2>
-        <p class="post-content">{{ i.content }}</p>
-      </div>
-    {% endfor %}
+      <tr>
+        <td title="یوزرنیم"><i class="fa fa-user" aria-hidden="true"></i></td>
+        <td>{{ member.username}}</td>
+      </tr>
+        {% if member.description %}
+        <tr>
+          <td title="درباره کاربر"><i class="fa fa-info" aria-hidden="true"></i></td>
+          <td>{{ member.description }}</td>
+        </tr>
+        {% endif %}
+      <tr>
+        <td><i class="fa fa-clock-o" aria-hidden="true"></i></td>
+        <td>مدت حظور: {{ member.createdAt }}</td>
+      </tr>
+    </table>
+  </div>
+  <div id="works">
+    <h1>پست های اخیر</h1>
+    <div class="recent-posts">
+      {% for i in posts %}
+        <div class="post-box">
+          <img src="/files/image/matin.jpg" alt="عکس کاربر">
+          <h2 class="post-title">{{ i.title }}</h2>
+          <p class="post-content">{{ i.content }}</p>
+        </div>
+      {% endfor %}
+    </div>
   </div>
 </div>
 
