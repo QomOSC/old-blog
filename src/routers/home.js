@@ -15,6 +15,7 @@ router.get('/', (req, res) => {
 
       if (JSON.stringify(doc) !== '[]') {
         res.render('home.njk', {
+          member: req.member.user,
           empty: true
         });
       } else {

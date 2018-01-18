@@ -26,7 +26,7 @@ router.post('/signup', login, (req, res) => {
       email: req.body.email,
       username: req.body.username,
       password: crypt.encrypt(req.body.password, req.body.email),
-      type: 2
+      type: 1
     });
 
     member.save().then(() => {

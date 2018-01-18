@@ -17,9 +17,9 @@ router.post('/u/post/add', logged, (req, res) => {
   });
 
   post.save().then(() => {
-    res.json({ body: req.body, sent: true });
+    res.json({ type: 0 });
   }).catch(() => {
-    res.json({ body: req.body, sent: false });
+    res.json({ type: 2 });
   });
 });
 

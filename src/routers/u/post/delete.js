@@ -10,9 +10,9 @@ router.get('/u/post/delete/:id', logged, (req, res) => {
     author: req.member.user._id,
     _id: req.params.id
   }).then(() => {
-    res.send('done');
+    res.json({ type: 0 });
   }).catch(() => {
-    res.reply.error();
+    res.json({ type: 2 });
   });
 });
 
