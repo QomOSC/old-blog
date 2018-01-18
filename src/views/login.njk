@@ -5,11 +5,34 @@
 
 {% block content %}
   <form action="/login" method="post" name="login-form">
-    <input type="email" name="email" placeholder="ایمیل">
-    <input type="password" name="password" placeholder="رمز">
+
+    <input
+      type="email"
+      name="email"
+      required
+      placeholder="ایمیل"
+      maxlength="200">
+
+    <input
+      type="password"
+      name="password"
+      required
+      placeholder="رمز"
+      maxlength="100">
+
     <p id="svg-captcha"></p>
-    <input type="password" name="captcha" placeholder="کد امنیتی">
-    <input type="submit" value="ورود">
+
+    <input
+      type="password"
+      name="captcha"
+      required
+      placeholder="کد امنیتی"
+      maxlength="10">
+
+    <input
+      type="submit"
+      value="ورود">
+
   </form>
 {% endblock %}
 

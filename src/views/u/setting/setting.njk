@@ -16,66 +16,71 @@ img {
 
 {% block content %}
 <form action="/u/setting" method="post" name="main-setting">
+
   <input
     type="text"
     name="fname"
     required
     value="{{ member.fname }}"
-    placeholder="first name">
+    placeholder="نام">
 
   <input
     type="text"
     name="lname"
     required
     value="{{ member.lname }}"
-    placeholder="last name">
+    placeholder="نام خانوادگی">
 
   <input
     type="text"
     name="username"
     required
     value="{{ member.username }}"
-    placeholder="username">
+    placeholder="یوزرنیم">
 
   <input
     type="text"
     name="description"
     required
     value="{{ member.description }}"
-    placeholder="Description">
+    placeholder="درباره من">
 
   <input
     type="email"
     name="email"
     required
     value="{{ member.email }}"
-    placeholder="email">
+    placeholder="ایمیل">
 
-  <input type="submit" value="done">
+  <input type="submit" value="ثبت">
+
 </form>
 
 <form action="/u/setting/password" method="post" name="pass-setting">
+
   <input
     type="password"
     name="password"
     required
-    placeholder="Old password">
+    placeholder="رمز کنونی">
 
   <input
     type="password"
     name="newpassword"
     required
-    placeholder="New Password">
+    placeholder="رمز جدید">
 
-  <input type="submit" value="done">
+  <input type="submit" value="ثبت">
+
 </form>
 
-<input type="submit" value="Delete Account" id="delete-account">
+<input type="submit" value="حذف حساب" id="delete-account">
 
 <p>
   <input type="file" id="upload" value="Upload">
   <input type="submit" id="crop" value="Crop">
 </p>
+
 <div class="container">
     <img id="preview">
   <div class="container">

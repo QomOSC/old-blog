@@ -5,10 +5,33 @@
 
 {% block content %}
   <form action="/u/post/add" method="post">
-    <input type="text" name="title" placeholder="title">
-    <textarea name="content" rows="8" cols="80"></textarea>
-    <input type="text" name="minutes" placeholder="minutes">
-    <input type="submit" value="sabt">
+
+    <input
+      type="text"
+      name="title"
+      required
+      placeholder="عنوان"
+      maxlength="100">
+
+    <textarea
+    name="content"
+    rows="8"
+    cols="80"
+    required
+    placeholder="متن"
+    maxlength="10000"></textarea>
+
+    <input
+    type="text"
+    name="minutes"
+    required
+    placeholder="زمان(به دقیقه)"
+    maxlength="3">
+
+    <input
+    type="submit"
+    value="ثبت">
+
   </form>
 {% endblock %}
 

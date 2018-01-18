@@ -7,12 +7,55 @@
   <h1>توجه! با ساختن اکانت مستقیما وارد سایت نمیشوید. باید تا زمان تایید
   مدیران سایت صبر کنید</h1>
   <form action="/signup" method="post" name="signup-form">
-    <input type="text" name="fname" placeholder="نام">
-    <input type="text" name="lname" placeholder="نام خانوادگی">
-    <input type="text" name="username" placeholder="یوزرنیم">
-    <input type="email" name="email" placeholder="ایمیل">
-    <input type="password" name="password" placeholder="رمز عبور">
-    <input type="submit" value="ثبت">
+
+    <input
+      type="text"
+      name="fname"
+      required
+      placeholder="نام"
+      maxlength="50">
+
+    <input
+      type="text"
+      name="lname"
+      required
+      placeholder="نام خانوادگی"
+      maxlength="50">
+
+    <input
+      type="text"
+      name="username"
+      required
+      placeholder="یوزرنیم"
+      maxlength="100">
+
+    <input
+      type="email"
+      name="email"
+      required
+      placeholder="ایمیل"
+      maxlength="200">
+
+    <p id="svg-captcha"></p>
+
+    <input
+      type="password"
+      name="captcha"
+      required
+      placeholder="کد امنیتی"
+      maxlength="10">
+
+    <input
+      type="password"
+      name="password"
+      required
+      placeholder="رمز عبور"
+      maxlength="100">
+
+    <input
+      type="submit"
+      value="ثبت">
+
   </form>
 {% endblock %}
 

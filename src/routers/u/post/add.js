@@ -18,7 +18,8 @@ router.post('/u/post/add', logged, (req, res) => {
 
   post.save().then(() => {
     res.json({ type: 0 });
-  }).catch(() => {
+  }).catch(e => {
+    console.log(e);
     res.json({ type: 2 });
   });
 });

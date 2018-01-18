@@ -25,13 +25,14 @@ function checkUsername(req) {
 }
 
 function setNewValues(req, res) {
+  console.log(req.body);
   Member.findOne({ _id: req.member.user._id }).then(member => {
     member.fname = req.body.fname;
     member.lname = req.body.lname;
     member.email = req.body.email;
     member.username = req.body.username;
 
-    if (member.description) {
+    if (req.body.description) {
       member.description = req.body.description;
     }
 
