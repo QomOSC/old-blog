@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block content %}
+{% if empty != true %}
 {% for i in posts %}
 <div style="border: 1px solid red;">
   <a href="/viewpost/{{ i._id }}">{{ i.title }}</a>
@@ -16,6 +17,7 @@
 {% endfor %}
 {% if member %}
   <h1>Hello {{ member.fname }}</h1>
+{% endif %}
 {% endif %}
 {% endblock %}
 
