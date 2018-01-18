@@ -1,0 +1,23 @@
+{% extends locals.path + '/u.njk' %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+{% if empty %}
+  <h1>There is no new required member</h1>
+{% else %}
+{% for i in member %}
+  <h1>{{ i.username }}</h1>
+  <form action="/u/new/remove/{{ i.username }}" method="post">
+    <input type="submit" value="Reject">
+  </form>
+  <form action="/u/new/add/{{ i.username }}" method="post">
+    <input type="submit" value="Accept">    
+  </form>
+{% endfor %}
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
