@@ -5,17 +5,21 @@
 
 {% block content %}
 {% if authorposts | join === "" %}
-  <h1>You don't have any posts</h1>
+  <h1>شما هیچ پستی ندارید</h1>
 {% else %}
 {% for i in authorposts %}
-<div style="border: 1px solid red;">
+<div style="border: 1px solid red;" id="{{ i._id }}">
   <a href="/post/{{ i._id }}">{{ i.title }}</a>
   <h3>{{ i.content }}</h3>
   <h5>{{ i.minutes }} minutes read</h5>
   <p>{{ createdAt }}</p>
-  <form action="/u/post/delete/{{ i._id }}" method="post">
-    <input type="hidden" name="id" value="{{ i._id }}">
-    <button id="delete-post" type="submit">Delete</button>
+
+  <form action="/u/post/delete/{{ i._id }}" method="post" class="delete-post">
+
+    <input type="hidden" value="{{ i._id }}" name="id">
+
+    <input type="submit" value="حذف">
+
   </form>
 </div>
 {% endfor %}
@@ -23,4 +27,6 @@
 {% endblock %}
 
 {% block scripts %}
+<script src="/files/js/lib/checkstatus.js"></script>
+<script src="/files/js/delete-post.js"></script>
 {% endblock %}
