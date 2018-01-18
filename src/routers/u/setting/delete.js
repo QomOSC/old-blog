@@ -1,17 +1,27 @@
 import { Router } from 'express';
 
 const { logged } = rootRequire('./perms');
-const { Member } = rootRequire('./models');
+const { Member, Post } = rootRequire('./models');
 
 const router = new Router();
 
 router.post('/u/setting/delete', logged, (req, res) => {
   Member.remove({ _id: req.member.user._id }).then(() => {
-    req.member.logout();
 
-    res.redirect('/');
+    Post.remove({ author: req.member.user._id }).then(() => {
+
+      req.member.logout();
+      // Done
+      res.json({ type: 0 });
+      
+    }).catch(() => {
+      // Error
+      res.json({ type: 2, text: 0 });
+    })
+
   }).catch(() => {
-    res.send('err');
+    // Error
+    res.json({ type: 2, text: 0 });
   });
 });
 

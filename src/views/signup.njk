@@ -4,15 +4,20 @@
 {% endblock %}
 
 {% block content %}
-  <form action="/signup" method="post">
-    <input type="text" name="fname" placeholder="fname">
-    <input type="text" name="lname" placeholder="lname">
-    <input type="text" name="username" placeholder="username">
-    <input type="email" name="email" placeholder="email">
-    <input type="password" name="password" placeholder="password">
-    <input type="submit" value="sabt">
+  <h1>توجه! با ساختن اکانت مستقیما وارد سایت نمیشوید. باید تا زمان تایید
+  مدیران سایت صبر کنید</h1>
+  <form action="/signup" method="post" name="signup-form">
+    <input type="text" name="fname" placeholder="نام">
+    <input type="text" name="lname" placeholder="نام خانوادگی">
+    <input type="text" name="username" placeholder="یوزرنیم">
+    <input type="email" name="email" placeholder="ایمیل">
+    <input type="password" name="password" placeholder="رمز عبور">
+    <input type="submit" value="ثبت">
   </form>
 {% endblock %}
 
 {% block scripts %}
+<script src="/files/js/lib/checkstatus.js"></script>
+<script src="/files/js/lib/validator.js"></script>
+<script src="/files/js/signup.js"></script>
 {% endblock %}

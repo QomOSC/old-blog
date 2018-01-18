@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/files/css/header.css">
     <meta name="viewport"
     content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/files/css/lib/izi.min.css">
     <title>Qom OCS</title>
     <title>{{ title }}</title>
     {% for item in locals.header %}
@@ -24,6 +25,7 @@
       {{ item | safe }}
     {% endfor %}
 
+    <script src="/files/js/lib/izi.min.js"></script>
     {% block scripts %}
     {% endblock %}
   </body>

@@ -19,6 +19,12 @@ login.addEventListener('submit', e => {
     }).then(checkStatus).then(res => res.json()).then(data => {
       if (data.type === 0) {
         window.location.href = '/u';
+      } else if (data.type === 1) {
+        iziToast.warning({
+          title: 'خطا!',
+          rtl: true,
+          message: 'حساب شما هنوز توسط مدیران تایید نشده است'
+        });
       } else if (data.type === 2) {
         if (data.text === 0) {
           iziToast.error({
@@ -26,12 +32,14 @@ login.addEventListener('submit', e => {
             rtl: true,
             message: 'رمز وارد شده اشتباه است'
           });
+          login.password.select();
         } else if (data.text === 1) {
           iziToast.error({
             title: 'خطا!',
             rtl: true,
             message: 'چنین حسابی وجود ندارد'
           });
+          login.email.select();
         } else if (data.text === 2) {
           iziToast.error({
             title: 'خطا!',
@@ -44,6 +52,7 @@ login.addEventListener('submit', e => {
             rtl: true,
             message: 'کد امنیتی وارد شده اشتباه است'
           });
+          login.captcha.select();
         }
       }
     }).catch(() => {

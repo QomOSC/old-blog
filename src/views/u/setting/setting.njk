@@ -5,8 +5,7 @@
 <script src="/files/js/lib/cropper.js"></script>
 <style>
 .container {
-  max-width: 700px;
-  max-height: 500px;
+  max-width: 400px;
 }
 
 img {
@@ -16,7 +15,7 @@ img {
 {% endblock %}
 
 {% block content %}
-<form action="/u/setting" method="post">
+<form action="/u/setting" method="post" name="main-setting">
   <input
     type="text"
     name="fname"
@@ -55,7 +54,7 @@ img {
   <input type="submit" value="done">
 </form>
 
-<form action="/u/setting/password" method="post">
+<form action="/u/setting/password" method="post" name="pass-setting">
   <input
     type="password"
     name="password"
@@ -71,9 +70,7 @@ img {
   <input type="submit" value="done">
 </form>
 
-<form action="/u/setting/delete" method="post">
-  <input type="submit" value="Delete Account">
-</form>
+<input type="submit" value="Delete Account" id="delete-account">
 
 <p>
   <input type="file" id="upload" value="Upload">
@@ -90,4 +87,7 @@ img {
 
 {% block scripts %}
 <script src="/files/js/upload-image.js"></script>
+<script src="/files/js/lib/checkstatus.js"></script>
+<script src="/files/js/lib/validator.js"></script>
+<script src="/files/js/setting.js"></script>
 {% endblock %}

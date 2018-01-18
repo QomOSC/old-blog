@@ -9,22 +9,25 @@ const router = new Router();
 router.post('/u/setting/password', logged, (req, res) => {
 
   Member.findOne({ _id: req.member.user._id }).then(member => {
-    const encryptedPass = crypt.decrypt(member.password, member.email);
 
-    if (req.body.password === encryptedPass) {
+    if (req.body.password === crypt.decrypt(member.password, member.email)) {
       member.password =
         crypt.encrypt(req.body.newpassword, member.email);
 
       member.save().then(() => {
-        res.send('done');
+        // All Good
+        res.json({ type: 0 });
       }).catch(() => {
-        res.send('err');
+        // Error
+        res.json({ type: 2, text: 0 });
       });
     } else {
-      res.send('err');
+      // Wrong Old Password
+      res.json({ type: 2, text: 1 });
     }
   }).catch(() => {
-    res.send('err');
+    // Error
+    res.json({ type: 2, text: 0 });
   });
 });
 

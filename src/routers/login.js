@@ -19,13 +19,17 @@ router.post('/login', login, (req, res) => {
     }).then(member => {
       if (member) {
 
-        if (crypt.decrypt(member.password, member.email)
-          === req.body.password) {
-          req.member.login(member);
-
-          // OK
-          req.session.captcha = null;
-          res.json({ type: 0 });
+        if (crypt.decrypt(member.password, member.email) ===
+        req.body.password) {
+            if (member.type === 1) {
+              // Account is deactive
+              res.json({ type: 1, text: 0 });
+            } else {
+              req.member.login(member);
+              // OK
+              req.session.captcha = null;
+              res.json({ type: 0 });
+            }
         } else {
           // Wrong Password
           res.json({ type: 2, text: 0 });
