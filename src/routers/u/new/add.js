@@ -13,7 +13,7 @@ router.post(
     req.params.username = req.params.username.toLowerCase();
 
     Member.findOne({ username: req.params.username }).then(member => {
-      if (member) {
+      if (member && member.type === 1) {
         member.type = 2;
 
         member.save().then(() => {

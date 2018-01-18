@@ -1,0 +1,80 @@
+const decline = document.getElementsByClassName('decline');
+const accept = document.getElementsByTagName('accept');
+
+for (let i = 0; i < decline.length; i++) {
+  decline[i].addEventListener('submit', e => {
+    e.preventDefault();
+
+    fetch(decline[i].getAttribute('action'), {
+      method: 'POST',
+      credentials: 'include',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify({
+        username: decline[i].username.value
+      })
+    }).then(checkStatus).then(res => res.json()).then(data => {
+      if (data.type === 0) {
+        iziToast.success({
+          title: 'کاربر از سایت حذف شد',
+          rtl: true
+        });
+        document
+        .getElementById(decline[i].username.value)
+        .style.display = 'none';
+      } else if (data.type === 2) {
+        iziToast.error({
+          title: 'خطا!',
+          rtl: true,
+          message: 'مشکلی پیش آمده، بعدا امتحان کنید'
+        });
+      }
+    }).catch(() => {
+      iziToast.error({
+        title: 'خطا!',
+        rtl: true,
+        message: 'مشکلی پیش آمده، بعدا امتحان کنید'
+      });
+    });
+  });
+}
+
+for (let i = 0; i < accept.length; i++) {
+  accept[i].addEventListener('submit', e => {
+    e.preventDefault();
+
+    fetch(accept[i].getAttribute('action'), {
+      method: 'POST',
+      credentials: 'include',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify({
+        username: accept[i].username.value
+      })
+    }).then(checkStatus).then(res => res.json()).then(data => {
+      if (data.type === 0) {
+        iziToast.success({
+          title: 'کاربر به سایت اضافه شد!',
+          rtl: true
+        });
+        document
+        .getElementById(accept[i].username.value)
+        .style.display = 'none';
+      } else if (data.type === 2) {
+        iziToast.error({
+          title: 'خطا!',
+          rtl: true,
+          message: 'مشکلی پیش آمده، بعدا امتحان کنید'
+        });
+      }
+    }).catch(() => {
+      iziToast.error({
+        title: 'خطا!',
+        rtl: true,
+        message: 'مشکلی پیش آمده، بعدا امتحان کنید'
+      });
+    });
+  });
+}

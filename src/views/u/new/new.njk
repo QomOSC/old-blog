@@ -5,19 +5,36 @@
 
 {% block content %}
 {% if empty %}
-  <h1>There is no new required member</h1>
+  <h1>کسی درخواستی برای عضویت نداده است</h1>
 {% else %}
 {% for i in member %}
-  <h1>{{ i.username }}</h1>
-  <form action="/u/new/remove/{{ i.username }}" method="post">
-    <input type="submit" value="Reject">
-  </form>
-  <form action="/u/new/add/{{ i.username }}" method="post">
-    <input type="submit" value="Accept">    
-  </form>
+  <div id="{{ i.username }}">
+    <h1>{{ i.username }}</h1>
+
+    <form
+      action="/u/new/remove/{{ i.username }}"
+      method="post"
+      class="decline">
+
+      <input type="hidden" name="username" value="{{ i.username }}">
+      <input type="submit" value="نپذیرفتن">
+
+    </form>
+    <form
+      action="/u/new/add/{{ i.username }}"
+      method="post"
+      class="accept">
+
+      <input type="hidden" name="username" value="{{ i.username }}">
+      <input type="submit" value="پذیرفتن">
+
+    </form>
+  </div>
 {% endfor %}
 {% endif %}
 {% endblock %}
 
 {% block scripts %}
+<script src="/files/js/lib/checkstatus.js"></script>
+<script src="/files/js/new-requested.js"></script>
 {% endblock %}

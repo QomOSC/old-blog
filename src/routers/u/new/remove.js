@@ -12,8 +12,17 @@ router.post(
   (req, res) => {
     req.params.username = req.params.username.toLowerCase();
 
-    Member.remove({ username: req.params.username }).then(() => {
-      res.json({ type: 0 });
+    Member.findOne({ username: req.params.username }).then(member => {
+
+      if (member && member.type === 1) {
+        member.remove().then(() => {
+          res.json({ type: 0 });
+        }).catch(() => {
+          res.json({ type: 2, text: 0 });
+        });
+      } else {
+        res.json({ type: 2, text: 0 });
+      }
     }).catch(() => {
       res.json({ type: 2, text: 0 });
     });
