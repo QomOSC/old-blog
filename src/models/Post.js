@@ -25,7 +25,6 @@ const schema = new Schema({
   avatar: {
     type: String,
     trim: true,
-    required: false
   },
   createdAt: {
     type: Date,
@@ -33,14 +32,11 @@ const schema = new Schema({
   },
   viewers: [{
     type: String,
-    required: true,
-    maxlength: 100,
     trim: true
   }],
   likes: [{
     type: String,
-    unique: true,
-    maxlength: 100
+    trim: true
   }]
 });
 

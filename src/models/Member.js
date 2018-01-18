@@ -32,8 +32,7 @@ const schema = new Schema({
   password: {
     type: String,
     trim: true,
-    required: [true, 'Password required'],
-    maxlength: 400
+    required: [true, 'Password required']
   },
   username: {
     type: String,
