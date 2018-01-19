@@ -1,0 +1,32 @@
+{% extends locals.path + '/u.njk' %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+{% if empty %}
+  <h1>شما هیچ کس رو نپذیرفتید</h1>
+{% elif subs | join !== "" %}
+{% for i in subs %}
+  <div id="{{ i.username }}">
+    <h1>{{ i.username }}</h1>
+
+    <form
+      action="/u/new/manage/remove/{{ i.username }}"
+      method="post"
+      class="remove">
+
+      <input type="hidden" name="username" value="{{ i.username }}">
+      <input type="submit" value="حذف کاربر">
+
+    </form>
+
+  </div>
+{% endfor %}
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script src="/files/js/lib/checkstatus.js"></script>
+<script src="/files/js/manage-submembers.js"></script>
+{% endblock %}
