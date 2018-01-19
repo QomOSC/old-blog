@@ -1,5 +1,5 @@
 const decline = document.getElementsByClassName('decline');
-const accept = document.getElementsByTagName('accept');
+const accept = document.getElementsByClassName('accept');
 
 for (let i = 0; i < accept.length; i++) {
   accept[i].addEventListener('submit', e => {
