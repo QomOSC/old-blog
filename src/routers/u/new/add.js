@@ -17,7 +17,27 @@ router.post(
         member.type = 2;
 
         member.save().then(() => {
-          res.json({ type: 0 });
+
+          Member.findOne({ _id: req.member.user._id }).then(admin => {
+            if (admin) {
+
+              if (admin.submembers.indexOf(member._id) === -1) {
+                admin.submembers.push(member._id);
+
+                admin.save().then(() => {
+                  res.json({ type: 0 });
+                }).catch(() => {
+                  res.json({ type: 2, text: 0 });
+                });
+              } else {
+                res.json({ type: 2, text: 0 });                
+              }
+            } else {
+              res.json({ type: 2, text: 0 });
+            }
+          }).catch(() => {
+            res.json({ type: 2, text: 0 });
+          });
         }).catch(() => {
           res.json({ type: 2, text: 0 });
         });

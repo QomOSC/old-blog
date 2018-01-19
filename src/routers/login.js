@@ -12,6 +12,7 @@ router.get('/login', login, (req, res) => {
 
 router.post('/login', login, (req, res) => {
   req.body.email = req.body.email.toLowerCase();
+  req.body.captcha = req.body.captcha.toLowerCase();
 
   if (req.body.captcha === req.session.captcha) {
     Member.findOne({

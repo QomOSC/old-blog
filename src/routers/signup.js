@@ -19,6 +19,8 @@ router.post('/signup', login, (req, res) => {
       req.body.password &&
       req.body.captcha) {
 
+    req.body.captcha = req.body.captcha.toLowerCase();
+
     if (req.body.captcha === req.session.captcha) {
       req.body.email = req.body.email.toLowerCase();
       req.body.username = req.body.username.toLowerCase();

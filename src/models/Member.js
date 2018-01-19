@@ -68,8 +68,8 @@ const schema = new Schema({
     ref: 'Post'
   }],
   submembers: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Member'
+    type: String,
+    trim: true
   }],
 });
 
