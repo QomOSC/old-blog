@@ -6,7 +6,7 @@ const { Member } = rootRequire('./models');
 const router = new Router();
 
 router.post(
-  '/u/new/add/:username',
+  '/u/sub/add/:username',
   perm.logged,
   perm.u.admin,
   (req, res) => {
@@ -30,7 +30,7 @@ router.post(
                   res.json({ type: 2, text: 0 });
                 });
               } else {
-                res.json({ type: 2, text: 0 });                
+                res.json({ type: 2, text: 0 });
               }
             } else {
               res.json({ type: 2, text: 0 });

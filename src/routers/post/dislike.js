@@ -5,7 +5,7 @@ const { logged } = rootRequire('./perms');
 
 const router = new Router();
 
-router.post('/post/:id/dislike/', logged, (req, res) => {
+router.post('/post/dislike/:id', logged, (req, res) => {
   Post.findOne({ _id: req.params.id }).then(post => {
     if (post) {
 

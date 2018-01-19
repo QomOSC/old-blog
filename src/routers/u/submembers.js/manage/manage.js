@@ -5,7 +5,7 @@ const { Member } = rootRequire('./models');
 
 const router = new Router();
 
-router.get('/u/new/manage', perm.logged, perm.u.admin, (req, res) => {
+router.get('/u/sub/manage', perm.logged, perm.u.admin, (req, res) => {
   Member.findOne({ _id: req.member.user._id }).then(member => {
 
     if (member && JSON.stringify(member.submembers) !== '[]') {
@@ -31,7 +31,7 @@ router.get('/u/new/manage', perm.logged, perm.u.admin, (req, res) => {
 
         const next = iterator.next();
         if (next.done) {
-          res.render('u/new/manage.njk', {
+          res.render('u/sub/manage.njk', {
             subs
           });
 

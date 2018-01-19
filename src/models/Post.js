@@ -1,20 +1,20 @@
 import mongoose, { Schema } from 'mongoose';
 
 const schema = new Schema({
-  author: {
+  author: { // The ID from Member model
     type: Schema.Types.ObjectId,
     ref: 'Member',
     required: true
   },
   title: {
     type: String,
-    required: true,
+    required: [true, 'title'],
     maxlength: 100,
     trim: true
   },
   content: {
     type: String,
-    required: true,
+    required: [true, 'content'],
     trim: true
   },
   minutes: {
@@ -30,11 +30,11 @@ const schema = new Schema({
     type: Date,
     default: Date.now
   },
-  viewers: [{
+  viewers: [{ // The IP of viewers
     type: String,
     trim: true
   }],
-  likes: [{
+  likes: [{ // The ID of members
     type: String,
     trim: true
   }]

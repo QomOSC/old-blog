@@ -5,14 +5,14 @@ const { Member } = rootRequire('./models');
 
 const router = new Router();
 
-router.get('/u/new', perm.logged, perm.u.admin, (req, res) => {
+router.get('/u/sub', perm.logged, perm.u.admin, (req, res) => {
   Member.find({ type: 1 }).then(member => {
     if (JSON.stringify(member) !== '[]') {
-      res.render('u/new/new.njk', {
+      res.render('u/sub/all.njk', {
         member
       });
     } else {
-      res.render('u/new/new.njk', {
+      res.render('u/sub/all.njk', {
         empty: true
       });
     }

@@ -6,7 +6,7 @@ const { Member } = rootRequire('./models');
 const router = new Router();
 
 router.post(
-  '/u/new/remove/:username',
+  '/u/sub/remove/:username',
   perm.logged,
   perm.u.admin,
   (req, res) => {

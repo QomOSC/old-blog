@@ -27,7 +27,7 @@ router.post('/signup', login, (req, res) => {
 
       if (validator.e(req.body.email) && validator.u(req.body.username)) {
         const member = new Member({
-          fname: req.body.fname,
+          // fname: req.body.fname,
           lname: req.body.lname,
           email: req.body.email,
           username: req.body.username,
@@ -39,7 +39,7 @@ router.post('/signup', login, (req, res) => {
           // OK
           req.session.captcha = null;
           res.json({ type: 0 });
-        }).catch(() => {
+        }).catch(e => {
           const err = e.errmsg.split(' ');
 
           if (err.includes('duplicate')) {

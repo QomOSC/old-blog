@@ -12,10 +12,10 @@
 <p>Views: {{ post.viewers | length }}</p>
 <p>Likes: {{ post.likes | length }}</p>
 {% if member %}
-<form action="/post/{{ post._id }}/like/" method="post">
+<form action="/post/like/{{ post._id }}" method="post">
   <button type="submit">Like</button>
 </form>
-<form action="/post/{{ post._id }}/dislike/" method="post">
+<form action="/post/dislike/{{ post._id }}" method="post">
   <button type="submit">Dislike</button>
 </form>
 {% endif %}

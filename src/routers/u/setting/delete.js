@@ -13,11 +13,11 @@ router.post('/u/setting/delete', logged, (req, res) => {
       req.member.logout();
       // Done
       res.json({ type: 0 });
-      
+
     }).catch(() => {
       // Error
       res.json({ type: 2, text: 0 });
-    })
+    });
 
   }).catch(() => {
     // Error

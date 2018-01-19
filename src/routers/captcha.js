@@ -11,6 +11,7 @@ router.get('/captcha', (req, res) => {
     color: true
   });
 
+  // Captcha is case-insensitive
   req.session.captcha = newCaptcha.text.toLowerCase();
 
   res.json({ captcha: newCaptcha.data });

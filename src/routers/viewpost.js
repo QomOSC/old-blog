@@ -21,6 +21,8 @@ router.get('/viewpost/:id', (req, res) => {
   });
 });
 
+// Add viewer IP
+
 router.post('/viewpost/:id', (req, res) => {
   req.params.id = req.params.id.toLowerCase();
 
