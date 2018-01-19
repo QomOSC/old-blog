@@ -19,11 +19,13 @@ router.get('/user/:username', (req, res) => {
               _id: member._id,
               fname: member.fname,
               lname: member.lname,
+              type: member.type,
               createdAt: moment(member.createdAt),
               email: member.email,
               username: member.username,
               description: member.description,
-              avatar: member.avatar
+              avatar: member.avatar,
+              postsLength: member.posts.length
             };
 
             user.push(userInfo);

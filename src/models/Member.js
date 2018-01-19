@@ -64,8 +64,8 @@ const schema = new Schema({
     default: Date.now
   },
   posts: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Post'
+    type: String,
+    trim: true
   }],
   submembers: [{
     type: String,

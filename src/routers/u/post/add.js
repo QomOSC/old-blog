@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-const { Post } = rootRequire('./models');
+const { Post, Member } = rootRequire('./models');
 const { logged } = rootRequire('./perms');
 
 const router = new Router();
@@ -18,6 +18,16 @@ router.post('/u/post/add', logged, (req, res) => {
     });
 
     post.save().then(() => {
+
+      Member.findOne({ _id: req.member.user._id }).then(member => {
+        if (member) {
+          member.posts.push(post._id);
+        } else {
+          res.json({ type: 2 });
+        }
+      }).catch(() => {
+        res.json({ type: 2 });
+      });
       res.json({ type: 0 });
     }).catch(() => {
       res.json({ type: 2 });

@@ -32,6 +32,20 @@
         <td><i class="fa fa-clock-o" aria-hidden="true"></i></td>
         <td>مدت حظور: {{ member.createdAt }}</td>
       </tr>
+      <tr>
+        <td><i class="fa fa-file" aria-hidden="true"></i></td>
+        <td>تعداد پست: {{ member.postsLength }}</td>
+      </tr>
+      <tr>
+        <td><i class="fa fa-user-secret" aria-hidden="true"></i></td>
+        {% if member.type === 1 %}
+        <td>رتبه: در حال انتظار</td>
+        {% elif member.type === 2 %}
+        <td>رتبه: عضو معمولی</td>
+        {% elif member.type === 3 %}
+        <td>رتبه: مدیر</td>
+        {% endif %}
+      </tr>
     </table>
   </div>
   <div id="works">
