@@ -43,6 +43,7 @@ router.get('/user/:username', (req, res) => {
           const next = iterator.next();
           if (next.done) {
             res.render('user.njk', {
+              logged: req.member.user,
               member: user[0],
               posts: user[1]
             });

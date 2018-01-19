@@ -19,8 +19,8 @@
   </head>
   <body>
     <header>
-      {% if member %}
-        <a href="/u" id="user-fname">{{ member.fname }}</a>
+      {% if logged %}
+        <a href="/u" id="user-fname">{{ logged.fname }}</a>
       {% else %}
       <div id="icon-container" onclick="changeIcon(this)">
         <div class="bar1"></div>

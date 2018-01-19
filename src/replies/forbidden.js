@@ -3,7 +3,7 @@ export default ([req, res], message) => {
 
   res.render('replies/403.njk', {
     title: 'Forbidden',
-    member: req.member.user,
+    logged: req.member.user,
     message
   });
 };
