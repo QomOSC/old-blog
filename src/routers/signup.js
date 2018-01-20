@@ -27,7 +27,7 @@ router.post('/signup', login, (req, res) => {
 
       if (validator.e(req.body.email) && validator.u(req.body.username)) {
         const member = new Member({
-          // fname: req.body.fname,
+          fname: req.body.fname,
           lname: req.body.lname,
           email: req.body.email,
           username: req.body.username,
