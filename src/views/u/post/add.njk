@@ -4,7 +4,10 @@
 {% endblock %}
 
 {% block content %}
-  <form action="/u/post/add" method="post">
+  <form
+    action="/u/post/add"
+    method="post"
+    name="add-post">
 
     <input
       type="text"
@@ -22,18 +25,19 @@
     maxlength="10000"></textarea>
 
     <input
-    type="text"
-    name="minutes"
-    required
-    placeholder="زمان(به دقیقه)"
-    maxlength="3">
-
-    <input
     type="submit"
     value="ثبت">
 
   </form>
+  <button id="preview">Preview</button>
+
+  <div id="show"></div>
 {% endblock %}
 
 {% block scripts %}
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js">
+</script>
+<script src="/files/js/lib/checkstatus.js"></script>
+<script src="/files/js/add-post.js"></script>
 {% endblock %}

@@ -22,13 +22,18 @@ router.post('/u/post/add', logged, (req, res) => {
       Member.findOne({ _id: req.member.user._id }).then(member => {
         if (member) {
           member.posts.push(post._id);
+
+          member.save().then(() => {
+            res.json({ type: 0 });
+          }).catch(() => {
+            res.json({ type: 2 });
+          });
         } else {
           res.json({ type: 2 });
         }
       }).catch(() => {
         res.json({ type: 2 });
       });
-      res.json({ type: 0 });
     }).catch(() => {
       res.json({ type: 2 });
     });
