@@ -4,10 +4,9 @@
 {% endblock %}
 
 {% block content %}
-  <h1>توجه! با ساختن اکانت مستقیما وارد سایت نمیشوید. باید تا زمان تایید
-  مدیران سایت صبر کنید</h1>
+<div class="all-signup">
   <form action="/signup" method="post" name="signup-form">
-
+  <div class="signup">
     <input
       type="text"
       name="fname"
@@ -26,7 +25,7 @@
       type="text"
       name="username"
       required
-      placeholder="یوزرنیم"
+      placeholder="نام کاربری"
       maxlength="100">
 
     <input
@@ -55,8 +54,9 @@
     <input
       type="submit"
       value="ثبت">
-
+</div>
   </form>
+  </div>
 {% endblock %}
 
 {% block scripts %}
