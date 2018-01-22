@@ -1,5 +1,5 @@
 {
   "port": "8010",
-  "db": "mongodb://127.0.0.1:27017/qomocs",
+  "db": "mongodb://127.0.0.1:27017/qomosc",
   "title": "example"
 }
