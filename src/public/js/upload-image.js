@@ -11,7 +11,10 @@ up.addEventListener('change', () => {
       preview.src = e.target.result;
 
       cropper = new Cropper(preview, {
-        aspectRatio: 1 / 1
+        aspectRatio: 1 / 1,
+        // resizable: false,
+        zoomable: false,
+        // background: false
       });
     };
 
@@ -29,19 +32,24 @@ up.addEventListener('change', () => {
 
         fetch('/u/setting/avatar', {
           method: 'POST',
-          body: fd,
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'multipart/form-data',
-          }
+          credentials: 'include',
+          body: fd
         })
-          .then(res => res.text())
+          .then(res => res.json())
           .then(data => {
-            console.log(0);
-            console.log(data);
-          }).catch(e => {
-            console.log(1);
-            console.log(e);
+            if (data.type === 0) {
+              iziToast.success({
+                title: 'موفق',
+                rtl: true,
+                message: 'عکس شما با موفقیت تغییر کرد'
+              });
+            }
+          }).catch(() => {
+            iziToast.error({
+              title: 'خطا!',
+              rtl: true,
+              message: 'مشکلی پیش آمده، بعدا امتحان کنید'
+            });
           });
       });
     });
