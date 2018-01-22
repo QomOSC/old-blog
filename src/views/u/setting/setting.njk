@@ -2,16 +2,7 @@
 
 {% block head %}
 <link rel="stylesheet" href="/files/css/lib/cropper.css">
-<script src="/files/js/lib/cropper.js"></script>
-<style>
-.container {
-  max-width: 400px;
-}
-
-img {
-  max-width: 100%;
-}
-</style>
+<link rel="stylesheet" href="/files/css/setting-cropper.css">
 {% endblock %}
 
 {% block content %}
@@ -80,17 +71,18 @@ img {
   <input type="file" id="upload" value="Upload">
   <input type="submit" id="crop" value="Crop">
 </p>
-
+<div id="all">
 <div class="container">
-    <img id="preview">
-  <div class="container">
-    <img id="done">
-  </div>
+  <img id="preview">
 </div>
-
+<div class="container">
+  <img id="done">
+</div>
+</div>
 {% endblock %}
 
 {% block scripts %}
+<script src="/files/js/lib/cropper.js"></script>
 <script src="/files/js/upload-image.js"></script>
 <script src="/files/js/lib/checkstatus.js"></script>
 <script src="/files/js/lib/validator.js"></script>

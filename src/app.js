@@ -48,6 +48,11 @@ app.use(helmet());
 app.use('/files', express.static(path.resolve(__dirname, './public')));
 
 /**
+ * images
+ */
+app.use('/img', express.static(path.resolve(__dirname, '../uploads')));
+
+/**
  * logger
  */
 app.use(morgan('short'));
