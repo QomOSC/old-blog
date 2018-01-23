@@ -89,20 +89,16 @@ input:focus{
     font-weight: normal;
     font-size: 40px;
   }
-  .regcard {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background: #fff;
-    width: 500px;
-    height: 550px;
-    margin: auto auto;
-    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2);
- }
+
  .reg {
    display: flex;
    flex-direction: column;
    padding: 1rem 1rem;
+   background: #fff;
+   width: 500px;
+   height: 500px;
+   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2);
+   margin: auto;
  }
  .reg p {
    color: #adadad;
@@ -112,13 +108,17 @@ input:focus{
    margin-bottom: 30px;
  }
  .foot {
-   background: #eceff1;
-   text-align:  center;
+   width: 514px;
+   background: #d2d2d2;
    padding: 10px;
- }
- .foot p {
    color: #919191;
+   margin: auto;
+   text-align: center;
  }
+.signup {
+  display: flex;
+  flex-direction: column;
+}
 
 
 // end login page
@@ -346,5 +346,15 @@ input:focus{
 }
 .contact {
   flex-direction: column;
+}
+.card {
+  flex-direction: column;
+  width: 100%;
+}
+.reg {
+  width: 90%;
+}
+.foot {
+  width: 300px;
 }
 }
