@@ -4,59 +4,60 @@
 {% endblock %}
 
 {% block content %}
-<div class="all-signup">
   <form action="/signup" method="post" name="signup-form">
-  <div class="signup">
-    <input
-      type="text"
-      name="fname"
-      required
-      placeholder="نام"
-      maxlength="50">
+    <div class="regcard">
+      <div class="reg">
+        <div class="head">
+        <h1>عضویت</h1>
+        <p>حساب کاربری خود را بسازید!</p>
+        </div>
+        <input
+          type="text"
+          name="fname"
+          required
+          placeholder="نام"
+          maxlength="50">
+          <input
+            type="text"
+            name="lname"
+            required
+            placeholder="نام خانوادگی"
+            maxlength="50">
 
-    <input
-      type="text"
-      name="lname"
-      required
-      placeholder="نام خانوادگی"
-      maxlength="50">
+                <input
+                  type="text"
+                  name="username"
+                  required
+                  placeholder="نام کاربری"
+                  maxlength="100">
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    placeholder="ایمیل"
+                    maxlength="200">
+                    <p id="svg-captcha"></p>
+                    <input
+                      type="password"
+                      name="captcha"
+                      required
+                      placeholder="کد امنیتی"
+                      maxlength="10">
 
-    <input
-      type="text"
-      name="username"
-      required
-      placeholder="نام کاربری"
-      maxlength="100">
+                    <input
+                      type="password"
+                      name="password"
+                      required
+                      placeholder="رمز عبور"
+                      maxlength="100">
 
-    <input
-      type="email"
-      name="email"
-      required
-      placeholder="ایمیل"
-      maxlength="200">
-
-    <p id="svg-captcha"></p>
-
-    <input
-      type="password"
-      name="captcha"
-      required
-      placeholder="کد امنیتی"
-      maxlength="10">
-
-    <input
-      type="password"
-      name="password"
-      required
-      placeholder="رمز عبور"
-      maxlength="100">
-
-    <input
-      type="submit"
-      value="ثبت">
-</div>
+        <div class="row2">
+          <input
+            type="submit"
+            value="ثبت" class="sub2">      </div>
+      </div>
+    </div>
   </form>
-  </div>
 {% endblock %}
 
 {% block scripts %}
