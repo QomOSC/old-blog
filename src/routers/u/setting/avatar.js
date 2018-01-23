@@ -14,10 +14,14 @@ const storage = multer.diskStorage({
     crypto.pseudoRandomBytes(16, (err, raw) => {
       const extension = file.mimetype.split('/')[1];
 
-      cb(null, raw.toString('hex') +
-      Date.now() +
-      '.' +
-      extension);
+      if (extension === 'jpg' || extension === 'png') {
+        cb(null, raw.toString('hex') +
+        Date.now() +
+        '.' +
+        extension);
+      } else {
+        cb(new Error('not an image'));
+      }
     });
   }
 });
@@ -30,9 +34,7 @@ router.post(
   logged,
   upload.single('croppedImage'),
   (req, res) => {
-
-  console.log(req.file);
-
+    
   Member.findOne({ _id: req.member.user._id }).then(member => {
     if (member) {
       member.avatar = req.file.filename;

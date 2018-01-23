@@ -4,54 +4,64 @@ const crop = document.getElementById('crop');
 
 up.addEventListener('change', () => {
   if (up.files && up.files[0]) {
-    const reader = new FileReader();
-    let cropper;
+    if (up.files[0].type === 'image/png' ||
+    up.files[0].type === 'image/jpeg') {
 
-    reader.onload = function(e) {
-      preview.src = e.target.result;
+      const reader = new FileReader();
+      let cropper;
 
-      cropper = new Cropper(preview, {
-        aspectRatio: 1 / 1,
-        // resizable: false,
-        zoomable: false,
-        // background: false
-      });
-    };
+      reader.onload = function(e) {
+        preview.src = e.target.result;
 
-    reader.readAsDataURL(up.files[0]);
+        cropper = new Cropper(preview, {
+          aspectRatio: 1 / 1,
+          // resizable: false,
+          zoomable: false,
+          // background: false
+        });
+      };
 
-    crop.addEventListener('click', () => {
+      reader.readAsDataURL(up.files[0]);
 
-      // const imageData = cropper.getCroppedCanvas().toDataURL();
-      // done.src = imageData;
+      crop.addEventListener('click', () => {
 
-      cropper.getCroppedCanvas().toBlob(blob => {
-        const fd = new FormData();
+        // const imageData = cropper.getCroppedCanvas().toDataURL();
+        // done.src = imageData;
 
-        fd.append('croppedImage', blob);
+        cropper.getCroppedCanvas().toBlob(blob => {
+          const fd = new FormData();
 
-        fetch('/u/setting/avatar', {
-          method: 'POST',
-          credentials: 'include',
-          body: fd
-        })
-          .then(res => res.json())
-          .then(data => {
-            if (data.type === 0) {
-              iziToast.success({
-                title: 'موفق',
+          fd.append('croppedImage', blob);
+
+          fetch('/u/setting/avatar', {
+            method: 'POST',
+            credentials: 'include',
+            body: fd
+          })
+            .then(res => res.json())
+            .then(data => {
+              if (data.type === 0) {
+                iziToast.success({
+                  title: 'موفق',
+                  rtl: true,
+                  message: 'عکس شما با موفقیت تغییر کرد'
+                });
+              }
+            }).catch(() => {
+              iziToast.error({
+                title: 'خطا!',
                 rtl: true,
-                message: 'عکس شما با موفقیت تغییر کرد'
+                message: 'مشکلی پیش آمده، بعدا امتحان کنید'
               });
-            }
-          }).catch(() => {
-            iziToast.error({
-              title: 'خطا!',
-              rtl: true,
-              message: 'مشکلی پیش آمده، بعدا امتحان کنید'
             });
-          });
+        });
       });
-    });
+    } else {
+      iziToast.error({
+        title: 'خطا!',
+        rtl: true,
+        message: 'فایل مورد نظر عکس نیست'
+      });
+    }
   }
 });
