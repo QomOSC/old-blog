@@ -1,0 +1,246 @@
+// signup
+.signup {
+  padding: 10px;
+  background: #e8e8e8;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: auto auto;
+}
+.signup input[type="text"],input[type="password"],input[type="email"] {
+  padding: 8px 7px;
+  border: solid 1px #919191;
+  margin: 10px;
+  border-radius: 4px;
+  &:focus {
+    border: solid 1px #333;
+  }
+}
+input[type="submit"] {
+  background: #555;
+  padding: 10px;
+  &:hover {
+      background-color: spin(lighten(#fec901, 25%), 8);
+  }
+}
+//end//
+
+// home //
+.contact {
+  background: url(https://wikitravel.org/upload/shared//5/58/Tehran_Banner.jpg);
+  background-attachment: fixed;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.contact h1 {
+  color : #fff;
+  font-size: 60px;
+  text-shadow: 4px 4px 25px rgba(150, 150, 150, 10);
+}
+.description {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  text-align: center;
+  background: #eeeeee;
+}
+.col-des {
+  padding: 5px;
+  text-align: center;
+  border-right: solid 1px #adadad;
+  width: 30%;
+}
+.home-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.activists {
+  height: 500px;
+  width: 300px;
+  background: #d2d2d2;
+  color: #333;
+  border-left: solid 2px #959595;
+}
+.activists h3 {
+  text-align: center;
+  background: #333;
+  color: #fff;
+  margin-bottom: 20px;
+}
+.last-posts {
+  height: 800px;
+  width: 100%;
+  background: #d2d2d2;
+}
+.last-posts h3 {
+  background: #333;
+  text-align: center;
+  color: #fff;
+}
+.person {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.person-info {
+  margin-right: 8px;
+}
+
+
+
+
+// post//
+.posts {
+  width: 40%;
+  background: #fff;
+  margin: auto auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  box-shadow: 0 0 5px #333;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+
+}
+.posts-head {
+  height: 35px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+
+}
+.posts-head-right {
+  display: flex;
+  width: 50%;
+
+}
+.posts-head-left {
+  display: flex;
+  background: #ddd;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+}
+.like-btn {
+  padding: 10px;
+}
+.view-btn {
+  padding: 10px;
+  border-right: solid 2px #adadad;
+}
+
+.profile-img {
+  background: #123;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+}
+.col-name {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+}
+.posts-body {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+.posts-pic {
+  height: 350px;
+  background: url(http://www.majidonline.com/file/width/800/1918/vuejs-and-reactjs-a-quick-comparison.png);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+align-items: flex-end;
+-webkit-box-shadow: inset 0px -104px 36px -31px rgba(0,0,0,0.51);
+-moz-box-shadow: inset 0px -104px 36px -31px rgba(0,0,0,0.51);
+box-shadow: inset 0px -104px 36px -31px rgba(0,0,0,0.51);
+&:hover {
+  -webkit-box-shadow: inset 0px -114px 45px -38px rgba(0,0,0,0.73);
+-moz-box-shadow: inset 0px -114px 45px -38px rgba(0,0,0,0.73);
+box-shadow: inset 0px -114px 45px -38px rgba(0,0,0,0.73);
+}
+}
+.posts-title {
+  cursor: pointer;
+  padding: 10px;
+  font-weight: bold;
+  color: #f2f2f2;
+  margin-bottom: 5px;
+  &:hover {
+    color: fade(#fff, 100%);
+  }
+}
+.posts-summary {
+  color: #898989;
+  font-size: 13px;
+}
+.posts-footer {
+  padding: 10px;
+  background: #586;
+  text-align: left;
+  font-size: 14px;
+  cursor: pointer;
+  &:hover {
+    background: darken(#999, 10%);
+  }
+}
+.posts-footer span{
+  &:hover {
+    color: fade(#546, 50%);
+  }
+}
+
+// end-posts ///
+@media only screen and (max-width: 480px) {
+  .description {
+    flex-direction: column;
+    text-align: center;
+  }
+  .col-des {
+    width: 100%;
+    border: none;
+    padding: 0;
+    margin-bottom: 5px;
+    padding-bottom: 10px;
+    border-bottom: solid 1px #919191;
+  }
+  .home-content {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .activists {
+   width: 100%;
+  }
+  .person {
+    justify-content: center;
+  }
+  .last-posts {
+    width: 100%;
+  }
+  .posts {
+    width: 98%;
+  }
+  .posts-head {
+    padding: 10px 3px;
+    font-size: 14px;
+  }
+  .posts-head-right {
+    width: 400px;
+  }
+.posts-head-left {
+  height: 50px;
+  background: #fff;
+}
+.view-btn {
+  border: none;
+}
+}
