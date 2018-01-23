@@ -98,7 +98,7 @@ input[type="submit"] {
 
 // post//
 .posts {
-  width: 40%;
+  width: 30%;
   background: #fff;
   margin: auto auto;
   margin-top: 50px;
@@ -119,12 +119,13 @@ input[type="submit"] {
 }
 .posts-head-right {
   display: flex;
-  width: 50%;
+  width: 60%;
 
 }
 .posts-head-left {
+  width: 30%;
+  height: 30px;
   display: flex;
-  background: #ddd;
   border-radius: 20px;
   justify-content: center;
   align-items: center;
@@ -134,7 +135,6 @@ input[type="submit"] {
 }
 .view-btn {
   padding: 10px;
-  border-right: solid 2px #adadad;
 }
 
 .profile-img {
@@ -154,7 +154,7 @@ input[type="submit"] {
   padding: 10px;
 }
 .posts-pic {
-  height: 350px;
+  height: 200px;
   background: url(http://www.majidonline.com/file/width/800/1918/vuejs-and-reactjs-a-quick-comparison.png);
   background-size: cover;
   background-position: center;
@@ -183,19 +183,23 @@ box-shadow: inset 0px -114px 45px -38px rgba(0,0,0,0.73);
   color: #898989;
   font-size: 13px;
 }
+.posts-event {
+  display: flex;
+}
 .posts-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   padding: 10px;
-  background: #586;
+  background: #d8d8d8;
+  height: 10px;
   text-align: left;
   font-size: 14px;
   cursor: pointer;
-  &:hover {
-    background: darken(#999, 10%);
-  }
 }
 .posts-footer span{
   &:hover {
-    color: fade(#546, 50%);
+    color: fade(#333, 50%);
   }
 }
 
