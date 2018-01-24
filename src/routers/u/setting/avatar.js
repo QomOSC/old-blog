@@ -34,7 +34,7 @@ router.post(
   logged,
   upload.single('croppedImage'),
   (req, res) => {
-    
+
   Member.findOne({ _id: req.member.user._id }).then(member => {
     if (member) {
       member.avatar = req.file.filename;

@@ -9,7 +9,7 @@
 {% else %}
 {% for i in authorposts %}
 <div style="border: 1px solid red;" id="{{ i._id }}">
-  <a href="/post/{{ i._id }}">{{ i.title }}</a>
+  <a href="/viewpost/{{ i._id }}">{{ i.title }}</a>
   <h3>{{ i.content }}</h3>
   <h5>{{ i.minutes }} minutes read</h5>
   <p>{{ createdAt }}</p>

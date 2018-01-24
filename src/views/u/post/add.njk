@@ -1,6 +1,8 @@
 {% extends locals.path + '/u.njk' %}
 
 {% block head %}
+<link rel="stylesheet" href="/files/css/lib/cropper.css">
+<link rel="stylesheet" href="/files/css/setting-cropper.css">
 {% endblock %}
 
 {% block content %}
@@ -24,6 +26,8 @@
     placeholder="متن"
     maxlength="10000"></textarea>
 
+    <input type="file" id="upload" value="Upload">
+
     <input
     type="submit"
     value="ثبت">
@@ -32,12 +36,22 @@
   <button id="preview">Preview</button>
 
   <div id="show"></div>
+
+  <div id="all">
+  <div class="container">
+    <img id="img-preview">
+  </div>
+  <div class="container">
+    <img id="done">
+  </div>
+  </div>
 {% endblock %}
 
 {% block scripts %}
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js">
 </script>
+<script src="/files/js/lib/cropper.js"></script>
 <script src="/files/js/lib/checkstatus.js"></script>
 <script src="/files/js/add-post.js"></script>
 {% endblock %}
