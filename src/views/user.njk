@@ -10,6 +10,8 @@
     <h1>{{ member.fname }} {{ member.lname }}</h1>
     {% if member.avatar %}
     <img src="/img/{{ member.avatar }}" alt="عکس کاربر">
+    {% else %}
+    <img src="/files/image/default-user.png" alt="عکس کاربر">
     {% endif %}
     <p id="user-description"></p>
     <table id="user-info">
@@ -43,6 +45,8 @@
         <td>رتبه: عضو معمولی</td>
         {% elif member.type === 3 %}
         <td>رتبه: مدیر</td>
+        {% elif member.type === 4 %}
+        <td>رتبه: مدیر کل</td>
         {% endif %}
       </tr>
     </table>
