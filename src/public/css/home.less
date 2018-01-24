@@ -1,128 +1,3 @@
-// login & signup page
-
-.card {
-  display: flex;
-  width: 65%;
-  height: 380px;
-  margin: auto auto;
-      box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2);
-}
-.card-right {
-  background-color:#fff;
-  padding: 10px 60px;
-}
-.card-left {
-  background-color:#009884;
-  color: #fff;
-  text-align: center;
-  padding: 50px 1px;
-  text-align: center;
-  }
-  .row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-  input {
-    width: 90%;
-    margin: 5px;
-    padding: 0.6rem 0.75rem;
-    font-size: 14px;
-    line-height: 1.25;
-    border-radius: 4px;
-    color:#004c4c;
-    border: 1px solid rgba(0,95,82,0.2);
-    transition: 0.5s;
-}
-.btn {
-  border: none;
-  margin-top: 20px;
-  background-color: #008573;
-  width: 180px;
-  padding: 9px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.5s;
-  color: #Fff;
-  font-size: 18px;
-}
-.btn:hover {
-  background-color: #333;
-  color: #fff;
-}
-input:focus{
-    box-shadow: 0 0 3px rgba(35, 173, 278, 1);
-  }
-  .card-right p {
-    color: #adadad;
-    margin-bottom: 10px;
-  }
-  .card-right label {
-    margin: 5px;
-  }
-.row2 {
-  display: flex;
-  justify-content: center;
-}
-  .sub {
-    width: 30%;
-    cursor: pointer;
-    background-color: #008573;
-    color: #fff;
-  }
-  .sub2 {
-    width: 90%;
-    background-color: #008573;
-    color: #fff;
-    font-weight: bold;
-    font-size: 16px;
-    border-radius: 0;
-    line-height: 1.25;
-    cursor: pointer;
-    margin-top: 20px;
-    &:hover {
-      background:  #00AB94;
-    }
-  }
-  .card-right h1 {
-    font-weight: normal;
-    font-size: 40px;
-  }
-
- .reg {
-   display: flex;
-   flex-direction: column;
-   padding: 1rem 1rem;
-   background: #fff;
-   width: 500px;
-   height: 500px;
-   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2);
-   margin: auto;
- }
- .reg p {
-   color: #adadad;
-   font-size: 14px;
- }
- .head {
-   margin-bottom: 30px;
- }
- .foot {
-   width: 514px;
-   background: #d2d2d2;
-   padding: 10px;
-   color: #919191;
-   margin: auto;
-   text-align: center;
- }
-.signup {
-  display: flex;
-  flex-direction: column;
-}
-
-
-// end login page
-
 
 // home //
 .contact {
@@ -157,13 +32,14 @@ input:focus{
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin: 10px;
 }
 .activists {
-  height: 500px;
   width: 300px;
   background: #d2d2d2;
   color: #333;
   border-left: solid 2px #959595;
+  margin: 10px;
 }
 .activists h3 {
   text-align: center;
@@ -172,9 +48,8 @@ input:focus{
   margin-bottom: 20px;
 }
 .last-posts {
-  height: 800px;
   width: 100%;
-  background: #d2d2d2;
+  margin: 10px;
 }
 .last-posts h3 {
   background: #333;
@@ -201,10 +76,9 @@ input:focus{
   margin: auto auto;
   margin-top: 50px;
   margin-bottom: 50px;
-  box-shadow: 0 0 5px #333;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-
+  border-radius: 3px;
+  border: 1px solid rgba(0,0,0,.1);
+  box-shadow: 0 1px 0 rgba(0,0,0,.08);
 }
 .posts-head {
   height: 35px;
@@ -213,11 +87,11 @@ input:focus{
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-
 }
 .posts-head-right {
   display: flex;
   width: 60%;
+  font-size: 15px;
 }
 .posts-head-left {
   width: 30%;
@@ -236,8 +110,8 @@ input:focus{
 
 .profile-img {
   background: #123;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 100%;
 }
 .col-name {
@@ -252,33 +126,39 @@ input:focus{
 }
 .posts-pic {
   height: 200px;
-  background: url(http://www.majidonline.com/file/width/800/1918/vuejs-and-reactjs-a-quick-comparison.png);
-  background-size: cover;
-  background-position: center;
+  background: #666;
   display: flex;
-  align-items: flex-end;
-  -webkit-box-shadow: inset 0px -104px 36px -31px rgba(0,0,0,0.51);
-  -moz-box-shadow: inset 0px -104px 36px -31px rgba(0,0,0,0.51);
-   box-shadow: inset 0px -104px 36px -31px rgba(0,0,0,0.51);
-    &:hover {
-     -webkit-box-shadow: inset 0px -114px 45px -38px rgba(0,0,0,0.73);
-      -moz-box-shadow: inset 0px -114px 45px -38px rgba(0,0,0,0.73);
-      box-shadow: inset 0px -114px 45px -38px rgba(0,0,0,0.73);
-         }
+  overflow:hidden;
+  cursor: pointer;
+}
+.posts-pic img {
+  transition:all 0.2s;
+  -o-object-fit: cover;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  &:hover {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+  }
 }
 .posts-title {
   cursor: pointer;
-  padding: 10px;
-  font-weight: bold;
-  color: #f2f2f2;
+  color: #444;
   margin-bottom: 5px;
     &:hover {
-    color: fade(#fff, 100%);
+    color: fade(#555, 100%);
     }
 }
+.posts-title span {
+  font-size: 1.2em;
+  letter-spacing: -.5px;
+  font-weight: 800;
+}
 .posts-summary {
-  color: #898989;
+  opacity: .7;
   font-size: 13px;
+  line-height: 1.7;
 }
 .posts-event {
   display: flex;
@@ -287,16 +167,20 @@ input:focus{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  background: #d8d8d8;
-  height: 10px;
-  text-align: left;
-  font-size: 14px;
+  padding: 2px 10px;
+  background: #f1f1f1;
+  font-size: .8em;
   cursor: pointer;
 }
+.posts-footer i {
+  color: #333;
+}
 .posts-footer span{
+  transition: 0.2s;
+  letter-spacing: -.8px;
+  color: #777;
   &:hover {
-    color: fade(#333, 50%);
+    color: darken(#333, 50%);
   }
 }
 
@@ -320,12 +204,14 @@ input:focus{
   }
   .activists {
    width: 100%;
+   margin: 0;
   }
   .person {
     justify-content: center;
   }
   .last-posts {
     width: 100%;
+    margin: 0;
   }
   .posts {
     width: 98%;
@@ -347,14 +233,5 @@ input:focus{
 .contact {
   flex-direction: column;
 }
-.card {
-  flex-direction: column;
-  width: 100%;
-}
-.reg {
-  width: 90%;
-}
-.foot {
-  width: 300px;
-}
+
 }
