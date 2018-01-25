@@ -24,6 +24,13 @@ const schema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now
+  },
+  type: { // 1: just requested 2: accepted 3: declined 4: done
+    type: Number,
+    enum: [1, 2, 3, 4],
+    required: [true, 'type'],
+    trim: true,
+    default: 1
   }
 });
 
