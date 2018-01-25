@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
     .limit(20)
     .then(doc => {
 
-      if (JSON.stringify(doc) !== '[]') {
+      if (JSON.stringify(doc) === '[]') {
         res.render('home.njk', {
           logged: req.member.user,
           empty: true
@@ -25,15 +25,19 @@ router.get('/', (req, res) => {
         function* getResponse() {
           for (const i of doc) {
             yield new Promise(resolve => {
+              let content = i.content.split('').slice(0, 130);
+              content.push('.', '.', '.');
+              content = content.join('');
+
               const onePost = {
                 _id: i._id,
                 title: i.title,
                 createdAt: moment(i.createdAt),
-                content: i.content,
-                minutes: i.minutes,
                 likes: i.likes.length,
                 viewers: i.viewers.length,
-                author: {}
+                avatar: i.avatar,
+                author: {},
+                content
               };
 
               Member.findOne({ _id: i.author }).then(member => {
@@ -41,13 +45,15 @@ router.get('/', (req, res) => {
                   onePost.author.fname = member.fname;
                   onePost.author.lname = member.lname;
                   onePost.author.username = member.username;
+                  onePost.author.avatar = member.avatar;
+
                   posts.push(onePost);
                   resolve();
                 } else {
-                  res.send('err');
+                  res.reply.error();
                 }
               }).catch(() => {
-                res.send('err');
+                res.reply.error();
               });
             });
           }
@@ -70,7 +76,7 @@ router.get('/', (req, res) => {
       }
 
   }).catch(() => {
-    res.send('err');
+    res.reply.error();
   });
 });
 
