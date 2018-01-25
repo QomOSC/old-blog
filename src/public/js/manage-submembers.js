@@ -11,7 +11,6 @@ for (let i = 0; i < remove.length; i++) {
         'Content-Type': 'application/json'
       })
     }).then(checkStatus).then(res => res.json()).then(data => {
-      console.log(data);
       if (data.type === 0) {
         iziToast.success({
           title: 'کاربر از سایت حذف شد',
