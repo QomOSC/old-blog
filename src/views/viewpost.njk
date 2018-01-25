@@ -14,9 +14,15 @@
 <div class="viewpost-info">
   <div class="viewpost-info-in">
   <div class="view-post-head-right">
-  <div class="profile-img"></div>
-  <div class="col-name">
+    <a href="/user/{{ p.author.username }}">
+      <div class="profile-img"
+      style="background-image: url('/img/{{ p.author.avatar }}');
+      background-size: cover;"></div>
+  </a>
+    <div class="col-name">
+      <a href="/user/{{ p.author.username }}">
   <span>{{ p.author.fname }} {{ p.author.lname }}</span>
+</a>
   </div>
   </div>
 <div class="viewpost-icon">
@@ -60,18 +66,8 @@
 
 </div>
 <div class="user-info">
-<<<<<<< HEAD
 <div>
 </div>
-=======
- <div class="uesr-info-right">
-
- </div>
- <div class="user-info-left">
-   <span class="username">محمد سیفی مرندی</span>
-   <p>برنامه نویس و توسعه دهنده وب و طراح رابط کاربری و رابط تجربی و گرافیک دیزاینز</p>
- </div>
->>>>>>> 3c909949308cefa9ba6c48d336af5b8788e65212
 </div>
 {% endblock %}
 
