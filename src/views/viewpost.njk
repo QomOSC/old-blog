@@ -8,7 +8,7 @@
 
 {% block content %}
 <div class="viewpost">
-  <span> {{ post.title }}</span>
+  <span> {{ p.post.title }}</span>
 </div>
 <div class="viewpost-info-all">
 <div class="viewpost-info">
@@ -16,42 +16,43 @@
   <div class="view-post-head-right">
   <div class="profile-img"></div>
   <div class="col-name">
-  <span>محمد سیفی مرندی</span>
+  <span>{{ p.author.fname }} {{ p.author.lname }}</span>
   </div>
   </div>
-<button class="follow-btn">دنبال کردن <i class="fa fa-user-plus" aria-hidden="true"></i></button>
 <div class="viewpost-icon">
- <span><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp 2 روز پیش </span>
+ <span>
+   <i class="fa fa-calendar" aria-hidden="true"></i>
+   &nbsp;{{ p.other.createdAt }}
+ </span>
  <span>
     <i class="fa fa-eye" aria-hidden="true"></i>
-    {{ post.viewers | length }}
-    بازدید
+    {{ p.other.viewers }}
  </span>
- <span> مدت زمان مطالعه&nbsp&nbsp{{ post.minutes }}&nbsp دقیقه </span>
+ <span> مدت زمان مطالعه&nbsp;&nbsp;{{ p.post.minutes }}&nbsp; دقیقه </span>
  </div>
  </div>
  </div>
  <div class="event">
    <div class="posts-event">
      <div class="dislike-btn">
-        <form action="/post/dislike/{{ post._id }}" method="post">
+        <form action="/post/dislike/{{ p.post._id }}" method="post">
         <button type="submit"><i class="fa fa-thumbs-down" aria-hidden="true"></i></button>
        </form>
      </div>
  <div class="like-btn">
-   <form action="/post/like/{{ post._id }}" method="post">
+   <form action="/post/like/{{ p.post._id }}" method="post">
      <button type="submit"><i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
 
    </form>
  </div>
- <span class="like-spn"> {{ post.likes | length }}</span>
+ <span class="like-spn"> {{ p.other.likes }}</span>
 
  </div>
  </div>
  </div>
 <div class="viewpost-body">
  <div class="viewpost-text">
-    <p>{{ post.content }}</p>
+    <p>{{ p.post.content }}</p>
  </div>
   <div class="viewpost-left">
 
@@ -59,19 +60,14 @@
 
 </div>
 <div class="user-info">
- <div></div>
+<div>
 </div>
-{# <h1>Author: {{ post.author }}</h1>
-<h1>Created at: {{ post.createdAt }}</h1> #}
-
-{% if member %}
-
-{% endif %}
+</div>
 {% endblock %}
 
 {% block scripts %}
 <script>
-  const URL = '{{ post._id }}';
+  const URL = '{{ p.post._id }}';
 </script>
 <script src='/files/js/ipchecker.js'></script>
 {% endblock %}

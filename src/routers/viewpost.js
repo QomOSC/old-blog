@@ -1,6 +1,7 @@
 import { Router } from 'express';
 
-const { Post } = rootRequire('./models');
+const { Post, Member } = rootRequire('./models');
+const { moment } = rootRequire('./utils');
 
 const router = new Router();
 
@@ -9,9 +10,28 @@ router.get('/viewpost/:id', (req, res) => {
 
   Post.findOne({ _id: req.params.id }).then(post => {
       if (post) {
-        res.render('viewpost.njk', {
-          post,
-          member: req.member.user
+        const onePost = { post, author: {}, other: {} };
+
+        onePost.other.createdAt = moment(post.createdAt);
+        onePost.other.likes = post.likes.length;
+        onePost.other.viewers = post.viewers.length;
+
+        Member.findOne({ _id: post.author }).then(member => {
+          if (member) {
+            onePost.author.avatar = member.avatar;
+            onePost.author.fname = member.fname;
+            onePost.author.lname = member.lname;
+            onePost.author.username = member.username;
+
+            res.render('viewpost.njk', {
+              p: onePost,
+              logged: req.member.user
+            });
+          } else {
+            res.reply.notFound();
+          }
+        }).catch(() => {
+          res.reply.notFound();
         });
       } else {
         res.reply.notFound();
