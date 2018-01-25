@@ -3,12 +3,14 @@
 {% block head %}
 <link rel="stylesheet" href="/files/css/viewpost.css">
 <link rel="stylesheet" href="/files/css/home.css">
+<link rel="stylesheet" href="/files/css/post-short.css">
 {% endblock %}
 
 {% block content %}
 <div class="viewpost">
-  <span> مقایسه سریع Vue.JS و React.JS </span>
+  <span> {{ post.title }}</span>
 </div>
+<div class="viewpost-info-all">
 <div class="viewpost-info">
   <div class="viewpost-info-in">
   <div class="view-post-head-right">
@@ -18,39 +20,38 @@
   </div>
   </div>
 <button class="follow-btn">دنبال کردن <i class="fa fa-user-plus" aria-hidden="true"></i></button>
- <span style="color : #666;">2 روز پیش</span>
+<div class="viewpost-icon">
+ <span><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp 2 روز پیش </span>
+ <span>
+    <i class="fa fa-eye" aria-hidden="true"></i>
+    {{ post.viewers | length }}
+    بازدید
+ </span>
+ <span> مدت زمان مطالعه&nbsp&nbsp{{ post.minutes }}&nbsp دقیقه </span>
+ </div>
+ </div>
  </div>
  <div class="event">
- <div class="posts-event">
-   <div class="bookmark-btn">
-  <i class="fa fa-bookmark-o" aria-hidden="true"></i>
-   </div>
+   <div class="posts-event">
+     <div class="dislike-btn">
+        <form action="/post/dislike/{{ post._id }}" method="post">
+        <button type="submit"><i class="fa fa-thumbs-down" aria-hidden="true"></i></button>
+       </form>
+     </div>
  <div class="like-btn">
- <span>10</span>
- <i class="fa fa-heart" aria-hidden="true"></i>
+   <form action="/post/like/{{ post._id }}" method="post">
+     <button type="submit"><i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
+
+   </form>
  </div>
- <div class="view-btn">
- <span>85</span>
- <i class="fa fa-eye" aria-hidden="true"></i>
- </div>
+ <span class="like-spn"> {{ post.likes | length }}</span>
 
  </div>
  </div>
  </div>
 <div class="viewpost-body">
  <div class="viewpost-text">
-    <p>توسعه‌دهندگان فرانت-اند از ابزار‌های مختلفی استفاده می‌کنند. بحث در مورد این ابزار‌ها و این‌که کدام یک بهتر است، می‌تواند به یک جنگ تبدیل شود چراکه هر توسعه‌دهنده از نظر روش‌های کار و استفاده از زبان‌های برنامه‌نویسی دارای ترجیحات خاص خود است. به همین دلیل بهترین راه این است که فریم‌ورک‌های مختلف JS را شخصا بررسی کنید و با توجه به پروژه خود، بهترین آن‌ها را انتخاب نمائید.
-امروزه دو  فریم‌ورک محبوب (همراه با فریم‌ورک‌های Node.js) وجود دارد که برای اکثر توسعه‌دهندگان بسیار ارزشمند هستند : React.js و Vue.js
-اما کدام‌یک بهتر است؟ این انتخاب به کار‌ها و تسک‌هایی که میخواهید انجام دهید، بستگی دارد. در این مقاله نقاط قوت و ضعف هر یک از این ابزار‌ها را بررسی می‌کنیم تا کمکی باشد برای انتخاب مناسب بین : React  یا Vue قبل از اینکه به سراغ  مقایسه‌‌ی بین React و Vue.js بروید، اطمینان حاصل کنید که کاملا متوجه هستید که این ابزار ها به چه منظوری استفاده می‌شوند و چه امکاناتی  دارند. هردو این ابزار‌ها به دسته‌بندی کتابخانه‌ها یا فریم‌ورک‌های جاوا‌اسکریپت مربوط میشوند و هردو آن‌ها در طراحی رابط (interface) استفاده می‌شوند. علاوه بر هدف مشترک، این دو فریم‌ورک در چیزهای دیگری نیز مشابه هستند:
-
-    Vue.js و React.js هردو بر اساس مدل Virtual DOM هستند.
-    ساختار مبتنی بر کامپوننت و واکنش پذیری از ویژگی های هر دو ابزار است.
-    آنها برای کار با کتابخانه روت در نظر گرفته شده اند، در حالی که تمام وظایف اضافی به سایر کتابخانه ها منتقل می شود.
-
-در عین حال، تفاوت هایی بین این دو ابزار وجود دارد. به عنوان مثال، بسیاری از توسعه‌دهندگان، پشتیبانی کامل از زیر‌ساخت‌ها و بسیاری از ابزار‌های تجسم (visualization) را از جمله مزایای React.js می‌دانند. همچنین توسعه‌دهندگان برنامه‌های کاربردی وب معتقدند استفاده از React Native برای ایجاد برنامه‌ها، بسیار آسان است.
-در صورتی که عبارت ساده “Hello, world” را که در سراسر جهان توسط برنامه‌نویسان برای تست زبان‌های برنامه‌نویسی مورد استفاده قرار می‌گیرد، در این دو فریم‌ورک بررسی کنیم مشاهده خواهیم کرد که کد کمتر و ساده تری با استفاده از Vue خواهیم داشت.
-"Hello, world" با استفاده از Vue.js :
-</p>
+    <p>{{ post.content }}</p>
  </div>
   <div class="viewpost-left">
 
@@ -58,22 +59,13 @@
 
 </div>
 <div class="user-info">
- sldfhdalksjhflkjasdhfkljasdhdflkajsdhfkljasdflkaj
+ <div></div>
 </div>
-<h1>Author: {{ post.author }}</h1>
-<h1>Minutes: {{ post.minutes }}</h1>
-<h1>Created at: {{ post.createdAt }}</h1>
-<h1>Description: {{ post.title }}</h1>
-<p>Content: {{ post.content }}</p>
-<p>Views: {{ post.viewers | length }}</p>
-<p>Likes: {{ post.likes | length }}</p>
+{# <h1>Author: {{ post.author }}</h1>
+<h1>Created at: {{ post.createdAt }}</h1> #}
+
 {% if member %}
-<form action="/post/like/{{ post._id }}" method="post">
-  <button type="submit">Like</button>
-</form>
-<form action="/post/dislike/{{ post._id }}" method="post">
-  <button type="submit">Dislike</button>
-</form>
+
 {% endif %}
 {% endblock %}
 
