@@ -14,18 +14,18 @@ router.post('/post/dislike/:id', logged, (req, res) => {
         post.likes.splice(req.member.user._id, 1);
 
         post.save().then(() => {
-          res.send('done');
+          res.json({ type: 0, text: 0 });
         }).catch(() => {
-          res.send('err');
+          res.json({ type: 2, text: 0 });
         });
       } else {
-        res.send('done');
+        res.json({ type: 0, text: 1 });
       }
     } else {
-      res.send('err');
+      res.json({ type: 2, text: 0 });
     }
   }).catch(() => {
-    res.send('err');
+    res.json({ type: 2, text: 0 });
   });
 });
 
