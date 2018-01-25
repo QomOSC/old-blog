@@ -7,8 +7,8 @@
 <a href="/u/post/add">پست کن</a>
 <p></p>
 {% if member.type >= 3 %}
-<a href="/u/new">افراد درخواست داده</a><p></p>
-<a href="/u/new/manage">مدیریت اعضای پذیرفته شده توسط شما</a>
+<a href="/u/sub">افراد درخواست داده</a><p></p>
+<a href="/u/sub/manage">مدیریت اعضای پذیرفته شده توسط شما</a>
 <p></p>
 {% endif %}
 <a href="/u/post/all">پست های من</a>
@@ -19,4 +19,5 @@
 {% endblock %}
 
 {% block scripts %}
+<script src="/files/js/home-localstorage.js"></script>
 {% endblock %}

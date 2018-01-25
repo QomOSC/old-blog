@@ -27,7 +27,6 @@ up.addEventListener('change', () => {
         imgPreview.src = e.target.result;
 
         cropper = new Cropper(imgPreview, {
-          aspectRatio: 1 / 1,
           // resizable: false,
           zoomable: false,
           // background: false
@@ -55,11 +54,8 @@ up.addEventListener('change', () => {
             body: fd
           }).then(checkStatus).then(res => res.json()).then(data => {
             if (data.type === 0) {
-              iziToast.success({
-                title: 'موفق',
-                rtl: true,
-                message: 'پیام شما با موفقیت پست شد'
-              });
+              window.location.href = '/u';
+              localStorage.setItem('sentPost', 1);
             } else if (data.type === 2) {
               iziToast.error({
                 title: 'خطا!',
