@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-const { Member, Conference } = rootRequire('./models');
+const { Conference } = rootRequire('./models');
 const { logged } = rootRequire('./perms');
 
 const router = new Router();

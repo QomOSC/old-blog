@@ -1,0 +1,28 @@
+{% extends locals.path + '/u.njk' %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+{% if empty %}
+  <h1>شما هیچ درخواستی برای ارائه نداده اید</h1>
+{% else %}
+  {% for i in confs %}
+    <div class="confs" id="{{ i.provider }}">
+      <h1>Author: {{ i.provider }}</h1>
+      <h1>Title: {{ i.title }}</h1>
+      <h1>Description: {{ i.description }}</h1>
+
+      <form action="/u/conference/remove" method="post" class="delete-conf">
+        <input type="hidden" name="id" value="{{ i._id }}">
+        <input type="hidden" name="provider" value="{{ i.provider }}">
+        <input type="submit" value="پاک کردن">
+      </form>
+    </div>
+  {% endfor %}
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script src="/files/js/delete-conf.js"></script>
+{% endblock %}
