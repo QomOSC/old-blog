@@ -40,19 +40,15 @@
  </div>
  <div class="event">
    <div class="posts-event">
-     <div class="dislike-btn">
-        <form action="/post/dislike/{{ p.post._id }}" method="post">
-        <button type="submit"><i class="fa fa-thumbs-down" aria-hidden="true"></i></button>
-       </form>
+     <div id="dislike-btn">
+        <i
+          class="fa fa-thumbs-up"
+          aria-hidden="true"
+          id="like-dislike-btn"
+          data-id="{{ p.post._id }}"
+          data-status="like"></i>
      </div>
- <div class="like-btn">
-   <form action="/post/like/{{ p.post._id }}" method="post">
-     <button type="submit"><i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
-
-   </form>
- </div>
- <span class="like-spn"> {{ p.other.likes }}</span>
-
+ <span class="like-spn">{{ p.other.likes }}</span>
  </div>
  </div>
  </div>
@@ -61,9 +57,7 @@
     <p>{{ p.post.content }}</p>
  </div>
   <div class="viewpost-left">
-
   </div>
-
 </div>
 <div class="user-info">
 <div>
@@ -73,7 +67,8 @@
 
 {% block scripts %}
 <script>
-  const URL = '{{ p.post._id }}';
+  var URL = '{{ p.post._id }}';
 </script>
 <script src='/files/js/ipchecker.js'></script>
+<script src='/files/js/like-post.js'></script>
 {% endblock %}
