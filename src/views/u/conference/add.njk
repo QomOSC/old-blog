@@ -1,0 +1,29 @@
+{% extends locals.path + '/u.njk' %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+<h1>درخواست برای ارائه جلسه</h1>
+<form action="/u/conference/add" method="post" name="add-conference">
+  <input
+    type="text"
+    name="title"
+    required
+    placeholder="نام ارائه">
+
+    <textarea
+      name="description"
+      placeholder="درباره"
+      rows="8"
+      cols="80"></textarea>
+
+    <input
+      type="submit"
+      value="درخواست">
+</form>
+{% endblock %}
+
+{% block scripts %}
+<script src="/files/js/add-conference.js"></script>
+{% endblock %}

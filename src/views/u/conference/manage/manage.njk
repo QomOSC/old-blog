@@ -1,0 +1,31 @@
+{% extends locals.path + '/u.njk' %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+{% if empty %}
+  <h1>هیچ درخواستی برای ارائه وجود ندارد</h1>
+{% else %}
+{% for i in confs %}
+  <div class="requested-confs" id="{{ i._id }}">
+    <h1>{{ i.title }}</h1>
+    <h1>{{ i.description }}</h1>
+
+    <form action="/u/conference/manage/accept" method="post" class="accept">
+      <input type="hidden" name="id" value="{{ i._id }}">
+      <input type="submit" value="قبول کردن">
+    </form>
+
+    <form action="/u/conference/manage/decline" method="post" class="decline">
+      <input type="hidden" name="id" value="{{ i._id }}">
+      <input type="submit" value="قبول نکردن">
+    </form>
+  </div>
+{% endfor %}
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script src="/files/js/manage-conf.js"></script>
+{% endblock %}
