@@ -63,7 +63,7 @@
   </a>
   <div class="col-name">
     <a href="/user/{{ i.author.username }}">
-    <span>{{ i.author.fname }} {{ i.author.lname }}</span>
+    <span title="نام نویسنده">{{ i.author.fname }} {{ i.author.lname }}</span>
   </a>
   <small class="spn-time">{{ i.createdAt }}</small>
   </div>
@@ -86,12 +86,12 @@
   </div>
   <div class="posts-footer">
   <div class="posts-event">
-  <div class="like-btn">
+  <div class="like-btn" title="لایک ها">
   <span>{{ i.likes }}</span>
   <i class="fa fa-heart" aria-hidden="true"></i>
   </div>
-  <div class="view-btn">
-  <span>{{ i.views }}</span>
+  <div class="view-btn" title="بازدید ها">
+  <span>{{ i.viewers }}</span>
   <i class="fa fa-eye" aria-hidden="true"></i>
   </div>
   </div>
