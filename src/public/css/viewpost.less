@@ -78,6 +78,10 @@ font-family: SB;
   display: flex;
   align-items: center;
   margin-left: 15px;
+
+  a {
+    color: #555;
+  }
 }
 
 .follow-btn {
@@ -99,16 +103,20 @@ font-family: SB;
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  background: #919191;
+  justify-content: flex-start;
+  background: #e2e2e2;
   position: absolute;
   bottom: 0;
   left: 0;
-  color: #444;
+  color: #666;
   transition: 0.2s;
+  font-size: 17px;
 
   .posts-event {
     margin-left: 20px;
+  }
+  i {
+    vertical-align: middle;
   }
 }
 
@@ -119,11 +127,6 @@ font-family: SB;
   font-size: 14px;
 }
 
-.bookmark-btn {
-   display: flex;
-   align-items: center;
-}
-
 .user-info {
   display: flex;
   width: 65%;
@@ -131,7 +134,6 @@ font-family: SB;
   margin-right: 65px;
   border: 1px solid rgba(0,0,0,.1);
   box-shadow: 0 1px 0 rgba(0,0,0,.08);
-
 }
 
 .user-info-right {
@@ -158,15 +160,7 @@ font-family: SB;
   color:#970747;
 }
 
-.dislike-btn {
-  display: flex;
-  align-items: center;
-}
-
 #dislike-btn i {
-  background: transparent;
-  border: none;
-  font-size: 25px;
   margin-right: 10px;
   transition: 0.2s;
   cursor: pointer;
