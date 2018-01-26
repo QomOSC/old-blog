@@ -27,6 +27,7 @@ router.get('/viewpost/:id', (req, res) => {
             onePost.author.fname = member.fname;
             onePost.author.lname = member.lname;
             onePost.author.username = member.username;
+            onePost.author.description = member.description;
 
             res.render('viewpost.njk', {
               p: onePost,
