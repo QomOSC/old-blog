@@ -1,74 +1,86 @@
 {% extends locals.path + '/index.njk' %}
 
 {% block head %}
-<link rel="stylesheet" href="/files/css/viewpost.css">
-<link rel="stylesheet" href="/files/css/home.css">
-<link rel="stylesheet" href="/files/css/post-short.css">
+  <link rel="stylesheet" href="/files/css/viewpost.css">
+  <link rel="stylesheet" href="/files/css/home.css">
+  <link rel="stylesheet" href="/files/css/post-short.css">
 {% endblock %}
 
 {% block content %}
-<div class="viewpost">
-  <span> {{ p.post.title }}</span>
-</div>
-<div class="viewpost-info-all">
-<div class="viewpost-info">
-  <div class="viewpost-info-in">
-  <div class="view-post-head-right">
-    <a href="/user/{{ p.author.username }}">
-      <div class="profile-img"
-      style="background-image: url('/img/{{ p.author.avatar }}');
+  <div class="viewpost">
+    <span>
+      {{ p.post.title }}</span>
+  </div>
+  <div class="viewpost-info-all">
+    <div class="viewpost-info">
+      <div class="viewpost-info-in">
+        <div class="view-post-head-right">
+          <a href="/user/{{ p.author.username }}">
+            <div class="profile-img" style="background-image: url('/img/{{ p.author.avatar }}');
       background-size: cover;"></div>
-  </a>
-    <div class="col-name">
+          </a>
+          <div class="col-name">
+            <a href="/user/{{ p.author.username }}">
+              <span>{{ p.author.fname }}
+                {{ p.author.lname }}</span>
+            </a>
+          </div>
+        </div>
+        <div class="viewpost-icon">
+          <span>
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            &nbsp;{{ p.other.createdAt }}
+          </span>
+          <span>
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            {{ p.other.viewers }}
+          </span>
+          <span>
+            مدت زمان مطالعه&nbsp;&nbsp;{{ p.post.minutes }}&nbsp; دقیقه
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="viewpost-body">
+    <div class="viewpost-text">
+      <p>{{ p.post.content }}</p>
+      <div class="event">
+        <div class="posts-event">
+          <div id="dislike-btn">
+            <i class="fa fa-thumbs-up" aria-hidden="true" id="like-dislike-btn" data-id="{{ p.post._id }}" data-status="like"></i>&nbsp
+          </div>
+          <span class="like-spn">{{ p.other.likes }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="viewpost-left"></div>
+  </div>
+  <div class="user-info">
+    <div class="user-info-right">
       <a href="/user/{{ p.author.username }}">
-  <span>{{ p.author.fname }} {{ p.author.lname }}</span>
-</a>
+        <div class="profile-img" style="background-image: url('/img/{{ p.author.avatar }}');
+         background-size: cover;"></div>
+      </a>
+    </div>
+    <div class="user-info-left">
+       <span class="username">
+         <a href="/user/{{ p.author.username }}">
+         <span>{{ p.author.fname }}
+           {{ p.author.lname }}</span>
+       </a>
+     </span>
+       <p>سلام من محمد سیفی مرندی هستم و برنامه نویس و طراح وب و دیزاینر و فتوشاپیست و طراح رابط کاربری و طراح رابط تجربی و زبان های سی شارپ و روبی و پایتون و جاوا اسکریپت را کار کرده ام.</p>
+
+    </div>
   </div>
-  </div>
-<div class="viewpost-icon">
- <span>
-   <i class="fa fa-calendar" aria-hidden="true"></i>
-   &nbsp;{{ p.other.createdAt }}
- </span>
- <span>
-    <i class="fa fa-eye" aria-hidden="true"></i>
-    {{ p.other.viewers }}
- </span>
- <span> مدت زمان مطالعه&nbsp;&nbsp;{{ p.post.minutes }}&nbsp; دقیقه </span>
- </div>
- </div>
- </div>
- <div class="event">
-   <div class="posts-event">
-     <div id="dislike-btn">
-        <i
-          class="fa fa-thumbs-up"
-          aria-hidden="true"
-          id="like-dislike-btn"
-          data-id="{{ p.post._id }}"
-          data-status="like"></i>
-     </div>
- <span class="like-spn">{{ p.other.likes }}</span>
- </div>
- </div>
- </div>
-<div class="viewpost-body">
- <div class="viewpost-text">
-    <p>{{ p.post.content }}</p>
- </div>
-  <div class="viewpost-left">
-  </div>
-</div>
-<div class="user-info">
-<div>
-</div>
-</div>
 {% endblock %}
 
 {% block scripts %}
-<script>
-  var URL = '{{ p.post._id }}';
-</script>
-<script src='/files/js/ipchecker.js'></script>
-<script src='/files/js/like-post.js'></script>
+  <script>
+    var URL = '{{ p.post._id }}';
+  </script>
+  <script src='/files/js/ipchecker.js'></script>
+  <script src='/files/js/like-post.js'></script>
 {% endblock %}

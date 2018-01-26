@@ -31,18 +31,13 @@ font-family: SB;
   width: 65%;
   margin-right: 50px;
   text-align: justify;
-  border: 1px solid rgba(0,0,0,.1);
-  box-shadow: 0 1px 0 rgba(0,0,0,.08);
-  position: relative;
 }
 
 .viewpost-left {
   width: 25%;
-  height: 500px;
+  height: 400px;
   background: #864565;
   margin-right: 20px;
-  border: 1px solid rgba(0,0,0,.5);
-  box-shadow: 3px 3px 5px 1px rgba(0,0,0,.09);
 }
 
 .viewpost-info {
@@ -54,8 +49,6 @@ font-family: SB;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid rgba(0,0,0,.1);
-  box-shadow: 0 1px 0 rgba(0,0,0,.08);
 }
 
 .viewpost-info-all {
@@ -93,18 +86,12 @@ font-family: SB;
 }
 
 .event {
-  width: 100%;
+  width: 24.5%;
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: flex-end;
-  background: #919191;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  transition: 0.2s;
-  .posts-event {
-    margin-left: 20px;
-  }
+  background: #ccc;
+  margin-right: 1.5%;
 }
 
 .viewpost-icon {
@@ -120,35 +107,23 @@ font-family: SB;
 }
 
 .user-info {
+  background: #555;
   display: flex;
+  flex-direction: row-reverse;
   width: 65%;
-  height: 120px;
+  height: 100px;
   margin-right: 65px;
-  border: 1px solid rgba(0,0,0,.1);
-  box-shadow: 0 1px 0 rgba(0,0,0,.08);
-
 }
 
 .user-info-right {
-  background: #999;
-  width: 10%;
-  padding: 10px;
-  div {
-    width: 80px;
-    height: 80px;
-  }
+  background: #666;
+  width: 20%;
 }
 
 .user-info-left {
   background: #888;
-  padding: 10px;
-
-  p {
-    color: #333;
-  }
 }
-
-.username a{
+.username {
   color:#970747;
 }
 
