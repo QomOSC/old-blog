@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 const { logged } = rootRequire('./perms');
-const { Post } = rootRequire('./models');
+const { Post, Member } = rootRequire('./models');
 
 const router = new Router();
 
@@ -10,7 +10,22 @@ router.post('/u/post/delete/:id', logged, (req, res) => {
     author: req.member.user._id,
     _id: req.params.id
   }).then(() => {
-    res.json({ type: 0 });
+
+    Member.findOne({ _id: req.member.user._id }).then(member => {
+      if (member) {
+        member.posts.splice(req.params.id, 1);
+
+        member.save().then(() => {
+          res.json({ type: 0 });
+        }).catch(() => {
+          res.json({ type: 2 });
+        });
+      } else {
+        res.json({ type: 2 });
+      }
+    }).catch(() => {
+      res.json({ type: 2 });
+    });
   }).catch(() => {
     res.json({ type: 2 });
   });
