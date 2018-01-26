@@ -17,20 +17,16 @@
         <div class="view-post-head-right">
           <a href="/user/{{ p.author.username }}">
             <div class="profile-img" style="background-image: url('/img/{{ p.author.avatar }}');
-      background-size: cover;"></div>
+      background-size: cover;">
           </a>
-          <div class="col-name">
-            <a href="/user/{{ p.author.username }}">
-              <span>{{ p.author.fname }}
-                {{ p.author.lname }}</span>
-            </a>
           </div>
+          <a href="/user/{{ p.author.username }}">
+            <span>{{ p.author.fname }}
+              {{ p.author.lname }}</span>
+          </a>
         </div>
         <div class="viewpost-icon">
-          <span>
-            <i class="fa fa-calendar" aria-hidden="true"></i>
-            &nbsp;{{ p.other.createdAt }}
-          </span>
+
           <span>
             <i class="fa fa-eye" aria-hidden="true"></i>
             {{ p.other.viewers }}
@@ -53,6 +49,10 @@
           </div>
           <span class="like-spn">{{ p.other.likes }}</span>
         </div>
+        <span>
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+          &nbsp;{{ p.other.createdAt }}
+        </span>
       </div>
     </div>
     <div class="viewpost-left"></div>
@@ -61,7 +61,8 @@
     <div class="user-info-right">
       <a href="/user/{{ p.author.username }}">
         <div class="profile-img" style="background-image: url('/img/{{ p.author.avatar }}');
-         background-size: cover;"></div>
+         background-size: cover;">
+       </div>
       </a>
     </div>
     <div class="user-info-left">

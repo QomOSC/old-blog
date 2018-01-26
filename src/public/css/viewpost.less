@@ -10,6 +10,7 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .viewpost span {
@@ -34,6 +35,7 @@ font-family: SB;
   border: 1px solid rgba(0,0,0,.1);
   box-shadow: 0 1px 0 rgba(0,0,0,.08);
   position: relative;
+  line-height: 2.1em;
 }
 
 .viewpost-left {
@@ -59,7 +61,7 @@ font-family: SB;
 }
 
 .viewpost-info-all {
-   display: flex;
+  display: flex;
 }
 
 .viewpost-info-in {
@@ -68,7 +70,7 @@ font-family: SB;
 }
 
 .viewpost-info span{
- margin: 10px;
+  margin: 10px;
 }
 
 .view-post-head-right {
@@ -101,7 +103,9 @@ font-family: SB;
   position: absolute;
   bottom: 0;
   left: 0;
+  color: #444;
   transition: 0.2s;
+
   .posts-event {
     margin-left: 20px;
   }
@@ -133,6 +137,7 @@ font-family: SB;
   background: #999;
   width: 10%;
   padding: 10px;
+
   div {
     width: 80px;
     height: 80px;
@@ -148,7 +153,7 @@ font-family: SB;
   }
 }
 
-.username a{
+.username a {
   color:#970747;
 }
 
@@ -157,7 +162,7 @@ font-family: SB;
   align-items: center;
 }
 
-#dislike-btn i{
+#dislike-btn i {
   background: transparent;
   border: none;
   font-size: 25px;
@@ -187,4 +192,78 @@ font-family: SB;
 
 .col-name span {
   color: #444;
+}
+
+
+@media only screen and (max-width: 480px) {
+
+.viewpost-left {
+  display: none;
+}
+
+.viewpost-body {
+  padding: 0;
+  background: #256;
+}
+
+.viewpost-info {
+  width: 100%;
+  font-size: 13px;
+  margin-right: 0;
+  padding: 0;
+}
+
+.viewpost-icon {
+  font-size: 10px;
+  text-align: center;
+}
+
+.viewpost-info-in {
+width: 100%;
+}
+
+.view-post-head-right {
+  width: 300px;
+  font-size: 12px;
+}
+
+.viewpost-info span {
+  margin-right: 3px;
+}
+
+.viewpost-text {
+  width: 100%;
+  margin-right: 0;
+  height: auto;
+  font-size: 15px;
+}
+
+.event {
+  font-size: 13px;
+  padding: 2px 10px;
+}
+
+.user-info {
+  width: 100%;
+  margin-right: 0;
+  flex-direction: column;
+}
+.user-info-right {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user-info-left {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+.username{
+  margin-top:-10px;
+  background: #999;
+  padding: 5px;
+  width: 100%;
+}
 }
