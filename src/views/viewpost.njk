@@ -47,19 +47,17 @@
           <div id="dislike-btn">
             {% if p.liked %}
             <i
-              class="fa fa-heart"
+              class="fa fa-heart liked"
               aria-hidden="true"
               id="like-dislike-btn"
               data-id="{{ p.post._id }}"
-              class="liked"
               data-status="liked"></i>
             {% else %}
             <i
-              class="fa fa-heart"
+              class="fa fa-heart disliked"
               aria-hidden="true"
               id="like-dislike-btn"
               data-id="{{ p.post._id }}"
-              class="disliked"
               data-status="disliked"></i>
             {% endif %}
               &nbsp;
