@@ -10,11 +10,16 @@ router.get('/viewpost/:id', (req, res) => {
 
   Post.findOne({ _id: req.params.id }).then(post => {
       if (post) {
-        const onePost = { post, author: {}, other: {} };
+        const onePost = { post, author: {}, other: {}, liked: false };
 
         onePost.other.createdAt = moment(post.createdAt);
         onePost.other.likes = post.likes.length;
         onePost.other.viewers = post.viewers.length;
+
+        if (req.member.user) {
+          onePost.liked =
+            post.likes.indexOf(req.member.user._id) !== -1 ? true : false;
+        }
 
         Member.findOne({ _id: post.author }).then(member => {
           if (member) {
