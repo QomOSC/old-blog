@@ -1,14 +1,59 @@
 {% extends locals.path + '/u.njk' %}
 
 {% block head %}
+<link rel="stylesheet" href="/files/css/post-short.css">
+<link rel="stylesheet" href="/files/css/all-post.css">
+
 {% endblock %}
 
 {% block content %}
+<div class="title-post-all"><i class="fa fa-envelope-open-o" aria-hidden="true"></i><span>پست های من</span></div>
 {% if authorposts | join === "" %}
   <h1>شما هیچ پستی ندارید</h1>
 {% else %}
+<div class="allposts">
 {% for i in authorposts %}
-<div style="border: 1px solid red;" id="{{ i._id }}">
+<div class="posts">
+  <a href="/viewpost/{{ i.id }}">
+    <div class="posts-pic">
+      <img src="/img/{{ i.avatar }}">
+    </div>
+  </a>
+  <div class="posts-body">
+    <div class="posts-title">
+      <a href="/viewpost/{{ i.id }}">
+        <span>{{ i.title }}</span>
+      </a>
+    </div>
+    <div class="posts-summary">
+      <p>{{ i.content }}</p>
+    </div>
+  </div>
+  <div class="posts-footer">
+    <div class="posts-event">
+      <div class="like-btn" title="لایک ها">
+        <span>{{ i.likes }}</span>
+        <i class="fa fa-heart" aria-hidden="true"></i>
+      </div>
+      <div class="view-btn" title="بازدید ها">
+        <span>{{ i.viewers }}</span>
+        <i class="fa fa-eye" aria-hidden="true"></i>
+      </div>
+    </div>
+    <a href="/viewpost/{{ i.id }}">
+      <span>بیشتر بخوانید . . .</span>
+    </a>
+  </div>
+  <form action="/u/post/delete/{{ i._id }}" method="post" class="delete-post">
+
+    <input type="hidden" value="{{ i._id }}" name="id">
+
+    <input type="submit" value="حذف">
+
+  </form>
+</div>
+
+{# <div style="border: 1px solid red;" id="{{ i._id }}">
   <a href="/viewpost/{{ i._id }}">{{ i.title }}</a>
   <h3>{{ i.content }}</h3>
   <h5>{{ i.minutes }} minutes read</h5>
@@ -21,8 +66,9 @@
     <input type="submit" value="حذف">
 
   </form>
-</div>
+</div> #}
 {% endfor %}
+</div>
 {% endif %}
 {% endblock %}
 
