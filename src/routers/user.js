@@ -15,7 +15,7 @@ router.get('/user/:username', (req, res) => {
 
         function* getResponse() {
           yield new Promise(resolve => {
-            const userInfo = {
+            user.push({
               _id: member._id,
               fname: member.fname,
               lname: member.lname,
@@ -26,12 +26,33 @@ router.get('/user/:username', (req, res) => {
               description: member.description,
               avatar: member.avatar,
               postsLength: member.posts.length
-            };
+            });
 
-            user.push(userInfo);
+            Post
+              .find({ author: member._id })
+              .limit(20)
+              .sort({ createdAt: -1 })
+              .then(posts => {
+              if (JSON.stringify(posts) !== '[]') {
+                const allPosts = [];
 
-            Post.find({ author: member._id }).then(posts => {
-              user.push(posts);
+                for (let i = 0; i < posts.length; i++) {
+                  const onePost = {};
+
+                  onePost.id = posts[i]._id;
+                  onePost.title = posts[i].title;
+                  onePost.content = posts[i].content;
+                  onePost.minutes = posts[i].minutes;
+                  onePost.avatar = posts[i].avatar;
+                  onePost.viewers = posts[i].viewers.length;
+                  onePost.likes = posts[i].likes.length;
+
+                  allPosts.push(onePost);
+                }
+                user.push(allPosts);
+              } else {
+                user.push('');
+              }
               resolve();
             }).catch(() => {
               res.json({ type: 2 });

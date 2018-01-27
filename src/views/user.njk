@@ -3,7 +3,6 @@
 {% block head %}
   <link rel="stylesheet" href="/files/css/user.css">
   <link rel="stylesheet" href="/files/css/post-short.css">
-
 {% endblock %}
 
 {% block content %}
@@ -73,14 +72,14 @@
       <div class="recent-posts">
         {% for i in posts %}
           <div class="posts">
-            <a href="/viewpost/{{ i._id }}">
+            <a href="/viewpost/{{ i.id }}">
               <div class="posts-pic">
                 <img src="/img/{{ i.avatar }}">
               </div>
             </a>
             <div class="posts-body">
               <div class="posts-title">
-                <a href="/viewpost/{{ i._id }}">
+                <a href="/viewpost/{{ i.id }}">
                   <span>{{ i.title }}</span>
                 </a>
               </div>
@@ -99,16 +98,11 @@
                   <i class="fa fa-eye" aria-hidden="true"></i>
                 </div>
               </div>
-              <a href="/viewpost/{{ i._id }}">
+              <a href="/viewpost/{{ i.id }}">
                 <span>بیشتر بخوانید . . .</span>
               </a>
             </div>
           </div>
-          {# <div class="post-box">
-          <img src="/files/image/matin.jpg" alt="عکس کاربر">
-          <h2 class="post-title">{{ i.title }}</h2>
-          <p class="post-content">{{ i.content }}</p>
-        </div> #}
         {% endfor %}
       </div>
     </div>
@@ -116,4 +110,5 @@
 
 {% endblock %}
 
-{% block scripts %}{% endblock %}
+{% block scripts %}
+{% endblock %}
