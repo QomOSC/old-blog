@@ -8,8 +8,9 @@
 {% block content %}
 <div id="container">
   <div id="user-panel">
-    <h1>{{ member.fname }}
-      {{ member.lname }}</h1>
+    <div class="user-name">
+    <span>{{ member.fname }} {{ member.lname }} </span>
+      </div>
     {% if member.avatar %}
       <img src="/img/{{ member.avatar }}" alt="عکس کاربر">
     {% else %}
@@ -54,6 +55,20 @@
     </table>
   </div>
   <div id="works">
+      <div class="setting">
+        <div class="cpanel-a">
+        <a href="/u/post/add">پست کن <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+        {% if member.type >= 3 %}
+        <a href="/u/sub">افراد درخواست داده <i class="fa fa-user-o" aria-hidden="true"></i></a>
+        <a href="/u/sub/manage" class="a-long"><small>مدیریت اعضای پذیرفته شده توسط شما</small><i class="fa fa-address-book" aria-hidden="true"></i></a>
+        <p></p>
+        {% endif %}
+        <a href="/u/post/all">پست های من <i class="fa fa-envelope-open-o" aria-hidden="true"></i></a>
+        <p></p>
+        <a href="/u/setting">تنظیمات <i class="fa fa-cog" aria-hidden="true"></i></a>
+        <a href="/u/logout" onclick="localStorage.setItem('loggedout', '1')">خروج <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+        </div>
+      </div>
     <h1>پست های اخیر</h1>
     <div class="recent-posts">
       {% for i in posts %}
@@ -96,18 +111,7 @@
 
 
 
-<a href="/u/post/add">پست کن</a>
-<p></p>
-{% if member.type >= 3 %}
-<a href="/u/sub">افراد درخواست داده</a><p></p>
-<a href="/u/sub/manage">مدیریت اعضای پذیرفته شده توسط شما</a>
-<p></p>
-{% endif %}
-<a href="/u/post/all">پست های من</a>
-<p></p>
-<a href="/u/setting">تنظیمات</a>
-<p></p>
-<a href="/u/logout" onclick="localStorage.setItem('loggedout', '1')">خروج</a>
+
 {% endblock %}
 
 {% block scripts %}
