@@ -6,7 +6,11 @@ const { Post } = rootRequire('./models');
 const router = new Router();
 
 router.get('/u', logged, (req, res) => {
-  Post.find({ author: req.member.user._id }).then(posts => {
+  Post
+  .find({ author: req.member.user._id })
+  .limit(9)
+  .sort({ createdAt: -1 })
+  .then(posts => {
     if (JSON.stringify(posts) !== '[]') {
 
       const allPosts = [];

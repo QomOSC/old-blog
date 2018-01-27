@@ -30,7 +30,7 @@ router.get('/user/:username', (req, res) => {
 
             Post
               .find({ author: member._id })
-              .limit(20)
+              .limit(12)
               .sort({ createdAt: -1 })
               .then(posts => {
               if (JSON.stringify(posts) !== '[]') {
