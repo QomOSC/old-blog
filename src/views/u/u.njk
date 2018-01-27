@@ -1,9 +1,101 @@
 {% extends locals.path + '/u.njk' %}
 
 {% block head %}
+<link rel="stylesheet" href="/files/css/user.css">
+<link rel="stylesheet" href="/files/css/post-short.css">
 {% endblock %}
 
 {% block content %}
+<div id="container">
+  <div id="user-panel">
+    <h1>{{ member.fname }}
+      {{ member.lname }}</h1>
+    {% if member.avatar %}
+      <img src="/img/{{ member.avatar }}" alt="عکس کاربر">
+    {% else %}
+      <img src="/files/image/default-user.png" alt="عکس کاربر">
+    {% endif %}
+    <p id="user-description"></p>
+    <table id="user-info">
+      <tr>
+        <td title="ایمیل">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </td>
+        <td>{{ member.email }}</td>
+      </tr>
+      <tr>
+        <td title="یوزرنیم">
+          <i class="fa fa-user" aria-hidden="true"></i>
+        </td>
+        <td>{{ member.username}}</td>
+      </tr>
+      {% if member.description %}
+        <tr>
+          <td title="درباره کاربر">
+            <i class="fa fa-info" aria-hidden="true"></i>
+          </td>
+          <td>{{ member.description }}</td>
+        </tr>
+      {% endif %}
+      <tr>
+        <td>
+          <i class="fa fa-user-secret" aria-hidden="true"></i>
+        </td>
+        {% if member.type === 1 %}
+          <td>رتبه: در حال انتظار</td>
+        {% elif member.type === 2 %}
+          <td>رتبه: عضو معمولی</td>
+        {% elif member.type === 3 %}
+          <td>رتبه: مدیر</td>
+        {% elif member.type === 4 %}
+          <td>رتبه: مدیر کل</td>
+        {% endif %}
+      </tr>
+    </table>
+  </div>
+  <div id="works">
+    <h1>پست های اخیر</h1>
+    <div class="recent-posts">
+      {% for i in posts %}
+        <div class="posts">
+          <a href="/viewpost/{{ i.id }}">
+            <div class="posts-pic">
+              <img src="/img/{{ i.avatar }}">
+            </div>
+          </a>
+          <div class="posts-body">
+            <div class="posts-title">
+              <a href="/viewpost/{{ i.id }}">
+                <span>{{ i.title }}</span>
+              </a>
+            </div>
+            <div class="posts-summary">
+              <p>{{ i.content }}</p>
+            </div>
+          </div>
+          <div class="posts-footer">
+            <div class="posts-event">
+              <div class="like-btn" title="لایک ها">
+                <span>{{ i.likes }}</span>
+                <i class="fa fa-heart" aria-hidden="true"></i>
+              </div>
+              <div class="view-btn" title="بازدید ها">
+                <span>{{ i.viewers }}</span>
+                <i class="fa fa-eye" aria-hidden="true"></i>
+              </div>
+            </div>
+            <a href="/viewpost/{{ i.id }}">
+              <span>بیشتر بخوانید . . .</span>
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+
 <a href="/u/post/add">پست کن</a>
 <p></p>
 {% if member.type >= 3 %}
