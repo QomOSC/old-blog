@@ -60,15 +60,12 @@
     <div class="last-posts">
       <h3>مطالب اخیر</h3>
       <div class="latset-posts">
-
         {% for i in posts %}
           <div class="posts">
             <div class="posts-head">
               <div class="posts-head-right">
                 <a href="/user/{{ i.author.username }}">
-                  <div class="profile-img" style="background-image: url(/img/{{ i.author.avatar }});
-    background-size: cover;"></div>
-
+                  <div class="profile-img" style="background-image: url(/img/{{ i.author.avatar }}); background-size: cover;"></div>
                 </a>
                 <div class="col-name">
                   <a href="/user/{{ i.author.username }}">
@@ -110,16 +107,16 @@
               </a>
             </div>
           </div>
-        </div>
-      </div>
         {% endfor %}
-      {% endblock %}
+      </div>
+    </div>
+  {% endblock %}
 
-      {% block scripts %}
-        <script>
-          function changeIcon(x) {
-            return x.classList.toggle('change');
-          }
-        </script>
-        <script src="/files/js/home-localstorage.js"></script>
-      {% endblock %}
+  {% block scripts %}
+    <script>
+      function changeIcon(x) {
+        return x.classList.toggle('change');
+      }
+    </script>
+    <script src="/files/js/home-localstorage.js"></script>
+  {% endblock %}
