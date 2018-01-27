@@ -72,6 +72,9 @@
     <h1>پست های اخیر</h1>
     <div class="recent-posts">
       {% for i in posts %}
+        <script type="text/javascript">
+          console.log('{{ i }}');
+        </script>
         <div class="posts">
           <a href="/viewpost/{{ i.id }}">
             <div class="posts-pic">
