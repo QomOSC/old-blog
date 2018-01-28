@@ -1,90 +1,67 @@
 {% extends locals.path + '/u.njk' %}
 
 {% block head %}
-<link rel="stylesheet" href="/files/css/lib/cropper.css">
-<link rel="stylesheet" href="/files/css/setting-cropper.css">
+  <link rel="stylesheet" href="/files/css/lib/cropper.css">
+  <link rel="stylesheet" href="/files/css/setting-cropper.css">
+  <link rel="stylesheet" href="/files/css/setting.css">
+
 {% endblock %}
 
 {% block content %}
-<form action="/u/setting" method="post" name="main-setting">
+  <div class="title-setting">
+    <span>تنظیمات</span>
+  </div>
+  <div class="all-setting">
+    <div class="setting-row1">
+      <div class="setting-page">
+        <h3>مشخصات کاربر</h3>
+        <form action="/u/setting" method="post" name="main-setting">
+          <input type="text" name="fname" required="required" value="{{ member.fname }}" placeholder="نام">
+          <input type="text" name="lname" required="required" value="{{ member.lname }}" placeholder="نام خانوادگی">
+          <input type="text" name="username" required="required" value="{{ member.username }}" placeholder="یوزرنیم">
+          <input type="text" name="description" required="required" value="{{ member.description }}" placeholder="درباره من">
+          <input type="email" name="email" required="required" value="{{ member.email }}" placeholder="ایمیل">
+          <input type="submit" value="ثبت">
+        </form>
+      </div>
+      <div class="password">
+        <h3>تغییر رمز عبور</h3>
+        <form action="/u/setting/password" method="post" name="pass-setting">
+          <input type="password" name="password" required="required" placeholder="رمز کنونی">
+          <input type="password" name="newpassword" required="required" placeholder="رمز جدید">
+          <input type="submit" value="ثبت">
+        </form>
+        <div class="del-account">
+          <h3>حذف حساب کاربری</h3>
+          <input type="submit" value="حذف حساب" id="delete-account">
+        </div>
+      </div>
 
-  <input
-    type="text"
-    name="fname"
-    required
-    value="{{ member.fname }}"
-    placeholder="نام">
+    </div>
 
-  <input
-    type="text"
-    name="lname"
-    required
-    value="{{ member.lname }}"
-    placeholder="نام خانوادگی">
+    <div class="setting-row2">
+      <div class="img-choice">
+        <h3>انتخاب عکس</h3>
+        <input type="file" id="upload" value="Upload">
+        <input type="submit" id="crop" value="Submit">
+      </div>
 
-  <input
-    type="text"
-    name="username"
-    required
-    value="{{ member.username }}"
-    placeholder="یوزرنیم">
-
-  <input
-    type="text"
-    name="description"
-    required
-    value="{{ member.description }}"
-    placeholder="درباره من">
-
-  <input
-    type="email"
-    name="email"
-    required
-    value="{{ member.email }}"
-    placeholder="ایمیل">
-
-  <input type="submit" value="ثبت">
-
-</form>
-
-<form action="/u/setting/password" method="post" name="pass-setting">
-
-  <input
-    type="password"
-    name="password"
-    required
-    placeholder="رمز کنونی">
-
-  <input
-    type="password"
-    name="newpassword"
-    required
-    placeholder="رمز جدید">
-
-  <input type="submit" value="ثبت">
-
-</form>
-
-<input type="submit" value="حذف حساب" id="delete-account">
-
-<p>
-  <input type="file" id="upload" value="Upload">
-  <input type="submit" id="crop" value="Submit">
-</p>
-<div id="all">
-<div class="container">
-  <img id="preview">
-</div>
-<div class="container">
-  <img id="done">
-</div>
-</div>
+      <div id="all">
+        <div class="container">
+          <img id="preview">
+        </div>
+        <div class="container">
+          <img id="done">
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
 
 {% block scripts %}
-<script src="/files/js/lib/cropper.js"></script>
-<script src="/files/js/upload-image.js"></script>
-<script src="/files/js/lib/checkstatus.js"></script>
-<script src="/files/js/lib/validator.js"></script>
-<script src="/files/js/setting.js"></script>
+  <script src="/files/js/lib/cropper.js"></script>
+  <script src="/files/js/upload-image.js"></script>
+  <script src="/files/js/lib/checkstatus.js"></script>
+  <script src="/files/js/lib/validator.js"></script>
+  <script src="/files/js/setting.js"></script>
 {% endblock %}
