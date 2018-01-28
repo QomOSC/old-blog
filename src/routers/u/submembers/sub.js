@@ -6,14 +6,16 @@ const { Member } = rootRequire('./models');
 const router = new Router();
 
 router.get('/u/sub', perm.logged, perm.u.admin, (req, res) => {
-  Member.find({ type: 1 }).then(member => {
-    if (JSON.stringify(member) !== '[]') {
+  Member.find({ type: 1 }).then(members => {
+    if (JSON.stringify(members) !== '[]') {
       res.render('u/sub/all.njk', {
-        member
+        member: req.member.user,
+        members
       });
     } else {
       res.render('u/sub/all.njk', {
-        empty: true
+        empty: true,
+        member: req.member.user
       });
     }
   }).catch(() => {

@@ -12,10 +12,12 @@ router.get(
     Conference.find({ type: 1 }).then(confs => {
       if (JSON.stringify(confs) !== '[]') {
         res.render('u/conference/manage/manage.njk', {
+          member: req.member.user,
           confs
         });
       } else {
         res.render('u/conference/manage/manage.njk', {
+          member: req.member.user,
           empty: true
         });
       }

@@ -9,10 +9,12 @@ router.get('/u/conference', logged, (req, res) => {
   Conference.find({ provider: req.member.user._id }).then(confs => {
     if (JSON.stringify(confs) !== '[]') {
       res.render('u/conference/mine.njk', {
+        member: req.member.user,
         confs
       });
     } else {
       res.render('u/conference/mine.njk', {
+        member: req.member.user,
         empty: true
       });
     }

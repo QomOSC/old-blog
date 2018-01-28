@@ -32,6 +32,7 @@ router.get('/u/sub/manage', perm.logged, perm.u.admin, (req, res) => {
         const next = iterator.next();
         if (next.done) {
           res.render('u/sub/manage.njk', {
+            member: req.member.user,
             subs
           });
 
@@ -43,6 +44,7 @@ router.get('/u/sub/manage', perm.logged, perm.u.admin, (req, res) => {
 
     } else {
       res.render('u/new/manage.njk', {
+        member: req.member.user,
         empty: true
       });
     }

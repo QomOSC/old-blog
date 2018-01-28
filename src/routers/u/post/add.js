@@ -29,7 +29,9 @@ const upload = multer({ dest: 'uploads/', limits: 3000000, storage });
 
 const router = new Router();
 router.get('/u/post/add', logged, (req, res) => {
-  res.render('u/post/add.njk');
+  res.render('u/post/add.njk', {
+    member: req.member.user
+  });
 });
 
 router.post(
