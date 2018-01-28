@@ -5,8 +5,7 @@
     <link rel="stylesheet" href="/files/css/font-fa.css">
     <link rel="stylesheet" href="/files/css/main.css">
     <link rel="stylesheet" href="/files/css/header.css">
-    <meta name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="/files/css/lib/izi.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Qom OSC</title>
@@ -16,19 +15,67 @@
       {{ item | safe }}
     {% endfor %}
 
-    {% block head %}
-    {% endblock %}
+    {% block head %}{% endblock %}
   </head>
   <body>
-    {% block content %}
-    {% endblock %}
+    <header>
+      <div id="icon-container" onclick="changeIcon(this)">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div>
+      <ul class="cpanel">
+        <li>
+          <a href="/u/post/add">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+          </a>
+        </li>
+        {% if member.type >= 3 %}
+          <li>
+            <a href="/u/sub">
+              <i class="fa fa-user-o" aria-hidden="true"></i>
+            </a>
+          </li>
+        <li>
+        <a href="/u/sub/manage">
+          <i class="fa fa-address-book" aria-hidden="true"></i>
+        </a>
+      </li>
+    {% endif %}
+    <li>
+      <a href="/u/post/all">
+        <i class="fa fa-envelope-open-o" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li>
+      <a href="/u/setting">
+        <i class="fa fa-cog" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li>
+      <a href="/u/logout" onclick="localStorage.setItem('loggedout', '1')">
+        <i class="fa fa-sign-out" aria-hidden="true"></i>
+      </a>
+    </li>
+      </ul>
 
-    {% for item in locals.header %}
-      {{ item | safe }}
-    {% endfor %}
+  <div class="profile-avatar-header">
+    {% if member.avatar %}
+      <img src="/img/{{ member.avatar }}" alt="عکس کاربر">
+    {% else %}
+      <img src="/files/image/default-user.png" alt="عکس کاربر">
+    {% endif %}
+    <a href="/u">{{ member.fname }}
+      {{ member.lname }}</a>
+  </div>
+</header>
+{% block content %}{% endblock %}
 
-    <script src="/files/js/lib/izi.min.js"></script>
-    {% block scripts %}
-    {% endblock %}
-  </body>
+{% for item in locals.header %}
+  {{ item | safe }}
+{% endfor %}
+
+<script src="/files/js/lib/izi.min.js"></script>
+{% block scripts %}{% endblock %}
+</body>
 </html>
