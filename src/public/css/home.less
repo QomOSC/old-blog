@@ -32,32 +32,74 @@
 
 .home-content {
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   justify-content: center;
   margin: 10px;
 }
 
 .activists {
-  width: 250px;
+  width: 25%;
   color: #333;
-  background-color: #fff;
+  background-color: #40AA54;
   margin: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
-.activists h3 {
+.telegram {
+  background: #00bcd4;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  height: 300px;
+
+  a {
+       color: #fff;
+       transition: 0.2s;
+
+       &:hover {
+         color: #555;
+       }
+  }
+
+  img {
+    width: 45px;
+    margin-right: 10px;
+  }
+}
+
+.tel {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  padding: 5px;
+}
+
+.tel2 {
+  margin-top: 20px;
   text-align: center;
-  background: #333;
-  color: #fff;
-  margin-bottom: 20px;
+  border-top: 3px solid #0088cc;
+  padding: 5px;
+
+  span {
+    font-size: 17px;
+  }
+  a {
+    cursor: pointer;
+  }
 }
 
 .last-posts {
-  width: 100%;
+  width: 80%;
   margin: 10px;
+  background-color: #fff;
 }
 
 .last-posts h3 {
-  background: #333;
+  background: #40AA54;
   text-align: center;
   color: #fff;
 }
@@ -67,8 +109,6 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  width: 100%;
-  background: #fff;
 }
 
 .person {
