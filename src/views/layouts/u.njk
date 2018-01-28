@@ -25,34 +25,40 @@
         <div class="bar3"></div>
       </div>
       <ul class="cpanel">
-        <li>
+        <li class="tooltip">
+          <span class="tooltiptext">پست کن</span>
           <a href="/u/post/add">
             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
           </a>
         </li>
         {% if member.type >= 3 %}
-          <li>
+          <li class="tooltip">
+            <span class="tooltiptext">افراد درخواست داده</span>
             <a href="/u/sub">
               <i class="fa fa-user-o" aria-hidden="true"></i>
             </a>
           </li>
-        <li>
+        <li class="tooltip">
+          <span class="tooltiptext">مدیریت کاربران</span>
         <a href="/u/sub/manage">
           <i class="fa fa-address-book" aria-hidden="true"></i>
         </a>
       </li>
     {% endif %}
-    <li>
+    <li class="tooltip">
+      <span class="tooltiptext">پست های من</span>
       <a href="/u/post/all">
         <i class="fa fa-envelope-open-o" aria-hidden="true"></i>
       </a>
     </li>
-    <li>
+    <li class="tooltip">
+      <span class="tooltiptext">تنظیمات</span>
       <a href="/u/setting">
         <i class="fa fa-cog" aria-hidden="true"></i>
       </a>
     </li>
-    <li>
+    <li class="tooltip">
+      <span class="tooltiptext">خروج</span>
       <a href="/u/logout" onclick="localStorage.setItem('loggedout', '1')">
         <i class="fa fa-sign-out" aria-hidden="true"></i>
       </a>
