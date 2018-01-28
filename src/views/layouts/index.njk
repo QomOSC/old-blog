@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="/files/css/font-fa.css">
     <link rel="stylesheet" href="/files/css/main.css">
     <link rel="stylesheet" href="/files/css/header.css">
+    <link rel="stylesheet" href="/files/css/footer.css">
     <link rel="stylesheet" href="/files/css/home.css">
     <link rel="stylesheet" href="/files/css/account.css">
 
@@ -40,9 +41,15 @@
       <a href="/" id="long-title-name" class="title">جامعه متن باز قم</a>
       <a href="/" id="short-title-name" class="title">QOM OSC</a>
     </header>
+    <div id="all-container">
     {% block content %}
     {% endblock %}
-
+    </div>
+    <footer>
+            <div class="bottom-footer">
+               <span>QomOsc CopyRight 2018-2019</span>
+            </div>
+    </footer>
     {% for item in locals.header %}
       {{ item | safe }}
     {% endfor %}
@@ -51,4 +58,5 @@
     {% block scripts %}
     {% endblock %}
   </body>
+
 </html>
