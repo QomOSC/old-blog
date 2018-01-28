@@ -20,7 +20,7 @@
   padding: 10px;
 }
 .title-post-all{
-  background: #40AA54;
+  background: #666;
   padding: 10px;
   text-align: center;
   font-size: 25px;
@@ -47,5 +47,22 @@
     &:hover {
       background-color: lighten(#cf1b1b, 10%);
     }
+  }
+}
+
+@media only screen and (max-width: 480px)
+{
+  .posts-all {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .allposts {
+    margin: 0;
+    width: 100%;
+  }
+  .col-left {
+    margin: 0;
+    width: 100%;
   }
 }
