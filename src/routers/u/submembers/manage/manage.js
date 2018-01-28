@@ -43,7 +43,7 @@ router.get('/u/sub/manage', perm.logged, perm.u.admin, (req, res) => {
       })();
 
     } else {
-      res.render('u/new/manage.njk', {
+      res.render('u/sub/manage.njk', {
         member: req.member.user,
         empty: true
       });
