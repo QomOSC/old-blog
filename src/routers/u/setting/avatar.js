@@ -5,6 +5,7 @@ import crypto from 'crypto';
 
 const { logged } = rootRequire('./perms');
 const { Member } = rootRequire('./models');
+const { removeImage } = rootRequire('./utils');
 
 const storage = multer.diskStorage({
   destination(req, file, cb) {
@@ -37,6 +38,10 @@ router.post(
 
   Member.findOne({ _id: req.member.user._id }).then(member => {
     if (member) {
+      if (member.avatar) {
+        removeImage(member.avatar);
+      }
+
       member.avatar = req.file.filename;
 
       member.save().then(() => {
