@@ -3,7 +3,6 @@
 {% block head %}
 <link rel="stylesheet" href="/files/css/post-short.css">
 <link rel="stylesheet" href="/files/css/all-post.css">
-
 {% endblock %}
 
 {% block content %}
@@ -11,9 +10,19 @@
 {% if authorposts | join === "" %}
   <h1>شما هیچ پستی ندارید</h1>
 {% else %}
-<div class="allposts">
+<div class="posts-all">
+<div class="col-left">
+
+</div>
+ <div class="allposts">
 {% for i in authorposts %}
 <div class="posts">
+  <div class="posts-delete">
+    <form action="/u/post/delete/{{ i._id }}" method="post" class="delete-post">
+      <input type="hidden" value="{{ i._id }}" name="id">
+      <input type="submit" value="حذف">
+    </form>
+  </div>
   <a href="/viewpost/{{ i.id }}">
     <div class="posts-pic">
       <img src="/img/{{ i.avatar }}">
@@ -39,18 +48,13 @@
         <span>{{ i.viewers }}</span>
         <i class="fa fa-eye" aria-hidden="true"></i>
       </div>
+
     </div>
     <a href="/viewpost/{{ i.id }}">
       <span>بیشتر بخوانید . . .</span>
     </a>
   </div>
-  <form action="/u/post/delete/{{ i._id }}" method="post" class="delete-post">
 
-    <input type="hidden" value="{{ i._id }}" name="id">
-
-    <input type="submit" value="حذف">
-
-  </form>
 </div>
 
 {# <div style="border: 1px solid red;" id="{{ i._id }}">
@@ -68,6 +72,7 @@
   </form>
 </div> #}
 {% endfor %}
+</div>
 </div>
 {% endif %}
 {% endblock %}

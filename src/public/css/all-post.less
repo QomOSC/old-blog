@@ -1,8 +1,23 @@
-
+.posts-all {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.col-left {
+  background: #fff;
+  height: 300px;
+  width: 20%;
+  margin: 10px;
+  border: 1px solid #eee;
+}
 .allposts {
+  background: #fff;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin: 10px;
+  border: 1px solid #eee;
+  width: 80%;
+  padding: 10px;
 }
 .title-post-all{
   background: #40AA54;
@@ -14,5 +29,23 @@
 
   i {
     margin-left:10px;
+  }
+}
+
+.posts-delete {
+  background-color: #333;
+  padding: 5px;
+  text-align: center;
+  input {
+    background: #cf1b1b;
+    padding: 5px 50px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+      background-color: lighten(#cf1b1b, 10%);
+    }
   }
 }
