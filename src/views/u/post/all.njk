@@ -16,7 +16,7 @@
 </div>
  <div class="allposts">
 {% for i in posts %}
-<div class="posts">
+<div class="posts" id="{{ i._id }}">
   <div class="posts-delete">
     <form action="/u/post/delete/{{ i._id }}" method="post" class="delete-post">
       <input type="hidden" value="{{ i._id }}" name="id">
@@ -56,21 +56,6 @@
   </div>
 
 </div>
-
-{# <div style="border: 1px solid red;" id="{{ i._id }}">
-  <a href="/viewpost/{{ i._id }}">{{ i.title }}</a>
-  <h3>{{ i.content }}</h3>
-  <h5>{{ i.minutes }} minutes read</h5>
-  <p>{{ createdAt }}</p>
-
-  <form action="/u/post/delete/{{ i._id }}" method="post" class="delete-post">
-
-    <input type="hidden" value="{{ i._id }}" name="id">
-
-    <input type="submit" value="حذف">
-
-  </form>
-</div> #}
 {% endfor %}
 </div>
 </div>

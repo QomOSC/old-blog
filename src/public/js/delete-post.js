@@ -48,7 +48,6 @@ for (let i = 0; i < del.length; i++) {
                 message: 'مشکلی پیش آمده، بعدا امتحان کنید'
               });
             });
-            
           }, true],
           ['<button>نه</button>', (instance, toast) => {
             instance.hide(toast, { transitionOut: 'fadeOut' }, 'button');
