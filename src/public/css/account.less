@@ -6,12 +6,29 @@
   height: 380px;
   margin: auto auto;
   margin-top: 80px;
-      box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2);
+  border: solid 1px #ccc;
 }
+
 .card-right {
   background-color:#fff;
   padding: 10px 60px;
+
+  p {
+    color: #adadad;
+    margin-bottom: 10px;
+  }
+
+  label {
+    margin: 5px;
+  }
+
+  h1 {
+    font-weight: normal;
+    font-size: 40px;
+  }
 }
+
 .card-left {
   display: flex;
   flex-direction: column;
@@ -20,12 +37,14 @@
   text-align: center;
   padding: 50px 1px;
   }
+
   .row {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
   }
+
   input {
     width: 90%;
     margin: 5px;
@@ -36,10 +55,11 @@
     color:#004c4c;
     border: 1px solid rgba(0,95,82,0.2);
     transition: 0.5s;
+
+    &:focus {
+      box-shadow: 0 0 3px #40AA54;
+    }
 }
-input:focus{
-    box-shadow: 0 0 3px #40AA54;
-  }
 
 .btn {
   border: none;
@@ -52,29 +72,26 @@ input:focus{
   transition: 0.5s;
   color: #Fff;
   font-size: 18px;
-}
-.btn:hover {
-  background-color: #333;
-  color: #fff;
+
+  &:hover {
+    background-color: #333;
+    color: #fff;
+  }
 }
 
-  .card-right p {
-    color: #adadad;
-    margin-bottom: 10px;
-  }
-  .card-right label {
-    margin: 5px;
-  }
+
 .row2 {
   display: flex;
   justify-content: center;
 }
+
   .sub {
     width: 30%;
     cursor: pointer;
     background-color: #008573;
     color: #fff;
   }
+
   .sub2 {
     width: 90%;
     background-color: #008573;
@@ -85,13 +102,10 @@ input:focus{
     line-height: 1.25;
     cursor: pointer;
     margin-top: 20px;
+
     &:hover {
       background:  #00AB94;
     }
-  }
-  .card-right h1 {
-    font-weight: normal;
-    font-size: 40px;
   }
 
  .reg {
@@ -104,14 +118,17 @@ input:focus{
    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2);
    margin: auto;
    margin-top: 50px;
+
+   p {
+     color: #adadad;
+     font-size: 14px;
+   }
  }
- .reg p {
-   color: #adadad;
-   font-size: 14px;
- }
+
  .head {
    margin-bottom: 30px;
  }
+
  .foot {
    width: 514px;
    background: #d2d2d2;
@@ -120,12 +137,14 @@ input:focus{
    margin: auto;
    text-align: center;
  }
+
 .signup {
   display: flex;
   flex-direction: column;
 }
 
-@media only screen and (max-width : 480px) {
+@media (min-width: 120px) and (max-width: 500px) {
+
   .card {
     flex-direction: column;
     width: 100%;
