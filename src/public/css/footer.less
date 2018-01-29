@@ -24,6 +24,27 @@ footer {
     color: #8f9296;
     text-align: justify;
   }
+
+  form {
+      margin-top: 7%;
+
+    input[type="email"] {
+      background: rgba(0,0,0,.4);
+      color: #8f9296;
+    }
+
+    input[type="submit"] {
+      background-color: #40AA54;
+      color: #fff;
+      width: 100px;
+      cursor: pointer;
+      transition: 0.3s;
+
+      &:hover {
+        background-color: darken(#40AA54, 10%);
+      }
+    }
+  }
 }
 
 .footer-row2 {
@@ -113,26 +134,9 @@ footer {
     font-size: 13px;
   }
 }
-form {
-  margin-top: 7%;
-}
 
-input[type="email"] {
-  background: rgba(0,0,0,.4);
-  color: #8f9296;
-}
 
-input[type="submit"] {
-  background-color: #40AA54;
-  color: #fff;
-  width: 100px;
-  cursor: pointer;
-  transition: 0.3s;
 
-  &:hover {
-    background-color: darken(#40AA54, 10%);
-  }
-}
 
 @media (min-width: 120px) and (max-width: 500px) {
 
