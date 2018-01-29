@@ -59,13 +59,6 @@ footer {
   }
 }
 
-.p-footer {
-
-  span {
-    display: block;
-  }
-}
-
 .footer-row3 {
   width: 23%;
   display: flex;
@@ -109,5 +102,25 @@ footer {
     color: #ccc;
     margin-left: 5%;
     font-size: 13px;
+  }
+}
+form {
+  margin-top: 7%;
+}
+
+input[type="email"] {
+  background: rgba(0,0,0,.4);
+  color: #8f9296;
+}
+
+input[type="submit"] {
+  background-color: #40AA54;
+  color: #fff;
+  width: 100px;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: darken(#40AA54, 10%);
   }
 }
