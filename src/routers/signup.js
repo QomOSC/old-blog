@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 const { login } = rootRequire('./perms');
-const { Member } = rootRequire('./models');
+const { Member, Newsletter } = rootRequire('./models');
 const { crypt } = rootRequire('./utils');
 const { validator } = rootRequire('./utils');
 
@@ -37,8 +37,30 @@ router.post('/signup', login, (req, res) => {
 
         member.save().then(() => {
           // OK
-          req.session.captcha = null;
-          res.json({ type: 0 });
+
+          Newsletter.findOne({ email: req.body.email }).then(nl => {
+            if (nl) {
+              // Done, Member was already in newsletter
+              req.session.captcha = null;
+              res.json({ type: 0 });
+            } else {
+              const addToNewsletter = new Newsletter({
+                email: req.body.email
+              });
+
+              addToNewsletter.save().then(() => {
+                // Done
+                req.session.captcha = null;
+                res.json({ type: 0 });
+              }).catch(() => {
+                // Error
+                res.json({ type: 2, text: 2 });
+              });
+            }
+          }).catch(() => {
+            // Error
+            res.json({ type: 2, text: 2 });
+          });
         }).catch(e => {
           const err = e.errmsg.split(' ');
 
