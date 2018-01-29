@@ -1,11 +1,10 @@
 import { Router } from 'express';
 
 const { Newsletter } = rootRequire('./models');
-const { validator } = rootRequire('./utils');
 
 const router = new Router();
 
-router.post('/newsletter', (req, res) => {
+router.post('/unsubscribe', (req, res) => {
   req.body.email = req.body.email.toLowerCase();
 
   if (validator.e(req.body.email)) {
