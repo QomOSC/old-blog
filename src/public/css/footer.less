@@ -1,8 +1,8 @@
 footer {
-  height: 300px;
+  height: auto;
   background-color: #292c2f;
   position: relative;
-  padding-top : 85px;
+  padding: 85px 0 85px 0;
 }
 
 .footer-container {
@@ -123,4 +123,36 @@ input[type="submit"] {
   &:hover {
     background-color: darken(#40AA54, 10%);
   }
+}
+
+@media (min-width: 120px) and (max-width: 500px) {
+
+.footer-container {
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-row1 {
+  width: 90%;
+  margin-right: 0;
+  height: 300px;
+
+  form {
+    margin-top: 10%;
+  }
+}
+
+.footer-row2 {
+  width: 90%;
+  margin-bottom: 10%;
+
+}
+.footer-row3 {
+  width: 90%;
+  margin-right: 0;
+  margin-top: 50px;
+}
+.bottom-footer {
+  justify-content: center;
+}
 }
