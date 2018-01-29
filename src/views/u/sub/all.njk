@@ -1,16 +1,20 @@
 {% extends locals.path + '/u.njk' %}
 
 {% block head %}
+<link rel="stylesheet" href="/files/css/sub.css">
 {% endblock %}
 
 {% block content %}
 {% if empty %}
   <h1>کسی درخواستی برای عضویت نداده است</h1>
 {% else %}
+<div class="sub-container">
 {% for i in members %}
+<div class="sub">
   <div id="{{ i.username }}">
-    <h1>{{ i.username }}</h1>
-
+    <h3>نام کاربری :  {{ i.username }}</h3>
+    <p> نام و نام خانوداگی :  {{i.fname}} {{i.lname}}</p>
+    <div class="sub-form">
     <form
       action="/u/sub/remove/{{ i.username }}"
       method="post"
@@ -29,8 +33,11 @@
       <input type="submit" value="پذیرفتن">
 
     </form>
+     </div>
+  </div>
   </div>
 {% endfor %}
+</div>
 {% endif %}
 {% endblock %}
 

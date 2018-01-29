@@ -1,7 +1,7 @@
 {% extends locals.path + '/u.njk' %}
 
 {% block head %}
-<link rel="stylesheet" href="/files/css/sub-manage.css">
+<link rel="stylesheet" href="/files/css/sub.css">
 
 {% endblock %}
 
@@ -10,9 +10,10 @@
 {% if empty %}
   <h1>شما هیچ کس رو نپذیرفتید</h1>
 {% elif subs | join !== "" %}
+<div class="sub-container">
 {% for i in subs %}
 
-<div class="sub-manage">
+<div class="sub">
   <div id="{{ i.username }}">
     <h3>نام کاربری :  {{ i.username }}</h3>
     <p> نام و نام خانوداگی :  {{i.fname}} {{i.lname}}</p>
@@ -32,6 +33,7 @@
 </div>
 
 {% endfor %}
+</div>
 {% endif %}
 {% endblock %}
 
