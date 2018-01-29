@@ -18,13 +18,24 @@ router.post('/u/post/delete/:id', logged, (req, res) => {
 
         member.save().then(() => {
 
-          removeImage(post.avatar);
-
-          post.remove().then(() => {
-            res.json({ type: 0 });
-          }).catch(() => {
-            res.json({ type: 2 });
-          });
+          if (post.avatar) {
+            removeImage(post.avatar)
+              .then(() => {
+                post.remove().then(() => {
+                  res.json({ type: 0 });
+                }).catch(() => {
+                  res.json({ type: 2 });
+                });
+              }).catch(() => {
+                res.json({ type: 2 });
+              });
+          } else {
+            post.remove().then(() => {
+              res.json({ type: 0 });
+            }).catch(() => {
+              res.json({ type: 2 });
+            });
+          }
 
         }).catch(() => {
           res.json({ type: 2 });

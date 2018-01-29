@@ -3,9 +3,18 @@ import path from 'path';
 
 
 function removeImg(name) {
-  const p = path.resolve(__dirname, '../../uploads', name);
+  return new Promise((resolve, reject) => {
+    const p = path.resolve(__dirname, '../../uploads', name);
 
-  fs.unlinkSync(p);
+    fs.unlink(p, err => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(name);
+      }
+    });
+
+  });
 }
 
 export default removeImg;

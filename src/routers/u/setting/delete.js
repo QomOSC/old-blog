@@ -7,26 +7,125 @@ const { removeImage } = rootRequire('./utils');
 const router = new Router();
 
 router.post('/u/setting/delete', logged, (req, res) => {
+  const em = req.member.user.email;
+
   Member.findOne({ _id: req.member.user._id }).then(member => {
 
     if (member) {
       if (member.avatar) {
-        removeImage(member.avatar);
+        removeImage(member.avatar).then(() => {}).catch(() => {});
       }
+
       member.remove().then(() => {
 
-        Newsletter.findOne({ email: req.member.user.email }).then(nl => {
+        Newsletter.findOne({ email: em }).then(nl => {
           if (nl) {
             nl.remove().then(() => {
-              removeMemberPosts(req, res);
+              Post.find({ author: req.member.user._id }).then(posts => {
+
+                if (JSON.stringify(posts) === '[]') {
+                  req.member.logout();
+                  // Done
+                  res.json({ type: 0 });
+                } else {
+
+                  function* getResponse() {
+                    for (const i of posts) {
+                      yield new Promise(resolve => {
+
+                        if (i.avatar) {
+                          removeImage(i.avatar).then(() => {
+                            i.remove().then(() => {
+                              resolve();
+                            }).catch(() => {});
+                          });
+                        } else {
+                          i.remove().then(() => {
+                            resolve();
+                          }).catch(() => {});
+                        }
+                      });
+                    }
+                  }
+
+                  const iterator = getResponse();
+                  (function loop() {
+
+                    const next = iterator.next();
+                    if (next.done) {
+
+                      req.member.logout();
+                      // Done
+                      res.json({ type: 0 });
+
+                      return;
+                    }
+
+                    next.value.then(loop);
+                  })();
+
+                }
+
+              }).catch(() => {
+                // Error
+                res.json({ type: 2, text: 0 });
+              });
             }).catch(() => {
               // Error
               res.json({ type: 2, text: 0 });
             });
           } else {
-            removeMemberPosts(req, res);
+            Post.find({ author: req.member.user._id }).then(posts => {
+
+              if (JSON.stringify(posts) === '[]') {
+                req.member.logout();
+                // Done
+                res.json({ type: 0 });
+              } else {
+
+                function* getResponse() {
+                  for (const i of posts) {
+                    yield new Promise(resolve => {
+
+                      if (i.avatar) {
+                        removeImage(i.avatar).then(() => {
+                          i.remove().then(() => {
+                            resolve();
+                          }).catch(() => {});
+                        });
+                      } else {
+                        i.remove().then(() => {
+                          resolve();
+                        }).catch(() => {});
+                      }
+                    });
+                  }
+                }
+
+                const iterator = getResponse();
+                (function loop() {
+
+                  const next = iterator.next();
+                  if (next.done) {
+
+                    req.member.logout();
+                    // Done
+                    res.json({ type: 0 });
+
+                    return;
+                  }
+
+                  next.value.then(loop);
+                })();
+
+              }
+
+            }).catch(() => {
+              // Error
+              res.json({ type: 2, text: 0 });
+            });
           }
-        })
+        });
 
       }).catch(() => {
         // Error
@@ -42,52 +141,5 @@ router.post('/u/setting/delete', logged, (req, res) => {
     res.json({ type: 2, text: 0 });
   });
 });
-
-function removeMemberPosts(req, res) {
-  Post.find({ author: req.member.user._id }).then(posts => {
-
-    if (JSON.stringify(posts) === '[]') {
-      req.member.logout();
-      // Done
-      res.json({ type: 0 });
-    } else {
-
-      function* getResponse() {
-        for (const i of posts) {
-          yield new Promise(resolve => {
-
-            if (i.avatar) {
-              removeImage(i.avatar);
-              resolve();
-            } else {
-              resolve();
-            }
-          });
-        }
-      }
-
-      const iterator = getResponse();
-      (function loop() {
-
-        const next = iterator.next();
-        if (next.done) {
-
-          req.member.logout();
-          // Done
-          res.json({ type: 0 });
-
-          return;
-        }
-
-        next.value.then(loop);
-      })();
-
-    }
-
-  }).catch(() => {
-    // Error
-    res.json({ type: 2, text: 0 });
-  });
-}
 
 export default router;

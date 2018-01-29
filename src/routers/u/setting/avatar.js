@@ -39,17 +39,30 @@ router.post(
   Member.findOne({ _id: req.member.user._id }).then(member => {
     if (member) {
       if (member.avatar) {
-        removeImage(member.avatar);
+        removeImage(member.avatar)
+          .then(() => {
+            member.avatar = req.file.filename;
+
+            member.save().then(() => {
+              res.json({ type: 0 });
+            }).catch(() => {
+              // Error
+              res.json({ type: 2 });
+            });
+
+          }).catch(() => {
+            res.json({ type: 2 });
+          });
+      } else {
+        member.avatar = req.file.filename;
+        
+        member.save().then(() => {
+          res.json({ type: 0 });
+        }).catch(() => {
+          // Error
+          res.json({ type: 2 });
+        });
       }
-
-      member.avatar = req.file.filename;
-
-      member.save().then(() => {
-        res.json({ type: 0 });
-      }).catch(() => {
-        // Error
-        res.json({ type: 2 });
-      });
     } else {
       // User not Found
       res.json({ type: 2 });
