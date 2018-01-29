@@ -81,7 +81,9 @@
   {{ item | safe }}
 {% endfor %}
 
-<script src="/files/js/lib/izi.min.js"></script>
-{% block scripts %}{% endblock %}
+  <script src="/files/js/lib/izi.min.js"></script>
+  <script src="/files/js/lib/validator.js"></script>
+  {% block scripts %}
+  {% endblock %}
 </body>
 </html>
