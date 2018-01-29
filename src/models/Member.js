@@ -1,6 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 
-const emailValidate = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; //eslint-disable-line
+
+const { validator } = rootRequire('./utils');
 
 const schema = new Schema({
   fname: { // First Name
@@ -22,7 +23,7 @@ const schema = new Schema({
     trim: true,
     validate: {
       validator(v) {
-        return emailValidate.test(v);
+        return validator.e(v);
       },
       message: 'It is not a valid email'
     },
@@ -37,6 +38,12 @@ const schema = new Schema({
   username: {
     type: String,
     required: [true, 'username'],
+    validate: {
+      validator(v) {
+        return validator.u(v);
+      },
+      message: 'It is not a valid username'
+    },
     trim: true,
     unique: true,
     maxlength: 100
@@ -58,6 +65,13 @@ const schema = new Schema({
     type: String,
     trim: true,
     required: false
+  },
+  newsletter: {
+    type: Number,
+    enum: [1, 2], // 1: Active, 2: Deactive
+    required: [true, 'newsletter'],
+    trim: true,
+    default: 1
   },
   createdAt: {
     type: Date,
