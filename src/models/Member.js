@@ -65,13 +65,6 @@ const schema = new Schema({
     trim: true,
     required: false
   },
-  newsletter: {
-    type: Number,
-    enum: [1, 2], // 1: Active, 2: Deactive
-    required: [true, 'newsletter'],
-    trim: true,
-    default: 1
-  },
   createdAt: {
     type: Date,
     default: Date.now
