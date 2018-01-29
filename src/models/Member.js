@@ -1,7 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 
-
-const { validator } = rootRequire('./utils');
+import { validator } from '../utils';
 
 const schema = new Schema({
   fname: { // First Name
