@@ -1,15 +1,21 @@
 {% extends locals.path + '/u.njk' %}
 
 {% block head %}
+<link rel="stylesheet" href="/files/css/sub-manage.css">
+
 {% endblock %}
 
 {% block content %}
+
 {% if empty %}
   <h1>شما هیچ کس رو نپذیرفتید</h1>
 {% elif subs | join !== "" %}
 {% for i in subs %}
+
+<div class="sub-manage">
   <div id="{{ i.username }}">
-    <h1>{{ i.username }}</h1>
+    <h3>نام کاربری :  {{ i.username }}</h3>
+    <p> نام و نام خانوداگی :  {{i.fname}} {{i.lname}}</p>
 
     <form
       action="/u/sub/manage/remove/{{ i.username }}"
@@ -22,6 +28,9 @@
     </form>
 
   </div>
+
+</div>
+
 {% endfor %}
 {% endif %}
 {% endblock %}
