@@ -1,17 +1,19 @@
 {% extends locals.path + '/u.njk' %}
 
 {% block head %}
+<link rel="stylesheet" href="/files/css/conference.css">
 {% endblock %}
 
 {% block content %}
 {% if empty %}
   <h1>شما هیچ درخواستی برای ارائه نداده اید</h1>
 {% else %}
+<div class="conference-container">
   {% for i in confs %}
     <div class="confs" id="{{ i.provider }}">
-      <h1>Author: {{ i.provider }}</h1>
-      <h1>Title: {{ i.title }}</h1>
-      <h1>Description: {{ i.description }}</h1>
+      <h3> موضوع ارائه :  {{ i.title }}</h3>
+      <h3>توضیحات : </h3>
+      <p>{{ i.description }}</p>
 
       <form action="/u/conference/remove" method="post" class="delete-conf">
         <input type="hidden" name="id" value="{{ i._id }}">
@@ -20,6 +22,7 @@
       </form>
     </div>
   {% endfor %}
+  </div>
 {% endif %}
 {% endblock %}
 

@@ -1,11 +1,15 @@
 .conference-container {
   background: #fff;
-  width: 80%;
+  width: 85%;
   display: flex;
   justify-content: center;
-  margin: auto;
+  margin: 10px auto auto auto;
   height: auto;
   padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 4px rgba(0,0,0,0.3);
+  display: flex;
+  flex-wrap: wrap;
 
    form {
      display: flex;
@@ -30,4 +34,37 @@ h1 {
   padding: 5px;
   margin: auto auto;
   text-align: center;
+}
+.confs {
+  background: #555;
+  padding: 15px;
+  border-radius: 5px;
+  line-height: 1.6em;
+  text-align: center;
+  width: 45%;
+  margin: 10px;
+  height: auto;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    text-align: justify;
+  }
+
+  h3 {
+    margin-top: 5%;
+  }
+}
+
+@media (min-width: 120px) and (max-width: 500px){
+.conference-container {
+  padding: 5px;
+  width: 95%;
+}
+  .confs {
+    width: 100%;
+  }
 }
