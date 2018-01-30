@@ -7,7 +7,7 @@ const router = new Router();
 router.post('/unsubscribe', (req, res) => {
   req.body.email = req.body.email.toLowerCase();
 
-  if (validator.e(req.body.email)) {
+  if (validator.e(req.body.email)) {  
     Newsletter.findOne({ email: req.body.email }).then(member => {
       if (member) {
         // It was in it already
