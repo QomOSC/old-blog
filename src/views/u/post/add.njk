@@ -3,9 +3,14 @@
 {% block head %}
 <link rel="stylesheet" href="/files/css/lib/cropper.css">
 <link rel="stylesheet" href="/files/css/setting-cropper.css">
+<link rel="stylesheet" href="/files/css/post.css">
 {% endblock %}
 
 {% block content %}
+<div class="page-title">
+<i class="fa fa-edit"></i>  <span>پست کردن</span>
+</div>
+<div class="post-container">
   <form
     action="/u/post/add"
     method="post"
@@ -17,7 +22,16 @@
       required
       placeholder="عنوان"
       maxlength="100">
-
+        <div class="add-post">
+          <div class="add-post-icons">
+              <i class="fa fa-bold"></i>
+              <i class="fa fa-italic"></i>
+              <i class="fa fa-list-ol"></i>
+              <i class="fa fa-list-ul"></i>
+              <i class="fa fa-quote-left"></i>
+              <i class="fa fa-link"></i>
+          </div>
+          <div>
     <textarea
     name="content"
     rows="8"
@@ -25,7 +39,8 @@
     required
     placeholder="متن"
     maxlength="10000"></textarea>
-
+    </div>
+</div>
     <input type="file" id="upload" value="Upload">
 
     <input
@@ -33,6 +48,7 @@
     value="ثبت">
 
   </form>
+  </div>
   <button id="preview">Preview</button>
 
   <div id="show"></div>
