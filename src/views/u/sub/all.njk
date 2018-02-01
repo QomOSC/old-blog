@@ -6,8 +6,11 @@
 
 {% block content %}
 {% if empty %}
-  <h1>کسی درخواستی برای عضویت نداده است</h1>
+<div class="page-title">
+  <span>کسی درخواستی برای عضویت نداده است</span>
 {% else %}
+   <span>تایید کاربران</span>
+</div>
 <div class="sub-container">
 {% for i in members %}
 <div class="sub">

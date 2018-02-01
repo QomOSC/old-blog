@@ -6,9 +6,11 @@
 
 {% block content %}
 {% if empty %}
-  <h1>شما هیچ درخواستی برای ارائه نداده اید</h1>
+ <div class="page-title">
+  <span>شما هیچ درخواستی برای ارائه نداده اید</span>
 {% else %}
-<h1>کنفرانس های درخواست داده شده</h1>
+<span>کنفرانس های درخواست داده شده</span>
+</div>
 <div class="conference-container">
   {% for i in confs %}
     <div class="confs" id="{{ i.provider }}">
