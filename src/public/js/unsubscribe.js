@@ -16,11 +16,11 @@ unsub.addEventListener('submit', e => {
         captcha: unsub.captcha.value
       })
     }).then(checkStatus).then(res => res.json()).then(data => {
-      console.log(data);
       if (data.type === 0) {
         iziToast.success({
           rtl: true,
-          title: 'شما با موفقیت خارج شددید'
+          title: 'موفق',
+          message: 'لینک خروج از خبر نامه به ایمیل شما ارسال گردید'
         });
       } else if (data.type === 2) {
         if (data.text === 0) {
