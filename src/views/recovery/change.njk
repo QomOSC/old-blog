@@ -1,0 +1,30 @@
+{% extends locals.path + '/index.njk' %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+  <form action="/recovery/change" method="post" name="recovery-change-form">
+
+   <input
+     type="password"
+     name="password"
+     required
+     placeholder="رمز جدید"
+     maxlength="200">
+
+   <input
+    type="hidden"
+    name="token"
+    value="{{ token }}">
+
+    <input
+      type="submit"
+      value="ثبت">
+
+  </form>
+{% endblock %}
+
+{% block scripts %}
+<script src="/files/js/change-recovery.js"></script>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends locals.path + '/index.njk' %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+  <form action="/recovery" method="post" name="recovery-form">
+    <input
+     type="email"
+     name="email"
+     required
+     placeholder="ایمیل"
+     maxlength="200">
+
+     <p id="svg-captcha"></p>
+
+     <input
+       type="password"
+       name="captcha"
+       required
+       placeholder="کد امنیتی"
+       maxlength="10">
+
+    <input
+      type="submit"
+      value="درخواست">
+
+  </form>
+{% endblock %}
+
+{% block scripts %}
+<script src="/files/js/recovery.js"></script>
+{% endblock %}
