@@ -16,7 +16,7 @@ const schema = new Schema({
     },
     required: [true, 'email'],
     maxlength: 200
-  },
+  }
 });
 
 export default mongoose.model('Newsletter', schema);
