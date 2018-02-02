@@ -56,6 +56,7 @@ unsub.addEventListener('submit', e => {
       title: 'خطا!',
       message: 'ایمیل معتبر نیست'
     });
+    unsub.email.select();
   }
 });
 
