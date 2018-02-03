@@ -12,7 +12,7 @@ router.post(
   (req, res) => {
     Conference.findOne({ _id: req.body.id, type: 1 }).then(conf => {
       if (conf) {
-        conf.type = 2;
+        conf.type = 3;
 
         conf.save().then(() => {
           res.json({ type: 0 });

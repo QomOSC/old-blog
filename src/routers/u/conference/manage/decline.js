@@ -10,7 +10,6 @@ router.post(
   perms.logged,
   perms.u.admin,
   (req, res) => {
-    console.log(req.body);
     Conference.remove({
       _id: req.body.id,
       type: 1
