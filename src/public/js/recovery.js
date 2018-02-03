@@ -37,11 +37,7 @@ rec.addEventListener('submit', e => {
             message: 'کد امنیتی اشتباه است'
           });
         } else if (data.text === 2) {
-          iziToast.error({
-            rtl: 'true',
-            title: 'خطا',
-            message: 'مشکلی پیش آمده، بعدا امتحان کنید'
-          });
+          iziErr();
         } else if (data.text === 3) {
           iziToast.error({
             rtl: 'true',
@@ -51,11 +47,7 @@ rec.addEventListener('submit', e => {
         }
       }
     }).catch(() => {
-      iziToast.error({
-        rtl: 'true',
-        title: 'خطا',
-        message: 'مشکلی پیش آمده، بعدا امتحان کنید'
-      });
+      iziErr();
     });
   } else {
     iziToast.warning({

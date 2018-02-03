@@ -22,11 +22,7 @@ likeDislike.addEventListener('click', () => {
         }
       } else if (data.type === 2) {
         if (data.text === 0) {
-          iziToast.error({
-            title: 'خطا!',
-            rtl: true,
-            message: 'مشکلی پیش آمده، بعدا امتحان کنید'
-          });
+          iziErr();
         } else {
           iziToast.warning({
             title: 'برای انجام اینکار باید عضو سایت شوید',
@@ -35,11 +31,7 @@ likeDislike.addEventListener('click', () => {
         }
       }
     }).catch(() => {
-      iziToast.error({
-        title: 'خطا!',
-        rtl: true,
-        message: 'مشکلی پیش آمده، بعدا امتحان کنید'
-      });
+      iziErr();
     });
   } else if (likeDislike.getAttribute('data-status') === 'liked') {
     fetch(`/post/dislike/${likeDislike.getAttribute('data-id')}`, {
@@ -61,11 +53,7 @@ likeDislike.addEventListener('click', () => {
         }
       } else if (data.type === 2) {
         if (data.text === 0) {
-          iziToast.error({
-            title: 'خطا!',
-            rtl: true,
-            message: 'مشکلی پیش آمده، بعدا امتحان کنید'
-          });
+          iziErr();
         } else {
           iziToast.warning({
             title: 'برای انجام اینکار باید عضو سایت شوید',
@@ -74,11 +62,7 @@ likeDislike.addEventListener('click', () => {
         }
       }
     }).catch(() => {
-      iziToast.error({
-        title: 'خطا!',
-        rtl: true,
-        message: 'مشکلی پیش آمده، بعدا امتحان کنید'
-      });
+      iziErr();
     });
   }
 });

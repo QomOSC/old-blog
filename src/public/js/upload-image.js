@@ -48,11 +48,7 @@ up.addEventListener('change', () => {
                 });
               }
             }).catch(() => {
-              iziToast.error({
-                title: 'خطا!',
-                rtl: true,
-                message: 'مشکلی پیش آمده، بعدا امتحان کنید'
-              });
+              iziErr();
             });
         });
       });

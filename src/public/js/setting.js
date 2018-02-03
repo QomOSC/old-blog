@@ -34,11 +34,7 @@ mainSetting.addEventListener('submit', e => {
             message: 'موارد ضروری مقدار دهی نشده اند'
           });
         } else if (data.text === 2) {
-            iziToast.error({
-              title: 'خطا!',
-              rtl: true,
-              message: 'مشکلی پیش آمده، بعدا امتحان کنید'
-            });
+          iziErr();
         } else if (data.text === 3) {
           iziToast.error({
             title: 'خطا!',
@@ -54,11 +50,7 @@ mainSetting.addEventListener('submit', e => {
         });
       }
     }).catch(() => {
-      iziToast.error({
-        title: 'خطا!',
-        rtl: true,
-        message: 'مشکلی پیش آمده، بعدا امتحان کنید'
-      });
+      iziErr();
     });
   } else {
     iziToast.warning({
@@ -91,11 +83,7 @@ passSetting.addEventListener('submit', e => {
       });
     } else if (data.type === 2) {
       if (data.text === 0) {
-        iziToast.error({
-          title: 'خطا!',
-          rtl: true,
-          message: 'مشکلی پیش آمده، بعدا امتحان کنید'
-        });
+        iziErr();
       } else if (data.text === 1) {
         iziToast.error({
           title: 'خطا!',
@@ -105,11 +93,7 @@ passSetting.addEventListener('submit', e => {
       }
     }
   }).catch(() => {
-    iziToast.error({
-      title: 'خطا!',
-      rtl: true,
-      message: 'مشکلی پیش آمده، بعدا امتحان کنید'
-    });
+    iziErr();
   });
 });
 
@@ -137,18 +121,10 @@ document.getElementById('delete-account').addEventListener('click', e => {
               localStorage.setItem('delAcc', 1);
               window.location.href = '/';
             } else if (data.type === 2) {
-              iziToast.error({
-                title: 'خطا!',
-                rtl: true,
-                message: 'مشکلی پیش آمده، بعدا امتحان کنید'
-              });
+              iziErr();
             }
           }).catch(() => {
-            iziToast.error({
-              title: 'خطا!',
-              rtl: true,
-              message: 'مشکلی پیش آمده، بعدا امتحان کنید'
-            });
+            iziErr();
           });
         }, true],
         ['<button>نه</button>', (instance, toast) => {

@@ -21,18 +21,10 @@ for (let i = 0; i < accept.length; i++) {
         .getElementById(accept[i].username.value)
         .style.display = 'none';
       } else if (data.type === 2) {
-        iziToast.error({
-          title: 'خطا!',
-          rtl: true,
-          message: 'مشکلی پیش آمده، بعدا امتحان کنید'
-        });
+        iziErr();
       }
     }).catch(() => {
-      iziToast.error({
-        title: 'خطا!',
-        rtl: true,
-        message: 'مشکلی پیش آمده، بعدا امتحان کنید'
-      });
+      iziErr();
     });
   });
 }
@@ -57,18 +49,10 @@ for (let i = 0; i < decline.length; i++) {
         .getElementById(decline[i].username.value)
         .style.display = 'none';
       } else if (data.type === 2) {
-        iziToast.error({
-          title: 'خطا!',
-          rtl: true,
-          message: 'مشکلی پیش آمده، بعدا امتحان کنید'
-        });
+        iziErr();
       }
     }).catch(() => {
-      iziToast.error({
-        title: 'خطا!',
-        rtl: true,
-        message: 'مشکلی پیش آمده، بعدا امتحان کنید'
-      });
+      iziErr();
     });
   });
 }

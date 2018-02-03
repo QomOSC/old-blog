@@ -30,11 +30,7 @@ n.addEventListener('submit', e => {
         }
       } else if (data.type === 2) {
         if (data.text === 0) {
-          iziToast.error({
-            rtl: true,
-            title: 'خطا',
-            message: 'مشکلی پیش آمده، بعدا امتحان کنید'
-          });
+          iziErr();
         } else if (data.text === 1) {
           iziToast.error({
             rtl: true,
@@ -44,11 +40,7 @@ n.addEventListener('submit', e => {
         }
       }
     }).catch(() => {
-      iziToast.error({
-        rtl: true,
-        title: 'خطا',
-        message: 'مشکلی پیش آمده، بعدا امتحان کنید'
-      });      
+      iziErr();
     });
   } else {
     iziToast.warning({

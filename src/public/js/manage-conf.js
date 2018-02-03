@@ -25,18 +25,10 @@ for (let i = 0; i < acc.length; i++) {
         .getElementById(acc[i].id.value)
         .style.display = 'none';
       } else if (data.type === 2) {
-        iziToast.error({
-          title: 'خطا!',
-          rtl: true,
-          message: 'مشکلی پیش آمده، بعدا امتحان کنید'
-        });
+        iziErr();
       }
     }).catch(() => {
-      iziToast.error({
-        title: 'خطا!',
-        rtl: true,
-        message: 'مشکلی پیش آمده، بعدا امتحان کنید'
-      });
+      iziErr();
     });
   });
 }
@@ -65,18 +57,10 @@ for (let i = 0; i < dec.length; i++) {
         .getElementById(dec[i].id.value)
         .style.display = 'none';
       } else if (data.type === 2) {
-        iziToast.error({
-          title: 'خطا!',
-          rtl: true,
-          message: 'مشکلی پیش آمده، بعدا امتحان کنید'
-        });
+        iziErr();
       }
     }).catch(() => {
-      iziToast.error({
-        title: 'خطا!',
-        rtl: true,
-        message: 'مشکلی پیش آمده، بعدا امتحان کنید'
-      });
+      iziErr();
     });
   });
 }

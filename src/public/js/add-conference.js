@@ -21,17 +21,9 @@ addConf.addEventListener('submit', e => {
         rtl: true
       });
     } else if (data.type === 0) {
-      iziToast.error({
-        title: 'خطا!',
-        rtl: true,
-        message: 'مشکلی پیش آمده، بعدا امتحان کنید'
-      });      
+      iziErr();
     }
   }).catch(() => {
-    iziToast.error({
-      title: 'خطا!',
-      rtl: true,
-      message: 'مشکلی پیش آمده، بعدا امتحان کنید'
-    });
+    iziErr();
   });
 });

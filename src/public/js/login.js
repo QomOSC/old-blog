@@ -41,11 +41,7 @@ login.addEventListener('submit', e => {
           });
           login.email.select();
         } else if (data.text === 2) {
-          iziToast.error({
-            title: 'خطا!',
-            rtl: true,
-            message: 'مشکلی پیش آمده، بعدا امتحان کنید'
-          });
+          iziErr();
         } else if (data.text === 3) {
           iziToast.error({
             title: 'خطا!',
@@ -56,11 +52,7 @@ login.addEventListener('submit', e => {
         }
       }
     }).catch(() => {
-      iziToast.error({
-        title: 'خطا!',
-        rtl: true,
-        message: 'مشکلی پیش آمده، بعدا امتحان کنید'
-      });
+      iziErr();
     });
   } else {
     iziToast.warning({

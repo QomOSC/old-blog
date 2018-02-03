@@ -36,19 +36,11 @@ unsub.addEventListener('submit', e => {
             message: 'کاربر در خبرنامه عضو نیست'
           });
         } else if (data.text === 2) {
-          iziToast.error({
-            rtl: 'true',
-            title: 'خطا',
-            message: 'مشکلی پیش آمده، بعدا امتحان کنید'
-          });
+          iziErr();
         }
       }
     }).catch(() => {
-      iziToast.error({
-        rtl: 'true',
-        title: 'خطا',
-        message: 'مشکلی پیش آمده، بعدا امتحان کنید'
-      });
+      iziErr();
     });
   } else {
     iziToast.warning({
