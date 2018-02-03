@@ -5,8 +5,13 @@
 
 {% block content %}
 {% if empty %}
-  <h1>هیچ درخواستی برای ارائه وجود ندارد</h1>
+<div class="page-title">
+  <span>هیچ درخواستی برای ارائه وجود ندارد</span>
+  </div>
 {% else %}
+<div class="page-title">
+  <span>کنفرانس ها</span>
+  </div>
 {% for i in confs %}
   <div class="requested-confs" id="{{ i._id }}">
     <h1>{{ i.title }}</h1>
