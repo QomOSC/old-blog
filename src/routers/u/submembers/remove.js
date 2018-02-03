@@ -18,7 +18,7 @@ router.post(
       if (member && member.type === 1) {
         member.remove().then(() => {
 
-          member.submembers.reject(member.email).then(() => {
+          email.submembers.reject(member.email).then(() => {
             res.json({ type: 0 });
           }).catch(() => {
             res.json({ type: 2, text: 0 });
