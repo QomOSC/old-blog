@@ -82,6 +82,9 @@ function taskMinDev() {
 
 function taskNunjucks() {
   return gulp.src('src/public/templates/**/*')
+        .pipe(replace(/@@PROJECTNAME@@/g, config.title))
+        .pipe(replace(/@@EMAILPASSWORD@@/g, config.email_password))
+        .pipe(replace(/@@EMAILADDRESS@@/g, config.email))
         .pipe(nunjucks.precompile())
         .pipe(gulp.dest('build/public/templates'));
 }
