@@ -13,3 +13,12 @@ if (parseInt(localStorage.getItem('sentPost')) === 1) {
   });
   localStorage.removeItem('sentPost');
 }
+if (parseInt(localStorage.getItem('delAcc')) === 1) {
+  iziToast.success({
+    title: 'موفق',
+    rtl: true,
+    message: 'حساب شما با موفقیت حذف شد'
+  });
+  localStorage.removeItem('delAcc');
+}
+console.log('Hello');
