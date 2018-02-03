@@ -2,8 +2,9 @@ import { Router } from 'express';
 import multer from 'multer';
 import crypto from 'crypto';
 
-const { Post, Member } = rootRequire('./models');
+const { Post, Member, Newsletter } = rootRequire('./models');
 const { logged } = rootRequire('./perms');
+const { email } = rootRequire('./utils');
 
 const storage = multer.diskStorage({
   destination(req, file, cb) {
@@ -56,7 +57,50 @@ router.post(
           member.posts.push(post._id);
 
           member.save().then(() => {
-            res.json({ type: 0 });
+            Newsletter.find().then(subscribers => {
+
+              if (JSON.stringify(subscribers) !== '[]') {
+
+                let subsArr = [];
+
+                function* getResponse() {
+
+                  yield new Promise(resolve => {
+
+
+                    for (const i of subscribers) {
+                      subsArr.push(i.email);
+                    }
+
+                    resolve();
+                  });
+                }
+
+                const iterator = getResponse();
+                (function loop() {
+
+                  const next = iterator.next();
+                  if (next.done) {
+                    console.log(post);
+                    email.newpost(subsArr.join(','), post._id).then(() => {
+                      res.json({ type: 0 });
+                    }).catch(() => {
+                      res.json({ type: 2 });
+                    });
+
+                    return;
+                  }
+
+                  next.value.then(loop);
+                })();
+
+              } else {
+                res.json({ type: 0 });
+              }
+
+            }).catch(() => {
+              res.json({ type: 2 });
+            });
           }).catch(() => {
             res.json({ type: 2 });
           });
