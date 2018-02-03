@@ -1,9 +1,14 @@
 {% extends locals.path + '/index.njk' %}
 
 {% block head %}
+<link rel="stylesheet" href="/files/css/unsubscribe.css">
 {% endblock %}
 
 {% block content %}
+<div class="page-title">
+ <span>خروج از خبرنامه</span>
+</div>
+<div class="unsubscribe-container">
   <form action="/unsubscribe" method="post" name="unsub-form">
     <input
      type="email"
@@ -23,9 +28,11 @@
 
     <input
       type="submit"
-      value="درخواست">
+      value="درخواست"
+      class="green-btn">
 
   </form>
+  </div>
 {% endblock %}
 
 {% block scripts %}
