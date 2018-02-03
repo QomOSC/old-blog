@@ -3,7 +3,7 @@ import { unique } from 'stringing';
 
 const { login } = rootRequire('./perms');
 const { Member, Recovery } = rootRequire('./models');
-const { sendRecovery } = rootRequire('./utils');
+const { email } = rootRequire('./utils');
 
 const router = new Router();
 
@@ -26,9 +26,8 @@ router.post('/recovery', login, (req, res) => {
           });
 
           rec.save().then(() => {
-            console.log(rec);
 
-            sendRecovery(req.body.email, rec.token).then(() => {
+            email.recovery(req.body.email, rec.token).then(() => {
               // OK
               res.json({ type: 0 });
             }).catch(() => {
