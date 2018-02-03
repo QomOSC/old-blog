@@ -5,13 +5,13 @@ function send(to, link) {
     const transport = createTransport({
       service: 'gmail',
       auth: {
-        user: 'oscqom@gmail.com',
-        pass: 'qomoscqomosc'
+        user: '@@EMAILADDRESS@@',
+        pass: '@@EMAILPASSWORD@@'
       }
     });
 
     const mailOption = {
-      from: 'oscqom@gmail.com',
+      from: '@@EMAILADDRESS@@',
       subject: 'Password Recovery',
       html: `<a href="@@LINK@@/recovery/${link}">Recovery</a>`,
       to

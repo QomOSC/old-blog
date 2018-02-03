@@ -2,5 +2,7 @@
   "port": "8010",
   "db": "mongodb://127.0.0.1:27017/qomosc",
   "title": "QOM OSC",
-  "url": "http://localhost:8010"
+  "url": "http://localhost:8010",
+  "email": "oscqom@gmail.com",
+  "email_password": "qomoscqomosc"
 }

@@ -5,8 +5,8 @@ function send(to) {
     const transport = createTransport({
       service: 'gmail',
       auth: {
-        user: 'oscqom@gmail.com',
-        pass: 'qomoscqomosc'
+        user: '@@EMAILADDRESS@@',
+        pass: '@@EMAILPASSWORD@@'
       }
     });
 

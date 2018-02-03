@@ -5,13 +5,13 @@ function send(to) {
     const transport = createTransport({
       service: 'gmail',
       auth: {
-        user: 'oscqom@gmail.com',
-        pass: 'qomoscqomosc'
+        user: '@@EMAILADDRESS@@',
+        pass: '@@EMAILPASSWORD@@'
       }
     });
 
     const mailOption = {
-      from: 'oscqom@gmail.com',
+      from: '@@EMAILADDRESS@@',
       subject: 'Your request accepted',
       html: `Unfortunately, your account in
 Qom OSC community has been deleted by the admins.`,

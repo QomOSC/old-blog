@@ -29,6 +29,8 @@ function taskBabel() {
     ]
   }))
   .pipe(replace(/@@LINK@@/g, config.url))
+  .pipe(replace(/@@EMAILADDRESS@@/g, config.email))
+  .pipe(replace(/@@EMAILPASSWORD@@/g, config.email_password))
   .pipe(gulp.dest('build'));
 }
 
@@ -63,6 +65,8 @@ function taskLess() {
 
 function taskMinProd() {
   gulp.src('src/views/**/*.njk')
+      .pipe(replace(/@@EMAILADDRESS@@/g, config.email))
+      .pipe(replace(/@@EMAILPASSWORD@@/g, config.email_password))
       .pipe(replace(/@@PROJECTNAME@@/g, config.title))
       .pipe(htmlmin({ collapseWhitespace: true }))
       .pipe(gulp.dest('build/views'));
@@ -71,6 +75,8 @@ function taskMinProd() {
 function taskMinDev() {
   gulp.src('src/views/**/*.njk')
       .pipe(replace(/@@PROJECTNAME@@/g, config.title))
+      .pipe(replace(/@@EMAILPASSWORD@@/g, config.email_password))
+      .pipe(replace(/@@EMAILADDRESS@@/g, config.email))
       .pipe(gulp.dest('build/views'));
 }
 
