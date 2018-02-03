@@ -12,9 +12,9 @@ function send(to) {
 
     const mailOption = {
       from: 'oscqom@gmail.com',
-      subject: 'Your request accepted',
-      html: `Congratulations, your request to
-join Qom OSC community has been accepted.`,
+      subject: 'Your request rejected!',
+      html: `Unfortunately, your request to
+join Qom OSC community has been rejected.`,
       to
     };
 
