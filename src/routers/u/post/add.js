@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
     crypto.pseudoRandomBytes(16, (err, raw) => {
       const extension = file.mimetype.split('/')[1];
 
-      if (extension === 'jpg' || extension === 'png') {
+      if (extension === 'jpeg' || extension === 'png') {
         cb(null, raw.toString('hex') +
         Date.now() +
         '.' +
