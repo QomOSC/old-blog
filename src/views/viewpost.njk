@@ -4,6 +4,12 @@
   <link rel="stylesheet" href="/files/css/viewpost.css">
   <link rel="stylesheet" href="/files/css/home.css">
   <link rel="stylesheet" href="/files/css/post-short.css">
+  <style>
+    #markdowned-text > img {
+      max-width: 200px;
+      max-height: 200px;
+    }
+  </style>
 {% endblock %}
 
 {% block content %}
@@ -41,7 +47,7 @@
   </div>
   <div class="viewpost-body">
     <div class="viewpost-text">
-      <p>{{ p.post.content }}</p>
+      <div id="markdowned-text">{{ p.post.content }}</div>
       <div class="event">
         <div class="posts-event">
           <div id="dislike-btn">
@@ -95,9 +101,13 @@
 {% endblock %}
 
 {% block scripts %}
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js">
+</script>
   <script>
     var URL = '{{ p.post._id }}';
   </script>
   <script src='/files/js/ipchecker.js'></script>
   <script src='/files/js/like-post.js'></script>
+  <script src="/files/js/viewpost.js"></script>
 {% endblock %}
