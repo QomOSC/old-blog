@@ -67,3 +67,25 @@ up.addEventListener('change', () => {
     }
   }
 });
+
+document.getElementById('add-photo-to-post').addEventListener('change', e => {
+  const PD = new FormData();
+
+  if (e.target.files && e.target.files[0]) {
+    if (e.target.files[0].type === 'image/png' ||
+    e.target.files[0].type === 'image/jpeg') {
+      console.log(e.target.files[0]);
+      PD.append('postPhoto', e.target.files[0]);
+
+      fetch('/u/post/addonephoto', {
+        method: 'POST',
+        credentials: 'include',
+        body: PD
+      }).then(checkStatus).then(res => res.json()).then(data => {
+        form.content.value += `![Photo](/img/${data.filename})`;
+      }).catch(() => {
+        iziErr();
+      });
+    }
+  }
+});
