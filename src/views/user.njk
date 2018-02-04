@@ -6,40 +6,41 @@
 {% endblock %}
 
 {% block content %}
-  <div id="container">
-    <div id="user-panel">
-      <h1>{{ member.fname }}
-        {{ member.lname }}</h1>
-      {% if member.avatar %}
-        <img src="/img/{{ member.avatar }}" alt="عکس کاربر">
-      {% else %}
-        <img src="/files/image/default-user.png" alt="عکس کاربر">
+<div id="container">
+  <div id="user-panel">
+    <div class="user-name">
+    <span>{{ member.fname }} {{ member.lname }} </span>
+      </div>
+    {% if member.avatar %}
+      <img src="/img/{{ member.avatar }}" alt="عکس کاربر">
+    {% else %}
+      <img src="/files/image/default-user.png" alt="عکس کاربر">
+    {% endif %}
+    <p id="user-description"></p>
+    <table id="user-info">
+      <tr>
+        <td title="ایمیل">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+        </td>
+        <td>{{ member.email }}</td>
+      </tr>
+      <tr>
+        <td title="یوزرنیم">
+          <i class="fa fa-user" aria-hidden="true"></i>
+        </td>
+        <td>{{ member.username}}</td>
+      </tr>
+      {% if member.description %}
+        <tr>
+          <td title="درباره کاربر">
+            <i class="fa fa-info" aria-hidden="true"></i>
+          </td>
+          <td>{{ member.description }}</td>
+        </tr>
       {% endif %}
-      <p id="user-description"></p>
-      <table id="user-info">
-        <tr>
-          <td title="ایمیل">
-            <i class="fa fa-envelope" aria-hidden="true"></i>
-          </td>
-          <td>{{ member.email }}</td>
-        </tr>
-        <tr>
-          <td title="یوزرنیم">
-            <i class="fa fa-user" aria-hidden="true"></i>
-          </td>
-          <td>{{ member.username}}</td>
-        </tr>
-        {% if member.description %}
-          <tr>
-            <td title="درباره کاربر">
-              <i class="fa fa-info" aria-hidden="true"></i>
-            </td>
-            <td>{{ member.description }}</td>
-          </tr>
-        {% endif %}
-        <tr>
+      <tr>
           <td>
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <i class="fa fa-clock"></i>
           </td>
           <td>مدت حظور:
             {{ member.createdAt }}</td>
@@ -51,62 +52,66 @@
           <td>تعداد پست:
             {{ member.postsLength }}</td>
         </tr>
-        <tr>
-          <td>
-            <i class="fa fa-user-secret" aria-hidden="true"></i>
-          </td>
-          {% if member.type === 1 %}
-            <td>رتبه: در حال انتظار</td>
-          {% elif member.type === 2 %}
-            <td>رتبه: عضو معمولی</td>
-          {% elif member.type === 3 %}
-            <td>رتبه: مدیر</td>
-          {% elif member.type === 4 %}
-            <td>رتبه: مدیر کل</td>
-          {% endif %}
-        </tr>
-      </table>
-    </div>
-    <div id="works">
-      <h1>پست های اخیر</h1>
-      <div class="recent-posts">
-        {% for i in posts %}
-          <div class="posts">
-            <a href="/viewpost/{{ i.id }}">
-              <div class="posts-pic">
-                <img src="/img/{{ i.avatar }}">
-              </div>
-            </a>
-            <div class="posts-body">
-              <div class="posts-title">
-                <a href="/viewpost/{{ i.id }}">
-                  <span>{{ i.title }}</span>
-                </a>
-              </div>
-              <div class="posts-summary">
-                <p>{{ i.content }}</p>
-              </div>
+        <td>
+          <i class="fa fa-user-secret" aria-hidden="true"></i>
+        </td>
+        {% if member.type === 1 %}
+          <td>رتبه: در حال انتظار</td>
+        {% elif member.type === 2 %}
+          <td>رتبه: عضو معمولی</td>
+        {% elif member.type === 3 %}
+          <td>رتبه: مدیر</td>
+        {% elif member.type === 4 %}
+          <td>رتبه: مدیر کل</td>
+        {% endif %}
+      </tr>
+    </table>
+  </div>
+  <div id="works">
+      <div class="title-user">
+            <span>پست های اخیر</span>
+      </div>
+    <div class="recent-posts">
+      {% for i in posts %}
+        <script type="text/javascript">
+          console.log('{{ i }}');
+        </script>
+        <div class="posts">
+          <a href="/viewpost/{{ i.id }}">
+            <div class="posts-pic">
+              <img src="/img/{{ i.avatar }}">
             </div>
-            <div class="posts-footer">
-              <div class="posts-event">
-                <div class="like-btn" title="لایک ها">
-                  <span>{{ i.likes }}</span>
-                  <i class="fa fa-heart" aria-hidden="true"></i>
-                </div>
-                <div class="view-btn" title="بازدید ها">
-                  <span>{{ i.viewers }}</span>
-                  <i class="fa fa-eye" aria-hidden="true"></i>
-                </div>
-              </div>
+          </a>
+          <div class="posts-body">
+            <div class="posts-title">
               <a href="/viewpost/{{ i.id }}">
-                <span>بیشتر بخوانید . . .</span>
+                <span>{{ i.title }}</span>
               </a>
             </div>
+            <div class="posts-summary">
+              <p>{{ i.content }}</p>
+            </div>
           </div>
-        {% endfor %}
-      </div>
+          <div class="posts-footer">
+            <div class="posts-event">
+              <div class="like-btn" title="لایک ها">
+                <span>{{ i.likes }}</span>
+                <i class="fa fa-heart" aria-hidden="true"></i>
+              </div>
+              <div class="view-btn" title="بازدید ها">
+                <span>{{ i.viewers }}</span>
+                <i class="fa fa-eye" aria-hidden="true"></i>
+              </div>
+            </div>
+            <a href="/viewpost/{{ i.id }}">
+              <span>بیشتر بخوانید . . .</span>
+            </a>
+          </div>
+        </div>
+      {% endfor %}
     </div>
   </div>
+</div>
 {% endblock %}
 
 {% block scripts %}
