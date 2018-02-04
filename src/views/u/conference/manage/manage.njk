@@ -1,6 +1,7 @@
 {% extends locals.path + '/u.njk' %}
 
 {% block head %}
+<link rel="stylesheet" href="/files/css/conference.css">
 {% endblock %}
 
 {% block content %}
@@ -13,19 +14,23 @@
   <span>کنفرانس ها</span>
   </div>
 {% for i in confs %}
+<div class="cnf-manage">
+  <div>نام کاربر : <span>محمد سیفی مرندی</span></div>
   <div class="requested-confs" id="{{ i._id }}">
-    <h1>{{ i.title }}</h1>
-    <h1>{{ i.description }}</h1>
-
+    <h3> موضوع کنفرانس : {{ i.title }}</h3>
+    <p>توضیحات :  {{ i.description }}</p>
+   <div class="cnf-control">
     <form action="/u/conference/manage/accept" method="post" class="accept">
       <input type="hidden" name="id" value="{{ i._id }}">
-      <input type="submit" value="قبول کردن">
+      <input type="submit" value="قبول کردن" class="green-btn">
     </form>
 
     <form action="/u/conference/manage/decline" method="post" class="decline">
       <input type="hidden" name="id" value="{{ i._id }}">
-      <input type="submit" value="قبول نکردن">
+      <input type="submit" value="قبول نکردن" class="red-btn">
     </form>
+    </div>
+  </div>
   </div>
 {% endfor %}
 {% endif %}
