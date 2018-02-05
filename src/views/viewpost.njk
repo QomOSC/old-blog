@@ -14,8 +14,18 @@
 
 {% block content %}
   <div class="viewpost" style="background-image: url('/img/{{ p.post.avatar }}');">
-    <span>
-      {{ p.post.title }}</span>
+    <span>{{ p.post.title }}</span>
+    <div class="viewpost-details">
+      <a href="/user/{{ p.author.username }}">
+        <div class="profile-img" style="background-image: url('/img/{{ p.author.avatar }}');
+         background-size: cover;">
+       </div>
+      </a>
+    <span>{{ p.author.fname }}
+      {{ p.author.lname }}</span>
+      <span><i class="fa fa-circle"></i><span>
+      <span>{{ p.other.createdAt }}</span>
+      </div>
   </div>
   <div class="viewpost-info-all">
     <div class="viewpost-info">
@@ -76,7 +86,6 @@
         </span>
       </div>
     </div>
-    <div class="viewpost-left"></div>
   </div>
   <div class="user-info">
     <div class="user-info-right">
