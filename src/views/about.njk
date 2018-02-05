@@ -4,66 +4,26 @@
   <link rel="stylesheet" href="/files/css/viewpost.css">
   <link rel="stylesheet" href="/files/css/home.css">
   <link rel="stylesheet" href="/files/css/post-short.css">
-  <style>
-    #markdowned-text > img {
-      max-width: 200px;
-      max-height: 200px;
-    }
-  </style>
 {% endblock %}
 
 {% block content %}
   <div class="viewpost" style="background-image: url('/files/image/conference.jpg');">
     <span>درباره جامعه متن باز قم</span>
   </div>
-  <div class="viewpost-info-all">
-    <div class="viewpost-info">
-      <div class="viewpost-info-in">
-        <div class="view-post-head-right">
-          <div class="profile-img" style="background-image: url('/files/image/qomosc.jpg');
-    background-size: cover;">
-          </div>
-          <a href="/about">
-            <span>جامعه متن باز قم</span>
-          </a>
-        </div>
-        <div class="viewpost-icon">
-
-          <span>
-            مطالعه : 2&nbsp; دقیقه
-          </span>
-        </div>
-      </div>
-    </div>
-
+  <div class="developers">
+    <figure>
+    <img src="/files/image/developers/msm.jpg">
+    <a>محمد سیفی مرندی</a>
+    </figure>
+    <figure>
+    <img src="/files/image/developers/mmk.jpg">
+    <a>محمد متین کابلی</a>
+    </figure>
   </div>
   <div class="viewpost-body">
-    <div class="viewpost-text">
-      <div id="markdowned-text">hello World</div>
-      <div class="event">
-      </div>
+
     </div>
-    <div class="viewpost-left"></div>
-  </div>
-  <div class="user-info">
-    <div class="user-info-right">
-      <a href="/user/{{ p.author.username }}">
-        <div class="profile-img" style="background-image: url('/img/{{ member.avatar }}');
-         background-size: cover;">
-       </div>
-      </a>
-    </div>
-    <div class="user-info-left">
-       <span class="username">
-         <a href="/user/{{ member.username }}">
-         <span>{{ member.fname }} {{ member.lname }}</span>
-       </a>
-     </span>
-       {% if member.description %}
-         <p>{{ member.description }}</p>
-       {% endif %}
-    </div>
-  </div>
+
 {% endblock %}
 
 {% block scripts %}
