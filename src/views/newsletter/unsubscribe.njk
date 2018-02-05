@@ -2,9 +2,18 @@
 
 {% block head %}
 <link rel="stylesheet" href="/files/css/unsubscribe.css">
+<script>
+  function unsubscribeDone() {
+    localStorage.setItem('unsubscribed', 1);
+    window.location.href = '/';
+  }
+</script>
 {% endblock %}
 
 {% block content %}
+{% if done %}
+  <script>unsubscribeDone()</script>
+{% else %}
 <div class="page-title">
  <span>خروج از خبرنامه</span>
 </div>
@@ -33,6 +42,7 @@
 
   </form>
   </div>
+{% endif %}
 {% endblock %}
 
 {% block scripts %}

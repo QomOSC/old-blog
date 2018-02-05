@@ -21,4 +21,11 @@ if (parseInt(localStorage.getItem('delAcc')) === 1) {
   });
   localStorage.removeItem('delAcc');
 }
-console.log('Hello');
+if (parseInt(localStorage.getItem('unsubscribed')) === 1) {
+  iziToast.success({
+    title: 'موفق',
+    rtl: true,
+    message: 'شما با موفقیت از خبرنامه خارج شدید'
+  });
+  localStorage.removeItem('unsubscribed');
+}

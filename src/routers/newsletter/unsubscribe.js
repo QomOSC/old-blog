@@ -42,7 +42,7 @@ router.get('/unsubscribe/:token', (req, res) => {
   Newsletter.findOne({ _id: req.params.token }).then(member => {
     if (member) {
       member.remove().then(() => {
-        res.send('DONE');
+        res.render('newsletter/unsubscribe.njk', { done: true });
       }).catch(() => {
         res.reply.notFound();
       });
