@@ -1,6 +1,7 @@
 import { Router } from 'express';
 
-const { Conference } = rootRequire('./models');
+const { Conference, Member } = rootRequire('./models');
+const { moment } = rootRequire('./utils');
 
 const router = new Router();
 
@@ -15,9 +16,54 @@ router.get('/conferences', (req, res) => {
           empty: true
         });
       } else {
-        res.render('conferences.njk', {
-          confs
-        });
+
+        const confArr = [];
+
+        function* getResponse() {
+          for (const i of confs) {
+            yield new Promise(resolve => {
+
+              const oneConf = {
+                title: i.title,
+                createdAt: moment(i.createdAt),
+                description: i.description,
+                avatar: i.avatar,
+                provider: {},
+              };
+
+              Member.findOne({ _id: i.provider }).then(member => {
+                if (member) {
+                  oneConf.provider.fname = member.fname;
+                  oneConf.provider.lname = member.lname;
+                  oneConf.provider.username = member.username;
+                  oneConf.provider.avatar = member.avatar;
+
+                  confArr.push(oneConf);
+                  resolve();
+                } else {
+                  res.reply.error();
+                }
+              }).catch(() => {
+                res.reply.error();
+              });
+            });
+          }
+        }
+
+        const iterator = getResponse();
+        (function loop() {
+
+          const next = iterator.next();
+          if (next.done) {
+            res.render('conferences.njk', {
+              confs: confArr
+            });
+            return;
+          }
+
+          next.value.then(loop);
+        })();
+
       }
     }).catch(() => {
       res.render('conferences.njk', {

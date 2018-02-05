@@ -15,13 +15,18 @@
   </div>
 {% for i in confs %}
  <div class="cnf">
-   <div class="avatar-confs">
-     <img src="http://mohammadseyfimarandi.tk/msm.jpg">
-     <span>محمد سیفی مرندی</span>
-     {# {% if i.avatar %}
-     <img src="/img/{{ i.avatar }}">
-     {% endif %} #}
-   </div>
+     <div class="avatar-confs">
+       <a href="/user/{{ i.provider.username }}">
+       {% if i.provider.avatar %}
+       <img src="/img/{{ i.provider.avatar }}">
+       {% else %}
+       <img src="/files/image/default-user.png">
+       {% endif %}
+       </a>
+       <a href="/user/{{ i.provider.username }}">
+         <span>{{ i.provider.fname }} {{ i.provider.lname }}</span>
+       </a>
+     </div>
    <div class="cnf-content">
      <div class="confs-title">
   <h3> موضوع کنفرانس : {{ i.title }}</h3>
