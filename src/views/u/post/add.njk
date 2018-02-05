@@ -10,8 +10,9 @@
 <div class="page-title">
 <i class="fa fa-edit"></i>  <span>پست کردن</span>
 </div>
-<input type="file" title="اضافه کردن عکس" id="add-photo-to-post">
 <div class="post-container">
+  <input type="file" title="اضافه کردن عکس" id="add-photo-to-post"
+    style="display: none;">
   <form
     action="/u/post/add"
     method="post"
@@ -25,12 +26,11 @@
       maxlength="100">
         <div class="add-post">
           <div class="add-post-icons">
-              <i class="fa fa-bold"></i>
-              <i class="fa fa-italic"></i>
-              <i class="fa fa-list-ol"></i>
-              <i class="fa fa-list-ul"></i>
-              <i class="fa fa-quote-left"></i>
-              <i class="fa fa-link"></i>
+              <i class="fa fa-bold" id="add-bold-text"></i>
+              <i class="fa fa-italic" id="add-italic-text"></i>
+              <label for="add-photo-to-post" title="اضافه کردن عکس">
+                <i class="fa fa-link"></i>
+              </label>
           </div>
           <div>
     <textarea
@@ -42,7 +42,10 @@
     maxlength="10000"></textarea>
     </div>
 </div>
-    <input type="file" id="upload" value="Upload">
+    <input type="file" id="upload" value="Upload" style="display: none;">
+    <label for="upload">
+      <p>عکس پست(لازم)</p>
+    </label>
 
     <input
     type="submit"
@@ -50,7 +53,7 @@
 
   </form>
   </div>
-  <button id="preview">Preview</button>
+  <button id="preview" style="display: none">Preview</button>
 
   <div id="show"></div>
 
