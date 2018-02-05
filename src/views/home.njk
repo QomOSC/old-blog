@@ -5,9 +5,11 @@
 {% endblock %}
 
 {% block content %}
-  <div class="contact">
-    <img src="https://jordanhall.co.uk/wp-content/uploads/2015/06/Open-Source-Logo.png" width="80px">
-    <h1>جامعه متن باز قم</h1>
+  <div class="contact" id="particles-js">
+    <div style="z-index: 3;" id="contact-texts">
+      <img src="https://jordanhall.co.uk/wp-content/uploads/2015/06/Open-Source-Logo.png" width="80px">
+      <h1>جامعه متن باز قم</h1>
+    </div>
   </div>
   <div class="description">
     <div class="col-des">
@@ -95,5 +97,10 @@
         return x.classList.toggle('change');
       }
     </script>
+    <script src="/files/js/lib/particles.min.js"></script>
     <script src="/files/js/home-localstorage.js"></script>
+    <script>
+    particlesJS.load('particles-js', '/files/js/lib/p.json', function() {
+    });
+    </script>
   {% endblock %}
