@@ -49,10 +49,6 @@
       <div class="footer-container">
          <div class="footer-row1">
            <a href="/" class="site-title">جامعه متن باز قم</a>
-           <p>
-             به نام آنکه نوشتن را به قلم آموخت، کپی برداری از مطالب سایت آزاد است
-            کلیه حقوق محتوا این سایت متعلق به جامعه متن باز قم می باشد
-           </p>
 
            <form name="newsletter-form" action="/subscribe" method="post">
                <input
@@ -81,17 +77,16 @@
 
             </div>
                <div class="footer-row3">
-                 <h4>درباره جامعه متن باز قم</h4>
+                 <a href="/about" class="about-us">
+                   <h4>درباره جامعه متن باز قم</h4>
+                 </a>
                  <p>
-                    جامعه متن باز قم را میتوان به عنوان مرجعی برای آموزش و حل مشکلات دانست، در بپرسم سعی کرده ایم آموزش های برنامه نویسی، طراحی سایت، کار با نرم افزارها ها و... را آموزش دهیم. همچنین محیطی فراهم کرده ایم تا کاربران بتوانند در این محیط سوالات خود را بپرسند و مشکل خود را حل کنند.
+                  جامعه متن‌باز قم با هدف فراهم کردن محیطی برای به اشتراک گذاری دانش و تجربیات افرادی که در زمینه‌های مختلف متن‌باز فعالیت می‌کنند تاسیس شده است...
                  </p>
-                 <a href="/about" class="about-us">درباره ما</a>
                </div>
 
             </div>
-            <div class="bottom-footer">
-               <span> 2018 QomOSC. All rights reserved ©</span>
-            </div>
+            <div class="bottom-footer"></div>
     </footer>
     {% for item in locals.header %}
       {{ item | safe }}
