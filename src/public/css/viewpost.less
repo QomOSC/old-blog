@@ -226,27 +226,54 @@ font-family: SB;
 //about page
 
 .developers {
+margin-top: -20px;
 background: #40AA54;
-height: 400px;
+height: 700px;
 display: flex;
-justify-content: center;
+flex-direction: column;
 align-items: center;
+justify-content: center;
+
 
   img {
     width: 250px;
     border-radius: 100%;
-    margin: 10px;
   }
   figure {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    background: #fec901;
+    margin: 10px;
+    border-top-left-radius: 130px;
+    border-top-right-radius: 130px;
 
     a {
       font-size: 25px;
     }
   }
+
+  h1 {
+    margin-bottom: 20px;
+    font-family: SB;
+  }
 }
+
+.developers-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.admin-name {
+  color: #222;
+
+  &:hover {
+    color: #333;
+  }
+}
+
 
 @media only screen and (max-width: 480px) {
 
@@ -322,4 +349,12 @@ width: 100%;
   padding: 5px;
   width: 100%;
 }
+
+.developers {
+  height: 900px;
+}
+.developers-img {
+  flex-direction: column;
+}
+
 }
