@@ -1,7 +1,6 @@
 {% extends locals.path + '/index.njk' %}
 
 {% block head %}
-  <link rel="stylesheet" href="/files/css/post-short.css">
 {% endblock %}
 
 {% block content %}
@@ -105,11 +104,6 @@
   {% endblock %}
 
   {% block scripts %}
-    <script>
-      function changeIcon(x) {
-        return x.classList.toggle('change');
-      }
-    </script>
     <script src="/files/js/lib/particles.min.js"></script>
     <script src="/files/js/home-localstorage.js"></script>
     <script>

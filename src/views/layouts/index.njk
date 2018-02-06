@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="/files/css/footer.css">
     <link rel="stylesheet" href="/files/css/home.css">
     <link rel="stylesheet" href="/files/css/account.css">
+    <link rel="stylesheet" href="/files/css/post-short.css">
+    <link rel="stylesheet" href="/files/css/dropdown.css">
 
     <meta name="viewport"
     content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -19,7 +21,6 @@
     {% for item in locals.header %}
       {{ item | safe }}
     {% endfor %}
-
     {% block head %}
     {% endblock %}
   </head>
@@ -28,10 +29,17 @@
       {% if logged %}
         <a href="/u" id="user-fname">{{ logged.fname }} {{logged.lname}}</a>
       {% else %}
-      <div id="icon-container" onclick="changeIcon(this)">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
+      <div class="dropdown" id="icon-container" onclick="changeIcon(this)">
+        <button onclick="myFunction()" class="dropbtn">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
+        </button>
+          <div id="myDropdown" class="dropdown-content">
+            <a href="/signup">ثبت نام</a>
+            <a href="/login">ورود</a>
+            <a href="/about">درباره</a>
+          </div>
       </div>
       <ul id="header-list">
         <li><a href="/login">ورود</a></li>
@@ -92,12 +100,12 @@
     {% for item in locals.header %}
       {{ item | safe }}
     {% endfor %}
-
     <script src="/files/js/lib/izi.min.js"></script>
     <script src="/files/js/common-funcs.js"></script>
     <script src="/files/js/lib/validator.js"></script>
     <script src="/files/js/lib/checkstatus.js"></script>
     <script src="/files/js/add-newsletter.js"></script>
+    <script src="/files/js/dropdown.js"></script>
     {% block scripts %}
     {% endblock %}
   </body>
