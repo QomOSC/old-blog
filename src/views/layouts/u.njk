@@ -38,66 +38,65 @@
               <i class="fa fa-user-plus" aria-hidden="true"></i>
             </a>
           </li>
+          <li class="tooltip">
+            <span class="tooltiptext">مدیریت کاربران</span>
+            <a href="/u/sub/manage">
+              <i class="fa fa-users" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li class="tooltip">
+            <span class="tooltiptext">مدریت کنفرانس ها</span>
+            <a href="/u/conference/manage">
+              <i class="fas fa-inbox"></i>
+            </a>
+          </li>
+        {% endif %}
         <li class="tooltip">
-          <span class="tooltiptext">مدیریت کاربران</span>
-        <a href="/u/sub/manage">
-          <i class="fa fa-users" aria-hidden="true"></i>
-        </a>
-      </li>
-      <li class="tooltip">
-        <span class="tooltiptext">مدریت کنفرانس ها</span>
-      <a href="/u/conference/manage">
-      <i class="fas fa-inbox"></i>
-      </a>
-    </li>
-    {% endif %}
-    <li class="tooltip">
-      <span class="tooltiptext">ارائه کنفرانس</span>
-      <a href="/u/conference/add">
-        <i class="fab fa-weixin"></i>
-      </a>
-    </li>
-    <li class="tooltip">
-      <span class="tooltiptext">پست های من</span>
-      <a href="/u/post/all">
-        <i class="far fa-envelope-open" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li class="tooltip">
-      <span class="tooltiptext">تنظیمات</span>
-      <a href="/u/setting">
-        <i class="fa fa-cog" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li class="tooltip">
-      <span class="tooltiptext">خروج</span>
-      <a href="/u/logout" onclick="localStorage.setItem('loggedout', '1')">
-        <i class="fas fa-sign-out-alt"></i>
-      </a>
-    </li>
+          <span class="tooltiptext">ارائه کنفرانس</span>
+          <a href="/u/conference/add">
+            <i class="fab fa-weixin"></i>
+          </a>
+        </li>
+        <li class="tooltip">
+          <span class="tooltiptext">پست های من</span>
+          <a href="/u/post/all">
+            <i class="far fa-envelope-open" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li class="tooltip">
+          <span class="tooltiptext">تنظیمات</span>
+          <a href="/u/setting">
+            <i class="fa fa-cog" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li class="tooltip">
+          <span class="tooltiptext">خروج</span>
+          <a href="/u/logout" onclick="localStorage.setItem('loggedout', '1')">
+            <i class="fas fa-sign-out-alt"></i>
+          </a>
+        </li>
       </ul>
 
-  <div class="profile-avatar-header">
-    {% if member.avatar %}
-      <img src="/img/{{ member.avatar }}" alt="عکس کاربر">
-    {% else %}
-      <img src="/files/image/default-user.png" alt="عکس کاربر">
-    {% endif %}
-    <a href="/u">{{ member.fname }}
-      {{ member.lname }}</a>
-  </div>
-</header>
-{% block content %}{% endblock %}
+      <div class="profile-avatar-header">
+        {% if member.avatar %}
+          <img src="/img/{{ member.avatar }}" alt="عکس کاربر">
+        {% else %}
+          <img src="/files/image/default-user.png" alt="عکس کاربر">
+        {% endif %}
+        <a href="/u">{{ member.fname }}
+          {{ member.lname }}</a>
+      </div>
+    </header>
+    {% block content %}{% endblock %}
 
-{% for item in locals.header %}
-  {{ item | safe }}
-{% endfor %}
+    {% for item in locals.header %}
+      {{ item | safe }}
+    {% endfor %}
 
-  <script src="/files/js/lib/izi.min.js"></script>
-  <script src="/files/js/common-funcs.js"></script>
-  <script src="/files/js/lib/validator.js"></script>
-  <script src="/files/js/lib/checkstatus.js"></script>
-  {% block scripts %}
-  {% endblock %}
-</body>
+    <script src="/files/js/lib/izi.min.js"></script>
+    <script src="/files/js/common-funcs.js"></script>
+    <script src="/files/js/lib/validator.js"></script>
+    <script src="/files/js/lib/checkstatus.js"></script>
+    {% block scripts %}{% endblock %}
+  </body>
 </html>
