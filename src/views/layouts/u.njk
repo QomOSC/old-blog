@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="/files/css/lib/izi.min.css">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="/files/css/dropdown.css">
+
     <title>Qom OSC</title>
     <title>{{ title }}</title>
     <link rel="shortcut icon" href="/files/image/favicon.ico">
@@ -19,10 +21,24 @@
   </head>
   <body>
     <header>
-      <div id="icon-container" onclick="changeIcon(this)">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
+      <div class="dropdown" id="icon-container" onclick="changeIcon(this)">
+        <button onclick="myFunction()" class="dropbtn">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
+        </button>
+          <div id="myDropdown" class="dropdown-content">
+            <a href="/u/post/add">پست کن</a>
+            {% if member.type >= 3 %}
+            <a href="/u/sub">افراد درخواست داده</a>
+            <a href="/u/sub/manage">مدیریت کاربران</a>
+            <a href="/u/conference/manage">مدیریت ارائه ها</a>
+            {% endif %}
+            <a href="/u/conference/add">ارائه دادن</a>
+            <a href="/u/post/all">پست های من</a>
+            <a href="/u/setting">تنظیمات</a>
+            <a href="/u/logout">خروج</a>
+          </div>
       </div>
       <ul class="cpanel">
         <li class="tooltip">
@@ -50,7 +66,7 @@
               <i class="fas fa-inbox"></i>
             </a>
           </li>
-        {% endif %}
+          {% endif %}
         <li class="tooltip">
           <span class="tooltiptext">ارائه کنفرانس</span>
           <a href="/u/conference/add">
@@ -97,6 +113,7 @@
     <script src="/files/js/common-funcs.js"></script>
     <script src="/files/js/lib/validator.js"></script>
     <script src="/files/js/lib/checkstatus.js"></script>
+    <script src="/files/js/dropdown.js"></script>
     {% block scripts %}{% endblock %}
   </body>
 </html>
