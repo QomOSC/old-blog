@@ -64,11 +64,8 @@ mainSetting.addEventListener('submit', e => {
               mainSetting.captcha.select();
             }
           } else if (data.type === 0) {
-            iziToast.success({
-              title: 'موفق',
-              rtl: true,
-              message: 'حساب شما با موفقیت ساخته شد'
-            });
+            localStorage.setItem('signedupsuccessfully', 1);
+            window.location.href = '/';
           }
         }).catch(() => {
           iziErr();

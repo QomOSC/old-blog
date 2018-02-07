@@ -29,3 +29,11 @@ if (parseInt(localStorage.getItem('unsubscribed')) === 1) {
   });
   localStorage.removeItem('unsubscribed');
 }
+if (parseInt(localStorage.getItem('signedupsuccessfully')) === 1) {
+  iziToast.success({
+    title: 'موفق',
+    rtl: true,
+    message: 'حساب شما با موفقیت ساخته شد'
+  });
+  localStorage.removeItem('signedupsuccessfully');
+}
