@@ -1,9 +1,14 @@
 {% extends locals.path + '/index.njk' %}
 
 {% block head %}
+<link rel="stylesheet" href="/files/css/recovery.css">
 {% endblock %}
 
 {% block content %}
+<div class="page-title">
+<span>رمز جدید</span>
+</div>
+<div class="change">
   <form action="/recovery/change" method="post" name="recovery-change-form">
 
    <input
@@ -20,9 +25,10 @@
 
     <input
       type="submit"
-      value="ثبت">
+      value="ثبت" class="green-btn">
 
   </form>
+  </div>
 {% endblock %}
 
 {% block scripts %}
