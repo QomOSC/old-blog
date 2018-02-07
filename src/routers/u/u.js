@@ -23,9 +23,13 @@ router.get('/u', logged, (req, res) => {
           for (let i = 0; i < posts.length; i++) {
             const onePost = {};
 
+            let content = posts[i].content.split('').slice(0, 130);
+            content.push('.', '.', '.');
+            content = content.join('');
+
             onePost.id = posts[i]._id;
             onePost.title = posts[i].title;
-            onePost.content = posts[i].content;
+            onePost.content = content;
             onePost.minutes = posts[i].minutes;
             onePost.avatar = posts[i].avatar;
             onePost.viewers = posts[i].viewers.length;
