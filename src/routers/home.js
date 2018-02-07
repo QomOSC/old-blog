@@ -15,7 +15,6 @@ router.get('/', (req, res) => {
 
       if (JSON.stringify(doc) === '[]') {
         res.render('home.njk', {
-          logged: req.member.user,
           empty: true
         });
       } else {
@@ -65,7 +64,6 @@ router.get('/', (req, res) => {
           const next = iterator.next();
           if (next.done) {
             res.render('home.njk', {
-              logged: req.member.user,
               posts
             });
             return;

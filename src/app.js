@@ -115,26 +115,6 @@ function addTag(name, attribute) {
   return `<${name} ${att.join(' ')}>`;
 }
 
-app.use((req, res, next) => {
-  res.localSource = {
-    header: [],
-    footer: [],
-    path: path.resolve(__dirname, 'views', 'layouts'),
-    report: JSON.stringify(req.flash('report') || [])
-  };
-
-  app.get('engine').addGlobal('locals', res.localSource);
-
-  res.locals.header = (name, att) => {
-    res.localSource.header.push(addTag(name, att));
-  };
-  res.locals.footer = (name, att) => {
-    res.localSource.footer.push(addTag(name, att));
-  };
-
-  next();
-});
-
 /**
  * add reply to res
  */
@@ -172,6 +152,27 @@ app.use((req, res, next) => {
       go.value.then(loop);
     }
   })();
+});
+
+app.use((req, res, next) => {
+  res.localSource = {
+    header: [],
+    footer: [],
+    path: path.resolve(__dirname, 'views', 'layouts'),
+    report: JSON.stringify(req.flash('report') || []),
+    logged: req.member.user.fname
+  };
+
+  app.get('engine').addGlobal('locals', res.localSource);
+
+  res.locals.header = (name, att) => {
+    res.localSource.header.push(addTag(name, att));
+  };
+  res.locals.footer = (name, att) => {
+    res.localSource.footer.push(addTag(name, att));
+  };
+
+  next();
 });
 
 app.use((req, res, next) => {

@@ -30,8 +30,7 @@ router.get('/viewpost/:id', (req, res) => {
             onePost.author.description = member.description;
 
             res.render('viewpost.njk', {
-              p: onePost,
-              logged: req.member.user
+              p: onePost
             });
           } else {
             res.reply.notFound();
