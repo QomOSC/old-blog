@@ -81,12 +81,9 @@ router.post(
 
                   const next = iterator.next();
                   if (next.done) {
-                    console.log(post);
-                    email.newpost(subsArr.join(','), post._id).then(() => {
-                      res.json({ type: 0 });
-                    }).catch(() => {
-                      res.json({ type: 2 });
-                    });
+                    email.newpost(subsArr.join(','), post._id)
+                    .then(() => {}).catch(() => {});
+                    res.json({ type: 0 });
 
                     return;
                   }

@@ -3,6 +3,7 @@ const preview = document.getElementById('preview');
 const up = document.getElementById('upload');
 const imgPreview = document.getElementById('img-preview');
 let fd = new FormData();
+const placeholder = document.getElementById('post-content');
 
 preview.addEventListener('click', e => {
   // Convert to HTML
@@ -68,7 +69,8 @@ up.addEventListener('change', () => {
   }
 });
 
-document.getElementById('add-photo-to-post').addEventListener('change', e => {
+document.getElementById('add-photo-to-post').addEventListener('change',
+e => {
   const PD = new FormData();
 
   if (e.target.files && e.target.files[0]) {
@@ -88,4 +90,33 @@ document.getElementById('add-photo-to-post').addEventListener('change', e => {
       });
     }
   }
+});
+
+document.getElementById('add-bold-text').addEventListener('click',
+ () => {
+  placeholder.value += '**';
+  placeholder.focus();
+});
+
+document.getElementById('add-italic-text').addEventListener('click',
+() => {
+  placeholder.value += '_';
+  placeholder.focus();
+});
+
+document.getElementById('add-line-through-text').addEventListener('click',
+() => {
+  placeholder.value += '~~';
+  placeholder.focus();
+});
+
+document.getElementById('add-code-text').addEventListener('click', () => {
+  placeholder.value += '`';
+  placeholder.focus();
+});
+
+document.getElementById('add-link-text').addEventListener('click', () => {
+  placeholder.value += '\n';
+  placeholder.value += '[TEXT HERE](URL HERE)';
+  placeholder.focus();
 });
