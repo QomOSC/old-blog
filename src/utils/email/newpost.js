@@ -13,7 +13,9 @@ function send(to, link) {
     const mailOption = {
       from: '@@EMAILADDRESS@@',
       subject: 'New Post in QOM OSC',
-      html: `<a href="@@LINK@@/viewpost/${link}">View post</a>`,
+      html: `<a href="@@LINK@@/viewpost/${link}">View post</a>
+      <br>
+      <a href="@@LINK@@/unsubscribe/"Unsubscribe></a>`,
       to
     };
 
