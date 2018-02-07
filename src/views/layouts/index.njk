@@ -27,7 +27,12 @@
   <body>
     <header>
       {% if locals.logged %}
-        <a href="/u" id="user-fname">{{ locals.logged }}</a>
+      <ul id="header-list">
+        <li>
+          <a href="/u" id="user-fname">{{ locals.logged }}</a>
+        </li>
+      </ul>
+
       {% else %}
       <div class="dropdown" id="icon-container" onclick="changeIcon(this)">
         <button onclick="myFunction()" class="dropbtn">

@@ -155,13 +155,19 @@ app.use((req, res, next) => {
 });
 
 app.use((req, res, next) => {
-  res.localSource = {
+  const obj = {
     header: [],
     footer: [],
     path: path.resolve(__dirname, 'views', 'layouts'),
-    report: JSON.stringify(req.flash('report') || []),
-    logged: req.member.user.fname
+    report: JSON.stringify(req.flash('report') || [])
   };
+
+  if (req.member.user) {
+    obj.logged = req.member.user.fname;
+  }
+
+  res.localSource = obj;
+
 
   app.get('engine').addGlobal('locals', res.localSource);
 
