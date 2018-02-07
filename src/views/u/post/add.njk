@@ -1,76 +1,68 @@
 {% extends locals.path + '/u.njk' %}
 
 {% block head %}
-<link rel="stylesheet" href="/files/css/lib/cropper.css">
-<link rel="stylesheet" href="/files/css/setting-cropper.css">
-<link rel="stylesheet" href="/files/css/post.css">
+  <link rel="stylesheet" href="/files/css/lib/cropper.css">
+  <link rel="stylesheet" href="/files/css/setting-cropper.css">
+  <link rel="stylesheet" href="/files/css/post.css">
 {% endblock %}
 
 {% block content %}
-<div class="page-title">
-<i class="fa fa-edit"></i>  <span>پست کردن</span>
-</div>
-<div class="post-container">
-  <input type="file" title="اضافه کردن عکس" id="add-photo-to-post"
-    style="display: none;">
-  <form
-    action="/u/post/add"
-    method="post"
-    name="add-post">
-
-    <input
-      type="text"
-      name="title"
-      required
-      placeholder="عنوان"
-      maxlength="100">
-        <div class="add-post">
-          <div class="add-post-icons">
-              <i class="fa fa-bold" id="add-bold-text"></i>
-              <i class="fa fa-italic" id="add-italic-text"></i>
-              <label for="add-photo-to-post" title="اضافه کردن عکس">
-                <i class="fa fa-link"></i>
-              </label>
-          </div>
-          <div>
-    <textarea
-    name="content"
-    rows="8"
-    cols="80"
-    required
-    placeholder="متن"
-    maxlength="10000"></textarea>
-    </div>
-</div>
-    <input type="file" id="upload" value="Upload" style="display: none;">
-    <label for="upload">
-      <i class="fas fa-camera-retro" title="عکس پست"></i>
-    </label>
-
-    <input
-    type="submit"
-    value="ثبت">
-
-  </form>
+  <div class="page-title">
+    <i class="fa fa-edit"></i>
+    <span>پست کردن</span>
   </div>
+
+  <div class="post-container">
+    <form action="/u/post/add" method="post" name="add-post">
+      <div class="add-post">
+        <input type="text" name="title" required="required" placeholder="عنوان" maxlength="100">
+
+        <div class="add-post-icons">
+          <i class="fa fa-bold" id="add-bold-text"></i>
+          <i class="fa fa-italic" id="add-italic-text"></i>
+          <label for="add-photo-to-post" title="اضافه کردن عکس">
+            <i class="fa fa-image"></i>
+          </label>
+        </div>
+
+        <input type="file" title="اضافه کردن عکس" id="add-photo-to-post" style="display: none;">
+          <textarea name="content" rows="8" cols="80" required="required" placeholder="متن" maxlength="10000"></textarea>
+      <input type="file" id="upload" value="Upload" style="display: none;">
+
+      <label for="upload" class="cam-icon">
+        <span>افزودن عکس پست</span>
+        <i class="fas fa-camera" title="عکس پست"></i>
+      </label>
+
+      <input type="submit" value="ثبت" class="green-btn">
+
+   </div>
+    </form>
+  </div>
+
+
+
+
+
+
+
+
   <button id="preview" style="display: none">Preview</button>
 
   <div id="show"></div>
 
   <div id="all">
-  <div class="container">
-    <img id="img-preview">
-  </div>
-  <div class="container">
-    <img id="done">
-  </div>
+    <div class="container">
+      <img id="img-preview">
+    </div>
+    <div class="container">
+      <img id="done">
+    </div>
   </div>
 {% endblock %}
 
 {% block scripts %}
-<script
-  src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js">
-</script>
-<script src="/files/js/lib/cropper.js"></script>
-<script src="/files/js/add-post.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js"></script>
+  <script src="/files/js/lib/cropper.js"></script>
+  <script src="/files/js/add-post.js"></script>
 {% endblock %}
