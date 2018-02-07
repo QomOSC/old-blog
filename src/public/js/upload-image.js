@@ -41,11 +41,8 @@ up.addEventListener('change', () => {
             .then(res => res.json())
             .then(data => {
               if (data.type === 0) {
-                iziToast.success({
-                  title: 'موفق',
-                  rtl: true,
-                  message: 'عکس شما با موفقیت تغییر کرد'
-                });
+                localStorage.setItem('avatarsettingdone', 1);
+                window.location.href = '/u';
               }
             }).catch(() => {
               iziErr();
