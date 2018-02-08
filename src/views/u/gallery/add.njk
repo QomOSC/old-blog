@@ -1,0 +1,42 @@
+{% extends locals.path + '/u.njk' %}
+
+{% block head %}
+  <link rel="stylesheet" href="/files/css/lib/cropper.css">
+  <link rel="stylesheet" href="/files/css/setting-cropper.css">
+  <link rel="stylesheet" href="/files/css/post.css">
+{% endblock %}
+
+{% block content %}
+  <div class="page-title">
+    <i class="fa fa-edit"></i>
+    <span>پست کردن</span>
+  </div>
+
+  <div class="post-container">
+
+    <form action="/u/post/add" method="post" name="add-post">
+      <div class="add-post">
+
+        <input type="text" name="title" required="required"
+        placeholder="عنوان" maxlength="100">
+
+        <input type="file" title="اضافه کردن عکس"
+        required
+        id="add-photo-to-post" style="display: none;">
+
+      <input type="file" id="upload" value="Upload" style="display: none;">
+
+      <label for="upload" class="cam-icon">
+        <span>افزودن عکس پست</span>
+        <i class="fas fa-camera" title="عکس پست"></i>
+      </label>
+
+      <input type="submit" value="ثبت" class="green-btn">
+
+      </div>
+    </form>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
