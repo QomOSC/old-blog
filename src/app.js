@@ -27,14 +27,14 @@ const routers = require('./routers');
  * setting up db
  */
 mongoose.Promise = global.Promise;
-mongoose.connect(config.db, {
+mongoose.connect(process.env.DB || config.db, {
  useMongoClient: true,
 });
 
 const app = express();
 
-app.listen(config.port, () => {
-    console.log(`Server has been started on port ${config.port}`);
+app.listen(process.env.PORT || config.port, () => {
+    console.log(`Server has been started on port ${process.env.PORT || config.port}`);
 });
 
 /**
@@ -75,16 +75,14 @@ app.use(cookieParser());
 let MongoStore = connectMongo(session);
 
 app.use(session({
-  secret: 'QIFu{W\'(![m#k5xVfL%dwGAADGDE564%?sKb]JTqeN0Uz.9vH4ahjM1l~',
+  secret: process.env.SECRET_KEY || 'QIFu{W\'(![m#k5xVfL%dwGAADGDE564%?sKb]JTqeN0Uz.9vH4ahjM1l~',
   resave: true,
   saveUninitialized: false,
   cookie: {
     maxAge: 60 * 60 * 1000 * 24
   },
   store: new MongoStore({
-    host: '127.0.0.1',
-      port: '27017',
-      url: config.db
+    url: process.env.DB || config.db
   })
 }));
 
