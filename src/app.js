@@ -34,7 +34,8 @@ mongoose.connect(process.env.DB || config.db, {
 const app = express();
 
 app.listen(process.env.PORT || config.port, () => {
-    console.log(`Server has been started on port ${process.env.PORT || config.port}`);
+  console.log(
+`Server has been started on port${process.env.PORT || config.port}`);
 });
 
 /**
@@ -75,7 +76,7 @@ app.use(cookieParser());
 let MongoStore = connectMongo(session);
 
 app.use(session({
-  secret: process.env.SECRET_KEY || 'QIFu{W\'(![m#k5xVfL%dwGAADGDE564%?sKb]JTqeN0Uz.9vH4ahjM1l~',
+  secret: process.env.SECRET_KEY || 'QIFE564%?sKb]JTqeN0Uz.9vH4ahjM1l~',
   resave: true,
   saveUninitialized: false,
   cookie: {
