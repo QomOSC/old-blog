@@ -1,0 +1,24 @@
+{% extends locals.path + '/index.njk' %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+  {% if empty %}
+    <h1>هیچ عکسی وجود ندارد</h1>
+  {% else %}
+    {% for i in photos %}
+      <h1>{{ i.photographer }}</h1>
+    {% endfor %}
+    <a href="/gallery" id="previous">
+      <button>قبلی</button>
+    </a>
+    <a href="/gallery" id="next">
+      <button>بعدی</button>
+    </a>
+    <script src="/files/js/gallery.js"></script>
+  {% endif %}
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
