@@ -99,8 +99,9 @@
         {% else %}
           <img src="/files/image/default-user.png" alt="عکس کاربر">
         {% endif %}
-        <a href="/u">{{ member.fname }}
-          {{ member.lname }}</a>
+        {% if locals.logged %}
+          <a href="/u">{{ locals.logged }}</a>
+        {% endif %}
       </div>
       <div>
         <a href="/" id="long-title-name" class="title">جامعه متن باز قم</a>
