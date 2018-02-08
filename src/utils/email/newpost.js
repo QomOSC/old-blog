@@ -15,7 +15,7 @@ function send(to, link) {
       subject: 'New Post in QOM OSC',
       html: `<a href="@@LINK@@/viewpost/${link}">View post</a>
       <br>
-      <a href="@@LINK@@/unsubscribe/"Unsubscribe></a>`,
+      <a href="@@LINK@@/unsubscribe/">Unsubscribe</a>`,
       to
     };
 
