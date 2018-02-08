@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 const { Conference } = rootRequire('./models');
 const { logged } = rootRequire('./perms');
+const { limit } = rootRequire('./utils');
 
 const router = new Router();
 router.get('/u/conference/add', logged, (req, res) => {
@@ -13,6 +14,7 @@ router.get('/u/conference/add', logged, (req, res) => {
 router.post(
   '/u/conference/add',
   logged,
+  limit,
   (req, res) => {
     const newConference = new Conference({
       provider: req.member.user._id,

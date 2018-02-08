@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 const { login } = rootRequire('./perms');
 const { Member } = rootRequire('./models');
-const { crypt } = rootRequire('./utils');
+const { crypt, limit } = rootRequire('./utils');
 
 const router = new Router();
 
@@ -10,7 +10,7 @@ router.get('/login', login, (req, res) => {
   res.render('login.njk');
 });
 
-router.post('/login', login, (req, res) => {
+router.post('/login', login, limit, (req, res) => {
   req.body.email = req.body.email.toLowerCase();
   req.body.captcha = req.body.captcha.toLowerCase();
 

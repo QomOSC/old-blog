@@ -4,7 +4,7 @@ import crypto from 'crypto';
 
 const { Post, Member, Newsletter } = rootRequire('./models');
 const { logged } = rootRequire('./perms');
-const { email } = rootRequire('./utils');
+const { email, limit } = rootRequire('./utils');
 
 const storage = multer.diskStorage({
   destination(req, file, cb) {
@@ -38,6 +38,7 @@ router.get('/u/post/add', logged, (req, res) => {
 router.post(
   '/u/post/add',
   logged,
+  limit,
   upload.single('croppedImage'),
   (req, res) => {
 

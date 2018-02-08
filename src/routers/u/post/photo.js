@@ -2,6 +2,7 @@ import { Router } from 'express';
 import multer from 'multer';
 import crypto from 'crypto';
 
+const { limit } = rootRequire('./utils');
 const { logged } = rootRequire('./perms');
 
 const router = new Router();
@@ -32,9 +33,10 @@ const upload = multer({ dest: 'uploads/', limits: 3000000, storage });
 router.post(
   '/u/post/addonephoto',
   logged,
+  limit,
   upload.single('postPhoto'),
   (req, res) => {
-    res.json(req.file);
+    res.json({ filename: req.file.filename });
 });
 
 export default router;

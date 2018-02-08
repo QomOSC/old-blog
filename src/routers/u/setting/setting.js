@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 const { logged } = rootRequire('./perms');
 const { Member } = rootRequire('./models');
+const { limit } = rootRequire('./utils');
 
 const router = new Router();
 
@@ -25,7 +26,6 @@ function checkUsername(req) {
 }
 
 function setNewValues(req, res) {
-  console.log(req.body);
   Member.findOne({ _id: req.member.user._id }).then(member => {
     member.fname = req.body.fname;
     member.lname = req.body.lname;
@@ -53,7 +53,7 @@ router.get('/u/setting', logged, (req, res) => {
   res.render('u/setting/setting.njk', { member: req.member.user });
 });
 
-router.post('/u/setting', logged, (req, res) => {
+router.post('/u/setting', logged, limit, (req, res) => {
   if (req.body.email &&
       req.body.fname &&
       req.body.lname &&

@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 const { Post } = rootRequire('./models');
 const { logged } = rootRequire('./perms');
+const { limit } = rootRequire('./utils');
 
 const router = new Router();
 
@@ -23,6 +24,7 @@ router.get('/u/post/:id/edit', logged, (req, res) => {
 router.post(
   '/u/post/edit',
   logged,
+  limit,
   (req, res) => {
 
   if (req.body.title && req.body.content && req.body.minutes && req.body.id) {

@@ -3,7 +3,7 @@ import { unique } from 'stringing';
 
 const { login } = rootRequire('./perms');
 const { Member, Recovery } = rootRequire('./models');
-const { email } = rootRequire('./utils');
+const { email, limit } = rootRequire('./utils');
 
 const router = new Router();
 
@@ -11,7 +11,7 @@ router.get('/recovery', login, (req, res) => {
   res.render('recovery/recovery.njk');
 });
 
-router.post('/recovery', login, (req, res) => {
+router.post('/recovery', login, limit, (req, res) => {
   if (req.body.email && req.body.captcha) {
     req.body.email = req.body.email.toLowerCase();
 
