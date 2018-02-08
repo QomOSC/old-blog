@@ -6,10 +6,12 @@
 {% endblock %}
 
 {% block content %}
-<div class="page-title"><i class="fa fa-envelope-open-o" aria-hidden="true"></i><span>پست های من</span></div>
 {% if empty %}
-  <h1>شما هیچ پستی ندارید</h1>
+<div class="page-title">
+  <span>شما هیچ پستی ندارید</span>
+  </div>
 {% else %}
+<div class="page-title"><i class="fa fa-envelope-open-o" aria-hidden="true"></i><span>پست های من</span></div>
 <div class="posts-all">
  <div class="allposts">
 {% for i in posts %}
