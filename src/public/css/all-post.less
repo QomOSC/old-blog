@@ -1,6 +1,7 @@
 .posts-all {
   display: flex;
   justify-content: center;
+
 }
 
 .allposts {
@@ -12,7 +13,10 @@
   border: 1px solid #eee;
   width: 80%;
   padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border: solid 1px #ccc;
 }
+
 .title-post-all{
   background: #fec901;
   padding: 10px;
@@ -26,19 +30,38 @@
 }
 
 .posts-delete {
-  background-color: #333;
+  background-color: #666;
   padding: 5px;
   text-align: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
   input {
     background: #cf1b1b;
-    padding: 5px 50px;
+    width: 150px;
+    height: auto;
     border: none;
+    border-radius: 50px;
     color: #fff;
     cursor: pointer;
     transition: 0.2s;
 
     &:hover {
       background-color: lighten(#cf1b1b, 10%);
+    }
+  }
+
+  a {
+    background: #fec901;
+    padding: 5px;
+    width: 150px;
+    color: #333;
+    border-radius: 50px;
+    transition: 0.3s;
+
+    &:hover {
+      background: lighten(#fec901, 15%);
     }
   }
 }
@@ -48,11 +71,14 @@
   .posts-all {
     flex-direction: column-reverse;
     align-items: center;
+    justify-content: center;
   }
 
   .allposts {
     margin: 0;
     width: 100%;
+    padding: 0;
+    justify-content: center;
   }
   .col-left {
     margin: 0;

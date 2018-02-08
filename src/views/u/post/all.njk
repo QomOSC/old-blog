@@ -19,7 +19,9 @@
       <input type="hidden" value="{{ i._id }}" name="id">
       <input type="submit" value="حذف">
     </form>
+    <a href="/u/post/{{ i._id }}/edit">تغییر</a>
   </div>
+
   <a href="/viewpost/{{ i._id }}">
     <div class="posts-pic">
       <img src="/img/{{ i.avatar }}">
