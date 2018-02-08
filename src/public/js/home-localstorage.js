@@ -61,3 +61,11 @@ if (parseInt(localStorage.getItem('avatarsettingdone')) === 1) {
   });
   localStorage.removeItem('avatarsettingdone');
 }
+if (parseInt(localStorage.getItem('editpostsuccessfully')) === 1) {
+  iziToast.success({
+    rtl: true,
+    title: 'موفق',
+    message: 'پست شما با موفقیت تغییر یافته شد.'
+  });
+  localStorage.removeItem('editpostsuccessfully');
+}
