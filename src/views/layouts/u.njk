@@ -99,8 +99,13 @@
         {% else %}
           <img src="/files/image/default-user.png" alt="عکس کاربر">
         {% endif %}
-        <a href="/u">{{ member.fname }}
-          {{ member.lname }}</a>
+        {% if locals.logged %}
+          <a href="/u">{{ locals.logged }}</a>
+        {% endif %}
+      </div>
+      <div>
+        <a href="/" id="long-title-name" class="title">جامعه متن باز قم</a>
+        <a href="/" id="short-title-name" class="title">QOM OSC</a>
       </div>
     </header>
     {% block content %}{% endblock %}
@@ -111,6 +116,7 @@
 
     <script src="/files/js/lib/izi.min.js"></script>
     <script src="/files/js/common-funcs.js"></script>
+    <script src="/files/js/home-localstorage.js"></script>
     <script src="/files/js/lib/validator.js"></script>
     <script src="/files/js/lib/checkstatus.js"></script>
     <script src="/files/js/dropdown.js"></script>

@@ -91,32 +91,3 @@ e => {
     }
   }
 });
-
-document.getElementById('add-bold-text').addEventListener('click',
- () => {
-  placeholder.value += '**';
-  placeholder.focus();
-});
-
-document.getElementById('add-italic-text').addEventListener('click',
-() => {
-  placeholder.value += '_';
-  placeholder.focus();
-});
-
-document.getElementById('add-line-through-text').addEventListener('click',
-() => {
-  placeholder.value += '~~';
-  placeholder.focus();
-});
-
-document.getElementById('add-code-text').addEventListener('click', () => {
-  placeholder.value += '`';
-  placeholder.focus();
-});
-
-document.getElementById('add-link-text').addEventListener('click', () => {
-  placeholder.value += '\n';
-  placeholder.value += '[TEXT HERE](URL HERE)';
-  placeholder.focus();
-});

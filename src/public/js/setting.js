@@ -43,11 +43,8 @@ mainSetting.addEventListener('submit', e => {
           });
         }
       } else if (data.type === 0) {
-        iziToast.success({
-          title: 'موفق',
-          rtl: true,
-          message: 'اطلاعات شما با موفقیت به روز رسانی شد'
-        });
+        localStorage.setItem('mainsettingdone', 1);
+        window.location.href = '/u';
       }
     }).catch(() => {
       iziErr();
@@ -76,11 +73,8 @@ passSetting.addEventListener('submit', e => {
     })
   }).then(checkStatus).then(res => res.json()).then(data => {
     if (data.type === 0) {
-      iziToast.success({
-        title: 'موفق',
-        rtl: true,
-        message: 'اطلاعات شما با موفقیت به روز رسانی شد'
-      });
+      localStorage.setItem('passsettingdone', 1);
+      window.location.href = '/u';
     } else if (data.type === 2) {
       if (data.text === 0) {
         iziErr();

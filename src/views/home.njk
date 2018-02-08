@@ -20,13 +20,24 @@
     </div> #}
     <div class="des-info">
       <div class="dec-content">
+        {% if locals.logged %}
         <div>
-      <span>برای پست گذاشتن ابتدا ثبت نام کنید<span>
+          <span>برای پست گزاشتن کلیک کنید<span>
         </div>
         <div>
-      <a href="/login">ورود</a>
-      <a href="/signup">ثبت نام</a>
-      </div>
+          <a href="/u/post/add">پست گزاشتن</a>
+          <a href="/u">داشبورد</a>
+        </div>
+        {% else %}
+        <div>
+          <span>برای پست گذاشتن ابتدا ثبت نام کنید<span>
+        </div>
+        <div>
+          <a href="/login">ورود</a>
+          <a href="/signup">ثبت نام</a>
+        </div>
+        {% endif %}
+
       </div>
     <img src="/files/image/chrome.png">
 </div>
@@ -101,7 +112,6 @@
 
   {% block scripts %}
     <script src="/files/js/lib/particles.min.js"></script>
-    <script src="/files/js/home-localstorage.js"></script>
     <script>
     particlesJS.load('particles-js', '/files/js/lib/p.json', function() {
     });
