@@ -10,7 +10,7 @@
     "devserver": "nodemon --delay 0.5 build/app.js -e js,njk",
     "compress": "tar -czvf app.tar.gz build package.json",
     "app": "node build/app.js",
-    "build": "gulp prod"
+    "build": "gulp full:dev"
   },
   "repository": {
     "type": "git"
