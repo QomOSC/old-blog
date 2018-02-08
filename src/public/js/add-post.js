@@ -5,6 +5,17 @@ const imgPreview = document.getElementById('img-preview');
 let fd = new FormData();
 const placeholder = document.getElementById('post-content');
 
+function beforeAddingPhoto(e) {
+  e.preventDefault();
+
+  iziToast.warning({
+    rtl: true,
+    title: 'پست شما باید عکس داشته باشد'
+  });
+}
+
+form.addEventListener('submit', beforeAddingPhoto);
+
 preview.addEventListener('click', e => {
   // Convert to HTML
   const converter = new showdown.Converter();
@@ -35,6 +46,8 @@ up.addEventListener('change', () => {
       };
 
       reader.readAsDataURL(up.files[0]);
+
+      form.removeEventListener('submit', beforeAddingPhoto);
 
       form.addEventListener('submit', e => {
         e.preventDefault();
