@@ -26,6 +26,6 @@ Make sure Docker is running, then:
 1. Build the project: `docker build -t blog .`
 2. Create a docker network: `docker network create blog-net`
 3. Run a MongoDB instance: `docker run -d --name mongo --network blog-net mongo:3.4`
-4. Run it: `docker run -d --network blog-net -p 80:8010 -e DB=mongodb://mongo:27017/qomosc -e SECRET_KEY=mysecret blog`
+4. Run it: `docker run -d --network blog-net -p 80:8010 -v blog:/app/uploads -e DB=mongodb://mongo:27017/qomosc -e SECRET_KEY=mysecret blog`. Remember, you need a persistent volume to keep uploaded files.
 
 > You should pass the MongoDB connection url as `DB` environment variable. `SECRET_KEY` is required if you want secure sessions. Provide a random and unguessable key.

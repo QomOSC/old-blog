@@ -12,6 +12,8 @@ COPY . /app/
 
 RUN npm run build
 
+RUN mkdir uploads
+
 CMD npm run app
 
 EXPOSE 8010
