@@ -11,7 +11,7 @@
   align-items: center;
   margin-bottom: 20px;
   text-align: center;
-box-shadow: inset 0px 0px 103px -58px rgba(0,0,0,0.77);
+  box-shadow: inset 0px 0px 103px -58px rgba(0,0,0,0.77);
 }
 
 .viewpost span {
@@ -70,6 +70,11 @@ font-family: SB;
     text-align: center;
     margin: 20px auto 20px auto;
   }
+
+pre , code {
+  background: #f45;
+}
+
 }
 
 .viewpost-info {
@@ -96,6 +101,13 @@ font-family: SB;
 
 .viewpost-info span{
   margin: 10px;
+  letter-spacing: -.3px;
+  font-family: SB;
+  transition: 0.3s;
+
+  &:hover {
+     color: #d2d2d2;
+  }
 }
 
 .view-post-head-right {
@@ -139,7 +151,7 @@ font-family: SB;
 .user-info {
   display: flex;
   width: 68%;
-  height: 120px;
+  height: auto;
   margin: auto;
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2);
   border: solid 1px #ccc;
@@ -149,6 +161,9 @@ font-family: SB;
   background: #f1f1f1;
   width: 10%;
   padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   div {
     width: 80px;
@@ -163,11 +178,13 @@ font-family: SB;
 
   p {
     color: #666;
+    font-size: 14px;
   }
 }
 
 .username a {
   color:#222;
+  font-family: SB;
 }
 
 #dislike-btn i {
