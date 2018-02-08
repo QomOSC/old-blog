@@ -1,11 +1,10 @@
 import { Router } from 'express';
 
 const { Post } = rootRequire('./models');
-const { limit } = rootRequire('./utils');
 
 const router = new Router();
 
-router.post('/post/like/:id', limit, (req, res) => {
+router.post('/post/like/:id', (req, res) => {
   if (req.member.user) {
     Post.findOne({ _id: req.params.id }).then(post => {
       if (post) {
