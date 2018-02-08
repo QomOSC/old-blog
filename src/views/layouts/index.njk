@@ -32,7 +32,18 @@
         <li><a href="/conferences">ارائه ها</a></li>
         <li><a href="/about">درباره</a></li>
       </ul>
-
+      <div class="dropdown" id="icon-container" onclick="changeIcon(this)">
+        <button onclick="myFunction()" class="dropbtn">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
+        </button>
+          <div id="myDropdown" class="dropdown-content">
+            <a href="/u">داشبورد</a>
+            <a href="/conferences">ارائه ها</a>
+            <a href="/about">درباره</a>
+          </div>
+      </div>
       {% else %}
       <div class="dropdown" id="icon-container" onclick="changeIcon(this)">
         <button onclick="myFunction()" class="dropbtn">
