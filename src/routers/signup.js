@@ -3,7 +3,7 @@ import { Router } from 'express';
 const { login } = rootRequire('./perms');
 const { Member, Newsletter } = rootRequire('./models');
 const { crypt } = rootRequire('./utils');
-const { validator, email, limit } = rootRequire('./utils');
+const { validator, email } = rootRequire('./utils');
 
 const router = new Router();
 
@@ -11,7 +11,7 @@ router.get('/signup', login, (req, res) => {
   res.render('signup.njk');
 });
 
-router.post('/signup', login, limit, (req, res) => {
+router.post('/signup', login, (req, res) => {
   if (req.body.fname &&
       req.body.lname &&
       req.body.email &&

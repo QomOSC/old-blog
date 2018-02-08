@@ -2,11 +2,11 @@ import { Router } from 'express';
 
 const { logged } = rootRequire('./perms');
 const { Member } = rootRequire('./models');
-const { crypt, limit } = rootRequire('./utils');
+const { crypt } = rootRequire('./utils');
 
 const router = new Router();
 
-router.post('/u/setting/password', logged, limit, (req, res) => {
+router.post('/u/setting/password', logged, (req, res) => {
 
   Member.findOne({ _id: req.member.user._id }).then(member => {
 

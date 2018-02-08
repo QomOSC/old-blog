@@ -2,7 +2,6 @@ import { Router } from 'express';
 
 const { logged } = rootRequire('./perms');
 const { Member } = rootRequire('./models');
-const { limit } = rootRequire('./utils');
 
 const router = new Router();
 
@@ -53,7 +52,7 @@ router.get('/u/setting', logged, (req, res) => {
   res.render('u/setting/setting.njk', { member: req.member.user });
 });
 
-router.post('/u/setting', logged, limit, (req, res) => {
+router.post('/u/setting', logged, (req, res) => {
   if (req.body.email &&
       req.body.fname &&
       req.body.lname &&

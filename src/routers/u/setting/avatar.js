@@ -5,7 +5,7 @@ import crypto from 'crypto';
 
 const { logged } = rootRequire('./perms');
 const { Member } = rootRequire('./models');
-const { removeImage, limit } = rootRequire('./utils');
+const { removeImage } = rootRequire('./utils');
 
 const storage = multer.diskStorage({
   destination(req, file, cb) {
@@ -33,7 +33,6 @@ const router = new Router();
 router.post(
   '/u/setting/avatar',
   logged,
-  limit,
   upload.single('croppedImage'),
   (req, res) => {
 
