@@ -23,12 +23,19 @@
 
           <input type="text" name="username" required="required" value="{{ member.username }}" placeholder="یوزرنیم">
 
+          {% if member.description %}
           <textarea
             name="description"
             rows="4"
             cols="3"
-            placeholder="درباره">{{ member.description }}
-          </textarea>
+            placeholder="درباره">{{ member.description }}</textarea>
+          {% else %}
+          <textarea
+            name="description"
+            rows="4"
+            cols="3"
+            placeholder="درباره"></textarea>
+          {% endif %}
 
           <input type="email" name="email" required="required" value="{{ member.email }}" placeholder="ایمیل">
 

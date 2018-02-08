@@ -30,10 +30,7 @@ function setNewValues(req, res) {
     member.lname = req.body.lname;
     member.email = req.body.email;
     member.username = req.body.username;
-
-    if (req.body.description) {
-      member.description = req.body.description;
-    }
+    member.description = req.body.description;
 
     member.save().then(() => {
       // All good
