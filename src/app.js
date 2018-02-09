@@ -35,7 +35,7 @@ const app = express();
 
 app.listen(process.env.PORT || config.port, () => {
   console.log(
-`Server has been started on port${process.env.PORT || config.port}`);
+`Server has been started on port ${process.env.PORT || config.port}`);
 });
 
 /**
