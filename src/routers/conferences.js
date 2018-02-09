@@ -10,8 +10,6 @@ router.get('/conferences', (req, res) => {
   const start = page * 12,
         stop = page * 12 + 12;
 
-  console.log(page, start, stop);
-
   if (req.query.q) {
     const re = new RegExp(`.*${req.query.q}.*`);
 
