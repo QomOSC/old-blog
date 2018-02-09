@@ -6,16 +6,11 @@ const { moment } = rootRequire('./utils');
 const router = new Router();
 
 router.get('/conferences', (req, res) => {
-  const page = Math.abs(parseInt(req.query.page) - 1);
-  let start, stop;
+  const page = parseInt(req.query.page) || 0;
+  const start = page * 12,
+        stop = page * 12 + 12;
 
-  if (page.toString() !== NaN.toString()) {
-    start = page * 12;
-    stop = page * 12 + 12;
-  } else {
-    start = 0;
-    stop = 12;
-  }
+  console.log(page, start, stop);
 
   if (req.query.q) {
     const re = new RegExp(`.*${req.query.q}.*`);
