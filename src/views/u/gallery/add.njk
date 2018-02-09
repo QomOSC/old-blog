@@ -14,20 +14,21 @@
 
   <div class="post-container">
 
-    <form action="/u/post/add" method="post" name="add-post">
+    <form action="/u/gallery/add" method="post" name="add-photo">
       <div class="add-post">
 
         <input type="text" name="title" required="required"
         placeholder="عنوان" maxlength="100">
 
-        <input type="file" title="اضافه کردن عکس"
-        required
-        id="add-photo-to-post" style="display: none;">
-
-      <input type="file" id="upload" value="Upload" style="display: none;">
+      <input
+        type="file"
+        id="upload"
+        value="Upload"
+        name="photo"
+        style="display: none;">
 
       <label for="upload" class="cam-icon">
-        <span>افزودن عکس پست</span>
+        <span>عکس گالری</span>
         <i class="fas fa-camera" title="عکس پست"></i>
       </label>
 
@@ -39,4 +40,5 @@
 {% endblock %}
 
 {% block scripts %}
+<script src="/files/js/add-gallery.js"></script>
 {% endblock %}

@@ -69,3 +69,11 @@ if (parseInt(localStorage.getItem('editpostsuccessfully')) === 1) {
   });
   localStorage.removeItem('editpostsuccessfully');
 }
+if (parseInt(localStorage.getItem('addgalleryphoto')) === 1) {
+  iziToast.success({
+    rtl: true,
+    title: 'موفق',
+    message: 'عکس شما با موفقیت به گالری اضافه شد'
+  });
+  localStorage.removeItem('addgalleryphoto');
+}
