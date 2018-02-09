@@ -13,15 +13,13 @@ const previousLink =
 const nextLink =
 `${window.location.origin}/gallery?page=${page + 1}`;
 
-// if (start <= 0) {
-//   previous.style.display = 'none';
-// }
-//
-// if (cnf.length < 12) {
-//   next.style.display = 'none';
-// }
+if (start <= 0) {
+  previous.style.display = 'none';
+}
 
-
+if (cnf.length < 12) {
+  next.style.display = 'none';
+}
 
 previous.setAttribute('href', previousLink);
 next.setAttribute('href', nextLink);
