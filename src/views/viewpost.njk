@@ -15,8 +15,7 @@
          background-size: cover;">
        </div>
       </a>
-    <span>{{ p.author.fname }}
-      {{ p.author.lname }}</span>
+    <span>{{ p.author.fname }} {{ p.author.lname }}</span>
       <span><i class="fa fa-circle"></i><span>
       <span>{{ p.other.createdAt }}</span>
       </div>
@@ -32,16 +31,11 @@
           </a>
           </div>
           <a href="/user/{{ p.author.username }}">
-            <span>{{ p.author.fname }}
-              {{ p.author.lname }}</span>
+            <span>{{ p.author.fname }} {{ p.author.lname }}</span>
           </a>
         </div>
         <div class="viewpost-icon">
-
-          <span>
-            <i class="fa fa-eye" aria-hidden="true"></i>
-            {{ p.other.viewers }}
-          </span>
+          <span><i class="fa fa-eye" aria-hidden="true"></i>{{ p.other.viewers }}</span>
           <span>
             مطالعه : &nbsp;&nbsp;{{ p.post.minutes }}&nbsp; دقیقه
           </span>
