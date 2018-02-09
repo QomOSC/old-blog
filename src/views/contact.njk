@@ -1,0 +1,23 @@
+{% extends locals.path + '/index.njk' %}
+
+{% block head %}
+<style>
+ #map {
+   width: 400px;
+   height: 400px;
+   background-color: grey;
+ }
+</style>
+{% endblock %}
+
+{% block content %}
+<h1>تماس با ما</h1>
+<div id="map"></div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/files/js/map.js"></script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDS8b7jo2a-zHZTCQYr1qVw_Y1CxYHpCMU&callback=initMap">
+</script>
+{% endblock %}
