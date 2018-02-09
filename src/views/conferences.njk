@@ -8,35 +8,36 @@
 {% if empty %}
 <div class="page-title">
   <span>کنفرانسی ثبت نشده است</span>
-  </div>
+</div>
 {% else %}
 <div class="page-title">
   <span>کنفرانس ها</span>
-  </div>
-{% for i in confs %}
- <div class="cnf">
-     <div class="avatar-confs">
-       <a href="/user/{{ i.provider.username }}">
-       {% if i.provider.avatar %}
-       <img src="/img/{{ i.provider.avatar }}">
-       {% else %}
-       <img src="/files/image/default-user.png">
-       {% endif %}
-       </a>
-       <a href="/user/{{ i.provider.username }}">
-         <span>{{ i.provider.fname }} {{ i.provider.lname }}</span>
-       </a>
-     </div>
-   <div class="cnf-content">
-     <div class="confs-title">
-  <h3> موضوع کنفرانس : {{ i.title }}</h3>
-  <span>{{ i.createdAt }}</span>
-  </div>
-  <p>توضیحات : {{ i.description }}</p>
-  </div>
-  </div>
-{% endfor %}
-
+</div>
+<div id="content-container">
+  {% for i in confs %}
+   <div class="cnf">
+       <div class="avatar-confs">
+         <a href="/user/{{ i.provider.username }}">
+         {% if i.provider.avatar %}
+         <img src="/img/{{ i.provider.avatar }}">
+         {% else %}
+         <img src="/files/image/default-user.png">
+         {% endif %}
+         </a>
+         <a href="/user/{{ i.provider.username }}">
+           <span>{{ i.provider.fname }} {{ i.provider.lname }}</span>
+         </a>
+       </div>
+     <div class="cnf-content">
+       <div class="confs-title">
+    <h3> موضوع کنفرانس : {{ i.title }}</h3>
+    <span>{{ i.createdAt }}</span>
+    </div>
+    <p>توضیحات : {{ i.description }}</p>
+    </div>
+    </div>
+  {% endfor %}
+</div>
 {% endif %}
 {% endblock %}
 
