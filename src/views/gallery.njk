@@ -1,6 +1,12 @@
 {% extends locals.path + '/index.njk' %}
 
 {% block head %}
+<style>
+  img {
+    max-width: 200px;
+    max-height: 200px;
+  }
+</style>
 {% endblock %}
 
 {% block content %}
@@ -8,7 +14,20 @@
     <h1>هیچ عکسی وجود ندارد</h1>
   {% else %}
     {% for i in photos %}
-      <h1>{{ i.photographer }}</h1>
+      <h1>{{ i.title }}</h1>
+      <p>{{ i.createdAt }}</p>
+      <p>{{ i.author.fname }} {{ i.author.lname }}</p>
+      <p>Photo of Gallery: </p>
+      <img src="/img/{{ i.photo }}">
+      <p>User profile photo:</p>
+      {% if i.author.avatar %}
+      <img src="/img/{{ i.author.avatar }}">
+      {% else %}
+      <img src="/files/image/default-user.png">
+      {% endif %}
+      <p>{{ i.author.username }}</p>
+      <hr>
+      <hr>
     {% endfor %}
     <a href="/gallery" id="previous">
       <button>قبلی</button>
@@ -16,9 +35,12 @@
     <a href="/gallery" id="next">
       <button>بعدی</button>
     </a>
-    <script src="/files/js/gallery.js"></script>
   {% endif %}
 {% endblock %}
 
 {% block scripts %}
+  {% if empty %}
+  {% else %}
+  <script src="/files/js/gallery.js"></script>
+  {% endif %}
 {% endblock %}
