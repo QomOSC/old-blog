@@ -184,6 +184,82 @@ a {
   }
 }
 
+.evand-banner {
+  background: url(https://click.ir/wp-content/uploads/2017/10/Swift-2-open-source.png);
+  background-size: cover;
+  background-position: 50% 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  box-shadow: inset 10px 10px 155px 3px rgba(0,0,0,0.99);
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  min-height: 200px;
+  line-height: 3em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-shadow: 1px 4px 2px rgba(0,0,0,1);
+
+  img {
+     width: 30px;
+     border-radius: 100%;
+     vertical-align: middle;
+     margin: 2px;
+  }
+
+  i {
+    vertical-align: middle;
+    font-size: 10px;
+  }
+
+  p {
+    font-size: 14px;
+    letter-spacing: 0.4px;
+    line-height: 2em;
+    text-align: center;
+    width: 70%;
+  }
+
+  a {
+    color: #fff;
+    background: #10AA54;
+    padding: 1% 4%;
+    text-shadow: none;
+    transition: 0.3s;
+    margin-top: 10px;
+    border-radius: 50px;
+    color: #fff;
+
+    &:hover {
+      background: darken(#10AA54, 10%);
+    }
+
+  }
+
+}
+.subject {
+  display: flex;
+
+  h2 {
+    font-family: SB;
+    margin-left: 7px;
+  }
+
+  span {
+    font-family: SB;
+    font-size: 18px;
+  }
+}
+
+.date-time {
+  display: flex;
+
+  span {
+    margin-right: 15px;
+  }
+}
+
 @media (min-width: 120px) and (max-width: 500px) {
   .description {
     flex-direction: column;
