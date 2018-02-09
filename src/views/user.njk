@@ -22,13 +22,15 @@
         <td title="ایمیل">
           <i class="fa fa-envelope" aria-hidden="true"></i>
         </td>
-        <td>{{ member.email }}</td>
+        <td><a href="mailto:{{ member.email}}">{{ member.email }}</a></td>
       </tr>
       <tr>
         <td title="یوزرنیم">
           <i class="fa fa-user" aria-hidden="true"></i>
         </td>
-        <td>{{ member.username}}</td>
+        <td>
+          <a href="/user/{{ member.username}}">{{ member.username}}</a>
+        </td>
       </tr>
       {% if member.description %}
         <tr>
@@ -73,9 +75,6 @@
       </div>
     <div class="recent-posts">
       {% for i in posts %}
-        <script type="text/javascript">
-          console.log('{{ i }}');
-        </script>
         <div class="posts">
           <a href="/viewpost/{{ i.id }}">
             <div class="posts-pic">
