@@ -43,18 +43,20 @@
 </div>
   </div>
   <div class="home-content">
-    <div class="activists">
-     <div class="telegram">
-       <h5>در کانال تلگرامی ما عضو شوید</h5>
-       <div class="tel">
-          <a href="https://t.me/QomOSC">QomOSC@</a>
-          <img src="http://css-tricks.ir/wp-content/themes/css-tricks-ir-1396/images/telegram.png">
+    {# <div class="activists">
+       <div class="evand-banner">
+           <h3>موضوع کنفرانس بعدی :</h3>
+           <span>نحوه فعالیت در stackoverflow.com</span>
+           <div>توسط :
+              <img src="/files/image/developers/msm.jpg">
+               <span><i class="fa fa-circle"></i><span>
+               <span>محمد سیفی مرندی</span>
+           </div>
+           <span>تاریخ برگزاری : 96/11/30</span>
+           <span>ساعت برگزاری جلسه: ۱۶ تا ۱۸</span>
+           <span>آدرس: چهار راه شهدا (چهار راه بیمارستان) - مجتمع موبایل آسیا - طبقه منفی۲ </span>
        </div>
-     </div>
-     <div class="tel2">
-        <span>برای عضویت در گروه تلگرامی جامعه متن باز قم <a> کلیک </a>کنید</span>
-     </div>
-    </div>
+    </div> #}
     <div class="last-posts">
       <h3>مطالب اخیر</h3>
       <div class="latset-posts">
@@ -92,12 +94,12 @@
             <div class="posts-footer">
               <div class="posts-event">
                 <div class="like-btn" title="لایک ها">
-                  <span>{{ i.likes }}</span>
                   <i class="fa fa-heart" aria-hidden="true"></i>
+                  <span>{{ i.likes }}</span>
                 </div>
                 <div class="view-btn" title="بازدید ها">
-                  <span>{{ i.viewers }}</span>
                   <i class="fa fa-eye" aria-hidden="true"></i>
+                  <span>{{ i.viewers }}</span>
                 </div>
               </div>
               <a href="/viewpost/{{ i._id }}">
