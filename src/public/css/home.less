@@ -99,80 +99,13 @@ a {
   display: flex;
   flex-direction: row-reverse;
   justify-content: center;
-  margin: 10px;
-}
-
-.activists {
-  width: 25%;
-  color: #333;
-  background-color: #40AA54;
-  margin: 10px;
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  border: 1px solid #ccc;
-  box-shadow: 0 0 5px rgba(0,0,0,0.3);
-}
-
-.telegram {
-  background: #a9eca2;
-  border-radius: 3px;
-  padding: 5px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  height: 100px;
-
-  a {
-       color: #fff;
-       transition: 0.2s;
-
-       &:hover {
-         color: #555;
-       }
-  }
-
-  img {
-    width: 45px;
-    margin-right: 10px;
-  }
-}
-
-.tel {
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
-  padding: 5px;
-}
-
-.tel2 {
-  margin-top: 20px;
-  text-align: center;
-  padding: 5px;
-  background-color: #a9eca2;
-  border-radius: 3px;
-
-  span {
-    font-size: 17px;
-  }
-  a {
-    cursor: pointer;
-    color: #fff;
-
-    &:hover {
-      color: darken(#fff, 10%);
-    }
-  }
 }
 
 .last-posts {
-  width: 80%;
-  margin: 10px;
+  width: 100%;
+  margin-top: 10px;
   background-color: #fff;
-  box-shadow: 0 2px 3px 0 rgba(0,0,0,.1);
-  border: 1px solid #eee;
+  box-shadow: 0 0 3px 1px #e0d9ff;
 }
 
 .last-posts h3 {
@@ -186,7 +119,19 @@ a {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
+  padding:0 2%;
+
+  .posts {
+    width: 24%;
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.2);
+    margin: 10px;
+    position: relative;
+    padding-bottom: 44px;
+  }
+
 }
 
 .conference-banner {
@@ -317,6 +262,14 @@ padding: 5px 12px;
     img {
       width: 300px;
       height: 180px;
+    }
+  }
+  .latset-posts {
+    padding: 0;
+
+    .posts {
+      width: 98%;
+      border: none;
     }
   }
 }
