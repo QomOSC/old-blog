@@ -38,21 +38,31 @@
     <img src="/files/image/chrome.png">
 </div>
   </div>
+  {% if lastConf.empty %}
+    <h1>هیچ ارائه ای وجود ندارد</h1>
+  {% else %}
   <section class="evand-banner">
     <div class="subject">
-         <h2>موضوع کنفرانس بعدی :</h2>
-         <span>نحوه فعالیت در stackoverflow.com</span>
+         <h2>موضوعه ارائه بعدی:</h2>
+         <span>{{ lastConf.title }}</span>
        </div>
          <div>توسط :
-            <img src="/files/image/developers/msm.jpg">
+           {% if lastConf.provider.avatar %}
+           <img src="/img/{{ lastConf.provider.avatar }}">
+           {% else %}
+           <img src="/files/image/default-user.png">
+           {% endif %}
              <span><i class="fa fa-circle"></i><span>
-             <span>محمد سیفی مرندی</span>
+             <span>
+               {{ lastConf.provider.fname }} {{ lastConf.provider.lname }}
+             </span>
          </div>
          <div class="date-time">
          <span>تاریخ برگزاری : 96/11/30</span>
          </div>
          <a href="https://evand.com/events/qomosc16">مشاهده در ایوند</a>
   </section>
+  {% endif %}
   <div class="home-content">
     <div class="last-posts">
       <h3>مطالب اخیر</h3>
