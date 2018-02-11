@@ -16,10 +16,8 @@ addConf.addEventListener('submit', e => {
     })
   }).then(res => res.json()).then(data => {
     if (data.type === 2) {
-      iziToast.success({
-        title: 'درخواست با موفقیت ارسال شد',
-        rtl: true
-      });
+      localStorage.setItem('requestforconferencesuccessful', 1);
+      window.location.href = '/u';
     } else if (data.type === 0) {
       iziErr();
     }

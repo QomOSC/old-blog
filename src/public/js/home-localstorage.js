@@ -77,3 +77,10 @@ if (parseInt(localStorage.getItem('addgalleryphoto')) === 1) {
   });
   localStorage.removeItem('addgalleryphoto');
 }
+if (parseInt(localStorage.getItem('requestforconferencesuccessful')) === 1) {
+  iziToast.success({
+    title: 'درخواست با موفقیت ارسال شد',
+    rtl: true
+  });
+  localStorage.removeItem('requestforconferencesuccessful');
+}
