@@ -1,9 +1,5 @@
-export default ([req, res], message) => {
+export default res => {
   res.status(403);
 
-  res.render('replies/403.njk', {
-    title: 'Forbidden',
-    logged: req.member.user,
-    message
-  });
+  res.render('replies/403.njk');
 };

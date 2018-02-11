@@ -1,9 +1,5 @@
-export default ([req, res], message) => {
+export default res => {
   res.status(200);
 
-  res.render('replies/200.njk', {
-    title: 'OK',
-    logged: req.member.user,
-    message
-  });
+  res.render('replies/200.njk');
 };
