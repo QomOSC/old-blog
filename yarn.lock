@@ -3748,10 +3748,6 @@ string_decoder@~1.0.0, string_decoder@~1.0.3:
   dependencies:
     safe-buffer "~5.1.0"
 
-stringing@^1.7.1:
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/stringing/-/stringing-1.7.1.tgz#7a53f2a6c4948f5f59d7d177461ed1cba0dbfaf3"
-
 stringstream@~0.0.4:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/stringstream/-/stringstream-0.0.5.tgz#4e484cd4de5a0bbbee18e46307710a8a81621878"
