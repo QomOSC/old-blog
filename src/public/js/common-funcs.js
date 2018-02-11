@@ -24,3 +24,15 @@ function getQuery(name, url) {
 
     return decodeURIComponent(results[2].replace(/\+/g, ''));
 }
+
+if (document.getElementById('change-captcha')) {
+  document
+    .getElementById('change-captcha')
+    .addEventListener('click', () => {
+      fetch('/captcha', {
+        credentials: 'include'
+      }).then(checkStatus).then(res => res.json()).then(data => {
+        document.getElementById('svg-captcha').innerHTML = data.captcha;
+      });
+  });
+}
