@@ -52,6 +52,7 @@
   }
 }
 ///conference page in home
+
 .cnf {
   background: #fff;
   width: 75%;
@@ -164,7 +165,11 @@
 
 .confs-search {
   background-color: #1caff6;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+
 
   span {
     color: darken(#1caff6, 30%);
@@ -183,40 +188,58 @@
         color: #fff;
         width: 250px;
       }
-}
-      button {
-        width:140px;
-        height: 40px;
-        padding-right: 13px;
-        border-radius: 5px;
-        background-color: darken(#1caff6,10%);
-        border: none;
-        position: relative;
-        cursor: pointer;
-        transition: 0.3s;
-        box-shadow: 0 0 2px rgba(0,0,0,0.3);
+    }
 
-        &:hover {
-          background-color: lighten(#1caff6, 5%);
-        }
+    button {
+      width: 140px;
+      height: 40px;
+      padding-right: 13px;
+      border-radius: 5px;
+      background-color: darken(#1caff6,10%);
+      border: none;
+      position: relative;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 0 2px rgba(0,0,0,0.3);
 
-        i {
-          position: absolute;
-          right: 0;
-          bottom: 0;
-          top: 0;
-          vertical-align: middle;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: 10px;
-          height: auto;
-          background-color: darken(#1caff6,14%);
-          border-top-right-radius: 5px;
-          border-bottom-right-radius: 5px;
-        }
+      &:hover {
+        background-color: lighten(#1caff6, 5%);
       }
+
+      i {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        vertical-align: middle;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        height: auto;
+        background-color: darken(#1caff6,14%);
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
+    }
   }
+}
+
+.confs-control {
+ text-align: center;
+
+ button {
+   background-color: #40AA54;
+   border: none;
+   padding: 7px 25px;
+   cursor: pointer;
+   transition: 0.2s;
+   color: #fff;
+
+   &:hover {
+    background-color:darken(#40AA54, 10%);
+   }
+ }
 }
 
 @media (min-width: 120px) and (max-width: 500px) {
@@ -259,5 +282,22 @@
 
   .cnf-manage {
     width: 90%;
+  }
+
+  .confs-search {
+   flex-direction: column;
+   align-items: center;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      input {
+        &:hover {
+          width: auto;
+        }
+      }
+    }
   }
 }
