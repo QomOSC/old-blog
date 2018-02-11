@@ -1,10 +1,9 @@
-// Unfinished work
 import { Router } from 'express';
 import multer from 'multer';
 import crypto from 'crypto';
 
-const { logged } = rootRequire('./perms');
 const { Member } = rootRequire('./models');
+const { logged } = rootRequire('./perms');
 const { removeImage } = rootRequire('./utils');
 
 const storage = multer.diskStorage({
@@ -28,6 +27,7 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ dest: 'uploads/', limits: 3000000, storage });
+
 const router = new Router();
 
 router.post(

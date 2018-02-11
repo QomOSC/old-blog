@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
-const { logged } = rootRequire('./perms');
 const { Member, Post, Newsletter } = rootRequire('./models');
+const { logged } = rootRequire('./perms');
 const { removeImage } = rootRequire('./utils');
 
 const router = new Router();
@@ -23,7 +23,7 @@ router.post('/u/setting/delete', logged, (req, res) => {
             nl.remove().then(() => {
               Post.find({ author: req.member.user._id }).then(posts => {
 
-                if (JSON.stringify(posts) === '[]') {
+                if (posts.length === 0) {
                   req.member.logout();
                   // Done
                   res.json({ type: 0 });
@@ -77,7 +77,7 @@ router.post('/u/setting/delete', logged, (req, res) => {
           } else {
             Post.find({ author: req.member.user._id }).then(posts => {
 
-              if (JSON.stringify(posts) === '[]') {
+              if (posts.length === 0) {
                 req.member.logout();
                 // Done
                 res.json({ type: 0 });

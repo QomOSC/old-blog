@@ -26,7 +26,6 @@ router.post(
   (req, res) => {
 
   if (req.body.title && req.body.content && req.body.minutes && req.body.id) {
-    console.log(typeof req.body.id);
     Post.findOne({
       _id: req.body.id,
       author: req.member.user._id.toString()

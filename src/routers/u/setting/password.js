@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
-const { logged } = rootRequire('./perms');
 const { Member } = rootRequire('./models');
+const { logged } = rootRequire('./perms');
 const { crypt } = rootRequire('./utils');
 
 const router = new Router();

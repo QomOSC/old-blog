@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
-const { logged } = rootRequire('./perms');
 const { Post } = rootRequire('./models');
+const { logged } = rootRequire('./perms');
 
 const router = new Router();
 
@@ -11,7 +11,7 @@ router.get('/u', logged, (req, res) => {
   .limit(9)
   .sort({ createdAt: -1 })
   .then(posts => {
-    if (JSON.stringify(posts) !== '[]') {
+    if (posts.length !== 0) {
 
       const allPosts = [];
 

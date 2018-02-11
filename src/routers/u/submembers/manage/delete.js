@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
-const perm = rootRequire('./perms');
 const { Member } = rootRequire('./models');
+const perm = rootRequire('./perms');
 const { email } = rootRequire('./utils');
 
 const router = new Router();
@@ -26,7 +26,7 @@ router.post(
               email.submembers.delete().then(() => {
                 res.json({ type: 0 });
               }).catch(() => {
-                res.json({ type: 2, text: 0 });                
+                res.json({ type: 2, text: 0 });
               });
             }).catch(() => {
               res.json({ type: 2, text: 0 });

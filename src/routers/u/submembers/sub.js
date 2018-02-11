@@ -1,13 +1,13 @@
 import { Router } from 'express';
 
-const perm = rootRequire('./perms');
 const { Member } = rootRequire('./models');
+const perm = rootRequire('./perms');
 
 const router = new Router();
 
 router.get('/u/sub', perm.logged, perm.u.admin, (req, res) => {
   Member.find({ type: 1 }).then(members => {
-    if (JSON.stringify(members) !== '[]') {
+    if (members.length !== 0) {      
       res.render('u/sub/all.njk', {
         member: req.member.user,
         members

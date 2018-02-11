@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
-const { logged } = rootRequire('./perms');
 const { Post } = rootRequire('./models');
+const { logged } = rootRequire('./perms');
 
 const router = new Router();
 
@@ -12,7 +12,7 @@ router.get('/u/post/all', logged, (req, res) => {
     .limit(9)
     .then(authorposts => {
 
-      if (JSON.stringify(authorposts) === '[]') {
+      if (authorposts === 0) {
         res.render('u/post/all.njk', {
           member: req.member.user,
           empty: true

@@ -59,7 +59,7 @@ router.post(
           member.save().then(() => {
             Newsletter.find().then(subscribers => {
 
-              if (JSON.stringify(subscribers) !== '[]') {
+              if (subscribers.length !== 0) {
 
                 let subsArr = [];
 

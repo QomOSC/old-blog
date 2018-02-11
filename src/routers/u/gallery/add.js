@@ -2,8 +2,8 @@ import { Router } from 'express';
 import multer from 'multer';
 import crypto from 'crypto';
 
-const { logged } = rootRequire('./perms');
 const { Gallery } = rootRequire('./models');
+const { logged } = rootRequire('./perms');
 
 const router = new Router();
 

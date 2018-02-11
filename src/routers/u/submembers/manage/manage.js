@@ -1,14 +1,14 @@
 import { Router } from 'express';
 
-const perm = rootRequire('./perms');
 const { Member } = rootRequire('./models');
+const perm = rootRequire('./perms');
 
 const router = new Router();
 
 router.get('/u/sub/manage', perm.logged, perm.u.admin, (req, res) => {
   Member.findOne({ _id: req.member.user._id }).then(member => {
 
-    if (member && JSON.stringify(member.submembers) !== '[]') {
+    if (member && member.submembers.length !== 0) {
 
       const subs = [];
 

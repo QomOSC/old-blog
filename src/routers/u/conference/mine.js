@@ -7,7 +7,7 @@ const router = new Router();
 
 router.get('/u/conference', logged, (req, res) => {
   Conference.find({ provider: req.member.user._id }).then(confs => {
-    if (JSON.stringify(confs) !== '[]') {
+    if (confs.length !== 0) {
       res.render('u/conference/mine.njk', {
         member: req.member.user,
         confs

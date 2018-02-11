@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import { unique } from 'stringing';
 
-const { login } = rootRequire('./perms');
 const { Member, Recovery } = rootRequire('./models');
+const { login } = rootRequire('./perms');
 const { email } = rootRequire('./utils');
 
 const router = new Router();
