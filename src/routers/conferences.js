@@ -10,9 +10,7 @@ router.get('/conferences', (req, res) => {
   const start = page * 12,
         stop = page * 12 + 12;
 
-  console.log(page, start, stop);
   const re = new RegExp(`.*${req.query.q || ''}.*`);
-  console.log(re);
 
   Conference
     .find({ description: re, type: { $in: [3, 4] } })
@@ -20,11 +18,18 @@ router.get('/conferences', (req, res) => {
     .limit(stop)
     .then(confs => {
     if (confs.length === 0) {
-      res.render('conferences.njk', {
-        type: 1,
-        query: req.query.q,
-        empty: true
-      });
+      if (req.query.q) {
+        res.render('conferences.njk', {
+          type: 1,
+          query: req.query.q,
+          empty: true
+        });
+      } else {
+        res.render('conferences.njk', {
+          type: 0,
+          empty: true
+        });
+      }
     } else {
 
       const confArr = [];
@@ -65,11 +70,18 @@ router.get('/conferences', (req, res) => {
 
         const next = iterator.next();
         if (next.done) {
-          res.render('conferences.njk', {
-            confs: confArr,
-            type: 1,
-            query: req.query.q,
-          });
+          if (req.query.q) {
+            res.render('conferences.njk', {
+              confs: confArr,
+              type: 1,
+              query: req.query.q,
+            });
+          } else {
+            res.render('conferences.njk', {
+              confs: confArr,
+              type: 0
+            });
+          }
           return;
         }
 
