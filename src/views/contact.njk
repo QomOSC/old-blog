@@ -16,17 +16,46 @@
     <span>تماس با جامعه متن باز قم</span>
     <p>مهمترین عضو تیم ما شما هستید! دوست داریم پیشنهادات و انتقادات شما را بشنویم. حتما با ما در تماس باشید.</p>
     </div>
-    <form>
-      <input type="text" placeholder="نام">
-      <input type="text" placeholder="نام خانوادگی">
-      <input type="email" placeholder="ایمیل">
-      <input type="tel" placeholder="موبایل">
-      <input type="text" placeholder="موضوع">
-      <textarea placeholder="توضیحات"></textarea>
+    <form action="/contact" method="post" name="contact-form">
+
+      <input
+        type="text"
+        name="name"
+        required
+        placeholder="نام">
+
+      <input
+        type="email"
+        name="email"
+        required
+        placeholder="ایمیل">
+
+      <input
+        type="text"
+        name="title"
+        required
+        placeholder="موضوع">
+
+      <textarea
+        name="description"
+        required
+        placeholder="توضیحات"></textarea>
+
       <p id="svg-captcha"></p>
-      <input type="text" placeholder="کد امنیتی">
-      <input type="submit" value="ارسال پیام" class="green-btn">
+
+      <input
+        type="text"
+        name="captcha"
+        required
+        placeholder="کد امنیتی">
+
+      <input
+        type="submit"
+        value="ارسال پیام"
+        class="green-btn">
+
     </form>
+
   </div>
   <div class="left-col-contact">
   <div class="contact-us">
@@ -56,4 +85,5 @@
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDS8b7jo2a-zHZTCQYr1qVw_Y1CxYHpCMU&callback=initMap">
 </script>
+<script src="/files/js/contact.js"></script>
 {% endblock %}

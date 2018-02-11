@@ -84,3 +84,11 @@ if (parseInt(localStorage.getItem('requestforconferencesuccessful')) === 1) {
   });
   localStorage.removeItem('requestforconferencesuccessful');
 }
+if (parseInt(localStorage.getItem('opinionregisteredsuccessful')) === 1) {
+  iziToast.success({
+    rtl: true,
+    title: 'موفق',
+    message: 'نظر شما با موفقیت ثبت شد'
+  });
+  localStorage.removeItem('opinionregisteredsuccessful');
+}
