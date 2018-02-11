@@ -120,10 +120,10 @@ function addTag(name, attribute) {
 
 app.use((req, res, next) => {
   res.reply = {};
-  res.reply.ok = replies.ok.bind(null, [req, res]);
-  res.reply.notFound = replies.notFound.bind(null, [req, res]);
-  res.reply.forbidden = replies.forbidden.bind(null, [req, res]);
-  res.reply.error = replies.error.bind(null, [req, res]);
+  res.reply.ok = replies.ok.bind(null, res);
+  res.reply.notFound = replies.notFound.bind(null, res);
+  res.reply.forbidden = replies.forbidden.bind(null, res);
+  res.reply.error = replies.error.bind(null, res);
 
   next();
 });
