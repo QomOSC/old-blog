@@ -15,7 +15,9 @@
   </div>
 {% for i in confs %}
 <div class="cnf-manage">
-  <div>نام کاربر : <span>محمد سیفی مرندی</span></div>
+  <div>نام کاربر : <a href="/user/{{ i.author.username }}">
+    {{ i.author.fname }} {{ i.author.lname }}
+  </a></div>
   <div class="requested-confs" id="{{ i._id }}">
     <h3> موضوع کنفرانس : {{ i.title }}</h3>
     <p>توضیحات :  {{ i.description }}</p>
