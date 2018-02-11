@@ -16,7 +16,6 @@ rec.addEventListener('submit', e => {
         captcha: rec.captcha.value
       })
     }).then(checkStatus).then(res => res.json()).then(data => {
-      console.log(data);
       if (data.type === 0) {
         iziToast.success({
           rtl: true,

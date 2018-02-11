@@ -1,9 +1,8 @@
 import { Router } from 'express';
-import { unique } from 'stringing';
 
 const { Member, Recovery } = rootRequire('./models');
 const { login } = rootRequire('./perms');
-const { email } = rootRequire('./utils');
+const { email, random } = rootRequire('./utils');
 
 const router = new Router();
 
@@ -11,17 +10,20 @@ router.get('/recovery', login, (req, res) => {
   res.render('recovery/recovery.njk');
 });
 
-router.post('/recovery', login, (req, res) => {
+router.post('/recovery', login, async(req, res) => {
   if (req.body.email && req.body.captcha) {
     req.body.email = req.body.email.toLowerCase();
 
     if (req.body.captcha === req.session.captcha) {
       req.session.captcha = null;
 
+      const r = await random();
+
       Member.findOne({ email: req.body.email }).then(member => {
         if (member) {
+
           const rec = new Recovery({
-            token: unique(40),
+            token: r,
             member: member._id
           });
 
