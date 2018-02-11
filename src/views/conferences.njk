@@ -10,10 +10,13 @@
   <span>کنفرانسی ثبت نشده است</span>
 </div>
 {% else %}
+<div class="confs-search">
 <form action="/conferences" method="get">
+  <span>دنبال چی میگردی ؟؟</span>
   <input type="search" name="q" value="{{ query }}" placeholder="جستجو کن">
-  <button type="submit">جستجو</button>
+  <button type="submit">پیدا کن<i class="fas fa-search"></i></button>
 </form>
+</div>
 {% if type == 0 %}
 <div class="page-title">
   <span>کنفرانس ها</span>
@@ -83,5 +86,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="/files/js/conferences.js"></script>  
+<script src="/files/js/conferences.js"></script>
 {% endblock %}

@@ -3,7 +3,7 @@
   width: 85%;
   display: flex;
   justify-content: center;
-  margin: 10px auto auto auto;
+  margin: 10px auto auto;
   height: auto;
   padding: 20px;
   border: 1px solid #ccc;
@@ -11,23 +11,22 @@
   display: flex;
   flex-wrap: wrap;
 
-   form {
-     display: flex;
-     flex-direction: column;
-     align-items: center;
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-     input[type="submit"] {
-       background-color: #40AA54;
-       color: #fff;
-       cursor: pointer;
+    input[type="submit"] {
+      background-color: #40AA54;
+      color: #fff;
+      cursor: pointer;
 
-       &:hover {
-         background-color: darken(#40AA54, 10%);
-       }
-     }
-   }
+      &:hover {
+        background-color: darken(#40AA54, 10%);
+      }
+    }
+  }
 }
-
 
 .confs {
   background: #555;
@@ -52,10 +51,7 @@
     margin-top: 5%;
   }
 }
-
-
 ///conference page in home
-
 .cnf {
   background: #fff;
   width: 75%;
@@ -117,8 +113,6 @@
   padding: 5px;
 }
 
-
-
 .cnf-manage {
   background: #fff;
   width: 50%;
@@ -127,17 +121,17 @@
   border: 1px solid #eee;
   box-shadow: 0 2px 3px 0 rgba(0,0,0,0.1);
 
-    div {
-      span {
-        text-align: center;
-        color: #555;
-      }
-
+  div {
+    span {
+      text-align: center;
+      color: #555;
     }
+  }
 }
 
 .cnf-control {
   display: flex;
+
   form {
     margin: 5px;
   }
@@ -158,7 +152,7 @@
 .red-btn {
   background: red;
   color: #fff;
-  margin: auto auto;
+  margin: auto;
   width: 300px;
   cursor: pointer;
   font-size: 17px;
@@ -168,11 +162,69 @@
   }
 }
 
-@media (min-width: 120px) and (max-width: 500px){
-.conference-container {
-  padding: 5px;
-  width: 95%;
+.confs-search {
+  background-color: #1caff6;
+  text-align: center;
+
+  span {
+    color: darken(#1caff6, 30%);
+    font-size: 20px;
+    margin-left: 10px;
+  }
+
+  form {
+    input {
+      width: 200px;
+      background-color: rgba(0, 0, 0, 0.15);
+      color: #f1f1f1;
+
+      &:focus {
+        background-color: rgba(0, 0, 0, 0.3);
+        color: #fff;
+        width: 250px;
+      }
 }
+      button {
+        width:140px;
+        height: 40px;
+        padding-right: 13px;
+        border-radius: 5px;
+        background-color: darken(#1caff6,10%);
+        border: none;
+        position: relative;
+        cursor: pointer;
+        transition: 0.3s;
+        box-shadow: 0 0 2px rgba(0,0,0,0.3);
+
+        &:hover {
+          background-color: lighten(#1caff6, 5%);
+        }
+
+        i {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          top: 0;
+          vertical-align: middle;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 10px;
+          height: auto;
+          background-color: darken(#1caff6,14%);
+          border-top-right-radius: 5px;
+          border-bottom-right-radius: 5px;
+        }
+      }
+  }
+}
+
+@media (min-width: 120px) and (max-width: 500px) {
+  .conference-container {
+    padding: 5px;
+    width: 95%;
+  }
+
   .confs {
     width: 100%;
   }
@@ -186,7 +238,7 @@
     width: 100%;
     border: none;
     border-bottom: 1px solid #ccc;
-    padding:0;
+    padding: 0;
     margin: 0;
     padding-bottom: 8px;
   }
@@ -204,6 +256,7 @@
   .cnf-content p {
     text-align: justify;
   }
+
   .cnf-manage {
     width: 90%;
   }
