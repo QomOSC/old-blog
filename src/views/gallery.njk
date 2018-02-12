@@ -11,6 +11,7 @@
       <span>هیچ عکسی وجود ندارد</span>
     </div>
   {% else %}
+<<<<<<< HEAD
     <div class="confs-search">
       <span>دنبال چی میگردی ؟؟</span>
       <form action="/conferences" method="get">
@@ -18,6 +19,18 @@
         <button type="submit">پیدا کن<i class="fas fa-search"></i>
         </button>
       </form>
+=======
+  <div class="confs-search">
+    <span>دنبال چی میگردی ؟؟</span>
+  <form action="/gallery" method="get">
+    <input type="search" name="q" value="{{ query }}" placeholder="جستجو کن">
+    <button type="submit">پیدا کن<i class="fas fa-search"></i></button>
+  </form>
+  </div>
+  {% if type == 0 %}
+    <div class="page-title">
+      <span>گالری</span>
+>>>>>>> a10a69663f8b155844bc2590e7d5d5f930c522ee
     </div>
     {% if type == 0 %}
       <div class="page-title">
@@ -45,11 +58,23 @@
         {% endfor %}
       </div>
     {% elif type == 1 %}
+<<<<<<< HEAD
       <div class="page-title">
         <span>عکس های جستجو شده</span>
       </div>
       {% for i in photos %}
         <div class="gallery-posts">
+=======
+    <div class="page-title">
+      <span>عکس های جستجو شده</span>
+    </div>
+
+    <div class="gallery-container">
+      <div class="img-select">
+      </div>
+      {% for i in photos %}
+      <div class="gallery-posts">
+>>>>>>> a10a69663f8b155844bc2590e7d5d5f930c522ee
           <div class="img-gallery" style="background-image: url('/img/{{ i.photo }}');">
             <div class="gallery-body">
               <span>{{ i.title }}</span>
@@ -65,8 +90,10 @@
             </div>
           </div>
 
+      </div>
         {% endfor %}
       </div>
+    </div>
     {% endif %}
   {% endif %}
   <div class="confs-control">
