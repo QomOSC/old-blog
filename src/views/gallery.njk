@@ -28,7 +28,7 @@
         {% for i in photos %}
           <div class="gallery-posts">
             <div class="img-gallery">
-              <img src="/img/{{ i.photo }}">
+              <img src="/img/{{ i.photo }}" id="myImg">
             </div>
             <div class="gallery-body">
               <span>{{ i.title }}</span>
@@ -70,8 +70,16 @@
             </div>
 
           </div>
+
+</div>
         {% endfor %}
       </div>
+    </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <span class="close">&times;</span>
+      <img class="modal-content" id="img01">
+      <div id="caption"></div>
     </div>
   {% endif %}
 {% endif %}
