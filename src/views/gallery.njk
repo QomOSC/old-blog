@@ -11,6 +11,11 @@
       <span>هیچ عکسی وجود ندارد</span>
     </div>
   {% else %}
+    <div id="myModal" class="modal">
+      <span class="close">&times;</span>
+      <img class="modal-content" id="img01">
+      <div id="caption"></div>
+    </div>
     <div class="confs-search">
       <span>دنبال چی میگردی ؟؟</span>
       <form action="/gallery" method="get">
@@ -28,7 +33,7 @@
         {% for i in photos %}
           <div class="gallery-posts">
             <div class="img-gallery">
-              <img src="/img/{{ i.photo }}" id="myImg">
+              <img src="/img/{{ i.photo }}" class="myImg">
             </div>
             <div class="gallery-body">
               <span>{{ i.title }}</span>
@@ -54,7 +59,7 @@
         {% for i in photos %}
           <div class="gallery-posts">
             <div class="img-gallery">
-              <img src="/img/{{ i.photo }}">
+              <img src="/img/{{ i.photo }}" class="myImg">
             </div>
             <div class="gallery-body">
               <span>{{ i.title }}</span>
@@ -76,11 +81,6 @@
       </div>
     </div>
     <!-- The Modal -->
-    <div id="myModal" class="modal">
-      <span class="close">&times;</span>
-      <img class="modal-content" id="img01">
-      <div id="caption"></div>
-    </div>
   {% endif %}
 {% endif %}
 <div class="confs-control">
