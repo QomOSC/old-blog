@@ -10,16 +10,27 @@ router.get('/gallery', (req, res) => {
   const start = page * 12,
         stop = page * 12 + 12;
 
+  const re = new RegExp(`.*${req.query.q || ''}.*`);
+
   Gallery
-    .find()
+    .find({ title: re })
     .sort({ createdAt: -1 })
     .skip(start)
     .limit(stop)
     .then(photos => {
-      if (JSON.stringify(photos) === '[]') {
-        res.render('gallery.njk', {
-          empty: true
-        });
+      if (photos.length === 0) {
+        if (req.query.q) {
+          res.render('gallery.njk', {
+            type: 1,
+            query: req.query.q,
+            empty: true
+          });
+        } else {
+          res.render('gallery.njk', {
+            type: 0,
+            empty: true
+          });
+        }
       } else {
 
         const allPhotos = [];
@@ -60,9 +71,18 @@ router.get('/gallery', (req, res) => {
 
           const next = iterator.next();
           if (next.done) {
-            res.render('gallery.njk', {
-              photos: allPhotos
-            });
+            if (req.query.q) {
+              res.render('gallery.njk', {
+                photos: allPhotos,
+                type: 1,
+                query: req.query.q,
+              });
+            } else {
+              res.render('gallery.njk', {
+                photos: allPhotos,
+                type: 0
+              });
+            }
             return;
           }
 
