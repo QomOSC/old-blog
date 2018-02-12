@@ -1,0 +1,52 @@
+{% extends locals.path + '/u.njk' %}
+
+{% block head %}
+<style>
+  .one-opinion {
+    border-bottom: 3px solid red;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+{% if empty %}
+  <h1>هیچ نظری جدیدا ثبت نشده است</h1>
+{% else %}
+  {% for i in opinion %}
+    <div class="one-opinion" id="{{ i._id }}">
+      <h1>{{ i.title }}</h1>
+      <h1>{{ i.email }}</h1>
+      <h1>{{ i.name }}</h1>
+      <h1>{{ i.description }}</h1>
+      <h1>{{ i.createdAt }}</h1>
+
+      <div class="action-div">
+        <form
+          action="/u/opinion/accept/{{ i._id }}"
+          method="post"
+          class="accept-form">
+
+          <input type="hidden" name="id" value="{{ i._id }}">
+          <input type="submit" value="پذیرفتن و نمایش نظر در سایت">
+
+        </form>
+
+        <form
+          action="/u/opinion/reject/{{ i._id }}"
+          method="post"
+          class="reject-form">
+
+          <input type="hidden" name="id" value="{{ i._id }}">
+          <input type="submit" value="نپذیرفتن">
+
+        </form>
+
+      </div>
+    </div>
+  {% endfor %}
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+  <script src="/files/js/opinion-decision.js"></script>
+{% endblock %}
