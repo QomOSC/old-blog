@@ -1,28 +1,44 @@
 {% extends locals.path + '/u.njk' %}
 
 {% block head %}
-<style>
-  img {
-    max-width: 200px;
-    max-height: 200px;
-  }
-</style>
+<link rel="stylesheet" href="/files/css/gallery.css">
 {% endblock %}
 
 {% block content %}
   {% if empty %}
-    <h1>هیچ عکسی وجود ندارد</h1>
+  <div class="page-title">
+    <span>هیچ عکسی وجود ندارد</span>
+  </div>
   {% else %}
+  <div class="page-title">
+    <span>گالری</span>
+  </div>
+  <div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+  </div>
+  <div class="gallery-container">
     {% for i in photos %}
-      <h1>{{ i.title }}</h1>
-      <p>{{ i.createdAt }}</p>
-      <p>{{ i.author.fname }} {{ i.author.lname }}</p>
-      <p>Photo of Gallery: </p>
-      <img src="/img/{{ i.photo }}">
-      <p>{{ i.author.username }}</p>
-      <hr>
-      <hr>
+      <div class="gallery-posts">
+        <div class="img-gallery">
+          <img src="/img/{{ i.photo }}" class="myImg">
+        </div>
+        <div class="gallery-body">
+          <span>{{ i.title }}</span>
+          <div>
+            {% if i.author.avatar %}
+              <img src="/img/{{ i.author.avatar }}">
+            {% else %}
+              <img src="/files/image/default-user.png">
+            {% endif %}
+            <span>{{ i.author.fname }}
+              {{ i.author.lname }}</span>
+          </div>
+        </div>
+      </div>
     {% endfor %}
+  </div>
     <a href="/gallery" id="previous">
       <button>قبلی</button>
     </a>
