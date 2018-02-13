@@ -5,87 +5,82 @@ const { moment } = rootRequire('./utils');
 
 const router = new Router();
 
-router.get('/user/:username', (req, res) => {
+router.get('/user/:username', async(req, res) => {
   req.params.username = req.params.username.toLowerCase();
 
-  Member.findOne({ username: req.params.username }).then(member => {
-      if (member) {
+  const member = await Member.findOne({ username: req.params.username });
 
-        const user = [];
+  if (member) {
 
-        function* getResponse() {
-          yield new Promise(resolve => {
-            user.push({
-              _id: member._id,
-              fname: member.fname,
-              lname: member.lname,
-              type: member.type,
-              createdAt: moment(member.createdAt),
-              email: member.email,
-              username: member.username,
-              description: member.description,
-              avatar: member.avatar,
-              postsLength: member.posts.length
-            });
+    const user = [];
 
-            Post
-              .find({ author: member._id })
-              .limit(12)
-              .sort({ createdAt: -1 })
-              .then(posts => {
-              if (JSON.stringify(posts) !== '[]') {
-                const allPosts = [];
+    function* getResponse() {
+      yield new Promise(async resolve => {
+        user.push({
+          _id: member._id,
+          fname: member.fname,
+          lname: member.lname,
+          type: member.type,
+          createdAt: moment(member.createdAt),
+          email: member.email,
+          username: member.username,
+          description: member.description,
+          avatar: member.avatar,
+          postsLength: member.posts.length
+        });
 
-                for (let i = 0; i < posts.length; i++) {
-                  const onePost = {};
+        const posts = await Post
+          .find({ author: member._id })
+          .limit(12)
+          .sort({ createdAt: -1 });
 
-                  let content = posts[i].content.split('').slice(0, 110);
-                  content.push('.', '.', '.');
-                  content = content.join('');
+        if (posts.length !== 0) {
+          const allPosts = [];
 
-                  onePost.id = posts[i]._id;
-                  onePost.title = posts[i].title;
-                  onePost.content = content;
-                  onePost.minutes = posts[i].minutes;
-                  onePost.avatar = posts[i].avatar;
-                  onePost.viewers = posts[i].viewers.length;
-                  onePost.likes = posts[i].likes.length;
+          for (const i of posts) {
+            const onePost = {};
 
-                  allPosts.push(onePost);
-                }
-                user.push(allPosts);
-              } else {
-                user.push('');
-              }
-              resolve();
-            }).catch(() => {
-              res.json({ type: 2 });
-            });
-          });
-        }
+            let content = i.content.split('').slice(0, 110);
+            content.push('.', '.', '.');
+            content = content.join('');
 
-        const iterator = getResponse();
-        (function loop() {
+            onePost.id = i._id;
+            onePost.title = i.title;
+            onePost.content = content;
+            onePost.minutes = i.minutes;
+            onePost.avatar = i.avatar;
+            onePost.viewers = i.viewers.length;
+            onePost.likes = i.likes.length;
 
-          const next = iterator.next();
-          if (next.done) {
-            res.render('user.njk', {
-              member: user[0],
-              posts: user[1]
-            });
-
-            return;
+            allPosts.push(onePost);
           }
+          user.push(allPosts);
+        } else {
+          user.push('');
+        }
+        resolve();
+      });
+    }
 
-          next.value.then(loop);
-        })();
+    const iterator = getResponse();
+    (function loop() {
 
-      } else {
-        res.reply.notFound();
+      const next = iterator.next();
+      if (next.done) {
+        res.render('user.njk', {
+          member: user[0],
+          posts: user[1]
+        });
+
+        return;
       }
-  }).catch(() => {
+
+      next.value.then(loop);
+    })();
+
+  } else {
     res.reply.notFound();
-  });
+  }
 });
 
 export default router;
