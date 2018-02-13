@@ -54,7 +54,6 @@
       <div class="page-title">
         <span>عکس های جستجو شده</span>
       </div>
-
       <div class="gallery-container">
         {% for i in photos %}
           <div class="gallery-posts">
@@ -76,26 +75,26 @@
 
           </div>
 
-</div>
-        {% endfor %}
-      </div>
+        </div>
+      {% endfor %}
     </div>
-    <!-- The Modal -->
-  {% endif %}
+  </div>
+  <!-- The Modal -->
+{% endif %}
 {% endif %}
 <div class="confs-control">
-  <a href="/gallery" id="previous">
-    <button>قبلی</button>
-  </a>
-  <a href="/gallery" id="next">
-    <button>بعدی</button>
-  </a>
+<a href="/gallery" id="previous">
+  <button>قبلی</button>
+</a>
+<a href="/gallery" id="next">
+  <button>بعدی</button>
+</a>
 </div>
 {% endblock %}
 
 {% block scripts %}
 {% if empty %}
 {% else %}
-  <script src="/files/js/gallery.js"></script>
+<script src="/files/js/gallery.js"></script>
 {% endif %}
 {% endblock %}
