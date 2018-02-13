@@ -14,43 +14,40 @@ router.post(
   '/u/setting/avatar',
   logged,
   upload.single('croppedImage'),
-  (req, res) => {
+  async(req, res) => {
 
-  Member.findOne({ _id: req.member.user._id }).then(member => {
-    if (member) {
-      if (member.avatar) {
-        removeImage(member.avatar)
-          .then(() => {
-            member.avatar = req.file.filename;
+  const member = await Member.findOne({ _id: req.member.user._id });
+  
+  if (member) {
+    if (member.avatar) {
+      removeImage(member.avatar)
+        .then(() => {
+          member.avatar = req.file.filename;
 
-            member.save().then(() => {
-              res.json({ type: 0 });
-            }).catch(() => {
-              // Error
-              res.json({ type: 2 });
-            });
-
+          member.save().then(() => {
+            res.json({ type: 0 });
           }).catch(() => {
+            // Error
             res.json({ type: 2 });
           });
-      } else {
-        member.avatar = req.file.filename;
 
-        member.save().then(() => {
-          res.json({ type: 0 });
         }).catch(() => {
-          // Error
           res.json({ type: 2 });
         });
-      }
     } else {
-      // User not Found
-      res.json({ type: 2 });
+      member.avatar = req.file.filename;
+
+      member.save().then(() => {
+        res.json({ type: 0 });
+      }).catch(() => {
+        // Error
+        res.json({ type: 2 });
+      });
     }
-  }).catch(() => {
-    // Error
+  } else {
+    // User not Found
     res.json({ type: 2 });
-  });
+  }
 });
 
 export default router;

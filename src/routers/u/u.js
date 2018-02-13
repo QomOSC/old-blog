@@ -5,68 +5,67 @@ const { logged } = rootRequire('./perms');
 
 const router = new Router();
 
-router.get('/u', logged, (req, res) => {
-  Post
+router.get('/u', logged, async(req, res) => {
+
+  const posts = await Post
   .find({ author: req.member.user._id })
   .limit(9)
-  .sort({ createdAt: -1 })
-  .then(posts => {
-    if (posts.length !== 0) {
+  .sort({ createdAt: -1 });
 
-      const allPosts = [];
+  if (posts.length !== 0) {
 
-      function* getResponse() {
+    const allPosts = [];
 
-        yield new Promise(resolve => {
+    function* getResponse() {
+
+      yield new Promise(resolve => {
 
 
-          for (let i = 0; i < posts.length; i++) {
-            const onePost = {};
+        for (const i of posts) {
 
-            let content = posts[i].content.split('').slice(0, 130);
-            content.push('.', '.', '.');
-            content = content.join('');
+          const onePost = {};
 
-            onePost.id = posts[i]._id;
-            onePost.title = posts[i].title;
-            onePost.content = content;
-            onePost.minutes = posts[i].minutes;
-            onePost.avatar = posts[i].avatar;
-            onePost.viewers = posts[i].viewers.length;
-            onePost.likes = posts[i].likes.length;
+          let content = i.content.split('').slice(0, 130);
+          content.push('.', '.', '.');
+          content = content.join('');
 
-            allPosts.push(onePost);
-          }
+          onePost.id = i._id;
+          onePost.title = i.title;
+          onePost.content = content;
+          onePost.minutes = i.minutes;
+          onePost.avatar = i.avatar;
+          onePost.viewers = i.viewers.length;
+          onePost.likes = i.likes.length;
 
-          resolve();
-        });
-      }
-
-      const iterator = getResponse();
-      (function loop() {
-
-        const next = iterator.next();
-        if (next.done) {
-          res.render('u/u.njk', {
-            member: req.member.user,
-            posts: allPosts
-          });
-
-          return;
+          allPosts.push(onePost);
         }
 
-        next.value.then(loop);
-      })();
-
-    } else {
-      res.render('u/u.njk', {
-        member: req.member.user,
-        postEmpty: true
+        resolve();
       });
     }
-  }).catch(() => {
-    res.reply.error();
-  });
+
+    const iterator = getResponse();
+    (function loop() {
+
+      const next = iterator.next();
+      if (next.done) {
+        res.render('u/u.njk', {
+          member: req.member.user,
+          posts: allPosts
+        });
+
+        return;
+      }
+
+      next.value.then(loop);
+    })();
+
+  } else {
+    res.render('u/u.njk', {
+      member: req.member.user,
+      postEmpty: true
+    });
+  }
 });
 
 export default router;

@@ -10,45 +10,40 @@ router.post(
   '/u/sub/manage/remove/:username',
   perm.logged,
   perm.u.admin,
-  (req, res) => {
+  async(req, res) => {
   req.params.username = req.params.username.toLowerCase();
 
-  Member.findOne({ username: req.params.username }).then(member => {
-    if (member && member.type === 2) {
-      member.remove().then(() => {
+  const member = await Member.findOne({ username: req.params.username });
 
-        Member.findOne({ _id: req.member.user._id }).then(admin => {
-          if (admin && JSON.stringify(admin.submembers) !== '[]') {
-            admin.submembers.splice(member, 1);
+  if (member && member.type === 2) {
+    member.remove().then(async() => {
 
-            admin.save().then(() => {
-              // OK
-              email.submembers.delete().then(() => {
-                res.json({ type: 0 });
-              }).catch(() => {
-                res.json({ type: 2, text: 0 });
-              });
-            }).catch(() => {
-              res.json({ type: 2, text: 0 });
-            });
-          } else {
+      const admin = await Member.findOne({ _id: req.member.user._id });
+
+      if (admin && admin.submembers.length !== 0) {
+        admin.submembers.splice(member, 1);
+
+        admin.save().then(() => {
+          // OK
+          email.submembers.delete().then(() => {
+            res.json({ type: 0 });
+          }).catch(() => {
             res.json({ type: 2, text: 0 });
-          }
+          });
         }).catch(() => {
           res.json({ type: 2, text: 0 });
         });
-      }).catch(() => {
-        // Error
+      } else {
         res.json({ type: 2, text: 0 });
-      });
-    } else {
+      }
+    }).catch(() => {
       // Error
       res.json({ type: 2, text: 0 });
-    }
-  }).catch(() => {
+    });
+  } else {
     // Error
     res.json({ type: 2, text: 0 });
-  });
+  }
 });
 
 export default router;

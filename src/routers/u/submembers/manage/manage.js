@@ -5,53 +5,48 @@ const perm = rootRequire('./perms');
 
 const router = new Router();
 
-router.get('/u/sub/manage', perm.logged, perm.u.admin, (req, res) => {
-  Member.findOne({ _id: req.member.user._id }).then(member => {
+router.get('/u/sub/manage', perm.logged, perm.u.admin, async(req, res) => {
 
-    if (member && member.submembers.length !== 0) {
+  const member = await Member.findOne({ _id: req.member.user._id });
 
-      const subs = [];
+  if (member && member.submembers.length !== 0) {
 
-      function* getResponse() {
-        for (const i of member.submembers) {
-          yield new Promise(resolve => {
-            Member.findOne({ _id: i }).then(sub => {
-              subs.push(sub);
-              resolve();
+    const subs = [];
 
-            }).catch(() => {
-              res.reply.error();
-            });
-          });
-        }
+    function* getResponse() {
+      for (const i of member.submembers) {
+        yield new Promise(async resolve => {
+
+          const sub = await Member.findOne({ _id: i });
+          
+          subs.push(sub);
+          resolve();
+        });
       }
-
-      const iterator = getResponse();
-      (function loop() {
-
-        const next = iterator.next();
-        if (next.done) {
-          res.render('u/sub/manage.njk', {
-            member: req.member.user,
-            subs
-          });
-
-          return;
-        }
-
-        next.value.then(loop);
-      })();
-
-    } else {
-      res.render('u/sub/manage.njk', {
-        member: req.member.user,
-        empty: true
-      });
     }
 
-  }).catch(() => {
-    res.reply.error();
-  });
+    const iterator = getResponse();
+    (function loop() {
+
+      const next = iterator.next();
+      if (next.done) {
+        res.render('u/sub/manage.njk', {
+          member: req.member.user,
+          subs
+        });
+
+        return;
+      }
+
+      next.value.then(loop);
+    })();
+
+  } else {
+    res.render('u/sub/manage.njk', {
+      member: req.member.user,
+      empty: true
+    });
+  }
 });
 
 export default router;

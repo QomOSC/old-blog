@@ -10,28 +10,25 @@ router.post(
   '/u/sub/remove/:username',
   perm.logged,
   perm.u.admin,
-  (req, res) => {
+  async(req, res) => {
     req.params.username = req.params.username.toLowerCase();
 
-    Member.findOne({ username: req.params.username }).then(member => {
+    const member = await Member.findOne({ username: req.params.username });
 
-      if (member && member.type === 1) {
-        member.remove().then(() => {
+    if (member && member.type === 1) {
+      member.remove().then(() => {
 
-          email.submembers.reject(member.email).then(() => {
-            res.json({ type: 0 });
-          }).catch(() => {
-            res.json({ type: 2, text: 0 });
-          });
+        email.submembers.reject(member.email).then(() => {
+          res.json({ type: 0 });
         }).catch(() => {
           res.json({ type: 2, text: 0 });
         });
-      } else {
+      }).catch(() => {
         res.json({ type: 2, text: 0 });
-      }
-    }).catch(() => {
+      });
+    } else {
       res.json({ type: 2, text: 0 });
-    });
+    }
 });
 
 export default router;

@@ -10,47 +10,43 @@ router.post(
   '/u/sub/add/:username',
   perm.logged,
   perm.u.admin,
-  (req, res) => {
+  async(req, res) => {
     req.params.username = req.params.username.toLowerCase();
 
-    Member.findOne({ username: req.params.username }).then(member => {
-      if (member && member.type === 1) {
-        member.type = 2;
+    const member = await Member.findOne({ username: req.params.username });
 
-        member.save().then(() => {
+    if (member && member.type === 1) {
+      member.type = 2;
 
-          Member.findOne({ _id: req.member.user._id }).then(admin => {
-            if (admin) {
+      member.save().then(async() => {
 
-              if (admin.submembers.indexOf(member._id) === -1) {
-                admin.submembers.push(member._id);
+        const admin = await Member.findOne({ _id: req.member.user._id });
 
-                admin.save().then(() => {
+        if (admin) {
 
-                  email.submembers.accept(member.email).then(() => {
-                    res.json({ type: 0 });
-                  }).catch(() => {
-                    res.json({ type: 2, text: 0 });
-                  });
-                }).catch(() => {
-                  res.json({ type: 2, text: 0 });
-                });
-              } else {
+          if (admin.submembers.indexOf(member._id) === -1) {
+            admin.submembers.push(member._id);
+
+            admin.save().then(() => {
+
+              email.submembers.accept(member.email).then(() => {
+                res.json({ type: 0 });
+              }).catch(() => {
                 res.json({ type: 2, text: 0 });
-              }
-            } else {
+              });
+            }).catch(() => {
               res.json({ type: 2, text: 0 });
-            }
-          }).catch(() => {
+            });
+          } else {
             res.json({ type: 2, text: 0 });
-          });
-        }).catch(() => {
+          }
+        } else {
           res.json({ type: 2, text: 0 });
-        });
-      }
-    }).catch(() => {
-      res.json({ type: 2, text: 0 });
-    });
+        }
+      }).catch(() => {
+        res.json({ type: 2, text: 0 });
+      });
+    }
 });
 
 export default router;
