@@ -11,14 +11,14 @@
   align-items: center;
   margin-bottom: 20px;
   text-align: center;
-  box-shadow: inset 0px 0px 103px -58px rgba(0,0,0,0.77);
+  box-shadow: inset 0 0 103px -58px rgba(0,0,0,0.77);
 }
 
 .viewpost span {
-font-size: 50px;
-color: #fff;
-text-shadow: 1px 4px 2px rgba(0,0,0,0.3);
-font-family: SB;
+  font-size: 50px;
+  color: #fff;
+  text-shadow: 1px 4px 2px rgba(0,0,0,0.3);
+  font-family: SB;
 }
 
 .viewpost-details {
@@ -26,11 +26,11 @@ font-family: SB;
   justify-content: center;
   align-items: center;
   margin-top: 100px;
-  opacity: .9;
+  opacity: 0.9;
 
   span {
     font-size: 13px;
-    margin-right:6px;
+    margin-right: 6px;
     text-shadow: 1px 4px 2px rgba(0,0,0,0.3);
   }
 
@@ -51,7 +51,7 @@ font-family: SB;
 }
 
 .viewpost-text {
-  padding: 10px 30px 100px 30px;
+  padding: 10px 30px 100px;
   background: #fff;
   width: 65%;
   height: auto;
@@ -68,18 +68,18 @@ font-family: SB;
     display: flex;
     justify-content: center;
     text-align: center;
-    margin: 20px auto 20px auto;
+    margin: 20px auto;
   }
 
-pre , code {
-  background: #f45;
-}
-
+  code,
+  pre {
+    background: #f45;
+  }
 }
 
 .viewpost-info {
   background: #40AA54;
-  padding: 5px 5px;
+  padding: 5px;
   width: 67%;
   margin: auto;
   display: flex;
@@ -99,14 +99,14 @@ pre , code {
   flex-direction: row;
 }
 
-.viewpost-info span{
+.viewpost-info span {
   margin: 10px;
   letter-spacing: -.3px;
   font-family: SB;
   transition: 0.3s;
 
   &:hover {
-     color: #d2d2d2;
+    color: #d2d2d2;
   }
 }
 
@@ -137,6 +137,7 @@ pre , code {
   .posts-event {
     margin-left: 20px;
   }
+
   i {
     vertical-align: middle;
   }
@@ -184,7 +185,7 @@ pre , code {
 }
 
 .username a {
-  color:#222;
+  color: #222;
   font-family: SB;
 }
 
@@ -195,7 +196,7 @@ pre , code {
 
   &:hover {
     transform: scale(1.1);
-    color: red
+    color: red;
   }
 }
 
@@ -217,92 +218,96 @@ pre , code {
 .col-name span {
   color: #444;
 }
-
-
-
-
 @media (min-width: 120px) and (max-width: 500px) {
-
-body {
-  overflow-x: hidden;
-}
-
-.viewpost-left {
-  display: none;
-}
-
-.viewpost-body {
-  padding: 0;
-}
-
-.viewpost-info {
-  width: auto;
-  font-size: 13px;
-  margin: auto;
-  padding: 2px;
-}
-
-.viewpost-icon {
-  font-size: 10px;
-  text-align: center;
-}
-
-.viewpost-info-in {
-width: 100%;
-}
-
-.view-post-head-right {
-  width: 300px;
-  font-size: 12px;
-}
-
-.viewpost-info span {
-  margin-right: 3px;
-}
-
-.viewpost-text {
-  width: 80%;
-  height: auto;
-  font-size: 15px;
-
-  img {
-     width: 250px;
+  body {
+    overflow-x: hidden;
   }
-}
 
-.event {
-  font-size: 13px;
-  padding: 2px 10px;
-}
+  .viewpost-left {
+    display: none;
+  }
 
-.user-info {
-  width: 89.2%;
-  margin-right: 3%;
-  flex-direction: column;
-  border: none;
-}
-.user-info-right {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.user-info-left {
-  width: 100%;
-  text-align: center;
-  position: relative;
-  padding-top: 45px;
-  height: auto;
-}
-.username {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: #d2d2d2;
-  padding: 5px;
-  width: auto;
-}
+  .viewpost-body {
+    padding: 0;
+  }
 
+  .viewpost-info {
+    width: 96%;
+    font-size: 13px;
+    margin: auto;
+    padding: 2px;
+  }
 
+  .viewpost-icon {
+    font-size: 10px;
+    text-align: center;
+  }
+
+  .viewpost-info-in {
+    width: 100%;
+  }
+
+  .view-post-head-right {
+    width: 300px;
+    font-size: 12px;
+  }
+
+  .viewpost-info span {
+    margin-right: 3px;
+  }
+
+  .viewpost-text {
+    width: 80%;
+    height: auto;
+    font-size: 15px;
+    word-wrap: break-word;
+
+    img {
+      width: 250px;
+    }
+  }
+
+  .event {
+    font-size: 13px;
+    padding: 2px 10px;
+  }
+
+  .user-info {
+    width: 89.2%;
+    flex-direction: column;
+    border: none;
+    margin-right: 3%;
+    margin-top: 10%;
+  }
+
+  .user-info-right {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+  }
+
+  .user-info-left {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+
+    div {
+      margin: 10px;
+    }
+  }
+
+  .username {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #d2d2d2;
+    padding: 5px;
+    width: auto;
+  }
 }

@@ -85,15 +85,19 @@
       </a>
     </div>
     <div class="user-info-left">
+      <div>
        <span class="username">
          <a href="/user/{{ p.author.username }}">
          <span>{{ p.author.fname }}
            {{ p.author.lname }}</span>
        </a>
      </span>
+     </div>
+     <div>
        {% if p.author.description %}
          <p>{{ p.author.description }}</p>
        {% endif %}
+       </div>
     </div>
   </div>
   </div>
