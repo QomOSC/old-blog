@@ -29,63 +29,58 @@ router.post(
       avatar: req.file.filename
     });
 
-    post.save().then(() => {
+    post.save().then(async() => {
 
-      Member.findOne({ _id: req.member.user._id }).then(member => {
-        if (member) {
-          member.posts.push(post._id);
+      const member = await Member.findOne({ _id: req.member.user._id });
 
-          member.save().then(() => {
-            Newsletter.find().then(subscribers => {
+      if (member) {
+        member.posts.push(post._id);
 
-              if (subscribers.length !== 0) {
+        member.save().then(async() => {
 
-                let subsArr = [];
+          const subscribers = await Newsletter.find();
 
-                function* getResponse() {
+          if (subscribers.length !== 0) {
 
-                  yield new Promise(resolve => {
+            let subsArr = [];
+
+            function* getResponse() {
+
+              yield new Promise(resolve => {
 
 
-                    for (const i of subscribers) {
-                      subsArr.push(i.email);
-                    }
-
-                    resolve();
-                  });
+                for (const i of subscribers) {
+                  subsArr.push(i.email);
                 }
 
-                const iterator = getResponse();
-                (function loop() {
+                resolve();
+              });
+            }
 
-                  const next = iterator.next();
-                  if (next.done) {
-                    email.newpost(subsArr.join(','), post._id)
-                    .then(() => {}).catch(() => {});
-                    res.json({ type: 0 });
+            const iterator = getResponse();
+            (function loop() {
 
-                    return;
-                  }
-
-                  next.value.then(loop);
-                })();
-
-              } else {
+              const next = iterator.next();
+              if (next.done) {
+                email.newpost(subsArr.join(','), post._id)
+                .then(() => {}).catch(() => {});
                 res.json({ type: 0 });
+
+                return;
               }
 
-            }).catch(() => {
-              res.json({ type: 2 });
-            });
-          }).catch(() => {
-            res.json({ type: 2 });
-          });
-        } else {
+              next.value.then(loop);
+            })();
+
+          } else {
+            res.json({ type: 0 });
+          }
+        }).catch(() => {
           res.json({ type: 2 });
-        }
-      }).catch(() => {
+        });
+      } else {
         res.json({ type: 2 });
-      });
+      }
     }).catch(() => {
       res.json({ type: 2 });
     });
