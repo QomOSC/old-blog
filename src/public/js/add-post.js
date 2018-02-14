@@ -60,6 +60,7 @@ up.addEventListener('change', () => {
           // Send
           fd.append('title', form.title.value);
           fd.append('content', form.content.value);
+          fd.append('tags', form.tags.value);
           fd.append('minutes', minutes);
 
           fetch('/u/post/add', {

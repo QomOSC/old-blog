@@ -38,6 +38,10 @@ const schema = new Schema({
   likes: [{ // The ID of members
     type: String,
     trim: true
+  }],
+  tags: [{
+    type: String,
+    trim: true
   }]
 });
 

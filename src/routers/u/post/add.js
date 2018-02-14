@@ -21,6 +21,7 @@ router.post(
   (req, res) => {
 
   if (req.body.title && req.body.content && req.body.minutes) {
+
     const post = new Post({
       title: req.body.title,
       content: req.body.content,
@@ -28,6 +29,10 @@ router.post(
       author: req.member.user._id,
       avatar: req.file.filename
     });
+
+    if (req.body.tags) {
+      post.tags = req.body.tags.split(',', 5).map(x => x.trim());
+    }
 
     post.save().then(async() => {
 
