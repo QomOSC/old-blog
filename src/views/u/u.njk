@@ -61,14 +61,14 @@
     <div class="recent-posts">
       {% for i in posts %}
         <div class="posts">
-          <a href="/viewpost/{{ i.id }}">
+          <a href="/article/{{ i.id }}">
             <div class="posts-pic">
               <img src="/img/{{ i.avatar }}">
             </div>
           </a>
           <div class="posts-body">
             <div class="posts-title">
-              <a href="/viewpost/{{ i.id }}">
+              <a href="/article/{{ i.id }}">
                 <span>{{ i.title }}</span>
               </a>
             </div>
@@ -87,7 +87,7 @@
                 <i class="fa fa-eye" aria-hidden="true"></i>
               </div>
             </div>
-            <a href="/viewpost/{{ i.id }}">
+            <a href="/article/{{ i.id }}">
               <span>بیشتر بخوانید . . .</span>
             </a>
           </div>

@@ -5,7 +5,7 @@ const { moment } = rootRequire('./utils');
 
 const router = new Router();
 
-router.get('/viewpost/:id', async(req, res) => {
+router.get('/article/:id', async(req, res) => {
   req.params.id = req.params.id.toLowerCase();
 
   const post = await Post.findOne({ _id: req.params.id });
@@ -31,7 +31,7 @@ router.get('/viewpost/:id', async(req, res) => {
       onePost.author.username = member.username;
       onePost.author.description = member.description;
 
-      res.render('viewpost.njk', { p: onePost });
+      res.render('article.njk', { p: onePost });
     } else {
       res.reply.notFound();
     }
@@ -42,7 +42,7 @@ router.get('/viewpost/:id', async(req, res) => {
 
 // Add viewer IP
 
-router.post('/viewpost/:id', async(req, res) => {
+router.post('/article/:id', async(req, res) => {
   req.params.id = req.params.id.toLowerCase();
 
   const post = await Post.findOne({ _id: req.params.id });
