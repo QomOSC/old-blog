@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
+import autoIncrement from 'mongoose-auto-increment';
 
 const schema = new Schema({
   provider: { // The ID from Member model
@@ -33,5 +34,9 @@ const schema = new Schema({
     default: 1
   }
 });
+
+autoIncrement.initialize(mongoose);
+
+schema.plugin(autoIncrement.plugin, 'Post');
 
 export default mongoose.model('Conference', schema);
