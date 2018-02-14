@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
+import autoIncrement from 'mongoose-auto-increment';
 
 const schema = new Schema({
   author: { // The ID from Member model
@@ -39,5 +40,9 @@ const schema = new Schema({
     trim: true
   }]
 });
+
+autoIncrement.initialize(mongoose);
+
+schema.plugin(autoIncrement.plugin, 'Post');
 
 export default mongoose.model('Post', schema);
