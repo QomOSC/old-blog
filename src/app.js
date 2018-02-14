@@ -27,6 +27,7 @@ const routers = require('./routers');
  * setting up db
  */
 mongoose.Promise = global.Promise;
+
 mongoose.connect(process.env.DB || config.db, {
  useMongoClient: true,
 });
