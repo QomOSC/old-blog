@@ -11,8 +11,7 @@
     <link rel="stylesheet" href="/files/css/post-short.css">
     <link rel="stylesheet" href="/files/css/dropdown.css">
 
-    <meta name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="/files/css/lib/izi.min.css">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link rel="shortcut icon" href="/files/image/favicon.ico">
@@ -21,40 +20,53 @@
     {% for item in locals.header %}
       {{ item | safe }}
     {% endfor %}
-    {% block head %}
-    {% endblock %}
+    {% block head %}{% endblock %}
   </head>
   <body>
     <header>
       {% if locals.logged %}
-      <ul id="header-list">
-        <li><a href="/u" id="user-fname">داشبورد</a></li>
-        <li><a href="/conferences">ارائه ها</a></li>
-        <li><a href="/about">درباره</a></li>
-        <li><a href="/gallery">گالری</a></li>
-        <li><a href="/contact">تماس با ما</a></li>
-      </ul>
-      <div class="dropdown" id="icon-container" onclick="changeIcon(this)">
-        <button onclick="myFunction()" class="dropbtn">
-          <div class="bar1"></div>
-          <div class="bar2"></div>
-          <div class="bar3"></div>
-        </button>
+        <ul id="header-list">
+          <li>
+            <a href="/u" id="user-fname">داشبورد</a>
+          </li>
+          <li>
+            <a href="/conferences">ارائه ها</a>
+          </li>
+          <li>
+            <a href="/about">درباره</a>
+          </li>
+          <li>
+            <a href="/gallery">گالری</a>
+          </li>
+          <li>
+            <a href="/contact">تماس با ما</a>
+          </li>
+        </ul>
+        <div class="dropdown" id="icon-container" onclick="changeIcon(this)">
+          <button onclick="myFunction()" class="dropbtn">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+          </button>
           <div id="myDropdown" class="dropdown-content">
             <a href="/u">داشبورد</a>
             <a href="/conferences">ارائه ها</a>
             <a href="/about">درباره</a>
-            <li><a href="/gallery">گالری</a></li>
-            <li><a href="/contact">تماس با ما</a></li>
+            <li>
+              <a href="/gallery">گالری</a>
+            </li>
+            <li>
+              <a href="/contact">تماس با ما</a>
+            </li>
           </div>
-      </div>
+        </div>
       {% else %}
-      <div class="dropdown" id="icon-container" onclick="changeIcon(this)">
-        <button onclick="myFunction()" class="dropbtn">
-          <div class="bar1"></div>
-          <div class="bar2"></div>
-          <div class="bar3"></div>
-        </button>
+        <div class="dropdown" id="icon-container" onclick="changeIcon(this)">
+          <button onclick="myFunction()" class="dropbtn">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+          </button>
           <div id="myDropdown" class="dropdown-content">
             <a href="/signup">ثبت نام</a>
             <a href="/login">ورود</a>
@@ -63,66 +75,81 @@
             <a href="/gallery">گالری</a>
             <a href="/contact">تماس با ما</a>
           </div>
-      </div>
-      <ul id="header-list">
-        <li><a href="/login">&nbsp;ورود&nbsp;</a></li>
-        <li><a href="/signup">&nbsp;عضویت&nbsp;</a></li>
-        <li><a href="/about">&nbsp;درباره&nbsp;</a></li>
-        <li><a href="/conferences">&nbsp;ارائه ها&nbsp;</a></li>
-        <li><a href="/gallery">&nbsp;گالری&nbsp;</a></li>
-        <li><a href="/contact">&nbsp;تماس با ما&nbsp;</a></li>
-      </ul>
+        </div>
+        <ul id="header-list">
+          <li>
+            <a href="/login">&nbsp;ورود&nbsp;</a>
+          </li>
+          <li>
+            <a href="/signup">&nbsp;عضویت&nbsp;</a>
+          </li>
+          <li>
+            <a href="/about">&nbsp;درباره&nbsp;</a>
+          </li>
+          <li>
+            <a href="/conferences">&nbsp;ارائه ها&nbsp;</a>
+          </li>
+          <li>
+            <a href="/gallery">&nbsp;گالری&nbsp;</a>
+          </li>
+          <li>
+            <a href="/contact">&nbsp;تماس با ما&nbsp;</a>
+          </li>
+        </ul>
       {% endif %}
       <a href="/" id="long-title-name" class="title">جامعه متن باز قم</a>
       <a href="/" id="short-title-name" class="title">QOM OSC</a>
     </header>
     <div id="all-container">
-    {% block content %}
-    {% endblock %}
+      {% block content %}{% endblock %}
     </div>
     <footer>
       <div class="footer-container">
-         <div class="footer-row1">
-           <a href="/" class="site-title">جامعه متن باز قم</a>
+        <div class="footer-row1">
+          <a href="/" class="site-title">جامعه متن باز قم</a>
 
-           <form name="newsletter-form" action="/subscribe" method="post">
-               <input
-                type="email"
-                name="email"
-                placeholder="ایمیل خود را برای عضویت در خبرنامه وارد کنید">
+          <form name="newsletter-form" action="/subscribe" method="post">
+            <input type="email" name="email" placeholder="ایمیل خود را برای عضویت در خبرنامه وارد کنید">
 
-               <input
-                type="submit"
-                value="تایید">
-           </form>
-         </div>
+            <input type="submit" value="تایید">
+          </form>
+        </div>
 
-            <div class="footer-row2">
-              <div class="footer-row2-info">
-                  <i class="fa fa-map-marker" aria-hidden="true"></i>
-                  <p class="p-footer">
-                     <span>ایران، قم</span>
-                  </p>
-              </div>
-              <div class="footer-row2-info">
-                 <i class="fa fa-envelope" aria-hidden="true"></i>
-                 <a href="mailto:@@EMAILADDRESS@@">@@EMAILADDRESS@@</a>
-              </div>
+        <div class="footer-row2">
+          <div class="footer-row2-info">
+            <i class="fa fa-map-marker" aria-hidden="true"></i>
+            <p class="p-footer">
+              <span>ایران، قم</span>
+            </p>
+          </div>
+          <div class="footer-row2-info">
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+            <a href="mailto:@@EMAILADDRESS@@">@@EMAILADDRESS@@</a>
+          </div>
 
-            </div>
-               <div class="footer-row3">
-                 <a href="/about" class="about-us">
-                   <h4>درباره جامعه متن باز قم</h4>
-                </a>
-                 <a href="/about" class="about-us">
-                 <p>
-                  جامعه متن‌باز قم با هدف فراهم کردن محیطی برای به اشتراک گذاری دانش و تجربیات افرادی که در زمینه‌های مختلف متن‌باز فعالیت می‌کنند تاسیس شده است...
-                 </p>
-               </a>
-               </div>
+        </div>
+        <div class="footer-row3">
+          <a href="/about" class="about-us">
+            <h4>درباره جامعه متن باز قم</h4>
+          </a>
+          <a href="/about" class="about-us">
+            <p>
+              جامعه متن‌باز قم با هدف فراهم کردن محیطی برای به اشتراک گذاری دانش و تجربیات افرادی که در زمینه‌های مختلف متن‌باز فعالیت می‌کنند تاسیس شده است...
+            </p>
+          </a>
+        </div>
 
-            </div>
-            <div class="bottom-footer"></div>
+      </div>
+      <div class="bottom-footer">
+        <p>این پروژه تماما متن باز بوده و شما با مراجعه به این صفحه در
+          <a href="https://github.com/qomosc/blog">گیت هاب</a>
+          قادر به همکاری و مشارکت هستید.
+        </p>
+        <div>
+          <a href="https://t.me/QomOSC" class="fab fa-telegram"></a>
+          <a href="https://github.com/qomosc/blog" class="fab fa-github"></a>
+        </div>
+      </div>
     </footer>
     {% for item in locals.header %}
       {{ item | safe }}
@@ -134,8 +161,7 @@
     <script src="/files/js/lib/checkstatus.js"></script>
     <script src="/files/js/add-newsletter.js"></script>
     <script src="/files/js/dropdown.js"></script>
-    {% block scripts %}
-    {% endblock %}
+    {% block scripts %}{% endblock %}
   </body>
 
 </html>
