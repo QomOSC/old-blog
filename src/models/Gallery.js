@@ -23,6 +23,6 @@ const schema = new Schema({
     type: Date,
     default: Date.now
   }
-});
+}, { _id: false });
 
 export default mongoose.model('Gallery', schema);
