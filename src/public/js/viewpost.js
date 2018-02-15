@@ -1,3 +1,12 @@
+function bar() {
+  let winScroll = document.body.scrollTop ||
+  document.documentElement.scrollTop;
+  let height = document.documentElement.scrollHeight -
+  document.documentElement.clientHeight;
+  let scrolled = winScroll / height * 100;
+  document.getElementById('myBar').style.width = scrolled + '%';
+}
+
 const md = document.getElementById('markdowned-text');
 
 // Convert to HTML
@@ -22,7 +31,6 @@ function normal(arg) {
 }
 
 document.addEventListener('scroll', () => {
-  console.log('Hey');
   if (window.scrollY < 100) {
     normal(header);
   } else {
@@ -30,10 +38,3 @@ document.addEventListener('scroll', () => {
     bar();
   }
 });
-
-function bar() {
-  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  var scrolled = (winScroll / height) * 100;
-  document.getElementById("myBar").style.width = scrolled + "%";
-}
