@@ -7,7 +7,24 @@
 {% endblock %}
 
 {% block content %}
-<section class="article-header">ss</section>
+<section class="article-header">
+  <div class="head-article">
+    <div>
+      <a href="/">
+     <img src="/files/image/osc.png" width="55px">
+     </a>
+     <h3>{{ p.post.title }}</h3>
+     </div>
+     <div>
+        <i class="fas fa-envelope"></i>
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-telegram"></i>
+     </div>
+  </div>
+  <div class="progress-container">
+     <div class="progress-bar" id="myBar"></div>
+   </div>
+</section>
   <div class="viewpost" style="background-image: url('/img/{{ p.post.avatar }}');">
     <span>{{ p.post.title }}</span>
     <div class="viewpost-details">
