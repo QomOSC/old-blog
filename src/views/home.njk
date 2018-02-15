@@ -118,22 +118,7 @@
       </div>
     </div>
     </div>
-     {% if locals.logged %}
-    <section class="fixedfooter">
-      <a href="/u/post/add">پست کن<i class="fa fa-edit" aria-hidden="true"></i></a>
-      {% if member.type >= 3 %}
-      <a href="/u/sub">افراد درخواست داده<i class="fa fa-user-plus" aria-hidden="true"></i></a>
-      <a href="/u/sub/manage">مدیریت کاربران<i class="fa fa-users" aria-hidden="true"></i></a>
-      <a href="/u/conference/manage">مدیریت ارائه ها<i class="fas fa-inbox"></i></a>
-      {% endif %}
-      <a href="/u/conference/add">ارائه دادن<i class="fab fa-weixin"></i></a>
-      <a href="/u/post/all">پست های من<i class="far fa-envelope-open" aria-hidden="true"></i></a>
-      <a href="/u/gallery/add">ارسال عکس<i class="fas fa-camera"></i></a>
-      <a href="/u/gallery">گالری من  <i class="far fa-images"></i></a>
-      <a href="/u/setting">تنظیمات<i class="fa fa-cog" aria-hidden="true"></i></a>
-      <a href="/u/logout">خروج<i class="fas fa-sign-out-alt"></i></a>
-    </section>
-    {% endif %}
+
   {% endblock %}
 
   {% block scripts %}
