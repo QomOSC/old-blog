@@ -11,21 +11,21 @@ setTimeout(() => {
 }, 100);
 
 const header = document.getElementsByClassName('article-header')[0];
+header.classList.add('minimize');
 
 function minimize(arg) {
-  arg.classList.remove('normal');
-  arg.classList.add('minimize');
-}
-
-function normal(arg) {
-  arg.classList.add('normal');
   arg.classList.remove('minimize');
 }
 
+function normal(arg) {
+  arg.classList.add('minimize');
+}
+
 document.addEventListener('scroll', () => {
-  if (window.scrollY === 0) {
+  console.log('Hey');
+  if (window.scrollY < 100) {
     normal(header);
-  } else if (window.scrollY !== 0) {
+  } else {
     minimize(header);
   }
 });
