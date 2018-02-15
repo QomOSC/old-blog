@@ -31,7 +31,7 @@ function normal(arg) {
 }
 
 document.addEventListener('scroll', () => {
-  if (window.scrollY < 450) {
+  if (window.scrollY < 300) {
     normal(header);
   } else {
     minimize(header);
