@@ -65,6 +65,10 @@
   <div class="viewpost-body">
     <div class="viewpost-text">
       <div id="markdowned-text">{{ p.post.content }}</div>
+      <h1>برچسب ها: </h1>
+      {% for i in p.tags %}
+        <a href="/tag/{{ i }}">{{ i }}</a>
+      {% endfor %}
       <div class="event">
         <div class="posts-event">
           <div id="dislike-btn">

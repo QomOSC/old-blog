@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-const { Post, Member } = rootRequire('./models');
+const { Post, Member, Tag } = rootRequire('./models');
 const { moment } = rootRequire('./utils');
 
 const router = new Router();
@@ -11,7 +11,7 @@ router.get('/article/:id', async(req, res) => {
   const post = await Post.findOne({ _id: req.params.id });
 
   if (post) {
-    const onePost = { post, author: {}, other: {}, liked: false };
+    const onePost = { post, author: {}, other: {}, liked: false, tags: [] };
 
     onePost.other.createdAt = moment(post.createdAt);
     onePost.other.likes = post.likes.length;
@@ -20,6 +20,14 @@ router.get('/article/:id', async(req, res) => {
     if (req.member.user) {
       onePost.liked =
         post.likes.indexOf(req.member.user._id) !== -1 ? true : false;
+    }
+
+    const tags = await Tag.find({ article: post._id });
+
+    if (tags.length !== 0) {
+      for (const i of tags) {
+        onePost.tags.push(i.tagname);
+      }
     }
 
     const member = await Member.findOne({ _id: post.author });
