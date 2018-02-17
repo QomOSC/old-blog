@@ -6,8 +6,8 @@ const { moment } = rootRequire('./utils');
 const router = new Router();
 
 router.get('/conferences', async(req, res) => {
-  const page = parseInt(req.query.page) || 0;
-  const start = page * 12,
+  const page = parseInt(req.query.page) || 0,
+        start = page * 12,
         stop = page * 12 + 12;
 
   const re = new RegExp(`.*${req.query.q || ''}.*`);

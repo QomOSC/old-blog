@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import multer from 'multer';
 
-const { Post, Member, Newsletter } = rootRequire('./models');
+const { Post, Member, Newsletter, Tag } = rootRequire('./models');
 const { logged } = rootRequire('./perms');
 const { email, storage } = rootRequire('./utils');
 
@@ -30,11 +30,28 @@ router.post(
       avatar: req.file.filename
     });
 
-    if (req.body.tags) {
-      post.tags = req.body.tags.split(',', 5).map(x => x.trim());
-    }
-
     post.save().then(async() => {
+
+      if (req.body.tags) {
+        let tags = req.body.tags
+          .split(',', 5)
+          .map(x => x.trim().replace(/\s/g, '_').trim());
+
+        for (let i = 0; i < tags.length; i++) {
+          if (!tags[i].trim()) {
+            tags.splice(i, 1);
+          }
+        }
+
+        for (const i of tags) {
+          const newTag = new Tag({
+            article: post._id,
+            tagname: i
+          });
+
+          newTag.save().then(() => {}).catch(() => {});
+        }
+      }
 
       const member = await Member.findOne({ _id: req.member.user._id });
 
