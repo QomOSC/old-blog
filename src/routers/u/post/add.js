@@ -37,6 +37,8 @@ router.post(
           .split(',', 5)
           .map(x => x.trim().replace(/\s/g, '_').trim());
 
+        tags = Array.from(new Set(tags));
+        
         for (let i = 0; i < tags.length; i++) {
           if (!tags[i].trim()) {
             tags.splice(i, 1);
