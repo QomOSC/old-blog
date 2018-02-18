@@ -6,14 +6,18 @@
 {% endblock %}
 
 {% block content %}
+<div class="confs-search">
+  <span>دنبال چی میگردی ؟؟</span>
+<form action="/article" method="get">
+  <input type="search" name="q" value="{{ q }}" placeholder="جستجو کن">
+  <button type="submit">پیدا کن<i class="fas fa-search"></i></button>
+</form>
+</div>
   {% if empty %}
-    <div class="page-title">
-      <span>هیچ عکسی وجود ندارد</span>
-    </div>
+  <div class="page-title">
+    <span>چیزی پیدا نشد</span>
+  </div>
   {% else %}
-      <div class="page-title">
-        <span>تگ: {{ tagname }}</span>
-      </div>
       <div class="gallery-container">
         {% for i in arts %}
         <div class="posts">

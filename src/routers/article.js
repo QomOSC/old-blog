@@ -11,14 +11,15 @@ router.get('/article', async(req, res) => {
   stop = page * 12 + 12;
 
   const re = new RegExp(`.*${req.query.q || ''}.*`);
-
+  
   const articles = await Article.find({ title: re })
   .sort({ createdAt: -1 })
   .skip(start)
   .limit(stop);
 
   if (articles.length === 0) {
-    res.send('Empty', {
+    res.render('articles.njk', {
+      empty: true,
       q: req.query.q
     });
   } else {
@@ -31,7 +32,7 @@ router.get('/article', async(req, res) => {
           let content = i.content.split('').slice(0, 130);
           content.push('.', '.', '.');
           content = content.join('');
-          
+
           const oneArt = {
             _id: i._id,
             title: i.title,
