@@ -16,9 +16,18 @@
      <h3>{{ p.article.title }}</h3>
      </div>
      <div>
+      <a href="https://telegram.me/share/url?url=@@LINK@@/article/{{ p.article._id }}&amp;text={{ p.article.title }} در جامعه متن باز قم" target="_blank">
+        <i class="fab fa-telegram">
+        </i>
+      </a>
+      <a href="https://twitter.com/intent/tweet?text=@@LINK@@/article/{{ p.article._id }} {{ p.article.title }} در جامعه متن باز قم"
+        data-size="large">
+        <i class="fab fa-twitter">
+        </i>
+      </a>
+      <a href="mailto:?subject={{ p.article.title }} در جامعه متن باز قم&body=این مطلب را در جامعه متن باز قم کامل بخوانید @@LINK@@/article/{{ p.article._id }}">
         <i class="fas fa-envelope"></i>
-        <i class="fab fa-twitter"></i>
-        <i class="fab fa-telegram"></i>
+      </a>
      </div>
   </div>
   <div class="progress-container">
