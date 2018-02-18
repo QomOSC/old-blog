@@ -6,6 +6,8 @@ const previous = document.getElementById('previous'),
       next = document.getElementById('next'),
       cnf = document.getElementsByClassName('gallery-posts');
 
+console.log(cnf);
+
 let previousLink, nextLink;
 
 if (getQuery('q')) {
@@ -24,7 +26,7 @@ if (start <= 0) {
   previous.style.display = 'none';
 }
 
-if (cnf.length < 12) {
+if (cnf.length < 12 || cnf === undefined) {
   next.style.display = 'none';
 }
 

@@ -81,6 +81,8 @@
   <!-- The Modal -->
 {% endif %}
 {% endif %}
+{% if empty %}
+{% else %}
 <div class="confs-control">
 <a href="/gallery" id="previous">
   <button>قبلی</button>
@@ -89,6 +91,7 @@
   <button>بعدی</button>
 </a>
 </div>
+{% endif %}
 {% endblock %}
 
 {% block scripts %}
