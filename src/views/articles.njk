@@ -1,0 +1,85 @@
+{% extends locals.path + '/index.njk' %}
+
+{% block head %}
+  <link rel="stylesheet" href="/files/css/conference.css">
+  <link rel="stylesheet" href="/files/css/gallery.css">
+{% endblock %}
+
+{% block content %}
+  {% if empty %}
+    <div class="page-title">
+      <span>هیچ عکسی وجود ندارد</span>
+    </div>
+  {% else %}
+      <div class="page-title">
+        <span>تگ: {{ tagname }}</span>
+      </div>
+      <div class="gallery-container">
+        {% for i in arts %}
+        <div class="posts">
+          <div class="posts-head">
+            <div class="posts-head-right">
+              <a href="/user/{{ i.author.username }}">
+                <div class="profile-img" style="background-image: url(/img/{{ i.author.avatar }}); background-size: cover;"></div>
+              </a>
+              <div class="col-name">
+                <a href="/user/{{ i.author.username }}">
+                  <span title="نام نویسنده">{{ i.author.fname }}
+                    {{ i.author.lname }}</span>
+                </a>
+                <small class="spn-time">{{ i.createdAt }}</small>
+              </div>
+            </div>
+          </div>
+          <a href="/article/{{ i._id }}">
+            <div class="posts-pic">
+              <img src="/img/{{ i.avatar }}">
+            </div>
+          </a>
+          <div class="posts-body">
+            <div class="posts-title">
+              <a href="/article/{{ i._id }}">
+                <span>{{ i.title }}</span>
+              </a>
+            </div>
+            <div class="posts-summary">
+              <p>{{ i.content }}</p>
+            </div>
+          </div>
+          <div class="posts-footer">
+            <div class="posts-event">
+              <div class="like-btn" title="لایک ها">
+                <i class="fa fa-heart" aria-hidden="true"></i>
+                <span>{{ i.likes }}</span>
+              </div>
+              <div class="view-btn" title="بازدید ها">
+                <i class="fa fa-eye" aria-hidden="true"></i>
+                <span>{{ i.viewers }}</span>
+              </div>
+            </div>
+            <a href="/article/{{ i._id }}">
+              <span>بیشتر بخوانید . . .</span>
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+<div class="confs-control">
+<a href="/article/" id="previous">
+  <button>قبلی</button>
+</a>
+<a href="/article/" id="next">
+  <button>بعدی</button>
+</a>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{% if empty %}
+{% else %}
+  <script src="/files/js/articles.js"></script>
+{% endif %}
+{% endblock %}
