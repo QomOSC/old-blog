@@ -65,6 +65,7 @@ function taskLess() {
 
 function taskMinProd() {
   gulp.src('src/views/**/*.njk')
+      .pipe(replace(/@@LINK@@/g, config.url))
       .pipe(replace(/@@EMAILADDRESS@@/g, config.email))
       .pipe(replace(/@@EMAILPASSWORD@@/g, config.email_password))
       .pipe(replace(/@@PROJECTNAME@@/g, config.title))
@@ -74,6 +75,7 @@ function taskMinProd() {
 
 function taskMinDev() {
   gulp.src('src/views/**/*.njk')
+      .pipe(replace(/@@LINK@@/g, config.url))
       .pipe(replace(/@@PROJECTNAME@@/g, config.title))
       .pipe(replace(/@@EMAILPASSWORD@@/g, config.email_password))
       .pipe(replace(/@@EMAILADDRESS@@/g, config.email))
@@ -82,6 +84,7 @@ function taskMinDev() {
 
 function taskNunjucks() {
   return gulp.src('src/public/templates/**/*')
+        .pipe(replace(/@@LINK@@/g, config.url))
         .pipe(replace(/@@PROJECTNAME@@/g, config.title))
         .pipe(replace(/@@EMAILPASSWORD@@/g, config.email_password))
         .pipe(replace(/@@EMAILADDRESS@@/g, config.email))
