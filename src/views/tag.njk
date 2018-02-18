@@ -27,37 +27,37 @@
                   <span title="نام نویسنده">{{ i.author.fname }}
                     {{ i.author.lname }}</span>
                 </a>
-                <small class="spn-time">{{ i.post.createdAt }}</small>
+                <small class="spn-time">{{ i.article.createdAt }}</small>
               </div>
             </div>
           </div>
-          <a href="/article/{{ i.post._id }}">
+          <a href="/article/{{ i.article._id }}">
             <div class="posts-pic">
-              <img src="/img/{{ i.post.avatar }}">
+              <img src="/img/{{ i.article.avatar }}">
             </div>
           </a>
           <div class="posts-body">
             <div class="posts-title">
-              <a href="/article/{{ i.post._id }}">
-                <span>{{ i.post.title }}</span>
+              <a href="/article/{{ i.article._id }}">
+                <span>{{ i.article.title }}</span>
               </a>
             </div>
             <div class="posts-summary">
-              <p>{{ i.post.content }}</p>
+              <p>{{ i.article.content }}</p>
             </div>
           </div>
           <div class="posts-footer">
             <div class="posts-event">
               <div class="like-btn" title="لایک ها">
                 <i class="fa fa-heart" aria-hidden="true"></i>
-                <span>{{ i.post.likes }}</span>
+                <span>{{ i.article.likes }}</span>
               </div>
               <div class="view-btn" title="بازدید ها">
                 <i class="fa fa-eye" aria-hidden="true"></i>
-                <span>{{ i.post.viewers }}</span>
+                <span>{{ i.article.viewers }}</span>
               </div>
             </div>
-            <a href="/article/{{ i.post._id }}">
+            <a href="/article/{{ i.article._id }}">
               <span>بیشتر بخوانید . . .</span>
             </a>
           </div>

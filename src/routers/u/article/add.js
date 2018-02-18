@@ -1,28 +1,28 @@
 import { Router } from 'express';
 import multer from 'multer';
 
-const { Post, Member, Newsletter, Tag } = rootRequire('./models');
+const { Article, Member, Newsletter, Tag } = rootRequire('./models');
 const { logged } = rootRequire('./perms');
 const { email, storage } = rootRequire('./utils');
 
 const upload = multer({ dest: 'uploads/', limits: 3000000, storage });
 
 const router = new Router();
-router.get('/u/post/add', logged, (req, res) => {
-  res.render('u/post/add.njk', {
+router.get('/u/article/add', logged, (req, res) => {
+  res.render('u/article/add.njk', {
     member: req.member.user
   });
 });
 
 router.post(
-  '/u/post/add',
+  '/u/article/add',
   logged,
   upload.single('croppedImage'),
   (req, res) => {
 
   if (req.body.title && req.body.content && req.body.minutes) {
 
-    const post = new Post({
+    const article = new Article({
       title: req.body.title,
       content: req.body.content,
       minutes: req.body.minutes,
@@ -30,7 +30,7 @@ router.post(
       avatar: req.file.filename
     });
 
-    post.save().then(async() => {
+    article.save().then(async() => {
 
       if (req.body.tags) {
         let tags = req.body.tags
@@ -38,7 +38,7 @@ router.post(
           .map(x => x.trim().replace(/\s/g, '_').trim());
 
         tags = Array.from(new Set(tags));
-        
+
         for (let i = 0; i < tags.length; i++) {
           if (!tags[i].trim()) {
             tags.splice(i, 1);
@@ -47,7 +47,7 @@ router.post(
 
         for (const i of tags) {
           const newTag = new Tag({
-            article: post._id,
+            article: article._id,
             tagname: i
           });
 
@@ -58,7 +58,7 @@ router.post(
       const member = await Member.findOne({ _id: req.member.user._id });
 
       if (member) {
-        member.posts.push(post._id);
+        member.articles.push(article._id);
 
         member.save().then(async() => {
 
@@ -86,7 +86,7 @@ router.post(
 
               const next = iterator.next();
               if (next.done) {
-                email.newpost(subsArr.join(','), post._id)
+                email.newarticle(subsArr.join(','), article._id)
                 .then(() => {}).catch(() => {});
                 res.json({ type: 0 });
 

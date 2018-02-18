@@ -17,11 +17,11 @@
 {% for i in posts %}
 <div class="posts" id="{{ i._id }}">
   <div class="posts-delete">
-    <form action="/u/post/delete/{{ i._id }}" method="post" class="delete-post">
+    <form action="/u/article/delete/{{ i._id }}" method="post" class="delete-post">
       <input type="hidden" value="{{ i._id }}" name="id">
       <input type="submit" value="حذف">
     </form>
-    <a href="/u/post/{{ i._id }}/edit">تغییر</a>
+    <a href="/u/article/{{ i._id }}/edit">تغییر</a>
   </div>
 
   <a href="/article/{{ i._id }}">
@@ -64,5 +64,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="/files/js/delete-post.js"></script>
+<script src="/files/js/delete-article.js"></script>
 {% endblock %}

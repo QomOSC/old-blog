@@ -3,7 +3,7 @@ const likeSpn = document.getElementById('like-and-dislike-number');
 
 likeDislike.addEventListener('click', () => {
   if (likeDislike.getAttribute('data-status') === 'disliked') {
-    fetch(`/post/like/${likeDislike.getAttribute('data-id')}`, {
+    fetch(`/article/like/${likeDislike.getAttribute('data-id')}`, {
       method: 'POST',
       credentials: 'include',
       headers: new Headers({
@@ -34,7 +34,7 @@ likeDislike.addEventListener('click', () => {
       iziErr();
     });
   } else if (likeDislike.getAttribute('data-status') === 'liked') {
-    fetch(`/post/dislike/${likeDislike.getAttribute('data-id')}`, {
+    fetch(`/article/dislike/${likeDislike.getAttribute('data-id')}`, {
       method: 'POST',
       credentials: 'include',
       headers: new Headers({

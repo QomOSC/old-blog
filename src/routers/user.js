@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-const { Member, Post } = rootRequire('./models');
+const { Member, Article } = rootRequire('./models');
 const { moment } = rootRequire('./utils');
 
 const router = new Router();
@@ -26,35 +26,35 @@ router.get('/user/:username', async(req, res) => {
           username: member.username,
           description: member.description,
           avatar: member.avatar,
-          postsLength: member.posts.length
+          postsLength: member.articles.length
         });
 
-        const posts = await Post
+        const articles = await Article
           .find({ author: member._id })
           .limit(12)
           .sort({ createdAt: -1 });
 
-        if (posts.length !== 0) {
-          const allPosts = [];
+        if (articles.length !== 0) {
+          const allArts = [];
 
-          for (const i of posts) {
-            const onePost = {};
+          for (const i of articles) {
+            const oneArt = {};
 
             let content = i.content.split('').slice(0, 110);
             content.push('.', '.', '.');
             content = content.join('');
 
-            onePost.id = i._id;
-            onePost.title = i.title;
-            onePost.content = content;
-            onePost.minutes = i.minutes;
-            onePost.avatar = i.avatar;
-            onePost.viewers = i.viewers.length;
-            onePost.likes = i.likes.length;
+            oneArt.id = i._id;
+            oneArt.title = i.title;
+            oneArt.content = content;
+            oneArt.minutes = i.minutes;
+            oneArt.avatar = i.avatar;
+            oneArt.viewers = i.viewers.length;
+            oneArt.likes = i.likes.length;
 
-            allPosts.push(onePost);
+            allArts.push(oneArt);
           }
-          user.push(allPosts);
+          user.push(allArts);
         } else {
           user.push('');
         }

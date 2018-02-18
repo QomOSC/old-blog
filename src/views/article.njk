@@ -13,7 +13,7 @@
       <a href="/">
      <img src="/files/image/osc.png" width="55px">
      </a>
-     <h3>{{ p.post.title }}</h3>
+     <h3>{{ p.article.title }}</h3>
      </div>
      <div>
         <i class="fas fa-envelope"></i>
@@ -25,8 +25,8 @@
      <div class="progress-bar" id="myBar"></div>
    </div>
 </section>
-  <div class="viewpost" style="background-image: url('/img/{{ p.post.avatar }}');">
-    <span>{{ p.post.title }}</span>
+  <div class="viewpost" style="background-image: url('/img/{{ p.article.avatar }}');">
+    <span>{{ p.article.title }}</span>
     <div class="viewpost-details">
       <a href="/user/{{ p.author.username }}">
         <div class="profile-img" style="background-image: url('/img/{{ p.author.avatar }}');
@@ -55,7 +55,7 @@
         <div class="viewpost-icon">
           <span><i class="fa fa-eye" aria-hidden="true"></i>{{ p.other.viewers }}</span>
           <span>
-            مطالعه : &nbsp;&nbsp;{{ p.post.minutes }}&nbsp; دقیقه
+            مطالعه : &nbsp;&nbsp;{{ p.article.minutes }}&nbsp; دقیقه
           </span>
         </div>
       </div>
@@ -64,7 +64,7 @@
   </div>
   <div class="viewpost-body">
     <div class="viewpost-text">
-      <div id="markdowned-text">{{ p.post.content }}</div>
+      <div id="markdowned-text">{{ p.article.content }}</div>
       <h1>برچسب ها: </h1>
       {% for i in p.tags %}
         <a href="/tag/{{ i }}">{{ i }}</a>
@@ -77,14 +77,14 @@
               class="fa fa-heart liked"
               aria-hidden="true"
               id="like-dislike-btn"
-              data-id="{{ p.post._id }}"
+              data-id="{{ p.article._id }}"
               data-status="liked"></i>
             {% else %}
             <i
               class="fa fa-heart disliked"
               aria-hidden="true"
               id="like-dislike-btn"
-              data-id="{{ p.post._id }}"
+              data-id="{{ p.article._id }}"
               data-status="disliked"></i>
             {% endif %}
               &nbsp;
@@ -130,9 +130,9 @@
   src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js">
 </script>
   <script>
-    var URL = '{{ p.post._id }}';
+    var URL = '{{ p.article._id }}';
   </script>
   <script src='/files/js/ipchecker.js'></script>
-  <script src='/files/js/like-post.js'></script>
-  <script src="/files/js/viewpost.js"></script>
+  <script src='/files/js/like-article.js'></script>
+  <script src="/files/js/viewarticle.js"></script>
 {% endblock %}

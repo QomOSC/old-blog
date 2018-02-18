@@ -37,6 +37,6 @@ const schema = new Schema({
 
 autoIncrement.initialize(mongoose);
 
-schema.plugin(autoIncrement.plugin, 'Post');
+schema.plugin(autoIncrement.plugin, 'Conference');
 
 export default mongoose.model('Conference', schema);

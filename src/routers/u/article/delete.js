@@ -1,29 +1,29 @@
 import { Router } from 'express';
 
-const { Post, Member, Tag } = rootRequire('./models');
+const { Article, Member, Tag } = rootRequire('./models');
 const { logged } = rootRequire('./perms');
 const { removeImage } = rootRequire('./utils');
 
 const router = new Router();
 
-router.post('/u/post/delete/:id', logged, async(req, res) => {
-  const post = await Post.findOne({
+router.post('/u/article/delete/:id', logged, async(req, res) => {
+  const article = await Article.findOne({
     author: req.member.user._id,
     _id: req.params.id
   });
   const member = await Member.findOne({ _id: req.member.user._id });
 
   if (member) {
-    member.posts.splice(req.params.id, 1);
+    member.articles.splice(req.params.id, 1);
 
     member.save().then(async() => {
 
-      await Tag.remove({ article: post._id });
+      await Tag.remove({ article: article._id });
 
-      if (post.avatar) {
-        removeImage(post.avatar)
+      if (article.avatar) {
+        removeImage(article.avatar)
           .then(() => {
-            post.remove().then(() => {
+            article.remove().then(() => {
               res.json({ type: 0 });
             }).catch(() => {
               res.json({ type: 2 });
@@ -32,7 +32,7 @@ router.post('/u/post/delete/:id', logged, async(req, res) => {
             res.json({ type: 2 });
           });
       } else {
-        post.remove().then(() => {
+        article.remove().then(() => {
           res.json({ type: 0 });
         }).catch(() => {
           res.json({ type: 2 });

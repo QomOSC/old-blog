@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-const { Tag, Member, Post } = rootRequire('./models');
+const { Article, Member, Tag } = rootRequire('./models');
 const { moment } = rootRequire('./utils');
 
 const router = new Router();
@@ -31,25 +31,25 @@ router.get('/tag/:tagname', async(req, res) => {
 
           const oneTag = {
             author: {},
-            post: {}
+            article: {}
           };
 
-          const post = await Post.findOne({ _id: i.article });
+          const article = await Article.findOne({ _id: i.article });
 
-          if (post) {
-            let content = post.content.split('').slice(0, 130);
+          if (article) {
+            let content = article.content.split('').slice(0, 130);
             content.push('.', '.', '.');
             content = content.join('');
 
-            oneTag.post.title = post.title;
-            oneTag.post._id = post._id;
-            oneTag.post.createdAt = moment(post.createdAt);
-            oneTag.post.likes = post.likes.length;
-            oneTag.post.viewers = post.viewers.length;
-            oneTag.post.avatar = post.avatar;
-            oneTag.post.content;
+            oneTag.article.title = article.title;
+            oneTag.article._id = article._id;
+            oneTag.article.createdAt = moment(article.createdAt);
+            oneTag.article.likes = article.likes.length;
+            oneTag.article.viewers = article.viewers.length;
+            oneTag.article.avatar = article.avatar;
+            oneTag.article.content;
 
-            const member = await Member.findOne({ _id: post.author });
+            const member = await Member.findOne({ _id: article.author });
 
             if (member) {
               oneTag.author.fname = member.fname;

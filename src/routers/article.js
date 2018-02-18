@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-const { Post, Member, Tag } = rootRequire('./models');
+const { Article, Member, Tag } = rootRequire('./models');
 const { moment } = rootRequire('./utils');
 
 const router = new Router();
@@ -8,38 +8,38 @@ const router = new Router();
 router.get('/article/:id', async(req, res) => {
   req.params.id = req.params.id.toLowerCase();
 
-  const post = await Post.findOne({ _id: req.params.id });
+  const article = await Article.findOne({ _id: req.params.id });
 
-  if (post) {
-    const onePost = { post, author: {}, other: {}, liked: false, tags: [] };
+  if (article) {
+    const oneArt = { article, author: {}, other: {}, liked: false, tags: [] };
 
-    onePost.other.createdAt = moment(post.createdAt);
-    onePost.other.likes = post.likes.length;
-    onePost.other.viewers = post.viewers.length;
+    oneArt.other.createdAt = moment(article.createdAt);
+    oneArt.other.likes = article.likes.length;
+    oneArt.other.viewers = article.viewers.length;
 
     if (req.member.user) {
-      onePost.liked =
-        post.likes.indexOf(req.member.user._id) !== -1 ? true : false;
+      oneArt.liked =
+        article.likes.indexOf(req.member.user._id) !== -1 ? true : false;
     }
 
-    const tags = await Tag.find({ article: post._id });
+    const tags = await Tag.find({ article: article._id });
 
     if (tags.length !== 0) {
       for (const i of tags) {
-        onePost.tags.push(i.tagname);
+        oneArt.tags.push(i.tagname);
       }
     }
 
-    const member = await Member.findOne({ _id: post.author });
+    const member = await Member.findOne({ _id: article.author });
 
     if (member) {
-      onePost.author.avatar = member.avatar;
-      onePost.author.fname = member.fname;
-      onePost.author.lname = member.lname;
-      onePost.author.username = member.username;
-      onePost.author.description = member.description;
+      oneArt.author.avatar = member.avatar;
+      oneArt.author.fname = member.fname;
+      oneArt.author.lname = member.lname;
+      oneArt.author.username = member.username;
+      oneArt.author.description = member.description;
 
-      res.render('article.njk', { p: onePost });
+      res.render('article.njk', { p: oneArt });
     } else {
       res.reply.notFound();
     }
@@ -53,13 +53,13 @@ router.get('/article/:id', async(req, res) => {
 router.post('/article/:id', async(req, res) => {
   req.params.id = req.params.id.toLowerCase();
 
-  const post = await Post.findOne({ _id: req.params.id });
+  const article = await Article.findOne({ _id: req.params.id });
 
-  if (post) {
-    if (!post.viewers.includes(req.body.ip)) {
-      post.viewers.push(req.body.ip);
+  if (article) {
+    if (!article.viewers.includes(req.body.ip)) {
+      article.viewers.push(req.body.ip);
 
-      post.save().then(() => {
+      article.save().then(() => {
         res.json({ done: true });
       }).catch(() => {
         res.json({ done: false });

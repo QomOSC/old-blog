@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-const { Member, Post, Newsletter } = rootRequire('./models');
+const { Member, Article, Newsletter } = rootRequire('./models');
 const { logged } = rootRequire('./perms');
 const { removeImage } = rootRequire('./utils');
 
@@ -23,16 +23,17 @@ router.post('/u/setting/delete', logged, async(req, res) => {
       if (nl) {
         nl.remove().then(async() => {
 
-          const posts = await Post.find({ author: req.member.user._id });
+          const articles =
+            await Article.find({ author: req.member.user._id });
 
-          if (posts.length === 0) {
+          if (articles.length === 0) {
             req.member.logout();
             // Done
             res.json({ type: 0 });
           } else {
 
             function* getResponse() {
-              for (const i of posts) {
+              for (const i of articles) {
                 yield new Promise(resolve => {
 
                   if (i.avatar) {
@@ -73,16 +74,17 @@ router.post('/u/setting/delete', logged, async(req, res) => {
         });
       } else {
 
-        const posts = await Post.find({ author: req.member.user._id });
+        const articles =
+          await Article.find({ author: req.member.user._id });
 
-        if (posts.length === 0) {
+        if (articles.length === 0) {
           req.member.logout();
           // Done
           res.json({ type: 0 });
         } else {
 
           function* getResponse() {
-            for (const i of posts) {
+            for (const i of articles) {
               yield new Promise(resolve => {
 
                 if (i.avatar) {

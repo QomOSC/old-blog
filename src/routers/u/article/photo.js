@@ -10,7 +10,7 @@ const upload = multer({ dest: 'uploads/', limits: 3000000, storage });
 
 
 router.post(
-  '/u/post/addonephoto',
+  '/u/article/addonephoto',
   logged,
   upload.single('postPhoto'),
   (req, res) => {

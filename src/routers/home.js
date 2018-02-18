@@ -1,13 +1,13 @@
 import { Router } from 'express';
 
-const { Post, Member, Conference } = rootRequire('./models');
+const { Article, Member, Conference } = rootRequire('./models');
 const { moment } = rootRequire('./utils');
 
 const router = new Router();
 
 router.get('/', async(req, res) => {
 
-  const doc = await Post.find({}).sort({ createdAt: -1 }).limit(20);
+  const doc = await Article.find({}).sort({ createdAt: -1 }).limit(20);
 
   if (doc.length === 0) {
     res.render('home.njk', {
@@ -15,7 +15,7 @@ router.get('/', async(req, res) => {
     });
   } else {
 
-    const posts = [];
+    const articles = [];
     const lastConf = { provider: {} };
 
     function* getResponse() {
@@ -26,7 +26,7 @@ router.get('/', async(req, res) => {
           content.push('.', '.', '.');
           content = content.join('');
 
-          const onePost = {
+          const oneArticle = {
             _id: i._id,
             title: i.title,
             createdAt: moment(i.createdAt),
@@ -40,12 +40,12 @@ router.get('/', async(req, res) => {
           const member = await Member.findOne({ _id: i.author });
 
           if (member) {
-            onePost.author.fname = member.fname;
-            onePost.author.lname = member.lname;
-            onePost.author.username = member.username;
-            onePost.author.avatar = member.avatar;
+            oneArticle.author.fname = member.fname;
+            oneArticle.author.lname = member.lname;
+            oneArticle.author.username = member.username;
+            oneArticle.author.avatar = member.avatar;
 
-            posts.push(onePost);
+            articles.push(oneArticle);
             resolve();
           } else {
             res.reply.error();
@@ -87,7 +87,7 @@ router.get('/', async(req, res) => {
 
       const next = iterator.next();
       if (next.done) {
-        res.render('home.njk', { posts, lastConf });
+        res.render('home.njk', { posts: articles, lastConf });
         return;
       }
 

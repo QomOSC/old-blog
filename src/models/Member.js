@@ -69,7 +69,7 @@ const schema = new Schema({
     type: Date,
     default: Date.now
   },
-  posts: [{ // The ID of your posts
+  articles: [{ // The ID of your articles
     type: String,
     trim: true
   }],

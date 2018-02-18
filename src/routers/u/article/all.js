@@ -1,28 +1,28 @@
 import { Router } from 'express';
 
-const { Post } = rootRequire('./models');
+const { Article } = rootRequire('./models');
 const { logged } = rootRequire('./perms');
 
 const router = new Router();
 
-router.get('/u/post/all', logged, async(req, res) => {
+router.get('/u/article/all', logged, async(req, res) => {
 
-  const authorposts = await Post
+  const authorarticles = await Article
     .find({ author: req.member.user._id })
     .sort({ createdAt: -1 })
     .limit(9);
 
-  if (authorposts === 0) {
-    res.render('u/post/all.njk', {
+  if (authorarticles.length === 0) {
+    res.render('u/article/all.njk', {
       member: req.member.user,
       empty: true
     });
   } else {
 
-    const posts = [];
+    const articles = [];
 
     function* getResponse() {
-      for (const i of authorposts) {
+      for (const i of authorarticles) {
         yield new Promise(resolve => {
 
           let content = i.content.split('').slice(0, 130);
@@ -38,7 +38,7 @@ router.get('/u/post/all', logged, async(req, res) => {
             content
           };
 
-          posts.push(onePost);
+          articles.push(onePost);
 
           resolve();
         });
@@ -50,9 +50,9 @@ router.get('/u/post/all', logged, async(req, res) => {
 
       const next = iterator.next();
       if (next.done) {
-        res.render('u/post/all.njk', {
+        res.render('u/article/all.njk', {
           member: req.member.user,
-          posts
+          posts: articles
         });
         return;
       }

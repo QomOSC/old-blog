@@ -63,7 +63,7 @@ up.addEventListener('change', () => {
           fd.append('tags', form.tags.value);
           fd.append('minutes', minutes);
 
-          fetch('/u/post/add', {
+          fetch('/u/article/add', {
             method: 'POST',
             credentials: 'include',
             body: fd
@@ -93,7 +93,7 @@ e => {
       console.log(e.target.files[0]);
       PD.append('postPhoto', e.target.files[0]);
 
-      fetch('/u/post/addonephoto', {
+      fetch('/u/article/addonephoto', {
         method: 'POST',
         credentials: 'include',
         body: PD

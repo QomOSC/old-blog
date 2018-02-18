@@ -43,6 +43,6 @@ const schema = new Schema({
 
 autoIncrement.initialize(mongoose);
 
-schema.plugin(autoIncrement.plugin, 'Post');
+schema.plugin(autoIncrement.plugin, 'Article');
 
-export default mongoose.model('Post', schema);
+export default mongoose.model('Article', schema);

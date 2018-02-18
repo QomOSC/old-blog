@@ -1,25 +1,25 @@
 import { Router } from 'express';
 
-const { Post } = rootRequire('./models');
+const { Article } = rootRequire('./models');
 
 const router = new Router();
 
-router.post('/post/like/:id', async(req, res) => {
+router.post('/article/dislike/:id', async(req, res) => {
   if (req.member.user) {
 
-    const post = await Post.findOne({ _id: req.params.id });
+    const article = await Article.findOne({ _id: req.params.id });
 
-    if (post) {
-      
-      if (post.likes.indexOf(req.member.user._id) === -1) {
-        post.likes.push(req.member.user._id);
+    if (article) {
 
-        post.save().then(() => {
+      if (article.likes.indexOf(req.member.user._id) !== -1) {
+
+        article.likes.splice(req.member.user._id, 1);
+
+        article.save().then(() => {
           res.json({ type: 0, text: 0 });
         }).catch(() => {
           res.json({ type: 2, text: 0 });
         });
-
       } else {
         // Duplicate
         res.json({ type: 0, text: 1 });
@@ -27,8 +27,8 @@ router.post('/post/like/:id', async(req, res) => {
     } else {
       res.json({ type: 2, text: 0 });
     }
+
   } else {
-    // Not Logged in
     res.json({ type: 2, text: 1 });
   }
 });
