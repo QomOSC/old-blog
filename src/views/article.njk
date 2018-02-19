@@ -74,10 +74,7 @@
   <div class="viewpost-body">
     <div class="viewpost-text">
       <div id="markdowned-text">{{ p.article.content }}</div>
-      <h1>برچسب ها: </h1>
-      {% for i in p.tags %}
-        <a href="/tag/{{ i }}">{{ i }}</a>
-      {% endfor %}
+
       <div class="event">
         <div class="posts-event">
           <div id="dislike-btn">
@@ -99,11 +96,18 @@
               &nbsp;
           </div>
           <span class="like-spn" id="like-and-dislike-number">{{ p.other.likes }}</span>
+          <span>
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            &nbsp;{{ p.other.createdAt }}
+          </span>
         </div>
-        <span>
-          <i class="fa fa-calendar" aria-hidden="true"></i>
-          &nbsp;{{ p.other.createdAt }}
-        </span>
+
+        <div class="dtags">
+        <span>برچسب ها: </span>
+        {% for i in p.tags %}
+          <a href="/tag/{{ i }}" class="atags">{{ i }}</a>
+        {% endfor %}
+      </div>
       </div>
     </div>
   </div>

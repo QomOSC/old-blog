@@ -122,9 +122,6 @@
 
 .event {
   width: auto;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
   background: #f2f2f2;
   position: absolute;
   bottom: 0;
@@ -136,6 +133,13 @@
 
   .posts-event {
     margin-left: 20px;
+    width: auto;
+    display: flex;
+    align-items: center;
+
+    span {
+      margin-right: 5px;
+    }
   }
 
   i {
@@ -294,6 +298,28 @@
   img {
     margin-left: 30px;
     vertical-align: middle;
+  }
+}
+
+.dtags {
+  background: #e5e5e5;
+  width: auto;
+  display: flex;
+  padding: 5px;
+
+}
+.atags {
+  background: #6742BD;
+  margin-right: 10px;
+  border-radius: 50px;
+  width: auto;
+  padding: 2% 2%;
+  color: #fff;
+  text-align: center;
+  transition: 0.2s;
+
+  &:hover {
+    background-color: darken(#6742BD, 10%);
   }
 }
 // ؟//////////////////////////////////
