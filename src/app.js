@@ -163,7 +163,7 @@ app.use((req, res, next) => {
   };
 
   if (req.member.user) {
-    obj.logged = req.member.user.fname;
+    obj.logged = req.member.user;
   }
 
   res.localSource = obj;

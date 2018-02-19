@@ -17,18 +17,18 @@
         <h3>مشخصات کاربر</h3>
         <form action="/u/setting" method="post" name="main-setting">
 
-          <input type="text" name="fname" required="required" value="{{ member.fname }}" placeholder="نام">
+          <input type="text" name="fname" required="required" value="{{ locals.logged.fname }}" placeholder="نام">
 
-          <input type="text" name="lname" required="required" value="{{ member.lname }}" placeholder="نام خانوادگی">
+          <input type="text" name="lname" required="required" value="{{ locals.logged.lname }}" placeholder="نام خانوادگی">
 
-          <input type="text" name="username" required="required" value="{{ member.username }}" placeholder="یوزرنیم">
+          <input type="text" name="username" required="required" value="{{ locals.logged.username }}" placeholder="یوزرنیم">
 
-          {% if member.description %}
+          {% if locals.logged.description %}
           <textarea
             name="description"
             rows="4"
             cols="3"
-            placeholder="درباره">{{ member.description }}</textarea>
+            placeholder="درباره">{{ locals.logged.description }}</textarea>
           {% else %}
           <textarea
             name="description"
@@ -37,7 +37,7 @@
             placeholder="درباره"></textarea>
           {% endif %}
 
-          <input type="email" name="email" required="required" value="{{ member.email }}" placeholder="ایمیل">
+          <input type="email" name="email" required="required" value="{{ locals.logged.email }}" placeholder="ایمیل">
 
           <input type="submit" value="ثبت">
 

@@ -50,7 +50,6 @@ router.get('/u', logged, async(req, res) => {
       const next = iterator.next();
       if (next.done) {
         res.render('u/u.njk', {
-          member: req.member.user,
           posts: allArts
         });
 
@@ -62,7 +61,6 @@ router.get('/u', logged, async(req, res) => {
 
   } else {
     res.render('u/u.njk', {
-      member: req.member.user,
       postEmpty: true
     });
   }

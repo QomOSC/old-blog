@@ -37,6 +37,20 @@
 {% endfor %}
 </div>
 {% endif %}
+<form
+  action="/u/sub/manage/remove/"
+  method="post"
+  name="remove-immidiately">
+
+  <input
+    type="text"
+    name="username"
+    value="{{ i.username }}"
+    placeholder="یوزرنیم">
+
+  <input type="submit" value="حذف کاربر">
+
+</form>
 {% endblock %}
 
 {% block scripts %}

@@ -14,7 +14,6 @@ router.get('/u/article/all', logged, async(req, res) => {
 
   if (authorarticles.length === 0) {
     res.render('u/article/all.njk', {
-      member: req.member.user,
       empty: true
     });
   } else {
@@ -51,7 +50,6 @@ router.get('/u/article/all', logged, async(req, res) => {
       const next = iterator.next();
       if (next.done) {
         res.render('u/article/all.njk', {
-          member: req.member.user,
           posts: articles
         });
         return;

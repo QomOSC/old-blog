@@ -9,9 +9,7 @@ const upload = multer({ dest: 'uploads/', limits: 3000000, storage });
 
 const router = new Router();
 router.get('/u/article/add', logged, (req, res) => {
-  res.render('u/article/add.njk', {
-    member: req.member.user
-  });
+  res.render('u/article/add.njk');
 });
 
 router.post(

@@ -29,7 +29,7 @@
         </button>
           <div id="myDropdown" class="dropdown-content">
             <a href="/u/article/add">پست کن</a>
-            {% if member.type >= 3 %}
+            {% if locals.logged.type >= 3 %}
             <a href="/u/sub">افراد درخواست داده</a>
             <a href="/u/sub/manage">مدیریت کاربران</a>
             <a href="/u/conference/manage">مدیریت ارائه ها</a>
@@ -49,7 +49,7 @@
             <i class="fa fa-edit" aria-hidden="true"></i>
           </a>
         </li>
-        {% if member.type >= 3 %}
+        {% if locals.logged.type >= 3 %}
           <li class="tooltip">
             <span class="tooltiptext">افراد درخواست داده</span>
             <a href="/u/sub">
@@ -108,13 +108,13 @@
       </ul>
 
       <div class="profile-avatar-header">
-        {% if member.avatar %}
-          <img src="/img/{{ member.avatar }}" alt="عکس کاربر">
+        {% if locals.logged.avatar %}
+          <img src="/img/{{ locals.logged.avatar }}" alt="عکس کاربر">
         {% else %}
           <img src="/files/image/default-user.png" alt="عکس کاربر">
         {% endif %}
         {% if locals.logged %}
-          <a href="/u">{{ locals.logged }}</a>
+          <a href="/u">{{ locals.logged.fname }}</a>
         {% endif %}
       </div>
       <div>

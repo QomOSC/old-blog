@@ -9,10 +9,10 @@
 <div id="container">
   <div id="user-panel">
     <div class="user-name">
-      <span>{{ member.fname }} {{ member.lname }}</span>
+      <span>{{ locals.logged.fname }} {{ locals.logged.lname }}</span>
     </div>
     {% if member.avatar %}
-      <img src="/img/{{ member.avatar }}" alt="عکس کاربر">
+      <img src="/img/{{ locals.logged.avatar }}" alt="عکس کاربر">
     {% else %}
       <img src="/files/image/default-user.png" alt="عکس کاربر">
     {% endif %}
@@ -22,33 +22,33 @@
         <td title="ایمیل">
           <i class="fa fa-envelope" aria-hidden="true"></i>
         </td>
-        <td>{{ member.email }}</td>
+        <td>{{ locals.logged.email }}</td>
       </tr>
       <tr>
         <td title="یوزرنیم">
           <i class="fa fa-user" aria-hidden="true"></i>
         </td>
-        <td>{{ member.username}}</td>
+        <td>{{ locals.logged.username }}</td>
       </tr>
-      {% if member.description %}
+      {% if locals.logged.description %}
         <tr>
           <td title="درباره کاربر">
             <i class="fa fa-info" aria-hidden="true"></i>
           </td>
-          <td>{{ member.description }}</td>
+          <td>{{ locals.logged.description }}</td>
         </tr>
       {% endif %}
       <tr>
         <td>
           <i class="fa fa-user-secret" aria-hidden="true"></i>
         </td>
-        {% if member.type === 1 %}
+        {% if locals.logged.type === 1 %}
           <td>رتبه: در حال انتظار</td>
-        {% elif member.type === 2 %}
+        {% elif locals.logged.type === 2 %}
           <td>رتبه: عضو معمولی</td>
-        {% elif member.type === 3 %}
+        {% elif locals.logged.type === 3 %}
           <td>رتبه: مدیر</td>
-        {% elif member.type === 4 %}
+        {% elif locals.logged.type === 4 %}
           <td>رتبه: مدیر کل</td>
         {% endif %}
       </tr>

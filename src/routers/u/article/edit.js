@@ -13,8 +13,7 @@ router.get('/u/article/:id/edit', logged, async(req, res) => {
   req.member.user._id.toString()) {
 
     res.render('u/article/edit.njk', {
-      article,
-      member: req.member.user
+      article
     });
   } else {
     res.reply.notFound();

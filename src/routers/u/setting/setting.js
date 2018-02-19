@@ -45,7 +45,7 @@ async function setNewValues(req, res) {
 }
 
 router.get('/u/setting', logged, (req, res) => {
-  res.render('u/setting/setting.njk', { member: req.member.user });
+  res.render('u/setting/setting.njk');
 });
 
 router.post('/u/setting', logged, async(req, res) => {

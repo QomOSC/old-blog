@@ -18,7 +18,7 @@ router.get('/u/sub/manage', perm.logged, perm.u.admin, async(req, res) => {
         yield new Promise(async resolve => {
 
           const sub = await Member.findOne({ _id: i });
-          
+
           subs.push(sub);
           resolve();
         });
@@ -31,7 +31,6 @@ router.get('/u/sub/manage', perm.logged, perm.u.admin, async(req, res) => {
       const next = iterator.next();
       if (next.done) {
         res.render('u/sub/manage.njk', {
-          member: req.member.user,
           subs
         });
 
@@ -43,7 +42,6 @@ router.get('/u/sub/manage', perm.logged, perm.u.admin, async(req, res) => {
 
   } else {
     res.render('u/sub/manage.njk', {
-      member: req.member.user,
       empty: true
     });
   }

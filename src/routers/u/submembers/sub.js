@@ -11,13 +11,11 @@ router.get('/u/sub', perm.logged, perm.u.admin, async(req, res) => {
 
   if (members.length !== 0) {
     res.render('u/sub/all.njk', {
-      member: req.member.user,
       members
     });
   } else {
     res.render('u/sub/all.njk', {
-      empty: true,
-      member: req.member.user
+      empty: true
     });
   }
 });

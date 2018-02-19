@@ -15,7 +15,7 @@ router.post(
 
   const member = await Member.findOne({ username: req.params.username });
 
-  if (member && member.type === 2) {
+  if (member && member.type <= 2) {
     member.remove().then(async() => {
 
       const admin = await Member.findOne({ _id: req.member.user._id });

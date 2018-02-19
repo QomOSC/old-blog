@@ -53,7 +53,6 @@ router.get(
         const next = iterator.next();
         if (next.done) {
           res.render('u/conference/manage/manage.njk', {
-            member: req.member.user,
             confs: allConfs
           });
           return;
@@ -63,7 +62,6 @@ router.get(
       })();
     } else {
       res.render('u/conference/manage/manage.njk', {
-        member: req.member.user,
         empty: true
       });
     }
