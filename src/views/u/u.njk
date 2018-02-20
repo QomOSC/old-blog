@@ -11,7 +11,7 @@
     <div class="user-name">
       <span>{{ locals.logged.fname }} {{ locals.logged.lname }}</span>
     </div>
-    {% if member.avatar %}
+    {% if locals.logged.avatar %}
       <img src="/img/{{ locals.logged.avatar }}" alt="عکس کاربر">
     {% else %}
       <img src="/files/image/default-user.png" alt="عکس کاربر">
