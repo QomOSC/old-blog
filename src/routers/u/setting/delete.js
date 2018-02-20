@@ -1,6 +1,14 @@
 import { Router } from 'express';
 
-const { Member } = rootRequire('./models');
+const {
+  Member,
+  Article,
+  Tag,
+  Newsletter,
+  Conference,
+  Gallery
+} = rootRequire('./models');
+
 const { logged } = rootRequire('./perms');
 const { removeImage, remove } = rootRequire('./utils');
 
@@ -16,16 +24,15 @@ router.post('/u/setting/delete', logged, async(req, res) => {
     }
 
     await member.remove();
-    await remove.userArticle(member._id);
-    // await remove.userNewsletter(member.email);
-    // await remove.userConference(member._id);
-    // await remove.userGallery(member._id);
+    await remove.userArticle(member._id, Article, Tag, removeImage);
+    await remove.userNewsletter(member.email, Newsletter);
+    await remove.userConference(member._id, Conference);
+    await remove.userGallery(member._id, Gallery);
 
     req.member.logout();
 
     res.json({ type: 0 });
   } catch (e) {
-    console.log(e);
     res.json({ type: 2 });
   }
 });

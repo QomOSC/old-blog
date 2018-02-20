@@ -1,16 +1,13 @@
-const { Gallery } = rootRequire('./models');
-
-const removeUserGals = id =>
-  new Promise(async(resolve, reject) => {
+export default function(id, Gallery) {
+  return new Promise(async(resolve, reject) => {
     const userGals = await Gallery.find({ photographer: id });
 
     if (userGals.length !== 0) {
-      userGals.remove().then(() => {
+      Gallery.remove({ photographer: id }).then(() => {
         resolve();
       }).catch(() => {
         reject();
       });
     } else { resolve(); }
   });
-
-export default removeUserGals;
+}

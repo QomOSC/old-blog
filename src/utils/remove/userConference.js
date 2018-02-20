@@ -1,16 +1,13 @@
-const { Conference } = rootRequire('./models');
-
-const removeUserConfs = id =>
-  new Promise(async(resolve, reject) => {
+export default function(id, Conference) {
+  return new Promise(async(resolve, reject) => {
     const userConfs = await Conference.find({ provider: id });
 
     if (userConfs.length !== 0) {
-      userConfs.remove().then(() => {
+      Conference.remove({ provider: id }).then(() => {
         resolve();
       }).catch(() => {
         reject();
       });
     } else { resolve(); }
   });
-
-export default removeUserConfs;
+}

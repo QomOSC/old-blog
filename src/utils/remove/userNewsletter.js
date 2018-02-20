@@ -1,16 +1,13 @@
-const { Newsletter } = rootRequire('./models');
-
-const removeUserNews = email =>
-  new Promise(async(resolve, reject) => {
+export default function(email, Newsletter) {
+  return new Promise(async(resolve, reject) => {
     const userNews = await Newsletter.find({ email });
 
     if (userNews.length !== 0) {
-      userNews.remove().then(() => {
+      Newsletter.remove({ email }).then(() => {
         resolve();
       }).catch(() => {
         reject();
       });
     } else { resolve(); }
   });
-
-export default removeUserNews;
+}
