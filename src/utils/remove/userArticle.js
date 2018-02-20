@@ -1,5 +1,5 @@
-import { Article, Tag } from '../../models';
-const { removeImage } = require('../removeImage');
+const { Article, Tag } = rootRequire('./models');
+const { removeImage } = rootRequire('./utils');
 
 const removeUserArticles = id => new Promise(async(resolve, reject) => {
   const userArticles = await Article.find({ author: id });

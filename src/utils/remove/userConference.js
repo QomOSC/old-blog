@@ -1,4 +1,4 @@
-const { Conference } = require('../../models');
+const { Conference } = rootRequire('./models');
 
 const removeUserConfs = id =>
   new Promise(async(resolve, reject) => {

@@ -1,4 +1,4 @@
-const { Gallery } = require('../../models');
+const { Gallery } = rootRequire('./models');
 
 const removeUserGals = id =>
   new Promise(async(resolve, reject) => {

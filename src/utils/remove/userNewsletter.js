@@ -1,4 +1,4 @@
-const { Newsletter } = require('../../models');
+const { Newsletter } = rootRequire('./models');
 
 const removeUserNews = email =>
   new Promise(async(resolve, reject) => {
