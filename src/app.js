@@ -13,7 +13,6 @@ import helmet from 'helmet';
 
 import config from './config.json';
 import replies from './replies';
-import UserManager from './utils/UserManager';
 
 /**
  * setting global rootRequire and import some stuff
@@ -21,6 +20,7 @@ import UserManager from './utils/UserManager';
 
 global.rootRequire = name => require(path.resolve(__dirname, name));
 
+const UserManager = require('./utils/UserManager');
 const routers = require('./routers');
 
 /**
