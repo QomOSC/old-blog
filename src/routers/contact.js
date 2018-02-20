@@ -4,6 +4,10 @@ const { Opinion } = rootRequire('./models');
 
 const router = new Router();
 
+router.get('/contact-us', (req, res) => {
+  res.redirect('/contact');
+});
+
 router.get('/contact', (req, res) => {
   res.render('contact.njk');
 });
@@ -14,10 +18,8 @@ router.post('/contact', (req, res) => {
       req.body.title &&
       req.body.captcha &&
       req.body.description) {
-    req.body.email = req.body.email.toLowerCase();
-    req.body.captcha = req.body.captcha.toLowerCase();
 
-    if (req.body.captcha === req.session.captcha) {
+    if (req.body.captcha.toLowerCase() === req.session.captcha) {
       const opinion = new Opinion({
         name: req.body.name,
         title: req.body.title,
