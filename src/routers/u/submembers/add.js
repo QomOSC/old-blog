@@ -29,11 +29,9 @@ router.post(
 
             admin.save().then(() => {
 
-              email.submembers.accept(member.email).then(() => {
-                res.json({ type: 0 });
-              }).catch(() => {
-                res.json({ type: 2, text: 0 });
-              });
+              res.json({ type: 0 });
+              email.submembers.accept(member.email)
+              .then(() => {}).catch(() => {});
             }).catch(() => {
               res.json({ type: 2, text: 0 });
             });
