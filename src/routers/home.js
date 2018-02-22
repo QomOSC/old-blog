@@ -8,17 +8,20 @@ const router = new Router();
 router.get('/', async(req, res) => {
 
   const doc = await Article.find({}).sort({ createdAt: -1 }).limit(20);
+  const conf = await Conference
+  .find({ type: { $in: [3, 4] } })
+  .sort({ createdAt: -1 })
+  .limit(1);
 
-  if (doc.length === 0) {
-    res.render('home.njk', {
-      empty: true
-    });
-  } else {
+  const articles = [];
+  let articleEmpty = false;
 
-    const articles = [];
-    const lastConf = { provider: {} };
+  const lastConf = { provider: {} };
 
-    function* getResponse() {
+  function* getResponse() {
+    if (doc.length === 0) {
+      articleEmpty = true;
+    } else {
       for (const i of doc) {
 
         yield new Promise(async resolve => {
@@ -52,48 +55,44 @@ router.get('/', async(req, res) => {
           }
         });
       }
-
-      yield new Promise(async resolve => {
-
-        const conf = await Conference
-                .find({ type: { $in: [3, 4] } })
-                .sort({ createdAt: -1 })
-                .limit(1);
-
-        if (conf.length === 0) {
-          lastConf.empty = true;
-          resolve();
-        } else {
-          lastConf.title = conf[0].title;
-          lastConf.description = conf[0].description;
-          lastConf.avatar = conf[0].avatar;
-          lastConf.createdAt = moment(conf[0].createdAt);
-
-          const provider = await Member.findOne({ _id: conf[0].provider });
-
-          if (provider) {
-            lastConf.provider.fname = provider.fname;
-            lastConf.provider.lname = provider.lname;
-            lastConf.provider.username = provider.username;
-            lastConf.provider.avatar = provider.avatar;
-          }
-          resolve();
-        }
-      });
     }
 
-    const iterator = getResponse();
-    (function loop() {
+    yield new Promise(async resolve => {
 
-      const next = iterator.next();
-      if (next.done) {
-        res.render('home.njk', { posts: articles, lastConf });
-        return;
+
+      if (conf.length === 0) {
+        lastConf.empty = true;
+        resolve();
+      } else {
+        lastConf.title = conf[0].title;
+        lastConf.description = conf[0].description;
+        lastConf.avatar = conf[0].avatar;
+        lastConf.createdAt = moment(conf[0].createdAt);
+
+        const provider = await Member.findOne({ _id: conf[0].provider });
+
+        if (provider) {
+          lastConf.provider.fname = provider.fname;
+          lastConf.provider.lname = provider.lname;
+          lastConf.provider.username = provider.username;
+          lastConf.provider.avatar = provider.avatar;
+        }
+        resolve();
       }
-
-      next.value.then(loop);
-    })();
+    });
   }
+
+  const iterator = getResponse();
+  (function loop() {
+
+    const next = iterator.next();
+    if (next.done) {
+      res.render('home.njk', { posts: articles, lastConf, articleEmpty });
+      return;
+    }
+
+    next.value.then(loop);
+  })();
 });
 
 export default router;

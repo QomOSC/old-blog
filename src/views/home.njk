@@ -64,6 +64,9 @@
   </section>
   {% endif %}
   <div class="home-content">
+    {% if articleEmpty %}
+      <h3>هیچ مطلبی ثبت نشده است</h3>
+    {% else %}
     <div class="last-posts">
       <h3>مطالب اخیر</h3>
       <div class="latset-posts">
@@ -117,6 +120,7 @@
         {% endfor %}
       </div>
     </div>
+    {% endif %}
     </div>
 
   {% endblock %}
