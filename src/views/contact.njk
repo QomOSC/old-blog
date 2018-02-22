@@ -43,7 +43,7 @@
 
         <div class="cap">
         <p id="svg-captcha"></p>
-        
+
         <i class="fas fa-sync-alt" id="change-captcha"></i>
         </div>
 
@@ -82,6 +82,13 @@
 </div>
 
 </div>
+{% for i in opinions %}
+<p>{{ i.name }}</p>
+<p>{{ i.email }}</p>
+<p>{{ i.title }}</p>
+<p>{{ i.description }}</p>
+<p>{{ i.createdAt }}</p>
+{% endfor %}
 {% endblock %}
 
 {% block scripts %}

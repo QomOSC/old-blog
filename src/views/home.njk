@@ -39,7 +39,6 @@
 </div>
   </div>
   {% if lastConf.empty %}
-    <h1>هیچ ارائه ای وجود ندارد</h1>
   {% else %}
   <section class="evand-banner">
     <div class="subject">
@@ -63,10 +62,9 @@
          <a href="https://evand.com/events/qomosc16">مشاهده در ایوند</a>
   </section>
   {% endif %}
+  {% if articleEmpty %}
+  {% else %}
   <div class="home-content">
-    {% if articleEmpty %}
-      <h3>هیچ مطلبی ثبت نشده است</h3>
-    {% else %}
     <div class="last-posts">
       <h3>مطالب اخیر</h3>
       <div class="latset-posts">

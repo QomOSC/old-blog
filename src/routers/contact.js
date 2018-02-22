@@ -1,6 +1,7 @@
 import { Router } from 'express';
 
 const { Opinion } = rootRequire('./models');
+const { moment } = rootRequire('./utils');
 
 const router = new Router();
 
@@ -8,8 +9,47 @@ router.get('/contact-us', (req, res) => {
   res.redirect('/contact');
 });
 
-router.get('/contact', (req, res) => {
-  res.render('contact.njk');
+router.get('/contact', async(req, res) => {
+  const lastTenOpinions = await Opinion
+  .find({ type: 2 })
+  .sort({ createdAt: -1 })
+  .limit(1);
+
+  const opinions = [];
+
+  function* getResponse() {
+
+    for (const i of lastTenOpinions) {
+      yield new Promise(async resolve => {
+
+        const oneOP = {
+          name: i.name,
+          email: i.email,
+          title: i.title,
+          description: i.description,
+          createdAt: moment(i.createdAt)
+        };
+
+        opinions.push(oneOP);
+        resolve();
+      });
+    }
+  }
+
+  const iterator = getResponse();
+
+  (function loop() {
+
+    const next = iterator.next();
+    if (next.done) {
+      res.render('contact.njk', {
+        opinions
+      });
+      return;
+    }
+
+    next.value.then(loop);
+  })();
 });
 
 router.post('/contact', (req, res) => {
