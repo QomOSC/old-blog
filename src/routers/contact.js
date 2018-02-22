@@ -13,7 +13,7 @@ router.get('/contact', async(req, res) => {
   const lastTenOpinions = await Opinion
   .find({ type: 2 })
   .sort({ createdAt: -1 })
-  .limit(1);
+  .limit(10);
 
   const opinions = [];
 
