@@ -52,12 +52,12 @@
         name="captcha"
         required
         placeholder="کد امنیتی">
-
+     <div class="div-btn">
       <input
         type="submit"
         value="ارسال پیام"
         class="green-btn">
-
+      </div>
     </form>
 
   </div>
@@ -82,6 +82,8 @@
 </div>
 
 </div>
+
+
 {% for i in opinions %}
 <p>{{ i.name }}</p>
 <p>{{ i.email }}</p>
