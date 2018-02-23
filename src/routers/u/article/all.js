@@ -5,7 +5,7 @@ const { logged } = rootRequire('./perms');
 
 const router = new Router();
 
-router.get('/u/article/all', logged, async(req, res) => {
+router.get('/u/article', logged, async(req, res) => {
 
   const authorarticles = await Article
     .find({ author: req.member.user._id })

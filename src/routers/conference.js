@@ -5,7 +5,7 @@ const { moment } = rootRequire('./utils');
 
 const router = new Router();
 
-router.get('/conferences', async(req, res) => {
+router.get('/conference', async(req, res) => {
   const page = parseInt(req.query.page) || 0,
         start = page * 12,
         stop = page * 12 + 12;
@@ -19,13 +19,13 @@ router.get('/conferences', async(req, res) => {
 
   if (confs.length === 0) {
     if (req.query.q) {
-      res.render('conferences.njk', {
+      res.render('conference.njk', {
         type: 1,
         query: req.query.q,
         empty: true
       });
     } else {
-      res.render('conferences.njk', {
+      res.render('conference.njk', {
         type: 0,
         empty: true
       });
@@ -69,13 +69,13 @@ router.get('/conferences', async(req, res) => {
       const next = iterator.next();
       if (next.done) {
         if (req.query.q) {
-          res.render('conferences.njk', {
+          res.render('conference.njk', {
             confs: confArr,
             type: 1,
             query: req.query.q,
           });
         } else {
-          res.render('conferences.njk', {
+          res.render('conference.njk', {
             confs: confArr,
             type: 0
           });

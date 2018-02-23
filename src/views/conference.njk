@@ -12,7 +12,7 @@
 {% else %}
 <div class="confs-search">
   <span>دنبال چی میگردی ؟؟</span>
-<form action="/conferences" method="get">
+<form action="/conference" method="get">
   <input type="search" name="q" value="{{ query }}" placeholder="جستجو کن">
   <button type="submit">پیدا کن<i class="fas fa-search"></i></button>
 </form>
@@ -89,5 +89,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="/files/js/conferences.js"></script>
+<script src="/files/js/conference.js"></script>
 {% endblock %}

@@ -10,14 +10,14 @@ let previousLink, nextLink;
 
 if (getQuery('q')) {
   previousLink =
-  `${window.location.origin}/conferences?page=${page - 1}&q=${getQuery('q')}`;
+  `${window.location.origin}/conference?page=${page - 1}&q=${getQuery('q')}`;
   nextLink =
-  `${window.location.origin}/conferences?page=${page + 1}&q=${getQuery('q')}`;
+  `${window.location.origin}/conference?page=${page + 1}&q=${getQuery('q')}`;
 } else {
   previousLink =
-  `${window.location.origin}/conferences?page=${page - 1}`;
+  `${window.location.origin}/conference?page=${page - 1}`;
   nextLink =
-  `${window.location.origin}/conferences?page=${page + 1}`;
+  `${window.location.origin}/conference?page=${page + 1}`;
 }
 
 if (start <= 0) {
