@@ -9,7 +9,11 @@
 <div id="container">
   <div id="user-panel">
     <div class="user-name">
-    <span>{{ member.fname }} {{ member.lname }} </span>
+    <span>
+      <a href="/user/{{ member.username}}">
+        {{ member.fname }} {{ member.lname }}
+      </a>
+    </span>
       </div>
     {% if member.avatar %}
       <img src="/img/{{ member.avatar }}" alt="عکس کاربر">

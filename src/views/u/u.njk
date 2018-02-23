@@ -9,7 +9,11 @@
 <div id="container">
   <div id="user-panel">
     <div class="user-name">
-      <span>{{ locals.logged.fname }} {{ locals.logged.lname }}</span>
+      <span>
+        <a href="/user/{{ locals.logged.username }}">
+          {{ locals.logged.fname }} {{ locals.logged.lname }}
+        </a>
+      </span>
     </div>
     {% if locals.logged.avatar %}
       <img src="/img/{{ locals.logged.avatar }}" alt="عکس کاربر">
@@ -28,7 +32,11 @@
         <td title="یوزرنیم">
           <i class="fa fa-user" aria-hidden="true"></i>
         </td>
-        <td>{{ locals.logged.username }}</td>
+        <td>
+          <a href="/user/{{ locals.logged.username }}">
+            {{ locals.logged.username }}
+          </a>
+        </td>
       </tr>
       {% if locals.logged.description %}
         <tr>
