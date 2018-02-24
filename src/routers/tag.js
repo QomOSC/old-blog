@@ -16,74 +16,49 @@ router.get('/tag/:tagname', async(req, res) => {
   .skip(start)
   .limit(stop);
 
-  if (tags.length === 0) {
-    res.render('tag.njk', {
-      empty: true,
-      tagname: req.params.tagname
-    });
-  } else {
+  const tagsInfo = [];
 
-    const tagsInfo = [];
+  for (const i of tags) {
 
-    function* getResponse() {
-      for (const i of tags) {
-        yield new Promise(async resolve => {
+    const oneTag = {
+      author: {},
+      article: {}
+    };
 
-          const oneTag = {
-            author: {},
-            article: {}
-          };
+    const article = await Article.findOne({ _id: i.article });
 
-          const article = await Article.findOne({ _id: i.article });
+    if (article) {
+      let content = article.content.split('').slice(0, 130);
+      content.push('.', '.', '.');
+      content = content.join('');
 
-          if (article) {
-            let content = article.content.split('').slice(0, 130);
-            content.push('.', '.', '.');
-            content = content.join('');
+      oneTag.article.title = article.title;
+      oneTag.article._id = article._id;
+      oneTag.article.createdAt = moment(article.createdAt);
+      oneTag.article.likes = article.likes.length;
+      oneTag.article.viewers = article.viewers.length;
+      oneTag.article.avatar = article.avatar;
+      oneTag.article.content;
 
-            oneTag.article.title = article.title;
-            oneTag.article._id = article._id;
-            oneTag.article.createdAt = moment(article.createdAt);
-            oneTag.article.likes = article.likes.length;
-            oneTag.article.viewers = article.viewers.length;
-            oneTag.article.avatar = article.avatar;
-            oneTag.article.content;
+      const member = await Member.findOne({ _id: article.author });
 
-            const member = await Member.findOne({ _id: article.author });
+      if (member) {
+        oneTag.author.fname = member.fname;
+        oneTag.author.lname = member.lname;
+        oneTag.author.username = member.username;
+        oneTag.author.avatar = member.avatar;
 
-            if (member) {
-              oneTag.author.fname = member.fname;
-              oneTag.author.lname = member.lname;
-              oneTag.author.username = member.username;
-              oneTag.author.avatar = member.avatar;
-
-              tagsInfo.push(oneTag);
-              resolve();
-            } else {
-              res.reply.error();
-            }
-          }
-        });
+        tagsInfo.push(oneTag);
+      } else {
+        res.reply.error();
       }
     }
-
-    const iterator = getResponse();
-    (function loop() {
-
-      const next = iterator.next();
-      if (next.done) {
-        res.render('tag.njk', {
-          tags: tagsInfo,
-          tagname: req.params.tagname
-        });
-
-        return;
-      }
-
-      next.value.then(loop);
-    })();
-
   }
+
+  res.render('tag.njk', {
+    tags: tagsInfo,
+    tagname: req.params.tagname
+  });
 });
 
 export default router;
