@@ -20,44 +20,27 @@ router.get('/u/article', logged, async(req, res) => {
 
     const articles = [];
 
-    function* getResponse() {
-      for (const i of authorarticles) {
-        yield new Promise(resolve => {
+    for (const i of authorarticles) {
 
-          let content = i.content.split('').slice(0, 130);
-          content.push('.', '.', '.');
-          content = content.join('');
+      let content = i.content.split('').slice(0, 130);
+      content.push('.', '.', '.');
+      content = content.join('');
 
-          const onePost = {
-            _id: i._id,
-            title: i.title,
-            likes: i.likes.length,
-            viewers: i.viewers.length,
-            avatar: i.avatar,
-            content
-          };
+      const onePost = {
+        _id: i._id,
+        title: i.title,
+        likes: i.likes.length,
+        viewers: i.viewers.length,
+        avatar: i.avatar,
+        content
+      };
 
-          articles.push(onePost);
-
-          resolve();
-        });
-      }
+      articles.push(onePost);
     }
 
-    const iterator = getResponse();
-    (function loop() {
-
-      const next = iterator.next();
-      if (next.done) {
-        res.render('u/article/all.njk', {
-          posts: articles
-        });
-        return;
-      }
-
-      next.value.then(loop);
-    })();
-
+    res.render('u/article/all.njk', {
+      posts: articles
+    });
   }
 });
 

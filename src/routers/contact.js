@@ -17,39 +17,21 @@ router.get('/contact', async(req, res) => {
 
   const opinions = [];
 
-  function* getResponse() {
 
-    for (const i of lastTenOpinions) {
-      yield new Promise(async resolve => {
+  for (const i of lastTenOpinions) {
+    const oneOP = {
+      name: i.name,
+      email: i.email,
+      title: i.title,
+      description: i.description,
+      createdAt: moment(i.createdAt)
+    };
 
-        const oneOP = {
-          name: i.name,
-          email: i.email,
-          title: i.title,
-          description: i.description,
-          createdAt: moment(i.createdAt)
-        };
-
-        opinions.push(oneOP);
-        resolve();
-      });
-    }
+    opinions.push(oneOP);
   }
-
-  const iterator = getResponse();
-
-  (function loop() {
-
-    const next = iterator.next();
-    if (next.done) {
-      res.render('contact.njk', {
-        opinions
-      });
-      return;
-    }
-
-    next.value.then(loop);
-  })();
+  res.render('contact.njk', {
+    opinions
+  });
 });
 
 router.post('/contact', (req, res) => {

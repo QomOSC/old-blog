@@ -24,36 +24,20 @@ router.get('/u/gallery/', logged, async(req, res) => {
 
     const allPhotos = [];
 
-    function* getResponse() {
-      for (const i of photos) {
-        yield new Promise(resolve => {
-
-          const onePhoto = {
-            _id: i._id,
-            title: i.title,
-            photo: i.photo,
-            createdAt: moment(i.createdAt),
-            author: {},
-          };
-          allPhotos.push(onePhoto);
-          resolve();
-        });
-      }
+    for (const i of photos) {
+      const onePhoto = {
+        _id: i._id,
+        title: i.title,
+        photo: i.photo,
+        createdAt: moment(i.createdAt),
+        author: {},
+      };
+      allPhotos.push(onePhoto);
     }
 
-    const iterator = getResponse();
-    (function loop() {
-
-      const next = iterator.next();
-      if (next.done) {
-        res.render('u/gallery/mygallery.njk', {
-          photos: allPhotos
-        });
-        return;
-      }
-
-      next.value.then(loop);
-    })();
+    res.render('u/gallery/mygallery.njk', {
+      photos: allPhotos
+    });
   }
 });
 

@@ -66,33 +66,13 @@ router.post(
 
             let subsArr = [];
 
-            function* getResponse() {
-
-              yield new Promise(resolve => {
-
-
-                for (const i of subscribers) {
-                  subsArr.push(i.email);
-                }
-
-                resolve();
-              });
+            for (const i of subscribers) {
+              subsArr.push(i.email);
             }
 
-            const iterator = getResponse();
-            (function loop() {
-
-              const next = iterator.next();
-              if (next.done) {
-                email.newarticle(subsArr.join(','), article._id)
-                .then(() => {}).catch(() => {});
-                res.json({ type: 0 });
-
-                return;
-              }
-
-              next.value.then(loop);
-            })();
+            email.newarticle(subsArr.join(','), article._id)
+            .then(() => {}).catch(() => {});
+            res.json({ type: 0 });
 
           } else {
             res.json({ type: 0 });

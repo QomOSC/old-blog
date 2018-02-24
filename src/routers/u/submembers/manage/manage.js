@@ -13,33 +13,13 @@ router.get('/u/sub/manage', perm.logged, perm.u.admin, async(req, res) => {
 
     const subs = [];
 
-    function* getResponse() {
-      for (const i of member.submembers) {
-        yield new Promise(async resolve => {
-
-          const sub = await Member.findOne({ _id: i });
-
-          subs.push(sub);
-          resolve();
-        });
-      }
+    for (const i of member.submembers) {
+      const sub = await Member.findOne({ _id: i });
+      subs.push(sub);
     }
-
-    const iterator = getResponse();
-    (function loop() {
-
-      const next = iterator.next();
-      if (next.done) {
-        res.render('u/sub/manage.njk', {
-          subs
-        });
-
-        return;
-      }
-
-      next.value.then(loop);
-    })();
-
+    res.render('u/sub/manage.njk', {
+      subs
+    });
   } else {
     res.render('u/sub/manage.njk', {
       empty: true

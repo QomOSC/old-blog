@@ -11,7 +11,7 @@ router.get('/article', async(req, res) => {
   stop = page * 12 + 12;
 
   const re = new RegExp(`.*${req.query.q || ''}.*`);
-  
+
   const articles = await Article.find({ title: re })
   .sort({ createdAt: -1 })
   .skip(start)
@@ -26,56 +26,40 @@ router.get('/article', async(req, res) => {
 
     const allArts = [];
 
-    function* getResponse() {
-      for (const i of articles) {
-        yield new Promise(async resolve => {
-          let content = i.content.split('').slice(0, 130);
-          content.push('.', '.', '.');
-          content = content.join('');
+    for (const i of articles) {
+        let content = i.content.split('').slice(0, 130);
+        content.push('.', '.', '.');
+        content = content.join('');
 
-          const oneArt = {
-            _id: i._id,
-            title: i.title,
-            createdAt: moment(i.createdAt),
-            likes: i.likes.length,
-            viewers: i.viewers.length,
-            avatar: i.avatar,
-            author: {},
-            content
-          };
+        const oneArt = {
+          _id: i._id,
+          title: i.title,
+          createdAt: moment(i.createdAt),
+          likes: i.likes.length,
+          viewers: i.viewers.length,
+          avatar: i.avatar,
+          author: {},
+          content
+        };
 
-          const member = await Member.findOne({ _id: i.author });
+        const member = await Member.findOne({ _id: i.author });
 
-          if (member) {
-            oneArt.author.fname = member.fname;
-            oneArt.author.lname = member.lname;
-            oneArt.author.username = member.username;
-            oneArt.author.avatar = member.avatar;
+        if (member) {
+          oneArt.author.fname = member.fname;
+          oneArt.author.lname = member.lname;
+          oneArt.author.username = member.username;
+          oneArt.author.avatar = member.avatar;
 
-            allArts.push(oneArt);
-            resolve();
-          } else {
-            res.reply.error();
-          }
-        });
-      }
+          allArts.push(oneArt);
+        } else {
+          res.reply.error();
+        }
     }
-
-    const iterator = getResponse();
-    (function loop() {
-
-      const next = iterator.next();
-      if (next.done) {
-        res.render('articles.njk', {
-          q: req.query.q,
-          arts: allArts
-        });
-
-        return;
-      }
-
-      next.value.then(loop);
-    })();
+    
+    res.render('articles.njk', {
+      q: req.query.q,
+      arts: allArts
+    });
   }
 });
 

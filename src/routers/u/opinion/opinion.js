@@ -17,41 +17,23 @@ router.get('/u/opinion', perms.logged, perms.u.admin, async(req, res) => {
 
     const allOpinions = [];
 
-    function* getResponse() {
-      for (const i of opinions) {
-        yield new Promise(resolve => {
+    for (const i of opinions) {
+      const oneOpinion = {
+        _id: i._id,
+        name: i.name,
+        email: i.email,
+        title: i.title,
+        description: i.description,
+        createdAt: moment(i.createdAt)
+      };
 
-          const oneOpinion = {
-            _id: i._id,
-            name: i.name,
-            email: i.email,
-            title: i.title,
-            description: i.description,
-            createdAt: moment(i.createdAt)
-          };
+      allOpinions.push(oneOpinion);
 
-          allOpinions.push(oneOpinion);
-
-          resolve();
-
-        });
-      }
     }
 
-    const iterator = getResponse();
-    (function loop() {
-
-      const next = iterator.next();
-      if (next.done) {
-        res.render('u/opinion/opinion.njk', {
-          opinion: allOpinions
-        });
-        return;
-      }
-
-      next.value.then(loop);
-    })();
-
+    res.render('u/opinion/opinion.njk', {
+      opinion: allOpinions
+    });
   }
 });
 

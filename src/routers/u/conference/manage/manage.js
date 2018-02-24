@@ -15,51 +15,37 @@ router.get(
     if (confs.length !== 0) {
 
       const allConfs = [];
-      function* getResponse() {
 
-        for (const i of confs) {
-          yield new Promise(async resolve => {
-            let description = i.description.split('').slice(0, 130);
-            description.push('.', '.', '.');
-            description = description.join('');
+      for (const i of confs) {
+        let description = i.description.split('').slice(0, 130);
+        description.push('.', '.', '.');
+        description = description.join('');
 
-            const oneConf = {
-              _id: i._id,
-              title: i.title,
-              createdAt: moment(i.createdAt),
-              author: {},
-              description
-            };
+        const oneConf = {
+          _id: i._id,
+          title: i.title,
+          createdAt: moment(i.createdAt),
+          author: {},
+          description
+        };
 
-            const member = await Member.findOne({ _id: i.provider });
-            if (member) {
-              oneConf.author.fname = member.fname;
-              oneConf.author.lname = member.lname;
-              oneConf.author.username = member.username;
-              oneConf.author.avatar = member.avatar;
+        const member = await Member.findOne({ _id: i.provider });
+        if (member) {
+          oneConf.author.fname = member.fname;
+          oneConf.author.lname = member.lname;
+          oneConf.author.username = member.username;
+          oneConf.author.avatar = member.avatar;
 
-              allConfs.push(oneConf);
-              resolve();
-            } else {
-              res.reply.error();
-            }
-          });
+          allConfs.push(oneConf);
+        } else {
+          res.reply.error();
         }
       }
 
-      const iterator = getResponse();
-      (function loop() {
+      res.render('u/conference/manage/manage.njk', {
+        confs: allConfs
+      });
 
-        const next = iterator.next();
-        if (next.done) {
-          res.render('u/conference/manage/manage.njk', {
-            confs: allConfs
-          });
-          return;
-        }
-
-        next.value.then(loop);
-      })();
     } else {
       res.render('u/conference/manage/manage.njk', {
         empty: true

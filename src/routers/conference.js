@@ -34,57 +34,42 @@ router.get('/conference', async(req, res) => {
 
     const confArr = [];
 
-    function* getResponse() {
-      for (const i of confs) {
-        yield new Promise(async resolve => {
+    for (const i of confs) {
 
-          const oneConf = {
-            title: i.title,
-            createdAt: moment(i.createdAt),
-            description: i.description,
-            avatar: i.avatar,
-            provider: {},
-          };
+      const oneConf = {
+        title: i.title,
+        createdAt: moment(i.createdAt),
+        description: i.description,
+        avatar: i.avatar,
+        provider: {},
+      };
 
-          const member = Member.findOne({ _id: i.provider });
+      const member = Member.findOne({ _id: i.provider });
 
-          if (member) {
-            oneConf.provider.fname = member.fname;
-            oneConf.provider.lname = member.lname;
-            oneConf.provider.username = member.username;
-            oneConf.provider.avatar = member.avatar;
+      if (member) {
+        oneConf.provider.fname = member.fname;
+        oneConf.provider.lname = member.lname;
+        oneConf.provider.username = member.username;
+        oneConf.provider.avatar = member.avatar;
 
-            confArr.push(oneConf);
-            resolve();
-          } else {
-            res.reply.error();
-          }
-        });
+        confArr.push(oneConf);
+      } else {
+        res.reply.error();
       }
     }
-
-    const iterator = getResponse();
-    (function loop() {
-
-      const next = iterator.next();
-      if (next.done) {
-        if (req.query.q) {
-          res.render('conference.njk', {
-            confs: confArr,
-            type: 1,
-            query: req.query.q,
-          });
-        } else {
-          res.render('conference.njk', {
-            confs: confArr,
-            type: 0
-          });
-        }
-        return;
-      }
-
-      next.value.then(loop);
-    })();
+    
+    if (req.query.q) {
+      res.render('conference.njk', {
+        confs: confArr,
+        type: 1,
+        query: req.query.q,
+      });
+    } else {
+      res.render('conference.njk', {
+        confs: confArr,
+        type: 0
+      });
+    }
   }
 });
 
