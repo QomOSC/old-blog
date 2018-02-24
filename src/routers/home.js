@@ -8,6 +8,7 @@ const router = new Router();
 router.get('/', async(req, res) => {
 
   const doc = await Article.find({}).sort({ createdAt: -1 }).limit(20);
+
   const conf = await Conference
   .find({ type: { $in: [3, 4] } })
   .sort({ createdAt: -1 })
@@ -18,81 +19,61 @@ router.get('/', async(req, res) => {
 
   const lastConf = { provider: {} };
 
-  function* getResponse() {
-    if (doc.length === 0) {
-      articleEmpty = true;
-    } else {
-      for (const i of doc) {
+  if (doc.length === 0) {
+    articleEmpty = true;
+  } else {
+    for (const i of doc) {
 
-        yield new Promise(async resolve => {
-          let content = i.content.split('').slice(0, 130);
-          content.push('.', '.', '.');
-          content = content.join('');
+      let content = i.content.split('').slice(0, 130);
+      content.push('.', '.', '.');
+      content = content.join('');
 
-          const oneArticle = {
-            _id: i._id,
-            title: i.title,
-            createdAt: moment(i.createdAt),
-            likes: i.likes.length,
-            viewers: i.viewers.length,
-            avatar: i.avatar,
-            author: {},
-            content
-          };
+      const oneArticle = {
+        _id: i._id,
+        title: i.title,
+        createdAt: moment(i.createdAt),
+        likes: i.likes.length,
+        viewers: i.viewers.length,
+        avatar: i.avatar,
+        author: {},
+        content
+      };
 
-          const member = await Member.findOne({ _id: i.author });
+      const member = await Member.findOne({ _id: i.author });
 
-          if (member) {
-            oneArticle.author.fname = member.fname;
-            oneArticle.author.lname = member.lname;
-            oneArticle.author.username = member.username;
-            oneArticle.author.avatar = member.avatar;
+      if (member) {
+        oneArticle.author.fname = member.fname;
+        oneArticle.author.lname = member.lname;
+        oneArticle.author.username = member.username;
+        oneArticle.author.avatar = member.avatar;
 
-            articles.push(oneArticle);
-            resolve();
-          } else {
-            res.reply.error();
-          }
-        });
+        articles.push(oneArticle);
+      } else {
+        res.reply.error();
       }
     }
-
-    yield new Promise(async resolve => {
-
-
-      if (conf.length === 0) {
-        lastConf.empty = true;
-        resolve();
-      } else {
-        lastConf.title = conf[0].title;
-        lastConf.description = conf[0].description;
-        lastConf.avatar = conf[0].avatar;
-        lastConf.createdAt = moment(conf[0].createdAt);
-
-        const provider = await Member.findOne({ _id: conf[0].provider });
-
-        if (provider) {
-          lastConf.provider.fname = provider.fname;
-          lastConf.provider.lname = provider.lname;
-          lastConf.provider.username = provider.username;
-          lastConf.provider.avatar = provider.avatar;
-        }
-        resolve();
-      }
-    });
   }
 
-  const iterator = getResponse();
-  (function loop() {
+  if (conf.length === 0) {
+    lastConf.empty = true;
+  } else {
+    lastConf.title = conf[0].title;
+    lastConf.description = conf[0].description;
+    lastConf.avatar = conf[0].avatar;
+    lastConf.createdAt = moment(conf[0].createdAt);
 
-    const next = iterator.next();
-    if (next.done) {
-      res.render('home.njk', { posts: articles, lastConf, articleEmpty });
-      return;
+    const provider = await Member.findOne({ _id: conf[0].provider });
+
+    if (provider) {
+      lastConf.provider.fname = provider.fname;
+      lastConf.provider.lname = provider.lname;
+      lastConf.provider.username = provider.username;
+      lastConf.provider.avatar = provider.avatar;
     }
+  }
 
-    next.value.then(loop);
-  })();
+  res.render('home.njk', { posts: articles, lastConf, articleEmpty });
+
 });
 
 export default router;
