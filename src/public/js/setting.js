@@ -127,3 +127,26 @@ document.getElementById('delete-account').addEventListener('click', e => {
       ]
   });
 });
+
+document
+  .getElementById('remove-current-avatar')
+  .addEventListener('click', () => {
+
+  fetch('/u/setting/remove/avatar', {
+    method: 'POST',
+    credentials: 'include',
+    headers: new Headers({
+      'Content-Type': 'application/json'
+    })
+  }).then(res => res.json()).then(data => {
+    if (data.type === 0) {
+      localStorage.setItem('userAvatarRemovedSuccess', 1);
+      window.location.href = '/u';
+    } else {
+      iziErr();
+    }
+  }).catch(e => {
+    console.log(e);
+    iziErr();
+  });
+});

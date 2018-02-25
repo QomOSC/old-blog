@@ -1,11 +1,11 @@
-if (parseInt(localStorage.getItem('loggedout')) === 1) {
+if (localStorage.getItem('loggedout')) {
   iziToast.success({
     title: 'خروج موفق',
     rtl: true
   });
   localStorage.removeItem('loggedout');
 }
-if (parseInt(localStorage.getItem('sentPost')) === 1) {
+if (localStorage.getItem('sentPost')) {
   iziToast.success({
     title: 'موفق',
     rtl: true,
@@ -13,7 +13,7 @@ if (parseInt(localStorage.getItem('sentPost')) === 1) {
   });
   localStorage.removeItem('sentPost');
 }
-if (parseInt(localStorage.getItem('delAcc')) === 1) {
+if (localStorage.getItem('delAcc')) {
   iziToast.success({
     title: 'موفق',
     rtl: true,
@@ -21,7 +21,7 @@ if (parseInt(localStorage.getItem('delAcc')) === 1) {
   });
   localStorage.removeItem('delAcc');
 }
-if (parseInt(localStorage.getItem('unsubscribed')) === 1) {
+if (localStorage.getItem('unsubscribed')) {
   iziToast.success({
     title: 'موفق',
     rtl: true,
@@ -29,7 +29,7 @@ if (parseInt(localStorage.getItem('unsubscribed')) === 1) {
   });
   localStorage.removeItem('unsubscribed');
 }
-if (parseInt(localStorage.getItem('signedupsuccessfully')) === 1) {
+if (localStorage.getItem('signedupsuccessfully')) {
   iziToast.success({
     title: 'موفق',
     rtl: true,
@@ -37,7 +37,7 @@ if (parseInt(localStorage.getItem('signedupsuccessfully')) === 1) {
   });
   localStorage.removeItem('signedupsuccessfully');
 }
-if (parseInt(localStorage.getItem('mainsettingdone')) === 1) {
+if (localStorage.getItem('mainsettingdone')) {
   iziToast.success({
     title: 'موفق',
     rtl: true,
@@ -45,7 +45,7 @@ if (parseInt(localStorage.getItem('mainsettingdone')) === 1) {
   });
   localStorage.removeItem('mainsettingdone');
 }
-if (parseInt(localStorage.getItem('passsettingdone')) === 1) {
+if (localStorage.getItem('passsettingdone')) {
   iziToast.success({
     title: 'موفق',
     rtl: true,
@@ -53,7 +53,7 @@ if (parseInt(localStorage.getItem('passsettingdone')) === 1) {
   });
   localStorage.removeItem('passsettingdone');
 }
-if (parseInt(localStorage.getItem('avatarsettingdone')) === 1) {
+if (localStorage.getItem('avatarsettingdone')) {
   iziToast.success({
     title: 'موفق',
     rtl: true,
@@ -61,7 +61,7 @@ if (parseInt(localStorage.getItem('avatarsettingdone')) === 1) {
   });
   localStorage.removeItem('avatarsettingdone');
 }
-if (parseInt(localStorage.getItem('editpostsuccessfully')) === 1) {
+if (localStorage.getItem('editpostsuccessfully')) {
   iziToast.success({
     rtl: true,
     title: 'موفق',
@@ -69,7 +69,7 @@ if (parseInt(localStorage.getItem('editpostsuccessfully')) === 1) {
   });
   localStorage.removeItem('editpostsuccessfully');
 }
-if (parseInt(localStorage.getItem('addgalleryphoto')) === 1) {
+if (localStorage.getItem('addgalleryphoto')) {
   iziToast.success({
     rtl: true,
     title: 'موفق',
@@ -77,18 +77,26 @@ if (parseInt(localStorage.getItem('addgalleryphoto')) === 1) {
   });
   localStorage.removeItem('addgalleryphoto');
 }
-if (parseInt(localStorage.getItem('requestforconferencesuccessful')) === 1) {
+if (localStorage.getItem('requestforconferencesuccessful')) {
   iziToast.success({
     title: 'درخواست با موفقیت ارسال شد',
     rtl: true
   });
   localStorage.removeItem('requestforconferencesuccessful');
 }
-if (parseInt(localStorage.getItem('opinionregisteredsuccessful')) === 1) {
+if (localStorage.getItem('opinionregisteredsuccessful')) {
   iziToast.success({
     rtl: true,
     title: 'موفق',
     message: 'نظر شما با موفقیت ثبت شد'
   });
   localStorage.removeItem('opinionregisteredsuccessful');
+}
+if (localStorage.getItem('userAvatarRemovedSuccess')) {
+  iziToast.success({
+    rtl: true,
+    title: 'موفق',
+    message: 'عکس شما با موفقیت حذف شد'
+  });
+  localStorage.removeItem('userAvatarRemovedSuccess');
 }

@@ -59,6 +59,9 @@
     </div>
 
     <div class="setting-row2">
+      {% if locals.logged.avatar %}
+        <button id="remove-current-avatar">پاک کردن عکس</button>
+      {% endif %}
       <div class="img-choice">
         <h3>انتخاب عکس</h3>
         <input type="file" id="upload" value="Upload">
