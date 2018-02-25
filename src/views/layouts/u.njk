@@ -47,6 +47,7 @@
           <span class="tooltiptext">پست کن</span>
           <a href="/u/article/add">
             <i class="fa fa-edit" aria-hidden="true"></i>
+            <span>پست کن</span>
           </a>
         </li>
         {% if locals.logged.type >= 3 %}
@@ -54,18 +55,21 @@
             <span class="tooltiptext">افراد درخواست داده</span>
             <a href="/u/sub">
               <i class="fa fa-user-plus" aria-hidden="true"></i>
+               <span>افراد درخواست داده</span>
             </a>
           </li>
           <li class="tooltip">
             <span class="tooltiptext">مدیریت کاربران</span>
             <a href="/u/sub/manage">
               <i class="fa fa-users" aria-hidden="true"></i>
+              <span>مدیریت کاربران</span>
             </a>
           </li>
           <li class="tooltip">
             <span class="tooltiptext">مدریت کنفرانس ها</span>
             <a href="/u/conference/manage">
               <i class="fas fa-inbox"></i>
+              <span>مدریت کنفرانس ها</span>
             </a>
           </li>
           {% endif %}
@@ -73,36 +77,42 @@
           <span class="tooltiptext">ارائه کنفرانس</span>
           <a href="/u/conference/add">
             <i class="fab fa-weixin"></i>
+            <span>ارائه کنفرانس</span>
           </a>
         </li>
         <li class="tooltip">
           <span class="tooltiptext">ارسال عکس</span>
           <a href="/u/gallery/add">
             <i class="fas fa-camera"></i>
+            <span>ارسال عکس</span>
           </a>
         </li>
         <li class="tooltip">
           <span class="tooltiptext">گالری من</span>
           <a href="/u/gallery">
             <i class="far fa-images"></i>
+              <span>گالری من</span>
           </a>
         </li>
         <li class="tooltip">
           <span class="tooltiptext">پست های من</span>
           <a href="/u/article/">
             <i class="far fa-envelope-open" aria-hidden="true"></i>
+            <span>پست های من</span>
           </a>
         </li>
         <li class="tooltip">
           <span class="tooltiptext">تنظیمات</span>
           <a href="/u/setting">
             <i class="fa fa-cog" aria-hidden="true"></i>
+            <span>تنظیمات</span>
           </a>
         </li>
         <li class="tooltip">
           <span class="tooltiptext">خروج</span>
           <a href="/u/logout" onclick="localStorage.setItem('loggedout', '1')">
             <i class="fas fa-sign-out-alt"></i>
+            <span>خروج</span>
           </a>
         </li>
       </ul>
