@@ -58,11 +58,35 @@
 
     {% for i in opinions %}
       <div class="comment">
-        <p>{{ i.name }}</p>
-        <p>{{ i.email }}</p>
-        <p>{{ i.title }}</p>
-        <p>{{ i.description }}</p>
-        <p>{{ i.createdAt }}</p>
+        <div class="cmt-avatar">
+            <img src="/files/image/default-avatar.png">
+        </div>
+        <div class="cmt-content">
+          <div class="cmt-title">
+            <div>
+                  <span class="cmt-name">{{ i.name }}</span>
+            </div>
+            <div class="cmt-event">
+              <div>
+                 <i class="fas fa-thumbs-up"></i><span>5</span>
+              </div>
+              <div>
+                <i class="fas fa-thumbs-down"></i><span>3</span>
+              </div>
+            </div>
+
+          </div>
+          <div class="cmt-des">
+             <p>{{ i.description }}</p>
+          </div>
+           <div class="cmt-time">
+             <div><span>{{ i.createdAt }}</span></div>
+           <div>
+              <i class="fas fa-reply"></i><span>پاسخ دادن</span>
+           </div>
+
+           </div>
+        </div>
       </div>
     {% endfor %}
   </div>

@@ -236,12 +236,83 @@ div#map {
   flex-direction: column;
   align-items: center;
 }
+
 .comment {
-  background: #dcecdb;
+  background: #fff;
   width: 80%;
   margin: 10px;
-  padding: 10px;
+  padding: 0 1%;
+  display: flex;
+  min-height: 180px;
+  height: auto;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  position: relative;
 }
+ .cmt-avatar {
+   width: 6%;
+   padding: 10px 1%;
+   img {
+     border-radius: 100%;
+   }
+ }
+
+ .cmt-content {
+     // display: flex;
+     // flex-direction: column;
+     width: 100%;
+ }
+
+ .cmt-title {
+   padding: 10px 2%;
+   margin-top: 5px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+ }
+
+ .cmt-des {
+   padding: 10px 1%;
+   color: #5A5A5A;
+   text-align: justify;
+ }
+
+ .cmt-time {
+   color: #989898;
+   padding: 6px 10% 0 2%;
+   height: 15%;
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   width: auto;
+   background-color: rgba(0,0,0,0.1);
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   font-size: 14px;
+
+   i {
+     vertical-align: middle; margin-left: 10px;
+   }
+ }
+
+ .cmt-event {
+   color: #adadad;
+   display: flex;
+
+   i {
+     margin-left: 6px;
+   }
+
+   div {
+     margin-right: 10px;
+   }
+ }
+
+ .cmt-name {
+   font-family: SB;
+ }
+
 @media (min-width: 120px) and (max-width: 500px) {
   .content-of-about-us {
     width: 85%;
