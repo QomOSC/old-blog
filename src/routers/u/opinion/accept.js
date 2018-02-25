@@ -6,11 +6,18 @@ const router = new Router();
 
 
 router.post('/u/opinion/accept/:id', async(req, res) => {
-  if (req.member.user && req.member.user.type >= 3 && req.params.id) {
+  if (req.member.user &&
+    req.member.user.type >= 3 &&
+    req.params.id) {
 
     const op = await Opinion.findOne({ _id: req.params.id });
-    
+
     op.type = 2;
+    op.admin = req.member.user._id;
+
+    if (req.body.answer) {
+      op.answer = req.body.answer;
+    }
 
     op.save().then(() => {
       // Done

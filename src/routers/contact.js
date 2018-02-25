@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-const { Opinion } = rootRequire('./models');
+const { Opinion, Member } = rootRequire('./models');
 const { moment } = rootRequire('./utils');
 
 const router = new Router();
@@ -23,9 +23,18 @@ router.get('/contact', async(req, res) => {
       name: i.name,
       email: i.email,
       title: i.title,
+      answer: i.answer,
       description: i.description,
-      createdAt: moment(i.createdAt)
+      createdAt: moment(i.createdAt),
+      admin: {}
     };
+
+    if (i.admin) {
+      const admin = await Member.findOne({ _id: i.admin });
+      oneOP.admin.username = admin.username;
+      oneOP.admin.fname = admin.fname;
+      oneOP.admin.avatar = admin.avatar;
+    }
 
     opinions.push(oneOP);
   }

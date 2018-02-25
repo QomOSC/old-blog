@@ -27,7 +27,7 @@ function checkUsername(req) {
 
 async function setNewValues(req, res) {
 
-  const member = Member.findOne({ _id: req.member.user._id });
+  const member = await Member.findOne({ _id: req.member.user._id });
 
   member.fname = req.body.fname;
   member.lname = req.body.lname;

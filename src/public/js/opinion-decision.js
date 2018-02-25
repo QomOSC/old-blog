@@ -11,6 +11,9 @@ for (let i = 0; i < accept.length; i++) {
       headers: new Headers({
         'Content-Type': 'application/json',
         'Accpet': 'application/json'
+      }),
+      body: JSON.stringify({
+        answer: accept[i].answer.value
       })
     }).then(checkStatus).then(res => res.json()).then(data => {
       if (data.type === 0) {

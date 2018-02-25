@@ -42,6 +42,9 @@
           <div class="action-div">
             <form action="/u/opinion/accept/{{ i._id }}" method="post" class="accept-form">
               <input type="hidden" name="id" value="{{ i._id }}">
+              <textarea
+              name="answer"
+              placeholder="پاسخ"></textarea>
               <input type="submit" value="پذیرفتن و نمایش نظر در سایت" class="green-btn">
             </form>
             <form action="/u/opinion/reject/{{ i._id }}" method="post" class="reject-form">
