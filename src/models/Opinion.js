@@ -33,6 +33,14 @@ const schema = new Schema({
     required: [true, 'content'],
     trim: true
   },
+  admin: {
+    type: String,
+    trim: true
+  },
+  answer: {
+    type: String,
+    trim: true
+  },
   type: {
     type: Number,
     enum: [1, 2], // 1: requested, 2: accepted
