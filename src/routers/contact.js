@@ -33,6 +33,7 @@ router.get('/contact', async(req, res) => {
       const admin = await Member.findOne({ _id: i.admin });
       oneOP.admin.username = admin.username;
       oneOP.admin.fname = admin.fname;
+      oneOP.admin.lname = admin.lname;
       oneOP.admin.avatar = admin.avatar;
     }
 
