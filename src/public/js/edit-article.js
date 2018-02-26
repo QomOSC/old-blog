@@ -1,32 +1,19 @@
-const edit = document.forms['edit-post'];
+document.forms['edit-post'].addEventListener('submit', e => {
+  const minutes = Math.ceil(e.target.content.value.length / 386);
 
-edit.addEventListener('submit', e => {
-  e.preventDefault();
-
-  const minutes = Math.ceil(edit.content.value.length / 386);
-
-  fetch(edit.getAttribute('action'), {
-    method: 'POST',
-    credentials: 'include',
-    headers: new Headers({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    }),
-    body: JSON.stringify({
-      title: edit.title.value,
-      content: edit.content.value,
-      id: edit.id.value,
-      minutes
-    })
-  }).then(res => res.json()).then(data => {
-    if (data.type === 0) {
+  send({
+    url: e.target.getAttribute('action')
+  },
+  e,
+  {
+    title: e.target.title.value,
+    content: e.target.content.value,
+    id: e.target.id.value,
+    minutes
+  }).then(res => {
+    if (res.type === 0) {
       localStorage.setItem('editpostsuccessfully', 1);
       window.location.href = '/u';
-    } else if (data.type === 2) {
-      iziErr();
-    }
-    console.log(data);
-  }).catch(() => {
-    iziErr();
-  });
+    } else { iziErr(); }
+  }).catch(() => iziErr());
 });

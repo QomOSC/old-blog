@@ -6,8 +6,6 @@ const previous = document.getElementById('previous'),
       next = document.getElementById('next'),
       cnf = document.getElementsByClassName('gallery-posts');
 
-console.log(cnf);
-
 let previousLink, nextLink;
 
 if (getQuery('q')) {
