@@ -45,7 +45,7 @@ if (document.getElementById('svg-captcha')) {
   });
 }
 
-function send(target, e, data) {
+function send(target, e, data = {}) {
   return new Promise((resolve, reject) => {
 
     e.preventDefault();
@@ -57,6 +57,7 @@ function send(target, e, data) {
           title: 'هشدار',
           message: 'ایمیل وارد شده اشتباه است'
         });
+        e.target.email.select();
         return;
       }
     }
@@ -68,6 +69,19 @@ function send(target, e, data) {
           title: 'هشدار',
           message: 'نام کاربری وارد شده اشتباه است'
         });
+        e.target.username.select();
+        return;
+      }
+    }
+
+    if (data.password) {
+      if (data.password.length < 8) {
+        iziToast.warning({
+          rtl: true,
+          title: 'هشدار',
+          message: 'رمز عبور باید حداقل هشت رقم باشد'
+        });
+        e.target.password.select();
         return;
       }
     }
@@ -79,7 +93,7 @@ function send(target, e, data) {
         'Accept': 'application/json'
       }),
       credentials: 'include',
-      body: JSON.stringify(data)
+      body: JSON.stringify(data || {})
     }).then(checkStatus).then(res => res.json()).then(answer => {
       resolve(answer);
     }).catch(e => {
