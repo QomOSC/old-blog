@@ -60,9 +60,9 @@
       <div class="comment">
         <div class="cmt-avatar">
           {% if i.avatar %}
-          <img src="/img/{{ i.avatar }}" style="max-width: 200px">
+            <img src="/img/{{ i.avatar }}">
           {% else %}
-          <img src="/files/image/default-avatar.png" style="max-width: 200px">
+            <img src="/files/image/default-avatar.png">
           {% endif %}
         </div>
         <div class="cmt-content">
@@ -77,19 +77,36 @@
           <div class="cmt-des">
             <p>{{ i.description }}</p>
           </div>
+
           {% if i.answer %}
-          <a href="/user/{{ i.admin.username }}">
-            <p>{{ i.answer }}</p>
-            <p>{{ i.admin.fname }} {{ i.admin.lname }}</p>
-            {% if i.admin.avatar %}
-              <img src="/img/{{ i.admin.avatar }}" style="max-width: 200px;">
-            {% else %}
-              <img src="/files/image/default-user.png" style="max-width: 200px;">
-            {% endif %}
-          </a>
+            <a href="/user/{{ i.admin.username }}">
+
+              <div class="cmt-ans">
+                <div><i class="fas fa-reply"></i></div>
+                <div class="cmt-ans-avatar">
+                  {% if i.admin.avatar %}
+                    <img src="/img/{{ i.admin.avatar }}">
+                  {% else %}
+                    <img src="/files/image/default-user.png">
+                  {% endif %}
+                </div>
+                <div class="cmt-ans-content">
+                  <div class="cmt-ans-user">
+                    <span>
+                      {{ i.admin.fname }}
+                      {{ i.admin.lname }}
+                    </span>
+                  </div>
+                  <div class="cmt-ans-des">
+                    <p>{{ i.answer }}</p>
+                  </div>
+                </div>
+
+              </div>
+            </a>
           {% endif %}
+        </div>
       </div>
-    </div>
     {% endfor %}
   </div>
 {% endblock %}
