@@ -62,9 +62,3 @@ login.addEventListener('submit', e => {
     });
   }
 });
-
-fetch('/captcha', {
-  credentials: 'include'
-}).then(checkStatus).then(res => res.json()).then(data => {
-  document.getElementById('svg-captcha').innerHTML = data.captcha;
-});

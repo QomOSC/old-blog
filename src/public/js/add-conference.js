@@ -1,7 +1,6 @@
 document.forms['add-conference'].addEventListener('submit', e => {
   send({
-    url: e.target.getAttribute('action'),
-    method: 'POST'
+    url: e.target.getAttribute('action')
   },
   e,
   {

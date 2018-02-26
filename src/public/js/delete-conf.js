@@ -4,8 +4,7 @@ for (let i = 0; i < delConf.length; i++) {
   delConf[i].addEventListener('submit', e => {
 
     send({
-      url: delConf[i].getAttribute('action'),
-      method: 'POST'
+      url: delConf[i].getAttribute('action')
     },
     e,
     {
