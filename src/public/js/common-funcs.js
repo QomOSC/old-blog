@@ -36,3 +36,54 @@ if (document.getElementById('change-captcha')) {
       });
   });
 }
+
+if (document.getElementById('svg-captcha')) {
+  fetch('/captcha', {
+    credentials: 'include'
+  }).then(checkStatus).then(res => res.json()).then(data => {
+    document.getElementById('svg-captcha').innerHTML = data.captcha;
+  });
+}
+
+function send(target, e, data) {
+  return new Promise((resolve, reject) => {
+
+    e.preventDefault();
+
+    if (data.email) {
+      if (!validateEmail(data.email)) {
+        iziToast.warning({
+          rtl: true,
+          title: 'هشدار',
+          message: 'ایمیل وارد شده اشتباه است'
+        });
+        return;
+      }
+    }
+
+    if (data.username) {
+      if (!validateUsername(data.username)) {
+        iziToast.warning({
+          rtl: true,
+          title: 'هشدار',
+          message: 'نام کاربری وارد شده اشتباه است'
+        });
+        return;
+      }
+    }
+
+    fetch(target.url, {
+      method: target.method,
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      credentials: 'include',
+      body: JSON.stringify(data)
+    }).then(checkStatus).then(res => res.json()).then(answer => {
+      resolve(answer);
+    }).catch(e => {
+      reject(e);
+    });
+  });
+}
