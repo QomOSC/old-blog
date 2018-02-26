@@ -73,7 +73,7 @@ function send(target, e, data) {
     }
 
     fetch(target.url, {
-      method: target.method,
+      method: target.method || 'POST',
       headers: new Headers({
         'Content-Type': 'application/json',
         'Accept': 'application/json'
