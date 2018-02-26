@@ -33,13 +33,7 @@
             <a href="/conference">ارائه ها</a>
           </li>
           <li>
-            <a href="/about">درباره</a>
-          </li>
-          <li>
-            <a href="/gallery">گالری</a>
-          </li>
-          <li>
-            <a href="/contact">تماس با ما</a>
+            <a href="/gallery">البوم</a>
           </li>
         </ul>
         <div class="dropdown" id="icon-container" onclick="changeIcon(this)">
@@ -51,13 +45,7 @@
           <div id="myDropdown" class="dropdown-content">
             <a href="/u">داشبورد</a>
             <a href="/conference">ارائه ها</a>
-            <a href="/about">درباره</a>
-            <li>
-              <a href="/gallery">گالری</a>
-            </li>
-            <li>
-              <a href="/contact">تماس با ما</a>
-            </li>
+            <a href="/gallery">البوم</a>
           </div>
         </div>
       {% else %}
@@ -68,12 +56,10 @@
             <div class="bar3"></div>
           </button>
           <div id="myDropdown" class="dropdown-content">
-            <a href="/signup">ثبت نام</a>
             <a href="/login">ورود</a>
-            <a href="/about">درباره</a>
+            <a href="/signup">عضویت</a>
             <a href="/conference">ارائه ها</a>
-            <a href="/gallery">گالری</a>
-            <a href="/contact">تماس با ما</a>
+            <a href="/gallery">البوم</a>
           </div>
         </div>
         <ul id="header-list">
@@ -84,16 +70,10 @@
             <a href="/signup">&nbsp;عضویت&nbsp;</a>
           </li>
           <li>
-            <a href="/about">&nbsp;درباره&nbsp;</a>
-          </li>
-          <li>
             <a href="/conference">&nbsp;ارائه ها&nbsp;</a>
           </li>
           <li>
-            <a href="/gallery">&nbsp;گالری&nbsp;</a>
-          </li>
-          <li>
-            <a href="/contact">&nbsp;تماس با ما&nbsp;</a>
+            <a href="/gallery">&nbsp;البوم&nbsp;</a>
           </li>
         </ul>
       {% endif %}
@@ -105,20 +85,20 @@
 
       {% endblock %}
     </div>
-    {% if locals.logged %}
+   {% if locals.logged %}
    <section class="fixedfooter">
-     <a href="/u/article/add">پست کن<i class="fa fa-edit" aria-hidden="true"></i></a>
-     {% if member.type >= 3 %}
-     <a href="/u/sub">افراد درخواست داده<i class="fa fa-user-plus" aria-hidden="true"></i></a>
-     <a href="/u/sub/manage">مدیریت کاربران<i class="fa fa-users" aria-hidden="true"></i></a>
-     <a href="/u/conference/manage">مدیریت ارائه ها<i class="fas fa-inbox"></i></a>
-     {% endif %}
-     <a href="/u/conference/add">ارائه دادن<i class="fab fa-weixin"></i></a>
-     <a href="/u/article/all">پست های من<i class="far fa-envelope-open" aria-hidden="true"></i></a>
-     <a href="/u/gallery/add">ارسال عکس<i class="fas fa-camera"></i></a>
-     <a href="/u/gallery">گالری من  <i class="far fa-images"></i></a>
-     <a href="/u/setting">تنظیمات<i class="fa fa-cog" aria-hidden="true"></i></a>
-     <a href="/u/logout">خروج<i class="fas fa-sign-out-alt"></i></a>
+     <a href="/u/conference/">
+       ارائه های من
+       <i class="fab fa-weixin"></i>
+     </a>
+     <a href="/u/article/all">
+       مقالات من
+       <i class="far fa-envelope-open" aria-hidden="true"></i>
+     </a>
+     <a href="/u/gallery">
+       البوم من
+       <i class="far fa-images"></i>
+     </a>
    </section>
    {% endif %}
     <footer>

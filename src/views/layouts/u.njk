@@ -28,16 +28,16 @@
           <div class="bar3"></div>
         </button>
         <div id="myDropdown" class="dropdown-content">
-          <a href="/u/article/add">پست کن</a>
+          <a href="/u/article/add">اضافه کردن مقاله</a>
           {% if locals.logged.type >= 3 %}
             <a href="/u/sub">افراد درخواست داده</a>
             <a href="/u/sub/manage">مدیریت کاربران</a>
             <a href="/u/conference/manage">مدیریت ارائه ها</a>
           {% endif %}
           <a href="/u/conference/add">ارائه دادن</a>
-          <a href="/u/article/">پست های من</a>
+          <a href="/u/article/">مقالات من</a>
           <a href="/u/gallery/add">ارسال عکس</a>
-          <a href="/u/gallery">گالری من</a>
+          <a href="/u/gallery">البوم من</a>
           <a href="/u/setting">تنظیمات</a>
           <a href="/u/logout">خروج</a>
         </div>
@@ -48,33 +48,37 @@
           <div class="dropbtn"> <i class="fa fa-edit" aria-hidden="true"></i><span>مقالات</span><div>
               <div class="dropdown-content">
                 <a href="/u/article/add">
-                  <span>پست کن</span>
+                  <span>اضافه کردن</span>
                 </a>
                 <a href="/u/article/">
-                  <span>پست های من</span>
+                  <span>مقالات من</span>
                 </a>
               </div>
             </li>
             <li class="dropdown">
-              <div class="dropbtn"> <i class="fab fa-weixin"></i><span>ارائه ها</span><div>
+              <div class="dropbtn">
+                <i class="fab fa-weixin"></i>
+                <span>ارائه ها</span><div>
                   <div class="dropdown-content">
                     <a href="/u/conference/add">
-                      <span>ارائه کنفرانس</span>
+                      <span>اضافه کردن</span>
                     </a>
                     <a href="/u/conference">ارائه های من</a>
                     <a href="/u/conference/manage">
-                      <span>مدریت کنفرانس ها</span>
+                      <span>مدیریت</span>
                     </a>
                   </div>
                 </li>
                 <li class="dropdown">
-                  <div class="dropbtn"> <i class="far fa-images"></i><span>آلبوم</span><div>
+                  <div class="dropbtn">
+                    <i class="far fa-images"></i>
+                    <span>آلبوم</span><div>
                       <div class="dropdown-content">
                         <a href="/u/gallery/add">
-                          <span>ارسال عکس</span>
+                          <span>اضافه کردن</span>
                         </a>
                         <a href="/u/gallery">
-                          <span>گالری من</span>
+                          <span>البوم من</span>
                         </a>
                       </div>
                     </li>
@@ -82,13 +86,16 @@
                     {% if locals.logged.type >= 3 %}
 
                       <li class="dropdown">
-                        <div class="dropbtn"> <i class="fa fa-users"></i><span>اعضا</span><div>
+                        <div class="dropbtn">
+                          <i class="fa fa-users"></i>
+                          <span>اعضا</span>
+                          <div>
                             <div class="dropdown-content">
                               <a href="/u/sub">
                                 <span>افراد درخواست داده</span>
                               </a>
                               <a href="/u/sub/manage">
-                                <span>مدیریت کاربران</span>
+                                <span>مدیریت اعضا</span>
                               </a>
                             </div>
                           </li>
