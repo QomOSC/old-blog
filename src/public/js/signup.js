@@ -1,98 +1,53 @@
-const mainSetting = document.forms['signup-form'];
-
-mainSetting.addEventListener('submit', e => {
-  e.preventDefault();
-
-  if (validateEmail(mainSetting.email.value)) {
-
-    if (validateUsername(mainSetting.username.value)) {
-
-      if (mainSetting.password.value.length >= 8) {
-
-        fetch('/signup', {
-          method: 'POST',
-          credentials: 'include',
-          headers: new Headers({
-            'Content-Type': 'application/json'
-          }),
-          body: JSON.stringify({
-            fname: mainSetting.fname.value,
-            lname: mainSetting.lname.value,
-            username: mainSetting.username.value,
-            email: mainSetting.email.value,
-            password: mainSetting.password.value,
-            captcha: mainSetting.captcha.value
-          })
-        }).then(checkStatus).then(res => res.json()).then(data => {
-          console.log(data);
-          if (data.type === 2) {
-            if (data.text === 0) {
-              iziToast.error({
-                title: 'خطا!',
-                rtl: true,
-                message: 'ایمیل توسط شخص دیگری گرفته شده'
-              });
-              mainSetting.email.select();
-            } else if (data.text === 1) {
-              iziToast.error({
-                title: 'خطا!',
-                rtl: true,
-                message: 'موارد ضروری مقدار دهی نشده اند'
-              });
-            } else if (data.text === 2) {
-              iziErr();
-            } else if (data.text === 3) {
-              iziToast.error({
-                title: 'خطا!',
-                rtl: true,
-                message: 'یوزرنیم توسط شخص دیگری گرفته شده'
-              });
-              mainSetting.username.select();
-            } else if (data.text === 4) {
-              iziToast.error({
-                title: 'خطا!',
-                rtl: true,
-                message: 'ایمیل توسط شخص دیگری گرفته شده است'
-              });
-              mainSetting.email.select();
-            } else if (data.text === 5) {
-              iziToast.error({
-                title: 'خطا!',
-                rtl: true,
-                message: 'کد امنیتی اشتباه است'
-              });
-              mainSetting.captcha.select();
-            }
-          } else if (data.type === 0) {
-            localStorage.setItem('signedupsuccessfully', 1);
-            window.location.href = '/';
-          }
-        }).catch(() => {
-          iziErr();
+document.forms['signup-form'].addEventListener('submit', e => {
+  send({ url: '/signup' }, e, {
+    fname: e.target.fname.value,
+    lname: e.target.lname.value,
+    username: e.target.username.value,
+    email: e.target.email.value,
+    password: e.target.password.value,
+    captcha: e.target.captcha.value
+  }).then(res => {
+    if (res.type === 2) {
+      if (res.text === 0) {
+        iziToast.error({
+          title: 'خطا!',
+          rtl: true,
+          message: 'ایمیل توسط شخص دیگری گرفته شده'
         });
-
-    } else {
-      iziToast.warning({
-        title: 'هشدار',
-        rtl: true,
-        message: 'رمز باید حداقل هشت رقم باشد'
-      });
-      mainSetting.password.select();
+        e.target.email.select();
+      } else if (res.text === 1) {
+        iziToast.error({
+          title: 'خطا!',
+          rtl: true,
+          message: 'موارد ضروری مقدار دهی نشده اند'
+        });
+      } else if (res.text === 2) {
+        iziErr();
+      } else if (res.text === 3) {
+        iziToast.error({
+          title: 'خطا!',
+          rtl: true,
+          message: 'یوزرنیم توسط شخص دیگری گرفته شده'
+        });
+        e.target.username.select();
+      } else if (res.text === 4) {
+        iziToast.error({
+          title: 'خطا!',
+          rtl: true,
+          message: 'ایمیل توسط شخص دیگری گرفته شده است'
+        });
+        e.target.email.select();
+      } else if (res.text === 5) {
+        iziToast.error({
+          title: 'خطا!',
+          rtl: true,
+          message: 'کد امنیتی اشتباه است'
+        });
+        e.target.captcha.select();
+      }
+    } else if (res.type === 0) {
+      localStorage.setItem('signedupsuccessfully', 1);
+      window.location.href = '/';
     }
-    } else {
-      iziToast.warning({
-        title: 'هشدار',
-        rtl: true,
-        message: 'یوزرنیم وارد شده اشتباه است'
-      });
-      mainSetting.username.select();
-    }
-  } else {
-    iziToast.warning({
-      title: 'هشدار',
-      rtl: true,
-      message: 'ایمیل وارد شده اشتباه است'
-    });
-    mainSetting.email.select();
-  }
+  }).catch(() => iziErr());
 });

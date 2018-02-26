@@ -1,84 +1,54 @@
-const mainSetting = document.forms['main-setting'];
-const passSetting = document.forms['pass-setting'];
-
-mainSetting.addEventListener('submit', e => {
-  e.preventDefault();
-
-  if (validateEmail(mainSetting.email.value)) {
-
-    fetch('/u/setting', {
-      method: 'POST',
-      credentials: 'include',
-      headers: new Headers({
-        'Content-Type': 'application/json'
-      }),
-      body: JSON.stringify({
-        fname: mainSetting.fname.value,
-        lname: mainSetting.lname.value,
-        username: mainSetting.username.value,
-        email: mainSetting.email.value,
-        description: mainSetting.description.value
-      })
-    }).then(checkStatus).then(res => res.json()).then(data => {
-      if (data.type === 2) {
-        if (data.text === 0) {
-          iziToast.error({
-            title: 'خطا!',
-            rtl: true,
-            message: 'ایمیل توسط شخص دیگری گرفته شده'
-          });
-        } else if (data.text === 1) {
-          iziToast.error({
-            title: 'خطا!',
-            rtl: true,
-            message: 'موارد ضروری مقدار دهی نشده اند'
-          });
-        } else if (data.text === 2) {
-          iziErr();
-        } else if (data.text === 3) {
-          iziToast.error({
-            title: 'خطا!',
-            rtl: true,
-            message: 'یوزرنیم توسط شخص دیگری گرفته شده'
-          });
-        }
-      } else if (data.type === 0) {
-        localStorage.setItem('mainsettingdone', 1);
-        window.location.href = '/u';
+document.forms['main-setting'].addEventListener('submit', e => {
+  send({ url: '/u/setting' }, e, {
+    fname: e.target.fname.value,
+    lname: e.target.lname.value,
+    username: e.target.username.value,
+    email: e.target.email.value,
+    description: e.target.description.value
+  }).then(res => {
+    if (res.type === 2) {
+      if (res.text === 0) {
+        iziToast.error({
+          title: 'خطا!',
+          rtl: true,
+          message: 'ایمیل توسط شخص دیگری گرفته شده'
+        });
+        e.target.email.select();
+      } else if (res.text === 1) {
+        iziToast.error({
+          title: 'خطا!',
+          rtl: true,
+          message: 'موارد ضروری مقدار دهی نشده اند'
+        });
+      } else if (res.text === 2) {
+        iziErr();
+      } else if (res.text === 3) {
+        iziToast.error({
+          title: 'خطا!',
+          rtl: true,
+          message: 'یوزرنیم توسط شخص دیگری گرفته شده'
+        });
+        e.target.username.select();
       }
-    }).catch(() => {
-      iziErr();
-    });
-  } else {
-    iziToast.warning({
-      title: 'هشدار',
-      rtl: true,
-      message: 'ایمیل وارد شده اشتباه است'
-    });
-  }
+    } else if (res.type === 0) {
+      localStorage.setItem('mainsettingdone', 1);
+      window.location.href = '/u';
+    }
+  }).catch(() => iziErr());
 });
 
-passSetting.addEventListener('submit', e => {
-  e.preventDefault();
-
-  fetch('/u/setting/password', {
-    method: 'POST',
-    credentials: 'include',
-    headers: new Headers({
-      'Content-Type': 'application/json'
-    }),
-    body: JSON.stringify({
-      password: passSetting.password.value,
-      newpassword: passSetting.newpassword.value,
-    })
-  }).then(checkStatus).then(res => res.json()).then(data => {
-    if (data.type === 0) {
+document.forms['pass-setting'].addEventListener('submit', e => {
+  send({ url: '/u/setting/password' }, e, {
+    password: e.target.password.value,
+    newpassword: e.target.newpassword.value
+  }).then(res => {
+    if (res.type === 0) {
       localStorage.setItem('passsettingdone', 1);
       window.location.href = '/u';
-    } else if (data.type === 2) {
-      if (data.text === 0) {
+    } else if (res.type === 2) {
+      if (res.text === 0) {
         iziErr();
-      } else if (data.text === 1) {
+      } else if (res.text === 1) {
         iziToast.error({
           title: 'خطا!',
           rtl: true,
@@ -86,9 +56,7 @@ passSetting.addEventListener('submit', e => {
         });
       }
     }
-  }).catch(() => {
-    iziErr();
-  });
+  }).catch(() => iziErr());
 });
 
 document.getElementById('delete-account').addEventListener('click', e => {
@@ -130,23 +98,14 @@ document.getElementById('delete-account').addEventListener('click', e => {
 
 document
   .getElementById('remove-current-avatar')
-  .addEventListener('click', () => {
+  .addEventListener('click', e => {
 
-  fetch('/u/setting/remove/avatar', {
-    method: 'POST',
-    credentials: 'include',
-    headers: new Headers({
-      'Content-Type': 'application/json'
-    })
-  }).then(res => res.json()).then(data => {
-    if (data.type === 0) {
-      localStorage.setItem('userAvatarRemovedSuccess', 1);
-      window.location.href = '/u';
-    } else {
-      iziErr();
-    }
-  }).catch(e => {
-    console.log(e);
-    iziErr();
-  });
+    send({ url: '/u/setting/remove/avatar' }, e).then(res => {
+      if (res.type === 0) {
+        localStorage.setItem('userAvatarRemovedSuccess', 1);
+        window.location.href = '/u';
+      } else {
+        iziErr();
+      }
+    }).catch(() => iziErr());
 });
