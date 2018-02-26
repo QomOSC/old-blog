@@ -100,3 +100,11 @@ if (localStorage.getItem('userAvatarRemovedSuccess')) {
   });
   localStorage.removeItem('userAvatarRemovedSuccess');
 }
+if (localStorage.getItem('recoveryLinkHasSentSuccess')) {
+  iziToast.success({
+    rtl: true,
+    title: 'موفق',
+    message: 'لینک تغییر رمز به ایمیل شما فرستاده شد'
+  });
+  localStorage.removeItem('recoveryLinkHasSentSuccess');
+}
