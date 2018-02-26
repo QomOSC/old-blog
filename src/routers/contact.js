@@ -36,8 +36,15 @@ router.get('/contact', async(req, res) => {
       oneOP.admin.avatar = admin.avatar;
     }
 
+    const commenter = await Member.findOne({ email: i.email });
+
+    if (commenter && commenter.avatar) {
+      oneOP.avatar = commenter.avatar;
+    }
+
     opinions.push(oneOP);
   }
+
   res.render('contact.njk', {
     opinions
   });
