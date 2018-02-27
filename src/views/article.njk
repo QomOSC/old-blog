@@ -1,9 +1,9 @@
 {% extends locals.path + '/index.njk' %}
 
 {% block head %}
-  <link rel="stylesheet" href="/files/css/viewpost.css">
-  <link rel="stylesheet" href="/files/css/home.css">
-  <link rel="stylesheet" href="/files/css/post-short.css">
+<link rel="stylesheet" href="/files/css/viewpost.css">
+<link rel="stylesheet" href="/files/css/home.css">
+<link rel="stylesheet" href="/files/css/post-short.css">
 {% endblock %}
 
 {% block content %}
@@ -179,12 +179,12 @@
 
 {% block scripts %}
 <script
-  src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js">
+src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js">
 </script>
-  <script>
-    var URL = '{{ p.article._id }}';
-  </script>
-  <script src='/files/js/ipchecker.js'></script>
-  <script src='/files/js/like-article.js'></script>
-  <script src="/files/js/viewarticle.js"></script>
+<script>
+  var URL = '{{ p.article._id }}';
+</script>
+<script src='/files/js/ipchecker.js'></script>
+<script src='/files/js/like-article.js'></script>
+<script src="/files/js/viewarticle.js"></script>
 {% endblock %}
