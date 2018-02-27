@@ -126,6 +126,33 @@
           </div>
         </div>
       </div>
+      <form
+        action="/article/{{ p.article._id }}/comment/add"
+        name="comment-form"
+        method="post">
+
+        <input
+          type="text"
+          name="name"
+          required="required"
+          placeholder="نام">
+
+        <input
+          type="email"
+          name="email"
+          required="required"
+          placeholder="ایمیل">
+
+        <textarea
+          name="description"
+          required="required"
+          placeholder="توضیحات"></textarea>
+
+        <input
+          type="submit"
+          value="ثبت نظر">
+
+      </form>
 
       <div class="cmt-container">
         {% for msm in matinkaboli %}
@@ -174,4 +201,5 @@
       <script src='/files/js/ipchecker.js'></script>
       <script src='/files/js/like-article.js'></script>
       <script src="/files/js/viewarticle.js"></script>
+      <script src="/files/js/comment-article.js"></script>
     {% endblock %}
