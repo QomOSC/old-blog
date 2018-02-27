@@ -48,6 +48,12 @@ const schema = new Schema({
     trim: true,
     default: 1
   },
+  contact: {
+    type: Boolean,
+    required: [true, 'contact'],
+    trim: true,
+    default: true
+  },
   createdAt: {
     type: Date,
     default: Date.now
