@@ -2,6 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <link rel="stylesheet" href="/files/css/font-fa.css">
     <link rel="stylesheet" href="/files/css/main.css">
     <link rel="stylesheet" href="/files/css/header.css">
@@ -10,152 +13,36 @@
     <link rel="stylesheet" href="/files/css/account.css">
     <link rel="stylesheet" href="/files/css/post-short.css">
     <link rel="stylesheet" href="/files/css/dropdown.css">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="/files/css/lib/izi.min.css">
-    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-    <link rel="shortcut icon" href="/files/image/favicon.ico">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css"
+      rel="stylesheet">
+
     <title>Qom OSC</title>
     <title>{{ title }}</title>
+    <link rel="shortcut icon" href="/files/image/favicon.ico">
+
     {% for item in locals.header %}
       {{ item | safe }}
     {% endfor %}
+
     {% block head %}{% endblock %}
   </head>
   <body>
-    <header>
-      {% if locals.logged %}
-        <ul id="header-list">
-          <li>
-            <a href="/u" id="user-fname">داشبورد</a>
-          </li>
-          <li>
-            <a href="/conference">ارائه ها</a>
-          </li>
-          <li>
-            <a href="/gallery">البوم</a>
-          </li>
-        </ul>
-        <div class="dropdown" id="icon-container" onclick="changeIcon(this)">
-          <button onclick="myFunction()" class="dropbtn">
-            <div class="bar1"></div>
-            <div class="bar2"></div>
-            <div class="bar3"></div>
-          </button>
-          <div id="myDropdown" class="dropdown-content">
-            <a href="/u">داشبورد</a>
-            <a href="/conference">ارائه ها</a>
-            <a href="/gallery">البوم</a>
-          </div>
-        </div>
-      {% else %}
-        <div class="dropdown" id="icon-container" onclick="changeIcon(this)">
-          <button onclick="myFunction()" class="dropbtn">
-            <div class="bar1"></div>
-            <div class="bar2"></div>
-            <div class="bar3"></div>
-          </button>
-          <div id="myDropdown" class="dropdown-content">
-            <a href="/login">ورود</a>
-            <a href="/signup">عضویت</a>
-            <a href="/conference">ارائه ها</a>
-            <a href="/gallery">البوم</a>
-          </div>
-        </div>
-        <ul id="header-list">
-          <li>
-            <a href="/login">&nbsp;ورود&nbsp;</a>
-          </li>
-          <li>
-            <a href="/signup">&nbsp;عضویت&nbsp;</a>
-          </li>
-          <li>
-            <a href="/conference">&nbsp;ارائه ها&nbsp;</a>
-          </li>
-          <li>
-            <a href="/gallery">&nbsp;البوم&nbsp;</a>
-          </li>
-        </ul>
-      {% endif %}
-      <a href="/" id="long-title-name" class="title">جامعه متن باز قم</a>
-      <a href="/" id="short-title-name" class="title">QOM OSC</a>
-    </header>
+
+    {% include locals.include + '/layouts/index/header.njk' %}
+
     <div id="all-container">
-      {% block content %}
-
-      {% endblock %}
+      {% block content %}{% endblock %}
     </div>
-   {% if locals.logged %}
-   <section class="fixedfooter">
-     <a href="/u/conference/">
-       ارائه های من
-       <i class="fab fa-weixin"></i>
-     </a>
-     <a href="/u/article/all">
-       مقالات من
-       <i class="far fa-envelope-open" aria-hidden="true"></i>
-     </a>
-     <a href="/u/gallery">
-       البوم من
-       <i class="far fa-images"></i>
-     </a>
-   </section>
-   {% endif %}
-    <footer>
-      <div class="footer-container">
-        <div class="footer-row1">
-          <a href="/" class="site-title">جامعه متن باز قم</a>
 
-          <form name="newsletter-form" action="/subscribe" method="post">
-            <input type="email" name="email" placeholder="ایمیل خود را برای عضویت در خبرنامه وارد کنید">
+    {% include locals.include + '/layouts/index/fixedfooter.njk' %}
 
-            <input type="submit" value="تایید">
-          </form>
-        </div>
+    {% include locals.include + '/layouts/index/footer.njk' %}
 
-        <div class="footer-row2">
-          <div class="footer-row2-info">
-            <i class="fa fa-map-marker" aria-hidden="true"></i>
-            <p class="p-footer">
-              <span>ایران، قم</span>
-            </p>
-          </div>
-          <div class="footer-row2-info">
-            <i class="fa fa-envelope" aria-hidden="true"></i>
-            <a href="mailto:@@EMAILADDRESS@@">@@EMAILADDRESS@@</a>
-          </div>
-
-        </div>
-        <div class="footer-row3">
-          <a href="/about" class="about-us">
-            <h4>درباره جامعه متن باز قم</h4>
-          </a>
-          <a href="/about" class="about-us">
-            <p>
-              جامعه متن‌باز قم با هدف فراهم کردن محیطی برای به اشتراک گذاری دانش و تجربیات افرادی که در زمینه‌های مختلف متن‌باز فعالیت می‌کنند تاسیس شده است...
-            </p>
-          </a>
-          <p></p><br>
-          <a href="/contact" class="about-us">
-            <h4>تماس با جامعه متن باز قم</h4>
-          </a>
-        </div>
-
-      </div>
-      <div class="bottom-footer">
-        <p>این پروژه تماما متن باز بوده و شما با مراجعه به این صفحه در
-          <a href="https://github.com/qomosc/blog">گیت هاب</a>
-          قادر به همکاری و مشارکت هستید.
-        </p>
-        <div>
-          <a href="https://t.me/QomOSC" class="fab fa-telegram"></a>
-          <a href="https://github.com/qomosc/blog" class="fab fa-github"></a>
-        </div>
-      </div>
-    </footer>
     {% for item in locals.header %}
-      {{ item | safe }}
+     {{ item | safe }}
     {% endfor %}
+
     <script src="/files/js/lib/checkstatus.js"></script>
     <script src="/files/js/lib/validator.js"></script>
     <script src="/files/js/lib/izi.min.js"></script>
@@ -163,7 +50,7 @@
     <script src="/files/js/home-localstorage.js"></script>
     <script src="/files/js/add-newsletter.js"></script>
     <script src="/files/js/dropdown.js"></script>
+
     {% block scripts %}{% endblock %}
   </body>
-
 </html>
