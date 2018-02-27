@@ -1,0 +1,57 @@
+<header>
+  {% if locals.logged %}
+    <ul id="header-list">
+      <li>
+        <a href="/u" id="user-fname">داشبورد</a>
+      </li>
+      <li>
+        <a href="/conference">ارائه ها</a>
+      </li>
+      <li>
+        <a href="/gallery">البوم</a>
+      </li>
+    </ul>
+    <div class="dropdown" id="icon-container" onclick="changeIcon(this)">
+      <button onclick="myFunction()" class="dropbtn">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </button>
+      <div id="myDropdown" class="dropdown-content">
+        <a href="/u">داشبورد</a>
+        <a href="/conference">ارائه ها</a>
+        <a href="/gallery">البوم</a>
+      </div>
+    </div>
+  {% else %}
+    <div class="dropdown" id="icon-container" onclick="changeIcon(this)">
+      <button onclick="myFunction()" class="dropbtn">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </button>
+      <div id="myDropdown" class="dropdown-content">
+        <a href="/login">ورود</a>
+        <a href="/signup">عضویت</a>
+        <a href="/conference">ارائه ها</a>
+        <a href="/gallery">البوم</a>
+      </div>
+    </div>
+    <ul id="header-list">
+      <li>
+        <a href="/login">&nbsp;ورود&nbsp;</a>
+      </li>
+      <li>
+        <a href="/signup">&nbsp;عضویت&nbsp;</a>
+      </li>
+      <li>
+        <a href="/conference">&nbsp;ارائه ها&nbsp;</a>
+      </li>
+      <li>
+        <a href="/gallery">&nbsp;البوم&nbsp;</a>
+      </li>
+    </ul>
+  {% endif %}
+  <a href="/" id="long-title-name" class="title">جامعه متن باز قم</a>
+  <a href="/" id="short-title-name" class="title">QOM OSC</a>
+</header>
