@@ -12,10 +12,10 @@
 {% else %}
 <div class="confs-search">
   <span>دنبال چی میگردی ؟؟</span>
-<form action="/conference" method="get">
-  <input type="search" name="q" value="{{ query }}" placeholder="جستجو کن">
-  <button type="submit">پیدا کن<i class="fas fa-search"></i></button>
-</form>
+  <form action="/conference" method="get">
+    <input type="search" name="q" value="{{ query }}" placeholder="جستجو کن">
+    <button type="submit">پیدا کن<i class="fas fa-search"></i></button>
+  </form>
 </div>
 {% if type == 0 %}
 <div class="page-title">
@@ -23,68 +23,70 @@
 </div>
 <div id="content-container">
   {% for i in confs %}
-   <div class="cnf">
-       <div class="avatar-confs">
-         <a href="/user/{{ i.provider.username }}">
-         {% if i.provider.avatar %}
-         <img src="/img/{{ i.provider.avatar }}">
-         {% else %}
-         <img src="/files/image/default-user.png">
-         {% endif %}
-         </a>
-         <a href="/user/{{ i.provider.username }}">
-           <span>{{ i.provider.fname }} {{ i.provider.lname }}</span>
-         </a>
-       </div>
-     <div class="cnf-content">
-       <div class="confs-title">
-    <h3> موضوع کنفرانس : {{ i.title }}</h3>
-    <span>{{ i.createdAt }}</span>
+  <div class="cnf">
+    <div class="avatar-confs">
+      <a href="/user/{{ i.provider.username }}">
+      {% if i.provider.avatar %}
+      <img src="/img/{{ i.provider.avatar }}">
+      {% else %}
+      <img src="/files/image/default-user.png">
+      {% endif %}
+      </a>
+      <a href="/user/{{ i.provider.username }}">
+        <span>{{ i.provider.fname }} {{ i.provider.lname }}</span>
+      </a>
     </div>
-    <p>توضیحات : {{ i.description }}</p>
+
+    <div class="cnf-content">
+      <div class="confs-title">
+        <h3> موضوع کنفرانس : {{ i.title }}</h3>
+        <span>{{ i.createdAt }}</span>
+      </div>
+      <p>توضیحات : {{ i.description }}</p>
     </div>
-    </div>
+  </div>
   {% endfor %}
 </div>
+
 {% elif type == 1 %}
 <div class="page-title">
   <span>ارائه های جستجو شده</span>
 </div>
 <div id="content-container">
   {% for i in confs %}
-   <div class="cnf">
-       <div class="avatar-confs">
-         <a href="/user/{{ i.provider.username }}">
-         {% if i.provider.avatar %}
-         <img src="/img/{{ i.provider.avatar }}">
-         {% else %}
-         <img src="/files/image/default-user.png">
-         {% endif %}
-         </a>
-         <a href="/user/{{ i.provider.username }}">
-           <span>{{ i.provider.fname }} {{ i.provider.lname }}</span>
-         </a>
-       </div>
-     <div class="cnf-content">
-       <div class="confs-title">
-    <h3> موضوع کنفرانس : {{ i.title }}</h3>
-    <span>{{ i.createdAt }}</span>
+  <div class="cnf">
+    <div class="avatar-confs">
+      <a href="/user/{{ i.provider.username }}">
+      {% if i.provider.avatar %}
+      <img src="/img/{{ i.provider.avatar }}">
+      {% else %}
+      <img src="/files/image/default-user.png">
+      {% endif %}
+      </a>
+      <a href="/user/{{ i.provider.username }}">
+      <span>{{ i.provider.fname }} {{ i.provider.lname }}</span>
+      </a>
     </div>
-    <p>توضیحات : {{ i.description }}</p>
+    <div class="cnf-content">
+      <div class="confs-title">
+        <h3> موضوع کنفرانس : {{ i.title }}</h3>
+        <span>{{ i.createdAt }}</span>
+      </div>
+      <p>توضیحات : {{ i.description }}</p>
     </div>
-    </div>
+  </div>
   {% endfor %}
 </div>
+{% endif %}
+{% endif %}
 
-{% endif %}
-{% endif %}
 <div class="confs-control">
-<a href="/gallery" id="previous">
-  <button>قبلی</button>
-</a>
-<a href="/gallery" id="next">
-  <button>بعدی</button>
-</a>
+  <a href="/gallery" id="previous">
+    <button>قبلی</button>
+  </a>
+  <a href="/gallery" id="next">
+    <button>بعدی</button>
+  </a>
 </div>
 {% endblock %}
 
