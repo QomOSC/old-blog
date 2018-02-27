@@ -36,85 +36,95 @@
               <span>مقالات من</span>
             </a>
           </div>
+        </div>
+      </div>
     </li>
 
     <li class="dropdown">
       <div class="dropbtn">
         <i class="fab fa-weixin"></i>
-      <span>ارائه ها</span>
-      <div>
-        <div class="dropdown-content">
-          <a href="/u/conference/add">
-            <span>اضافه کردن</span>
-          </a>
-          <a href="/u/conference">ارائه های من</a>
-          <a href="/u/conference/manage">
-            <span>مدیریت</span>
-          </a>
+        <span>ارائه ها</span>
+        <div>
+          <div class="dropdown-content">
+            <a href="/u/conference/add">
+              <span>اضافه کردن</span>
+            </a>
+            <a href="/u/conference">ارائه های من</a>
+            <a href="/u/conference/manage">
+              <span>مدیریت</span>
+            </a>
+          </div>
         </div>
-      </li>
+      </div>
+    </li>
 
-            <li class="dropdown">
-              <div class="dropbtn">
-                <i class="far fa-images"></i>
-                <span>آلبوم</span><div>
-                  <div class="dropdown-content">
-                    <a href="/u/gallery/add">
-                      <span>اضافه کردن</span>
-                    </a>
-                    <a href="/u/gallery">
-                      <span>البوم من</span>
-                    </a>
-                  </div>
-                </li>
+    <li class="dropdown">
+      <div class="dropbtn">
+        <i class="far fa-images"></i>
+        <span>آلبوم</span>
+        <div>
+          <div class="dropdown-content">
+            <a href="/u/gallery/add">
+              <span>اضافه کردن</span>
+            </a>
+            <a href="/u/gallery">
+              <span>البوم من</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </li>
 
-                {% if locals.logged.type >= 3 %}
+    {% if locals.logged.type >= 3 %}
 
-                  <li class="dropdown">
-                    <div class="dropbtn">
-                      <i class="fa fa-users"></i>
-                      <span>اعضا</span>
-                      <div>
-                        <div class="dropdown-content">
-                          <a href="/u/sub">
-                            <span>افراد درخواست داده</span>
-                          </a>
-                          <a href="/u/sub/manage">
-                            <span>مدیریت اعضا</span>
-                          </a>
-                        </div>
-                      </li>
-                    {% endif %}
-                    <li>
-                      <a href="/u/setting">
-                        <i class="fa fa-cog" aria-hidden="true"></i>
-                        <span>تنظیمات</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/u/logout" onclick="localStorage.setItem('loggedout', '1')">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <span>خروج</span>
-                      </a>
-                    </li>
-                  </ul>
+    <li class="dropdown">
+      <div class="dropbtn">
+        <i class="fa fa-users"></i>
+        <span>اعضا</span>
+        <div>
+          <div class="dropdown-content">
+            <a href="/u/sub">
+              <span>افراد درخواست داده</span>
+            </a>
+            <a href="/u/sub/manage">
+              <span>مدیریت اعضا</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </li>
+    {% endif %}
+    <li>
+      <a href="/u/setting">
+        <i class="fa fa-cog" aria-hidden="true"></i>
+        <span>تنظیمات</span>
+      </a>
+    </li>
+    <li>
+      <a href="/u/logout" onclick="localStorage.setItem('loggedout', '1')">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>خروج</span>
+      </a>
+    </li>
+  </ul>
 
-                  <div class="profile-avatar-header">
-                    {% if locals.logged.avatar %}
-                      <img src="/img/{{ locals.logged.avatar }}" alt="عکس کاربر">
-                    {% else %}
-                      <img src="/files/image/default-user.png" alt="عکس کاربر">
-                    {% endif %}
-                    {% if locals.logged %}
-                      <a href="/u">{{ locals.logged.fname }}</a>
-                    {% endif %}
-                  </div>
-                  <div>
-                    <a href="/" id="long-title-name" class="title">
-                      <i class="fab fa-osi"></i>
-                    </a>
-                    <a href="/" id="short-title-name" class="title">
-                      <i class="fab fa-osi"></i>
-                    </a>
-                  </div>
+  <div class="profile-avatar-header">
+    {% if locals.logged.avatar %}
+      <img src="/img/{{ locals.logged.avatar }}" alt="عکس کاربر">
+    {% else %}
+      <img src="/files/image/default-user.png" alt="عکس کاربر">
+    {% endif %}
+    {% if locals.logged %}
+      <a href="/u">{{ locals.logged.fname }}</a>
+    {% endif %}
+  </div>
+  
+  <div>
+    <a href="/" id="long-title-name" class="title">
+      <i class="fab fa-osi"></i>
+    </a>
+    <a href="/" id="short-title-name" class="title">
+      <i class="fab fa-osi"></i>
+    </a>
+  </div>
 </header>
