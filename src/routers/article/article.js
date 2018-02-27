@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-const { Article, Member, Tag } = rootRequire('./models');
+const { Article, Member, Tag, Comment } = rootRequire('./models');
 const { moment } = rootRequire('./utils');
 
 const router = new Router();
@@ -55,7 +55,7 @@ router.get('/article', async(req, res) => {
           res.reply.error();
         }
     }
-    
+
     res.render('articles.njk', {
       q: req.query.q,
       arts: allArts
@@ -86,6 +86,25 @@ router.get('/article/:id', async(req, res) => {
       for (const i of tags) {
         oneArt.tags.push(i.tagname);
       }
+    }
+
+    const comment = await Comment.find({ type: 2, article: req.params.id });
+
+    if (comment.length !== 0) {
+      const allComments = [];
+
+      for (const i of comment) {
+        const oneCom = {
+          name: i.name,
+          email: i.email,
+          title: i.title,
+          answer: i.answer,
+          description: i.description,
+          createdAt: moment(i.createdAt)
+        };
+        allComments.push(oneCom);
+      }
+      oneArt.comments = allComments;
     }
 
     const member = await Member.findOne({ _id: article.author });
