@@ -4,38 +4,60 @@
 
 {% block content %}
 <div class="page-title">
- <span>ورود<span>
+  <span>ورود<span>
 </div>
-  <form action="/login" method="post" name="login-form">
-    <div class="card">
-      <div class="card-right">
-        <h1>ورود</h1>
-        <p>وارد حساب کاربری خود شوید</p>
-        <input type="email" name="email" required="required" placeholder="ایمیل" maxlength="200">
-        <input type="password" name="password" required="required" placeholder="رمز" maxlength="100">
-        <div class="cap">
+<form action="/login" method="post" name="login-form">
+  <div class="card">
+    <div class="card-right">
+      <h1>ورود</h1>
+      <p>وارد حساب کاربری خود شوید</p>
+      <input
+        type="email"
+        name="email"
+        required="required"
+        placeholder="ایمیل"
+        maxlength="200">
+
+      <input
+        type="password"
+        name="password"
+        required="required"
+        placeholder="رمز"
+        maxlength="100">
+
+      <div class="cap">
         <p id="svg-captcha"></p>
         <i class="fas fa-sync-alt" id="change-captcha"></i>
-        </div>
-        <input type="text" name="captcha" required="required" placeholder="کد امنیتی" maxlength="10">
+      </div>
 
-        <div class="row">
-          <input type="submit" value="ورود" class="sub">
-          <a href="/recovery">فراموشی رمز</a>
-        </div>
+      <input
+        type="text"
+        name="captcha"
+        required="required"
+        placeholder="کد امنیتی"
+        maxlength="10">
+
+      <div class="row">
+        <input
+          type="submit"
+          value="ورود"
+          class="sub">
+
+        <a href="/recovery">فراموشی رمز</a>
       </div>
-      <div class="card-left">
-        <h1>ثبت نام</h1>
-        <p>اگر در جامعه متن باز قم عضو نیستید به راحتی می توانید همین الان نام نویسی کنید</p>
-    <a href="/signup">
-          <button class="btn" type="button">عضویت</button>
-        </a>
-      </div>
+
     </div>
-
-  </form>
+    <div class="card-left">
+      <h1>ثبت نام</h1>
+      <p>اگر در جامعه متن باز قم عضو نیستید به راحتی می توانید همین الان نام نویسی کنید</p>
+      <a href="/signup">
+        <button class="btn" type="button">عضویت</button>
+      </a>
+    </div>
+  </div>
+</form>
 {% endblock %}
 
 {% block scripts %}
-  <script src="/files/js/login.js"></script>
+<script src="/files/js/login.js"></script>
 {% endblock %}
