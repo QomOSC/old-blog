@@ -7,7 +7,7 @@ document.forms['contact-form'].addEventListener('submit', e => {
     description: e.target.description.value
   }).then(res => {
     if (res.type === 0) {
-      localStorage.setItem('opinionregisteredsuccessful', 1);
+      localStorage.setItem('commentregisteredsuccessful', 1);
       window.location.href = '/';
     } else if (res.type === 2) {
       if (res.text === 0) {

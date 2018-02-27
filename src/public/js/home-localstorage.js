@@ -84,13 +84,13 @@ if (localStorage.getItem('requestforconferencesuccessful')) {
   });
   localStorage.removeItem('requestforconferencesuccessful');
 }
-if (localStorage.getItem('opinionregisteredsuccessful')) {
+if (localStorage.getItem('commentregisteredsuccessful')) {
   iziToast.success({
     rtl: true,
     title: 'موفق',
     message: 'نظر شما با موفقیت ثبت شد'
   });
-  localStorage.removeItem('opinionregisteredsuccessful');
+  localStorage.removeItem('commentregisteredsuccessful');
 }
 if (localStorage.getItem('userAvatarRemovedSuccess')) {
   iziToast.success({
