@@ -24,7 +24,6 @@ const schema = new Schema({
   },
   title: {
     type: String,
-    required: [true, 'title'],
     maxlength: 100,
     trim: true
   },
@@ -49,10 +48,18 @@ const schema = new Schema({
     default: 1
   },
   contact: {
-    type: Boolean,
+    type: Boolean, // true = it's from /contact,   false = it's from an article
     required: [true, 'contact'],
     trim: true,
     default: true
+  },
+  article: {
+    type: Number,
+    trim: true
+  },
+  author: {
+    type: Schema.Types.ObjectId,
+    ref: 'Member'
   },
   createdAt: {
     type: Date,
