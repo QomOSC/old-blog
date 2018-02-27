@@ -14,7 +14,7 @@
       <span>نظرات</span>
     </div>
     <div id="content-container">
-      {% for i in opinion %}
+      {% for i in comment %}
         <div class="cnf" id="{{ i._id }}">
           <div class="avatar-confs">
             <a href="/user/{{ i.provider.username }}">
@@ -40,16 +40,41 @@
               {{ i.description }}</p>
           </div>
           <div class="action-div">
-            <form action="/u/opinion/accept/{{ i._id }}" method="post" class="accept-form">
-              <input type="hidden" name="id" value="{{ i._id }}">
+            <form
+              action="/u/comments/accept/{{ i._id }}"
+              method="post"
+              class="accept-form">
+
+              <input
+                type="hidden"
+                name="id"
+                value="{{ i._id }}">
+
               <textarea
               name="answer"
               placeholder="پاسخ"></textarea>
-              <input type="submit" value="پذیرفتن و نمایش نظر در سایت" class="green-btn">
+
+              <input
+                type="submit"
+                value="پذیرفتن و نمایش نظر در سایت"
+                class="green-btn">
+
             </form>
-            <form action="/u/opinion/reject/{{ i._id }}" method="post" class="reject-form">
-              <input type="hidden" name="id" value="{{ i._id }}">
-              <input type="submit" value="نپذیرفتن" class="green-btn">
+            <form
+              action="/u/comments/reject/{{ i._id }}"
+              method="post"
+              class="reject-form">
+
+              <input
+                type="hidden"
+                name="id"
+                value="{{ i._id }}">
+
+              <input
+                type="submit"
+                value="نپذیرفتن"
+                class="green-btn">
+
             </form>
           </div>
         </div>
@@ -60,5 +85,5 @@
 {% endblock %}
 
 {% block scripts %}
-  <script src="/files/js/opinion-decision.js"></script>
+  <script src="/files/js/comment-decision.js"></script>
 {% endblock %}

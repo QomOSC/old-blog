@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-const { Opinion, Member } = rootRequire('./models');
+const { Comment, Member } = rootRequire('./models');
 const { moment } = rootRequire('./utils');
 
 const router = new Router();
@@ -10,16 +10,16 @@ router.get('/contact-us', (req, res) => {
 });
 
 router.get('/contact', async(req, res) => {
-  const lastTenOpinions = await Opinion
+  const lastTenComments = await Comment
   .find({ type: 2 })
   .sort({ createdAt: -1 })
   .limit(10);
 
-  const opinions = [];
+  const comments = [];
 
 
-  for (const i of lastTenOpinions) {
-    const oneOP = {
+  for (const i of lastTenComments) {
+    const oneCom = {
       name: i.name,
       email: i.email,
       title: i.title,
@@ -31,23 +31,23 @@ router.get('/contact', async(req, res) => {
 
     if (i.admin) {
       const admin = await Member.findOne({ _id: i.admin });
-      oneOP.admin.username = admin.username;
-      oneOP.admin.fname = admin.fname;
-      oneOP.admin.lname = admin.lname;
-      oneOP.admin.avatar = admin.avatar;
+      oneCom.admin.username = admin.username;
+      oneCom.admin.fname = admin.fname;
+      oneCom.admin.lname = admin.lname;
+      oneCom.admin.avatar = admin.avatar;
     }
 
     const commenter = await Member.findOne({ email: i.email });
 
     if (commenter && commenter.avatar) {
-      oneOP.avatar = commenter.avatar;
+      oneCom.avatar = commenter.avatar;
     }
 
-    opinions.push(oneOP);
+    comments.push(oneCom);
   }
 
   res.render('contact.njk', {
-    opinions
+    comments
   });
 });
 
@@ -59,14 +59,14 @@ router.post('/contact', (req, res) => {
       req.body.description) {
 
     if (req.body.captcha.toLowerCase() === req.session.captcha) {
-      const opinion = new Opinion({
+      const comment = new Comment({
         name: req.body.name,
-        title: req.body.title,
         email: req.body.email,
+        title: req.body.title,
         description: req.body.description
       });
 
-      opinion.save().then(() => {
+      comment.save().then(() => {
         req.session.captcha = null;
         res.json({ type: 0 });
       }).catch(() => {

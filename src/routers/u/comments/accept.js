@@ -1,25 +1,25 @@
 import { Router } from 'express';
 
-const { Opinion } = rootRequire('./models');
+const { Comment } = rootRequire('./models');
 
 const router = new Router();
 
 
-router.post('/u/opinion/accept/:id', async(req, res) => {
+router.post('/u/comments/accept/:id', async(req, res) => {
   if (req.member.user &&
     req.member.user.type >= 3 &&
     req.params.id) {
 
-    const op = await Opinion.findOne({ _id: req.params.id });
+    const comment = await Comment.findOne({ _id: req.params.id });
 
-    op.type = 2;
-    op.admin = req.member.user._id;
+    comment.type = 2;
+    comment.admin = req.member.user._id;
 
     if (req.body.answer) {
-      op.answer = req.body.answer;
+      comment.answer = req.body.answer;
     }
 
-    op.save().then(() => {
+    comment.save().then(() => {
       // Done
       res.json({ type: 0 });
     }).catch(() => {

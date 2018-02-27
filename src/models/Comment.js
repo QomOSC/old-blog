@@ -60,4 +60,4 @@ const schema = new Schema({
   }
 });
 
-export default mongoose.model('Opinion', schema);
+export default mongoose.model('Comment', schema);
