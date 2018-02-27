@@ -13,21 +13,59 @@
           <h1>عضویت</h1>
           <p>حساب کاربری خود را بسازید!</p>
         </div>
-        <input type="text" name="fname" required="required" placeholder="نام" maxlength="50">
-        <input type="text" name="lname" required="required" placeholder="نام خانوادگی" maxlength="50">
 
-        <input type="text" name="username" required="required" placeholder="نام کاربری" maxlength="100">
-        <input type="email" name="email" required="required" placeholder="ایمیل" maxlength="200">
+        <input
+          type="text"
+          name="fname"
+          required="required"
+          placeholder="نام"
+          maxlength="50">
+
+        <input
+          type="text"
+          name="lname"
+          required="required"
+          placeholder="نام خانوادگی"
+          maxlength="50">
+
+        <input
+          type="text"
+          name="username"
+          required="required"
+          placeholder="نام کاربری"
+          maxlength="100">
+
+        <input
+          type="email"
+          name="email"
+          required="required"
+          placeholder="ایمیل"
+          maxlength="200">
+
         <div class="cap">
-        <p id="svg-captcha"></p>
-        <i class="fas fa-sync-alt" id="change-captcha"></i>
+          <p id="svg-captcha"></p>
+          <i class="fas fa-sync-alt" id="change-captcha"></i>
         </div>
-        <input type="text" name="captcha" required="required" placeholder="کد امنیتی" maxlength="10">
 
-        <input type="password" name="password" required="required" placeholder="رمز عبور" maxlength="100">
+        <input
+          type="text"
+          name="captcha"
+          required="required"
+          placeholder="کد امنیتی"
+          maxlength="10">
+
+        <input
+          type="password"
+          name="password"
+          required="required"
+          placeholder="رمز عبور"
+          maxlength="100">
 
         <div class="row2">
-          <input type="submit" value="ثبت" class="sub2">
+          <input
+            type="submit"
+            value="ثبت"
+            class="sub2">
         </div>
       </div>
 
@@ -41,5 +79,5 @@
 {% endblock %}
 
 {% block scripts %}
-  <script src="/files/js/signup.js"></script>
+<script src="/files/js/signup.js"></script>
 {% endblock %}
