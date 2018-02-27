@@ -16,7 +16,30 @@
   align-items: center;
 
   input ,textarea {
-    box-shadow: 0 2px 3px 0 rgba(0,0,0,.3);
+    border: none;
+    border-bottom: 1px solid #ccc;
+    font-size: 16px;
+    transition: 0.3s;
+    margin-bottom: 20px;
+  }
+
+  .post-title {
+    margin-bottom: 10px;
+  }
+
+  input:focus  {
+    box-shadow: none;
+    border-bottom: 1px solid #333;
+    color: #333;
+  }
+  textarea {
+    border: 1px solid #eee;
+  }
+  textarea:focus {
+    box-shadow: none;
+    border-bottom: 1px solid #333;
+    border-radius: 0;
+    color: #333;
   }
 }
 
@@ -26,6 +49,7 @@
   width: 92%;
 
   i {
+    vertical-align: middle;
     font-size: 20px;
     padding: 5px 15px;
     color: #fff;
