@@ -1,7 +1,14 @@
 {% extends locals.path + '/index.njk' %}
 
+{% block head %}
+<link rel="stylesheet" href="/files/css/replies.css">
+{% endblock %}
+
 {% block content %}
-<p>
-  500 - {{message}}
-</p>
+<div class="replies">
+  <div class="repl-404">
+  500{{message}}
+  <span>صفحه مورد نظر پیدا نشد</span>
+  </div>
+</div>
 {% endblock %}
