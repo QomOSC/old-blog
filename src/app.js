@@ -159,6 +159,7 @@ app.use((req, res, next) => {
     header: [],
     footer: [],
     path: path.resolve(__dirname, 'views', 'layouts'),
+    include: path.resolve(__dirname, 'views', 'includes'),
     report: JSON.stringify(req.flash('report') || [])
   };
 
