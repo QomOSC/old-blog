@@ -20,6 +20,17 @@ router.post('/u/article/delete/:id', logged, async(req, res) => {
 
       await Tag.remove({ article: article._id });
 
+      const regex = /(?:!\[.*]\()([\w\/.]+)(?:\))/gi, subst = '$1';
+
+      const photos = article.content
+      .match(regex, subst)
+      .map(x => x.replace(regex, subst))
+      .map(x => x.split('/')[2]);
+      
+      for (const i of photos) {
+        await removeImage(i);
+      }
+
       if (article.avatar) {
         removeImage(article.avatar)
           .then(() => {

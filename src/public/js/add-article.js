@@ -97,7 +97,7 @@ e => {
         credentials: 'include',
         body: PD
       }).then(checkStatus).then(res => res.json()).then(data => {
-        form.content.value += `![Photo](/img/${data.filename})`;
+        form.content.value += `![Photo](/img/${data.filename})\n`;
       }).catch(() => {
         iziErr();
       });
