@@ -90,7 +90,6 @@ e => {
   if (e.target.files && e.target.files[0]) {
     if (e.target.files[0].type === 'image/png' ||
     e.target.files[0].type === 'image/jpeg') {
-      console.log(e.target.files[0]);
       PD.append('postPhoto', e.target.files[0]);
 
       fetch('/u/article/addonephoto', {
