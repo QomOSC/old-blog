@@ -11,7 +11,7 @@
     </div>
   {% else %}
     <div class="page-title">
-      <span>گالری</span>
+      <span>البوم</span>
     </div>
     <div id="myModal" class="modal">
       <span class="close">&times;</span>
@@ -20,7 +20,7 @@
     </div>
     <div class="gallery-container">
       {% for i in photos %}
-        <div class="gallery-posts">
+        <div class="gallery-posts" id="{{ i._id }}">
           <div class="img-gallery">
             <img src="/img/{{ i.photo }}" class="myImg">
           </div>
@@ -37,6 +37,16 @@
             </div>
           </div>
         </div>
+        <form
+          action="/u/gallery/remove/{{ i._id }}"
+          method="post"
+          class="remove-photo"
+          name="remove-photo">
+
+          <input type="hidden" name="id" value="{{ i._id }}">
+          <input type="submit" value="حذف">
+
+        </form>
       {% endfor %}
     </div>
     <a href="/gallery" id="previous">
@@ -49,8 +59,7 @@
 {% endblock %}
 
 {% block scripts %}
-  {% if empty %}
-  {% else %}
-    <script src="/files/js/gallery.js"></script>
-  {% endif %}
+{% if not empty %}
+  <script src="/files/js/gallery.js"></script>
+{% endif %}
 {% endblock %}

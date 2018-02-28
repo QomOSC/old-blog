@@ -61,3 +61,25 @@ let span = document.getElementsByClassName('close')[0];
 span.onclick = function() {
   modal.style.display = 'none';
 };
+
+
+const removePhoto = document.getElementsByClassName('remove-photo');
+
+for (let i = 0; i < removePhoto.length; i++) {
+  removePhoto[i].addEventListener('submit', e => {
+    send({ url: removePhoto[i].getAttribute('action') }, e).then(res => {
+      if (res.type === 0) {
+        iziToast.success({
+          rtl: true,
+          title: 'عکس با موفقیت حذف شد '
+        });
+        document
+          .getElementById(removePhoto[i].id.value)
+          .style.display = 'none';
+        e.target.style.display = 'none';
+      } else {
+        iziErr();
+      }
+    }).catch(() => iziErr());
+  });
+}
