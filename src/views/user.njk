@@ -24,7 +24,7 @@
     <table id="user-info">
       <tr>
         <td title="ایمیل">
-          <i class="fa fa-envelope" aria-hidden="true"></i>
+          <i class="icon-envelope" aria-hidden="true"></i>
         </td>
         <td>
           <a href="mailto:{{ member.email}}">{{ member.email }}</a>
@@ -32,7 +32,7 @@
       </tr>
       <tr>
         <td title="یوزرنیم">
-          <i class="fa fa-user" aria-hidden="true"></i>
+          <i class="icon-user" aria-hidden="true"></i>
         </td>
         <td>
           <a href="/user/{{ member.username}}">{{ member.username}}</a>
@@ -41,14 +41,14 @@
       {% if member.description %}
       <tr>
         <td title="درباره کاربر">
-          <i class="fa fa-info" aria-hidden="true"></i>
+          <i class="icon-info" aria-hidden="true"></i>
         </td>
         <td>{{ member.description }}</td>
       </tr>
       {% endif %}
       <tr>
         <td>
-          <i class="fa fa-clock"></i>
+          <i class="icon-clock-o"></i>
         </td>
         <td>تاریخ عضویت:
           {{ member.createdAt }}
@@ -56,7 +56,7 @@
       </tr>
       <tr>
         <td>
-          <i class="fa fa-file" aria-hidden="true"></i>
+          <i class="icon-file" aria-hidden="true"></i>
         </td>
         <td>تعداد پست:
           {{ member.postsLength }}
@@ -64,7 +64,7 @@
       </tr>
       <tr>
         <td>
-          <i class="fa fa-user-secret" aria-hidden="true"></i>
+          <i class="icon-user-secret" aria-hidden="true"></i>
         </td>
         {% if member.type === 1 %}
         <td>رتبه: در حال انتظار</td>
@@ -106,11 +106,11 @@
           <div class="posts-event">
             <div class="like-btn" title="لایک ها">
               <span>{{ i.likes }}</span>
-              <i class="fa fa-heart" aria-hidden="true"></i>
+              <i class="icon-heart" aria-hidden="true"></i>
             </div>
             <div class="view-btn" title="بازدید ها">
               <span>{{ i.viewers }}</span>
-              <i class="fa fa-eye" aria-hidden="true"></i>
+              <i class="icon-eye" aria-hidden="true"></i>
             </div>
           </div>
           <a href="/article/{{ i.id }}">

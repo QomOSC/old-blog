@@ -7,199 +7,200 @@
 {% endblock %}
 
 {% block content %}
-  <section class="article-header">
-    <div class="head-article">
-      <div>
-        <a href="/">
-          <img src="/files/image/qomosc.png" width="55px">
-        </a>
-        <h3>{{ p.article.title }}</h3>
-      </div>
-      <div>
-        <a href="https://telegram.me/share/url?url=@@LINK@@/article/{{ p.article._id }}&amp;text={{ p.article.title }} در جامعه متن باز قم" target="_blank">
-          <i class="fab fa-telegram"></i>
-        </a>
-        <a href="https://twitter.com/intent/tweet?text=@@LINK@@/article/{{ p.article._id }} {{ p.article.title }} در جامعه متن باز قم" data-size="large">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a href="mailto:?subject={{ p.article.title }} در جامعه متن باز قم&body=این مطلب را در جامعه متن باز قم کامل بخوانید @@LINK@@/article/{{ p.article._id }}">
-          <i class="fas fa-envelope"></i>
-        </a>
-      </div>
-    </div>
-    <div class="progress-container">
-      <div class="progress-bar" id="myBar"></div>
-    </div>
-  </section>
-  <div class="viewpost" style="background-image: url('/img/{{ p.article.avatar }}');">
-    <span>{{ p.article.title }}</span>
-    <div class="viewpost-details">
-      <a href="/user/{{ p.author.username }}">
-        <div class="profile-img" style="background-image: url('/img/{{ p.author.avatar }}');
-         background-size: cover;"></div>
+<section class="article-header">
+  <div class="head-article">
+    <div>
+      <a href="/">
+        <img src="/files/image/qomosc.png" width="55px">
       </a>
-      <span>{{ p.author.fname }}
-        {{ p.author.lname }}</span>
+      <h3>{{ p.article.title }}</h3>
+    </div>
+    <div>
+      <a href="https://telegram.me/share/url?url=@@LINK@@/article/{{ p.article._id }}&amp;text={{ p.article.title }} در جامعه متن باز قم" target="_blank">
+        <i class="icon-telegram"></i>
+      </a>
+      <a href="https://twitter.com/intent/tweet?text=@@LINK@@/article/{{ p.article._id }} {{ p.article.title }} در جامعه متن باز قم" data-size="large">
+        <i class="icon-twitter"></i>
+      </a>
+      <a href="mailto:?subject={{ p.article.title }} در جامعه متن باز قم&body=این مطلب را در جامعه متن باز قم کامل بخوانید @@LINK@@/article/{{ p.article._id }}">
+        <i class="icon-envelope"></i>
+      </a>
+    </div>
+  </div>
+  <div class="progress-container">
+    <div class="progress-bar" id="myBar"></div>
+  </div>
+</section>
+<div class="viewpost" style="background-image: url('/img/{{ p.article.avatar }}');">
+  <span>{{ p.article.title }}</span>
+  <div class="viewpost-details">
+    <a href="/user/{{ p.author.username }}">
+      <div class="profile-img" style="background-image: url('/img/{{ p.author.avatar }}');
+       background-size: cover;"></div>
+    </a>
+    <span>{{ p.author.fname }}
+      {{ p.author.lname }}</span>
+    <span>
+      <i class="icon-circle"></i>
       <span>
-        <i class="fa fa-circle"></i>
-        <span>
-          <span>{{ p.other.createdAt }}</span>
-        </div>
+        <span>{{ p.other.createdAt }}</span>
       </div>
-      <div class="viewpost-all">
-        <div class="viewpost-info-all">
-          <div class="viewpost-info">
-            <div class="viewpost-info-in">
-              <div class="view-post-head-right">
-                <a href="/user/{{ p.author.username }}">
-                  <div class="profile-img" style="background-image: url('/img/{{ p.author.avatar }}');
-                  background-size: cover;"></a>
-                </div>
-                <a href="/user/{{ p.author.username }}">
-                  <span>{{ p.author.fname }}
-                    {{ p.author.lname }}</span>
-                </a>
+    </div>
+    <div class="viewpost-all">
+      <div class="viewpost-info-all">
+        <div class="viewpost-info">
+          <div class="viewpost-info-in">
+            <div class="view-post-head-right">
+              <a href="/user/{{ p.author.username }}">
+                <div class="profile-img" style="background-image: url('/img/{{ p.author.avatar }}');
+                background-size: cover;"></a>
               </div>
-              <div class="viewpost-icon">
-                <span>
-                  <i class="fa fa-eye" aria-hidden="true"></i>&nbsp;{{ p.other.viewers }}</span>
-                <span>
-                  مطالعه : &nbsp;&nbsp;{{ p.article.minutes }}&nbsp; دقیقه
-                </span>
-              </div>
+              <a href="/user/{{ p.author.username }}">
+                <span>{{ p.author.fname }}
+                  {{ p.author.lname }}</span>
+              </a>
             </div>
-          </div>
-
-        </div>
-        <div class="viewpost-body">
-          <div class="viewpost-text">
-            <h1>{{ p.article.title }}</h1>
-            <div id="markdowned-text">{{ p.article.content }}</div>
-            <div class="event">
-              <div class="posts-event">
-                <div id="dislike-btn">
-                  {% if p.liked %}
-                    <i class="fa fa-heart liked" aria-hidden="true" id="like-dislike-btn" data-id="{{ p.article._id }}" data-status="liked"></i>
-                  {% else %}
-                    <i class="fa fa-heart disliked" aria-hidden="true" id="like-dislike-btn" data-id="{{ p.article._id }}" data-status="disliked"></i>
-                  {% endif %}
-                  &nbsp;
-                </div>
-                <span class="like-spn" id="like-and-dislike-number">{{ p.other.likes }}</span>
-                <span>
-                  <i class="fa fa-calendar" aria-hidden="true"></i>
-                  &nbsp;{{ p.other.createdAt }}
-                </span>
-              </div>
-
-              <div class="dtags">
-                <span>برچسب ها:
-                </span>
-                {% for i in p.tags %}
-                  <a href="/tag/{{ i }}" class="atags">{{ i }}</a>
-                {% endfor %}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="user-info">
-          <div class="user-info-right">
-            <a href="/user/{{ p.author.username }}">
-              <div class="profile-img" style="background-image: url('/img/{{ p.author.avatar }}');
-              background-size: cover;"></div>
-            </a>
-          </div>
-          <div class="user-info-left">
-            <div>
-              <span class="username">
-                <a href="/user/{{ p.author.username }}">
-                  <span>{{ p.author.fname }}
-                    {{ p.author.lname }}</span>
-                </a>
+            <div class="viewpost-icon">
+              <span>
+                <i class="icon-eye" aria-hidden="true">
+                </i>&nbsp;{{ p.other.viewers }}</span>
+              <span>
+                مطالعه : &nbsp;&nbsp;{{ p.article.minutes }}&nbsp; دقیقه
               </span>
             </div>
-            <div>
-              {% if p.author.description %}
-                <p>{{ p.author.description }}</p>
-              {% endif %}
+          </div>
+        </div>
+
+      </div>
+      <div class="viewpost-body">
+        <div class="viewpost-text">
+          <h1>{{ p.article.title }}</h1>
+          <div id="markdowned-text">{{ p.article.content }}</div>
+          <div class="event">
+            <div class="posts-event">
+              <div id="dislike-btn">
+                {% if p.liked %}
+                  <i class="icon-thumbs-up" aria-hidden="true" id="like-dislike-btn" data-id="{{ p.article._id }}" data-status="liked"></i>
+                {% else %}
+                  <i class="icon-thumbs-down" aria-hidden="true" id="like-dislike-btn" data-id="{{ p.article._id }}" data-status="disliked"></i>
+                {% endif %}
+                &nbsp;
+              </div>
+              <span class="like-spn" id="like-and-dislike-number">{{ p.other.likes }}</span>
+              <span>
+                <i class="icon-calendar-minus-o" aria-hidden="true"></i>
+                &nbsp;{{ p.other.createdAt }}
+              </span>
+            </div>
+
+            <div class="dtags">
+              <span>برچسب ها:
+              </span>
+              {% for i in p.tags %}
+                <a href="/tag/{{ i }}" class="atags">{{ i }}</a>
+              {% endfor %}
             </div>
           </div>
         </div>
       </div>
-      <form
-        action="/article/{{ p.article._id }}/comment/add"
-        name="comment-form"
-        method="post">
+      <div class="user-info">
+        <div class="user-info-right">
+          <a href="/user/{{ p.author.username }}">
+            <div class="profile-img" style="background-image: url('/img/{{ p.author.avatar }}');
+            background-size: cover;"></div>
+          </a>
+        </div>
+        <div class="user-info-left">
+          <div>
+            <span class="username">
+              <a href="/user/{{ p.author.username }}">
+                <span>{{ p.author.fname }}
+                  {{ p.author.lname }}</span>
+              </a>
+            </span>
+          </div>
+          <div>
+            {% if p.author.description %}
+              <p>{{ p.author.description }}</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <form
+      action="/article/{{ p.article._id }}/comment/add"
+      name="comment-form"
+      method="post">
 
-        <input
-          type="text"
-          name="name"
-          required="required"
-          placeholder="نام">
+      <input
+        type="text"
+        name="name"
+        required="required"
+        placeholder="نام">
 
-        <input
-          type="email"
-          name="email"
-          required="required"
-          placeholder="ایمیل">
+      <input
+        type="email"
+        name="email"
+        required="required"
+        placeholder="ایمیل">
 
-        <textarea
-          name="description"
-          required="required"
-          placeholder="توضیحات"></textarea>
+      <textarea
+        name="description"
+        required="required"
+        placeholder="توضیحات"></textarea>
 
-        <input
-          type="submit"
-          value="ثبت نظر">
+      <input
+        type="submit"
+        value="ثبت نظر">
 
-      </form>
+    </form>
 
-      <div class="cmt-container">
-        {% for i in p.comments %}
-          <div class="comment">
-            <div class="cmt-avatar">
-              <img src="/files/image/default-avatar.png">
+    <div class="cmt-container">
+      {% for i in p.comments %}
+        <div class="comment">
+          <div class="cmt-avatar">
+            <img src="/files/image/default-avatar.png">
+          </div>
+          <div class="cmt-content">
+            <div class="cmt-title">
+              <div>
+                <span class="cmt-name">{{ i.name }}</span>
+              </div>
+              <div class="cmt-event">
+                <div>
+                  <i class="icon-thumbs-up"></i>
+                  <span>5</span>
+                </div>
+                <div>
+                  <i class="icon-thumbs-down"></i>
+                  <span>3</span>
+                </div>
+              </div>
             </div>
-            <div class="cmt-content">
-              <div class="cmt-title">
-                <div>
-                  <span class="cmt-name">{{ i.name }}</span>
-                </div>
-                <div class="cmt-event">
-                  <div>
-                    <i class="fas fa-thumbs-up"></i>
-                    <span>5</span>
-                  </div>
-                  <div>
-                    <i class="fas fa-thumbs-down"></i>
-                    <span>3</span>
-                  </div>
-                </div>
-              </div>
-              <div class="cmt-des">
-                <p>{{ i.description }}</p>
-              </div>
-              <div class="cmt-time">
-                <div>
-                  <span>{{ i.createdAt }}</span></div>
-                <div>
-                  <i class="fas fa-reply"></i>
-                  <span>پاسخ دادن</span>
-                </div>
+            <div class="cmt-des">
+              <p>{{ i.description }}</p>
+            </div>
+            <div class="cmt-time">
+              <div>
+                <span>{{ i.createdAt }}</span></div>
+              <div>
+                <i class="icon-reply"></i>
+                <span>پاسخ دادن</span>
               </div>
             </div>
           </div>
-        {% endfor %}
-      </div>
-    {% endblock %}
+        </div>
+      {% endfor %}
+    </div>
+{% endblock %}
 
-    {% block scripts %}
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js"></script>
-      <script>
-        var URL = '{{ p.article._id }}';
-      </script>
-      <script src='/files/js/ipchecker.js'></script>
-      <script src='/files/js/like-article.js'></script>
-      <script src="/files/js/viewarticle.js"></script>
-      <script src="/files/js/comment-article.js"></script>
-    {% endblock %}
+{% block scripts %}
+  <script>
+    var URL = '{{ p.article._id }}';
+  </script>
+  <script src="/files/js/lib/showdown.min.js"></script>
+  <script src='/files/js/ipchecker.js'></script>
+  <script src='/files/js/like-article.js'></script>
+  <script src="/files/js/viewarticle.js"></script>
+  <script src="/files/js/comment-article.js"></script>
+{% endblock %}
