@@ -23,7 +23,7 @@
         <i class="icon-twitter"></i>
       </a>
       <a href="mailto:?subject={{ p.article.title }} در جامعه متن باز قم&body=این مطلب را در جامعه متن باز قم کامل بخوانید @@LINK@@/article/{{ p.article._id }}">
-        <i class="icon-envelope"></i>
+        <i class="icon-email"></i>
       </a>
     </div>
   </div>
@@ -80,15 +80,15 @@
             <div class="posts-event">
               <div id="dislike-btn">
                 {% if p.liked %}
-                  <i class="icon-thumbs-up" aria-hidden="true" id="like-dislike-btn" data-id="{{ p.article._id }}" data-status="liked"></i>
+                  <i class="icon-like" aria-hidden="true" id="like-dislike-btn" data-id="{{ p.article._id }}" data-status="liked"></i>
                 {% else %}
-                  <i class="icon-thumbs-down" aria-hidden="true" id="like-dislike-btn" data-id="{{ p.article._id }}" data-status="disliked"></i>
+                  <i class="icon-dislike" aria-hidden="true" id="like-dislike-btn" data-id="{{ p.article._id }}" data-status="disliked"></i>
                 {% endif %}
                 &nbsp;
               </div>
               <span class="like-spn" id="like-and-dislike-number">{{ p.other.likes }}</span>
               <span>
-                <i class="icon-calendar-minus-o" aria-hidden="true"></i>
+                <i class="icon-calendar" aria-hidden="true"></i>
                 &nbsp;{{ p.other.createdAt }}
               </span>
             </div>
@@ -168,11 +168,11 @@
               </div>
               <div class="cmt-event">
                 <div>
-                  <i class="icon-thumbs-up"></i>
+                  <i class="icon-like"></i>
                   <span>5</span>
                 </div>
                 <div>
-                  <i class="icon-thumbs-down"></i>
+                  <i class="icon-dislike"></i>
                   <span>3</span>
                 </div>
               </div>
