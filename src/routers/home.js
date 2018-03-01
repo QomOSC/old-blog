@@ -15,48 +15,39 @@ router.get('/', async(req, res) => {
   .limit(1);
 
   const articles = [];
-  let articleEmpty = false;
 
   const lastConf = { provider: {} };
 
-  if (doc.length === 0) {
-    articleEmpty = true;
-  } else {
-    for (const i of doc) {
+  for (const i of doc) {
 
-      let content = i.content.split('').slice(0, 130);
-      content.push('.', '.', '.');
-      content = content.join('');
+    let content = i.content.split('').slice(0, 130);
+    content.push('.', '.', '.');
+    content = content.join('');
 
-      const oneArticle = {
-        _id: i._id,
-        title: i.title,
-        createdAt: moment(i.createdAt),
-        likes: i.likes.length,
-        viewers: i.viewers.length,
-        avatar: i.avatar,
-        author: {},
-        content
-      };
+    const oneArticle = {
+      _id: i._id,
+      title: i.title,
+      createdAt: moment(i.createdAt),
+      likes: i.likes.length,
+      viewers: i.viewers.length,
+      avatar: i.avatar,
+      author: {},
+      content
+    };
 
-      const member = await Member.findOne({ _id: i.author });
+    const member = await Member.findOne({ _id: i.author });
 
-      if (member) {
-        oneArticle.author.fname = member.fname;
-        oneArticle.author.lname = member.lname;
-        oneArticle.author.username = member.username;
-        oneArticle.author.avatar = member.avatar;
+    if (member) {
+      oneArticle.author.fname = member.fname;
+      oneArticle.author.lname = member.lname;
+      oneArticle.author.username = member.username;
+      oneArticle.author.avatar = member.avatar;
 
-        articles.push(oneArticle);
-      } else {
-        res.reply.error();
-      }
+      articles.push(oneArticle);
     }
   }
 
-  if (conf.length === 0) {
-    lastConf.empty = true;
-  } else {
+  if (conf.length) {
     lastConf.title = conf[0].title;
     lastConf.description = conf[0].description;
     lastConf.avatar = conf[0].avatar;
@@ -70,10 +61,9 @@ router.get('/', async(req, res) => {
       lastConf.provider.username = provider.username;
       lastConf.provider.avatar = provider.avatar;
     }
-  }
+  } else { lastConf.empty = true; }
 
-  res.render('home.njk', { posts: articles, lastConf, articleEmpty });
-
+  res.render('home.njk', { posts: articles, lastConf });
 });
 
 export default router;
