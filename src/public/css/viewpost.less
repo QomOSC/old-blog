@@ -341,6 +341,7 @@
   background: #fff;
   width: 80%;
   padding: 15px 1%;
+  padding-bottom: 50px;
   display: flex;
   min-height: 180px;
   height: auto;
@@ -434,7 +435,7 @@
 
 .cmt-send {
   background: #fff;
-  width: 100%;
+  width: 80%;
   margin: auto;
   padding: 10px;
 
@@ -451,6 +452,38 @@
 .cmt-row {
   display: flex;
 }
+.cmt-name {
+  font-family: SB;
+}
+
+.cmt-ans {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  padding: 0 2%;
+  border-right: 3px solid #ccc;
+}
+
+.cmt-content {
+  display: flex;
+  flex-direction: column;
+
+  div {
+    margin-bottom: 5px;
+  }
+}
+
+.cmt-ans-avatar {
+  width: 11%;
+  padding: 5px;
+
+  img {
+    vertical-align: middle;
+    width: 70px;
+    border-radius: 100%;
+  }
+}
+
 @media (min-width: 120px) and (max-width: 500px) {
   body {
     overflow-x: hidden;
@@ -580,5 +613,12 @@
 
   .cmt-time {
     height: 8%;
+  }
+}
+.cmt-ans-avatar {
+  width: 23%;
+
+  img {
+    width: 55px;
   }
 }
