@@ -27,20 +27,24 @@
       </div>
       <div class="cnf-content">
         <div class="confs-title">
-          <h3>
-            عنوان :
-            {{ i.title }}</h3>
           <span>{{ i.createdAt }}</span>
           <span>{{ i.email }}</span>
         </div>
         <p>توضیحات :
           {{ i.description }}</p>
+        {% if i.article %}
+          <p>در مقاله:
+            <a href="/article/{{ i.article._id }}">{{ i.article.title }}</a>
+          </p>
+          <p>عکس مقاله:</p>
+          <img src="/img/{{ i.article.avatar }}" width="200px">
+        {% endif %}
       </div>
       <div class="action-div">
         <form
           action="/u/comments/accept/{{ i._id }}"
           method="post"
-          class="accept-form">
+          class="accept-form accept">
 
           <input
             type="hidden"
@@ -60,7 +64,7 @@
         <form
           action="/u/comments/reject/{{ i._id }}"
           method="post"
-          class="reject-form">
+          class="reject-form reject">
 
           <input
             type="hidden"
@@ -78,43 +82,6 @@
 
   {% endfor %}
 </div>
-{# {% for i in comment %}
-<div style="border-bottom: 3px solid red;" id="{{ i._id }}">
-  <p>id: {{ i._id }}</p>
-  <p>name: {{ i.name }}</p>
-  <p>email: {{ i.email}}</p>
-  <p>description: {{ i.description }}</p>
-  <p>createdAt: {{ i.createdAt }}</p>
-  {% if i.article %}
-    <p>post title: {{ i.article.title }}</p>
-    <p>post _id: {{ i.article._id }}</p>
-    <p>post avatar: {{ i.article.avatar }}</p>
-  {% endif %}
-  <form
-    action="/u/article-comments/reject/{{ i._id }}"
-    class="reject"
-    method="post">
-
-    <input type="hidden" name="id" value="{{ i._id }}">
-
-    <input type="submit" value="نپذیرفتن">
-  </form>
-
-  <form
-    action="/u/article-comments/accept/{{ i._id }}"
-    class="accept"
-    method="post">
-
-    <input type="hidden" name="id" value="{{ i._id }}">
-
-    <textarea
-    name="answer"
-    placeholder="پاسخ"></textarea>
-
-    <input type="submit" value="پذیرفتن">
-  </form>
-</div> #}
-{% endfor %}
 {% endif %}
 {% endblock %}
 
