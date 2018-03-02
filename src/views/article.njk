@@ -127,33 +127,6 @@
         </div>
       </div>
     </div>
-    <form
-      action="/article/{{ p.article._id }}/comment/add"
-      name="comment-form"
-      method="post">
-
-      <input
-        type="text"
-        name="name"
-        required="required"
-        placeholder="نام">
-
-      <input
-        type="email"
-        name="email"
-        required="required"
-        placeholder="ایمیل">
-
-      <textarea
-        name="description"
-        required="required"
-        placeholder="توضیحات"></textarea>
-
-      <input
-        type="submit"
-        value="ثبت نظر">
-
-    </form>
 
     <div class="cmt-container">
       {% for i in p.comments %}
@@ -167,7 +140,7 @@
                 <span class="cmt-name">{{ i.name }}</span>
               </div>
               <div class="cmt-event">
-                <div>
+                <div class="cmt-icon">
                   <i class="icon-like"></i>
                   <span>5</span>
                 </div>
@@ -192,6 +165,38 @@
         </div>
       {% endfor %}
     </div>
+    <div class="cmt-send">
+    <form
+      action="/article/{{ p.article._id }}/comment/add"
+      name="comment-form"
+      method="post">
+       <div class="cmt-row">
+      <input
+        type="text"
+        name="name"
+        required="required"
+        placeholder="نام">
+
+      <input
+        type="email"
+        name="email"
+        required="required"
+        placeholder="ایمیل">
+         </div>
+      <textarea
+        name="description"
+        required="required"
+        placeholder="توضیحات"></textarea>
+
+      <input
+        type="submit"
+        value="ثبت نظر"
+        class="green-btn"
+        >
+
+    </form>
+    </div>
+
 {% endblock %}
 
 {% block scripts %}
