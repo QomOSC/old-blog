@@ -7,7 +7,10 @@ const { moment } = rootRequire('./utils');
 const router = new Router();
 
 router.get('/u/comments', perms.logged, perms.u.admin, async(req, res) => {
-  const comments = await Comment.find({ type: 1 });
+  const comments = await Comment.find({
+    type: 1,
+    article: null
+  });
 
   if (comments.length === 0) {
     res.render('u/comments/comment.njk', {
