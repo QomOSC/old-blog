@@ -76,6 +76,9 @@
         <div class="viewpost-text">
           <h1>{{ p.article.title }}</h1>
           <div id="markdowned-text">{{ p.article.content }}</div>
+          {% for embed in p.article.embeds %}
+            {{ embed | safe }}
+          {% endfor %}
           <div class="event">
             <div class="posts-event">
               <div id="dislike-btn">

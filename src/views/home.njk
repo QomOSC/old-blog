@@ -63,11 +63,11 @@
 </section>
 {% endif %}
 
-{% for i in posts %}
 <div class="home-content">
   <div class="last-posts">
     <h3>مطالب اخیر</h3>
     <div class="latset-posts">
+{% for i in posts %}
       <div class="posts">
         <div class="posts-head">
           <div class="posts-head-right">
@@ -122,10 +122,10 @@
         </a>
       </div>
       </div>
-    </div>
-  </div>
-</div>
 {% endfor %}
+</div>
+</div>
+</div>
 {% endblock %}
 
 {% block scripts %}
