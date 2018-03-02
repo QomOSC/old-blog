@@ -161,6 +161,33 @@
                 <span>پاسخ دادن</span>
               </div>
             </div>
+            {% if i.answer %}
+              <a href="/user/{{ i.admin.username }}">
+
+                <div class="cmt-ans">
+                  <div><i class="icon-reply"></i></div>
+                  <div class="cmt-ans-avatar">
+                    {% if i.admin.avatar %}
+                      <img src="/img/{{ i.admin.avatar }}">
+                    {% else %}
+                      <img src="/files/image/default-user.png">
+                    {% endif %}
+                  </div>
+                  <div class="cmt-ans-content">
+                    <div class="cmt-ans-user">
+                      <span>
+                        {{ i.admin.fname }}
+                        {{ i.admin.lname }}
+                      </span>
+                    </div>
+                    <div class="cmt-ans-des">
+                      <p>{{ i.answer }}</p>
+                    </div>
+                  </div>
+
+                </div>
+              </a>
+            {% endif %}
           </div>
         </div>
       {% endfor %}
