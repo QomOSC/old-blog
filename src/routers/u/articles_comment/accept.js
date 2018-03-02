@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 const { Comment } = rootRequire('./models');
 const { logged } = rootRequire('./perms');
+const { email } = rootRequire('./utils');
 
 const router = new Router();
 
@@ -16,6 +17,9 @@ router.post('/u/article-comments/accept/:id', logged, async(req, res) => {
     if (req.body.answer) {
       comment.answer = req.body.answer;
     }
+
+    email.comment.accept(comment.email).then(() => {}).catch(() => {});
+
 
     comment.save().then(() => {
       // Done
