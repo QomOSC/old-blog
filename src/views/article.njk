@@ -164,37 +164,38 @@
           </div>
         </div>
       {% endfor %}
-    </div>
-    <div class="cmt-send">
-    <form
-      action="/article/{{ p.article._id }}/comment/add"
-      name="comment-form"
-      method="post">
-       <div class="cmt-row">
-      <input
-        type="text"
-        name="name"
-        required="required"
-        placeholder="نام">
+      <div class="cmt-send">
+      <form
+        action="/article/{{ p.article._id }}/comment/add"
+        name="comment-form"
+        method="post">
+         <div class="cmt-row">
+        <input
+          type="text"
+          name="name"
+          required="required"
+          placeholder="نام">
 
-      <input
-        type="email"
-        name="email"
-        required="required"
-        placeholder="ایمیل">
-         </div>
-      <textarea
-        name="description"
-        required="required"
-        placeholder="توضیحات"></textarea>
+        <input
+          type="email"
+          name="email"
+          required="required"
+          placeholder="ایمیل">
+           </div>
+        <textarea
+          name="description"
+          required="required"
+          placeholder="توضیحات"></textarea>
 
-      <input
-        type="submit"
-        value="ثبت نظر"
-        class="green-btn"
-        >
+        <input
+          type="submit"
+          value="ثبت نظر"
+          class="green-btn"
+          >
 
-    </form>
+      </form>
+      </div>
+
     </div>
 
 {% endblock %}
