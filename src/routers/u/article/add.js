@@ -19,7 +19,6 @@ router.post(
   (req, res) => {
 
   if (req.body.title && req.body.content && req.body.minutes) {
-
     const article = new Article({
       title: req.body.title,
       content: req.body.content,
@@ -27,6 +26,12 @@ router.post(
       author: req.member.user._id,
       avatar: req.file.filename
     });
+
+    if (req.body.embeds) {
+      const embeds = req.body.embeds.split(',');
+      article.embeds = embeds;
+    }
+
 
     article.save().then(async() => {
 

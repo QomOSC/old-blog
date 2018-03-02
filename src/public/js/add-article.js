@@ -2,8 +2,9 @@ const form = document.forms['add-post'];
 const preview = document.getElementById('preview');
 const up = document.getElementById('upload');
 const imgPreview = document.getElementById('img-preview');
-let fd = new FormData();
 const placeholder = document.getElementById('post-content');
+let fd = new FormData();
+const embeds = [];
 
 function beforeAddingPhoto(e) {
   e.preventDefault();
@@ -62,6 +63,7 @@ up.addEventListener('change', () => {
           fd.append('content', form.content.value);
           fd.append('tags', form.tags.value);
           fd.append('minutes', minutes);
+          fd.append('embeds', embeds);
 
           fetch('/u/article/add', {
             method: 'POST',
@@ -103,4 +105,29 @@ e => {
       });
     }
   }
+});
+
+document
+  .getElementById('add-one-video-embed')
+  .addEventListener('click', () => {
+
+  document
+    .getElementById('adding-video-embed')
+    .classList.toggle('video-embed');
+});
+
+document
+  .getElementById('submit-embed')
+  .addEventListener('click', () => {
+
+  const text = document.getElementById('embed-text');
+
+  if (text.value) {
+    embeds.push(text.value);
+    text.value = '';
+  }
+
+  document
+    .getElementById('adding-video-embed')
+    .classList.toggle('video-embed');
 });
