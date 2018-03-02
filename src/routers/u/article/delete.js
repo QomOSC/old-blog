@@ -16,43 +16,35 @@ router.post('/u/article/delete/:id', logged, async(req, res) => {
   if (member) {
     member.articles.splice(req.params.id, 1);
 
-    member.save().then(async() => {
+    await member.save();
 
-      await Tag.remove({ article: article._id });
+    await Tag.remove({ article: article._id });
 
-      const regex = /(?:!\[.*]\()([\w\/.]+)(?:\))/gi, subst = '$1';
+    const regex = /(?:!\[.*]\()([\w\/.]+)(?:\))/gi, subst = '$1';
 
-      const photos = article.content
-      .match(regex, subst)
+    let photos = article.content
+    .match(regex, subst);
+
+    if (photos) {
+      photos = photos
       .map(x => x.replace(regex, subst))
       .map(x => x.split('/')[2]);
-      
+
       for (const i of photos) {
         await removeImage(i);
       }
+    }
 
-      if (article.avatar) {
-        removeImage(article.avatar)
-          .then(() => {
-            article.remove().then(() => {
-              res.json({ type: 0 });
-            }).catch(() => {
-              res.json({ type: 2 });
-            });
-          }).catch(() => {
-            res.json({ type: 2 });
-          });
-      } else {
-        article.remove().then(() => {
-          res.json({ type: 0 });
-        }).catch(() => {
-          res.json({ type: 2 });
-        });
-      }
+    if (article.avatar) {
+      await removeImage(article.avatar);
+    }
 
+    article.remove().then(() => {
+      res.json({ type: 0 });
     }).catch(() => {
       res.json({ type: 2 });
     });
+
   } else {
     res.json({ type: 2 });
   }
