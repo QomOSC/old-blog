@@ -11,60 +11,59 @@ router.get('/recovery', login, (req, res) => {
 });
 
 router.post('/recovery', login, async(req, res) => {
-  if (req.body.email && req.body.captcha) {
-    req.body.email = req.body.email.toLowerCase();
-
-    if (req.body.captcha === req.session.captcha) {
-      req.session.captcha = null;
-
-      const r = await random();
-      const member = await Member.findOne({ email: req.body.email });
-
-      if (member) {
-
-        const rec = new Recovery({
-          token: r,
-          member: member._id
-        });
-
-        rec.save().then(() => {
-
-          email.recovery(req.body.email, rec.token).then(() => {
-            // OK
-            res.json({ type: 0 });
-          }).catch(() => {
-            // Error
-            res.json({ type: 2, text: 2 });
-          });
-        }).catch(() => {
-          // Error
-          res.json({ type: 2, text: 2 });
-        });
-      } else {
-        // Email not found
-        res.json({ type: 2, text: 3 });
-      }
-    } else {
-      // Wrong Captcha
-      res.json({ type: 2, text: 1 });
-    }
-  } else {
+  if (!req.body.email || !req.body.captcha) {
     // Values are not complete
     res.json({ type: 2, text: 0 });
+    return;
   }
+
+  req.body.email = req.body.email.toLowerCase();
+
+  if (req.body.captcha !== req.session.captcha) {
+    // Wrong Captcha
+    res.json({ type: 2, text: 1 });
+    return;
+  }
+
+  req.session.captcha = null;
+
+  const r = await random();
+  const member = await Member.findOne({ email: req.body.email });
+
+  if (!member) {
+    // Email not found
+    res.json({ type: 2, text: 3 });
+    return;
+  }
+
+  const rec = new Recovery({
+    token: r,
+    member: member._id
+  });
+
+  rec.save().then(() => {
+
+    res.json({ type: 0 });
+    email.recovery(req.body.email, rec.token).catch();
+
+  }).catch(() => {
+    // Error
+    res.json({ type: 2, text: 2 });
+  });
 });
 
 router.get('/recovery/:token', login, async(req, res) => {
 
   const member = await Recovery.findOne({ token: req.params.token });
 
-  if (member) {
-    res.render('recovery/change.njk', {
-      token: req.params.token
-    });
-  } else {
+  if (!member) {
     res.reply.notFound();
+    return;
   }
+  
+  res.render('recovery/change.njk', {
+    token: req.params.token
+  });
 });
 
 export default router;
