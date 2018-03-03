@@ -2,23 +2,31 @@
 
 {% block head %}
 <link rel="stylesheet" href="/files/css/conference.css">
+<link rel="stylesheet" href="/files/css/editor-icon.css">
 {% endblock %}
 
 {% block content %}
 <div class="page-title">
-  <span>درخواست برای ارائه کنفرانس
-</span>
+  <span>اضافه کردن ارائه</span>
 </div>
+
 <div class="conference-container">
-<form action="/u/conference/add" method="post" name="add-conference">
-  <input
-    type="text"
-    name="title"
-    required
-    placeholder="موضوع ارائه">
+
+  <form action="/u/conference/add" method="post" name="add-conference">
+
+    <input
+      type="text"
+      name="title"
+      required
+      placeholder="موضوع ارائه">
+
+
+    {% include locals.include + '/tools/editor-icon.njk' %}
+
 
     <textarea
       name="description"
+      id="post-content"
       placeholder="درباره"
       rows="8"
       cols="80"></textarea>
@@ -26,7 +34,9 @@
     <input
       type="submit"
       value="ارسال درخواست">
-</form>
+
+  </form>
+
 </div>
 {% endblock %}
 

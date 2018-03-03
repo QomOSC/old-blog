@@ -2,6 +2,7 @@
 
 {% block head %}
 <link rel="stylesheet" href="/files/css/lib/cropper.css">
+<link rel="stylesheet" href="/files/css/editor-icon.css">
 <link rel="stylesheet" href="/files/css/setting-cropper.css">
 <link rel="stylesheet" href="/files/css/post.css">
 {% endblock %}
@@ -9,7 +10,7 @@
 {% block content %}
   <div class="page-title">
     <i class="icon-pencil"></i>
-    <span>پست کردن</span>
+    <span>اضافه کردن مقاله</span>
   </div>
 
   <div class="post-container">
@@ -20,41 +21,40 @@
         <input type="text" name="title" required="required"
         placeholder="عنوان" maxlength="100" class="post-title">
 
-        <div class="add-post-icons">
-          <i class="icon-bold" id="add-bold-text" title="پر رنگ کردن"></i>
 
-          <i class="icon-italic" id="add-italic-text" title="کج کردن"></i>
+        {% include locals.include + '/tools/editor-icon.njk' %}
 
-          <i class="icon-strikethrough" id="add-line-through-text"
-          title="خط کشیدن روی متن"></i>
 
-          <i class="icon-code" id="add-code-text"
-          title="اضافه کردن کد"></i>
+        <input
+          type="file"
+          title="اضافه کردن عکس"
+          id="add-photo-to-post"
+          style="display: none;">
 
-          <i class="icon-link" id="add-link-text"
-          title="اضافه کردن لینک"></i>
+        <textarea
+          id="post-content"
+          name="content"
+          rows="8"
+          cols="80"
+          required="required"
+          placeholder="متن"
+          maxlength="10000"></textarea>
 
-          <label for="add-photo-to-post" title="اضافه کردن عکس">
-            <i class="icon-image"></i>
-          </label>
-        </div>
+        <input
+          type="text"
+          name="tags"
+          maxlength="100"
+          placeholder="برچسب ها (با کاما جدا کنید)">
 
-        <input type="file" title="اضافه کردن عکس"
-        id="add-photo-to-post" style="display: none;">
-          <textarea id="post-content" name="content" rows="8" cols="80"
-          required="required" placeholder="متن" maxlength="10000"></textarea>
+        <input
+          type="file"
+          id="upload"
+          value="Upload"
+          style="display: none;">
 
-      <input
-        type="text"
-        name="tags"
-        maxlength="100"
-        placeholder="برچسب ها (با کاما جدا کنید)">
-
-      <input type="file" id="upload" value="Upload" style="display: none;">
-
-      <button
-        type="button"
-        id="add-one-video-embed">افزودن فیلم</button>
+        <button
+          type="button"
+          id="add-one-video-embed">افزودن فیلم</button>
 
       <div id="adding-video-embed" class="video-embed">
         <textarea
@@ -94,5 +94,4 @@
 <script src="/files/js/lib/showdown.min.js"></script>
 <script src="/files/js/lib/cropper.js"></script>
 <script src="/files/js/add-article.js"></script>
-<script src="/files/js/article-options.js"></script>
 {% endblock %}

@@ -1,13 +1,14 @@
 {% extends locals.path + '/u.njk' %}
 
 {% block head %}
-  <link rel="stylesheet" href="/files/css/post.css">
+<link rel="stylesheet" href="/files/css/post.css">
+<link rel="stylesheet" href="/files/css/editor-icon.css">
 {% endblock %}
 
 {% block content %}
   <div class="page-title">
     <i class="icon-pencil"></i>
-    <span>تغییر پست</span>
+    <span>تغییر مقاله</span>
   </div>
 
   <div class="post-container">
@@ -27,24 +28,8 @@
           name="id"
           value="{{ article._id }}">
 
-        <div class="add-post-icons">
-          <i class="icon-bold" id="add-bold-text" title="پر رنگ کردن"></i>
 
-          <i class="icon-italic" id="add-italic-text" title="کج کردن"></i>
-
-          <i class="icon-strikethrough" id="add-line-through-text"
-          title="خط کشیدن روی متن"></i>
-
-          <i class="icon-code" id="add-code-text"
-          title="اضافه کردن کد"></i>
-
-          <i class="icon-link" id="add-link-text"
-          title="اضافه کردن لینک"></i>
-
-          <label for="add-photo-to-post" title="اضافه کردن عکس">
-            <i class="icon-image"></i>
-          </label>
-        </div>
+        {% include locals.include + '/tools/editor-icon.njk' %}
 
         <input type="file" title="اضافه کردن عکس"
         id="add-photo-to-post" style="display: none;">
