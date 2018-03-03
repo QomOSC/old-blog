@@ -17,6 +17,8 @@ router.post('/u/gallery/remove/:id', logged, async(req, res) => {
     } catch (e) {
       res.json({ type: 2 });
     }
+  } else {
+    res.json({ type: 2 });
   }
 });
 

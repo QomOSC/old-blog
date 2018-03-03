@@ -27,32 +27,35 @@ router.get('/tag/:tagname', async(req, res) => {
 
     const article = await Article.findOne({ _id: i.article });
 
-    if (article) {
-      let content = article.content.split('').slice(0, 130);
-      content.push('.', '.', '.');
-      content = content.join('');
-
-      oneTag.article.title = article.title;
-      oneTag.article._id = article._id;
-      oneTag.article.createdAt = moment(article.createdAt);
-      oneTag.article.likes = article.likes.length;
-      oneTag.article.viewers = article.viewers.length;
-      oneTag.article.avatar = article.avatar;
-      oneTag.article.content;
-
-      const member = await Member.findOne({ _id: article.author });
-
-      if (member) {
-        oneTag.author.fname = member.fname;
-        oneTag.author.lname = member.lname;
-        oneTag.author.username = member.username;
-        oneTag.author.avatar = member.avatar;
-
-        tagsInfo.push(oneTag);
-      } else {
-        res.reply.error();
-      }
+    if (!article) {
+      return;
     }
+
+    let content = article.content.split('').slice(0, 130);
+    content.push('.', '.', '.');
+    content = content.join('');
+
+    oneTag.article.title = article.title;
+    oneTag.article._id = article._id;
+    oneTag.article.createdAt = moment(article.createdAt);
+    oneTag.article.likes = article.likes.length;
+    oneTag.article.viewers = article.viewers.length;
+    oneTag.article.avatar = article.avatar;
+    oneTag.article.content;
+
+    const member = await Member.findOne({ _id: article.author });
+
+    if (!member) {
+      res.reply.error();
+      return;
+    }
+    
+    oneTag.author.fname = member.fname;
+    oneTag.author.lname = member.lname;
+    oneTag.author.username = member.username;
+    oneTag.author.avatar = member.avatar;
+
+    tagsInfo.push(oneTag);
   }
 
   res.render('tag.njk', {

@@ -48,6 +48,7 @@ router.get('/', async(req, res) => {
   }
 
   if (conf.length) {
+    lastConf._id = conf[0]._id;
     lastConf.title = conf[0].title;
     lastConf.description = conf[0].description;
     lastConf.avatar = conf[0].avatar;

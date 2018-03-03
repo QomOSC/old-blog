@@ -17,7 +17,7 @@ router.get('/conference', async(req, res) => {
     .skip(start)
     .limit(stop);
 
-  if (confs.length === 0) {
+  if (!confs.length) {
     if (req.query.q) {
       res.render('conference.njk', {
         type: 1,
@@ -30,47 +30,49 @@ router.get('/conference', async(req, res) => {
         empty: true
       });
     }
-  } else {
-
-    const confArr = [];
-
-    for (const i of confs) {
-
-      const oneConf = {
-        title: i.title,
-        createdAt: moment(i.createdAt),
-        description: i.description,
-        avatar: i.avatar,
-        provider: {},
-      };
-
-      const member = Member.findOne({ _id: i.provider });
-
-      if (member) {
-        oneConf.provider.fname = member.fname;
-        oneConf.provider.lname = member.lname;
-        oneConf.provider.username = member.username;
-        oneConf.provider.avatar = member.avatar;
-
-        confArr.push(oneConf);
-      } else {
-        res.reply.error();
-      }
-    }
-    
-    if (req.query.q) {
-      res.render('conference.njk', {
-        confs: confArr,
-        type: 1,
-        query: req.query.q,
-      });
-    } else {
-      res.render('conference.njk', {
-        confs: confArr,
-        type: 0
-      });
-    }
+    return;
   }
+
+  const confArr = [];
+
+  for (const i of confs) {
+
+    const oneConf = {
+      title: i.title,
+      createdAt: moment(i.createdAt),
+      description: i.description,
+      avatar: i.avatar,
+      provider: {},
+    };
+
+    const member = Member.findOne({ _id: i.provider });
+
+    if (!member) {
+      res.reply.error();
+      return;
+    }
+
+    oneConf.provider.fname = member.fname;
+    oneConf.provider.lname = member.lname;
+    oneConf.provider.username = member.username;
+    oneConf.provider.avatar = member.avatar;
+
+    confArr.push(oneConf);
+  }
+
+  if (req.query.q) {
+    res.render('conference.njk', {
+      confs: confArr,
+      type: 1,
+      query: req.query.q,
+    });
+    return;
+  }
+
+  res.render('conference.njk', {
+    confs: confArr,
+    type: 0
+  });
 });
 
 export default router;

@@ -51,33 +51,36 @@ router.get('/contact', async(req, res) => {
   });
 });
 
-router.post('/contact', (req, res) => {
-  if (req.body.email &&
-      req.body.name &&
-      req.body.title &&
-      req.body.captcha &&
-      req.body.description) {
+router.post('/contact', async(req, res) => {
+  if (!req.body.email ||
+      !req.body.name ||
+      !req.body.title ||
+      !req.body.captcha ||
+      !req.body.description) {
 
-    if (req.body.captcha.toLowerCase() === req.session.captcha) {
-      const comment = new Comment({
-        name: req.body.name,
-        email: req.body.email,
-        title: req.body.title,
-        description: req.body.description
-      });
+    // Error
+    res.json({ type: 2, text: 0 });
+    return;
+  }
 
-      comment.save().then(() => {
-        req.session.captcha = null;
-        res.json({ type: 0 });
-      }).catch(() => {
-        // Error
-        res.json({ type: 2, text: 0 });
-      });
-    } else {
-      // Wrong Captcha
-      res.json({ type: 2, text: 1 });
-    }
-  } else {
+  if (req.body.captcha.toLowerCase() !== req.session.captcha) {
+    // Wrong Captcha
+    res.json({ type: 2, text: 1 });
+    return;
+  }
+
+  const comment = new Comment({
+    name: req.body.name,
+    email: req.body.email,
+    title: req.body.title,
+    description: req.body.description
+  });
+
+  try {
+    await comment.save();
+    req.session.captcha = null;
+    res.json({ type: 0 });
+  } catch (e) {
     // Error
     res.json({ type: 2, text: 0 });
   }
