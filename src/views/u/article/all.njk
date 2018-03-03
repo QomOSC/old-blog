@@ -8,19 +8,24 @@
 {% block content %}
 {% if empty %}
 <div class="page-title">
-  <span>شما هیچ پستی ندارید</span>
+  <span>شما هیچ مقاله ای ندارید</span>
   </div>
 {% else %}
 <div class="page-title"><i class="icon-pencil" aria-hidden="true">
-</i><span>پست های من</span></div>
+</i><span>مقالات من</span></div>
 <div class="posts-all">
  <div class="allposts">
 {% for i in posts %}
 <div class="posts" id="{{ i._id }}">
   <div class="posts-delete">
-    <form action="/u/article/delete/{{ i._id }}" method="post" class="delete-post">
+    <form
+      action="/u/article/delete/{{ i._id }}"
+      method="post"
+      class="delete-post">
+
       <input type="hidden" value="{{ i._id }}" name="id">
       <input type="submit" value="حذف">
+      
     </form>
     <a href="/u/article/{{ i._id }}/edit">تغییر</a>
   </div>

@@ -11,7 +11,7 @@
   </div>
 {% else %}
 <div class="page-title">
-  <span>کنفرانس ها</span>
+  <span>ارائه ها</span>
   </div>
 {% for i in confs %}
 <div class="cnf-manage" id="{{ i._id }}">
@@ -20,7 +20,7 @@
   </a>
   </div>
   <div class="requested-confs">
-    <h3> موضوع کنفرانس : {{ i.title }}</h3>
+    <h3> موضوع ارائه : {{ i.title }}</h3>
     <p>توضیحات :  {{ i.description }}</p>
    <div class="cnf-control">
     <form action="/u/conference/manage/accept" method="post" class="accept">
