@@ -13,11 +13,12 @@ router.get('/u/conference', logged, async(req, res) => {
     res.render('u/conference/mine.njk', {
       confs
     });
-  } else {
-    res.render('u/conference/mine.njk', {
-      empty: true
-    });
+    return;
   }
+
+  res.render('u/conference/mine.njk', {
+    empty: true
+  });
 });
 
 export default router;

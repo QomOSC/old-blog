@@ -11,19 +11,21 @@ router.post(
   perms.u.admin,
   async(req, res) => {
 
-    const conf = await Conference.findOne({ _id: req.body.id, type: 1 });
-    
-    if (conf) {
-      conf.type = 3;
+  const conf = await Conference.findOne({ _id: req.body.id, type: 1 });
 
-      conf.save().then(() => {
-        res.json({ type: 0 });
-      }).catch(() => {
-        res.json({ type: 2, text: 0 });
-      });
-    } else {
-      res.json({ type: 2, text: 0 });
-    }
+  if (!conf) {
+    res.json({ type: 2, text: 0 });
+    return;
+  }
+
+  conf.type = 3;
+
+  try {
+    conf.save();
+    res.json({ type: 0 });
+  } catch (e) {
+    res.json({ type: 2, text: 0 });
+  }
 });
 
 export default router;

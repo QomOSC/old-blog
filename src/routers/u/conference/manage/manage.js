@@ -11,46 +11,48 @@ router.get(
   perms.u.admin,
   async(req, res) => {
 
-    const confs = await Conference.find({ type: 1 });
-    if (confs.length !== 0) {
+  const confs = await Conference.find({ type: 1 });
 
-      const allConfs = [];
+  if (!confs.length) {
+    res.render('u/conference/manage/manage.njk', {
+      empty: true
+    });
+    return;
+  }
 
-      for (const i of confs) {
-        let description = i.description.split('').slice(0, 130);
-        description.push('.', '.', '.');
-        description = description.join('');
+  const allConfs = [];
 
-        const oneConf = {
-          _id: i._id,
-          title: i.title,
-          createdAt: moment(i.createdAt),
-          author: {},
-          description
-        };
+  for (const i of confs) {
+    let description = i.description.split('').slice(0, 130);
+    description.push('.', '.', '.');
+    description = description.join('');
 
-        const member = await Member.findOne({ _id: i.provider });
-        if (member) {
-          oneConf.author.fname = member.fname;
-          oneConf.author.lname = member.lname;
-          oneConf.author.username = member.username;
-          oneConf.author.avatar = member.avatar;
+    const oneConf = {
+      _id: i._id,
+      title: i.title,
+      createdAt: moment(i.createdAt),
+      author: {},
+      description
+    };
 
-          allConfs.push(oneConf);
-        } else {
-          res.reply.error();
-        }
-      }
-
-      res.render('u/conference/manage/manage.njk', {
-        confs: allConfs
-      });
-
-    } else {
-      res.render('u/conference/manage/manage.njk', {
-        empty: true
-      });
+    const member = await Member.findOne({ _id: i.provider });
+    
+    if (!member) {
+      res.reply.error();
+      return;
     }
+
+    oneConf.author.fname = member.fname;
+    oneConf.author.lname = member.lname;
+    oneConf.author.username = member.username;
+    oneConf.author.avatar = member.avatar;
+
+    allConfs.push(oneConf);
+  }
+
+  res.render('u/conference/manage/manage.njk', {
+    confs: allConfs
+  });
 });
 
 export default router;
