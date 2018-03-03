@@ -12,42 +12,42 @@ router.get('/u/article-comments', logged, async(req, res) => {
     author: req.member.user._id
   });
 
-  if (comments.length === 0) {
+  if (!comments.length) {
     res.render('u/comments/comment.njk', {
       empty: true
     });
-  } else {
+    return;
+  }
 
-    const allComments = [];
+  const allComments = [];
 
-    for (const i of comments) {
-      const oneComment = {
-        _id: i._id,
-        name: i.name,
-        email: i.email,
-        description: i.description,
-        createdAt: moment(i.createdAt)
+  for (const i of comments) {
+    const oneComment = {
+      _id: i._id,
+      name: i.name,
+      email: i.email,
+      description: i.description,
+      createdAt: moment(i.createdAt)
+    };
+
+    const article = await Article.findOne({ _id: i.article });
+
+    if (article) {
+      const obj = {
+        _id: article._id,
+        title: article.title,
+        avatar: article.avatar
       };
 
-      const article = await Article.findOne({ _id: i.article });
-
-      if (article) {
-        const obj = {
-          _id: article._id,
-          title: article.title,
-          avatar: article.avatar
-        };
-
-        oneComment.article = obj;
-      }
-
-      allComments.push(oneComment);
+      oneComment.article = obj;
     }
 
-    res.render('u/article/comment.njk', {
-      comment: allComments
-    });
+    allComments.push(oneComment);
   }
+
+  res.render('u/article/comment.njk', {
+    comment: allComments
+  });
 });
 
 export default router;

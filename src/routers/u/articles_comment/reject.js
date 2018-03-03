@@ -8,19 +8,16 @@ const router = new Router();
 router.post('/u/article-comments/reject/:id', async(req, res) => {
   const comment = await Comment.findOne({ _id: req.params.id });
 
-  console.log(comment.author);
-  console.log(req.member.user._id);
-
-  if (comment.author.toString() === req.member.user._id.toString()) {
-    comment.remove().then(() => {
-      // Done
-      res.json({ type: 0 });
-    }).catch(() => {
-      // Error
-      res.json({ type: 2, text: 1 });
-    });
-  } else {
+  if (comment.author.toString() !== req.member.user._id.toString()) {
     res.json({ type: 2, text: 2 });
+    return;
+  }
+
+  try {
+    await comment.remove();
+    res.json({ type: 0 });
+  } catch (e) {
+    res.json({ type: 2, text: 1 });
   }
 });
 
