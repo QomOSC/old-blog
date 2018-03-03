@@ -18,26 +18,28 @@ router.post(
   perm.logged,
   perm.u.admin,
   async(req, res) => {
-    req.params.username = req.params.username.toLowerCase();
+  req.params.username = req.params.username.toLowerCase();
 
-    const member = await Member.findOne({ username: req.params.username });
+  const member = await Member.findOne({ username: req.params.username });
 
-    if (member && member.type === 1) {
+  if (!member || !member.type === 1) {
+    res.json({ type: 2, text: 0 });
+    return;
+  }
 
-      await member.remove();
-      await remove.userArticle(member._id, Article, Tag, removeImage);
-      await remove.userNewsletter(member.email, Newsletter);
-      await remove.userConference(member._id, Conference);
-      await remove.userGallery(member._id, Gallery);
-
-      email.submembers.reject(member.email).then(() => {
-        res.json({ type: 0 });
-      }).catch(() => {
-        res.json({ type: 2, text: 0 });
-      });
-    } else {
-      res.json({ type: 2, text: 0 });
-    }
+  try {
+    await member.remove();
+    await remove.userArticle(member._id, Article, Tag, removeImage);
+    await remove.userNewsletter(member.email, Newsletter);
+    await remove.userConference(member._id, Conference);
+    await remove.userGallery(member._id, Gallery);
+    email.submembers.reject(member.email);
+    // OK
+    res.json({ type: 0 });
+  } catch (e) {
+    // Error
+    res.json({ type: 2, text: 0 });
+  }
 });
 
 export default router;

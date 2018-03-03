@@ -9,15 +9,16 @@ router.get('/u/sub', perm.logged, perm.u.admin, async(req, res) => {
 
   const members = await Member.find({ type: 1 });
 
-  if (members.length !== 0) {
+  if (members.length) {
     res.render('u/sub/all.njk', {
       members
     });
-  } else {
-    res.render('u/sub/all.njk', {
-      empty: true
-    });
+    return;
   }
+
+  res.render('u/sub/all.njk', {
+    empty: true
+  });
 });
 
 export default router;

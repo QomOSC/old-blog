@@ -11,40 +11,43 @@ router.post(
   perm.logged,
   perm.u.admin,
   async(req, res) => {
-    req.params.username = req.params.username.toLowerCase();
 
-    const member = await Member.findOne({ username: req.params.username });
+  req.params.username = req.params.username.toLowerCase();
 
-    if (member && member.type === 1) {
-      member.type = 2;
+  const member = await Member.findOne({ username: req.params.username });
 
-      member.save().then(async() => {
+  if (!member || !member.type === 1) {
+    res.json({ type: 2, text: 0 });
+    return;
+  }
 
-        const admin = await Member.findOne({ _id: req.member.user._id });
+  member.type = 2;
 
-        if (admin) {
+  member.save().then(async() => {
 
-          if (admin.submembers.indexOf(member._id) === -1) {
-            admin.submembers.push(member._id);
+    const admin = await Member.findOne({ _id: req.member.user._id });
 
-            admin.save().then(() => {
-
-              res.json({ type: 0 });
-              email.submembers.accept(member.email)
-              .then(() => {}).catch(() => {});
-            }).catch(() => {
-              res.json({ type: 2, text: 0 });
-            });
-          } else {
-            res.json({ type: 2, text: 0 });
-          }
-        } else {
-          res.json({ type: 2, text: 0 });
-        }
-      }).catch(() => {
-        res.json({ type: 2, text: 0 });
-      });
+    if (!admin) {
+      res.json({ type: 2, text: 0 });
+      return;
     }
+
+    if (admin.submembers.indexOf(member._id) !== -1) {
+      res.json({ type: 2, text: 0 });
+      return;
+    }
+
+    admin.submembers.push(member._id);
+
+    admin.save().then(() => {
+      res.json({ type: 0 });
+      email.submembers.accept(member.email).catch();
+    }).catch(() => {
+      res.json({ type: 2, text: 0 });
+    });
+  }).catch(() => {
+    res.json({ type: 2, text: 0 });
+  });
 });
 
 export default router;
