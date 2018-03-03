@@ -9,15 +9,15 @@ router.get('/u/article/:id/edit', logged, async(req, res) => {
 
   const article = await Article.findOne({ _id: req.params.id });
 
-  if (article && article.author.toString() ===
+  if (article && article.author.toString() !==
   req.member.user._id.toString()) {
-
-    res.render('u/article/edit.njk', {
-      article
-    });
-  } else {
     res.reply.notFound();
+    return;
   }
+
+  res.render('u/article/edit.njk', {
+    article
+  });
 });
 
 router.post(
@@ -25,27 +25,33 @@ router.post(
   logged,
   async(req, res) => {
 
-  if (req.body.title && req.body.content && req.body.minutes && req.body.id) {
+  if (
+    !req.body.title ||
+    !req.body.content ||
+    !req.body.minutes ||
+    !req.body.id) {
 
-    const article = await Article.findOne({
-      _id: req.body.id,
-      author: req.member.user._id.toString()
-    });
+    res.json({ type: 2, text: 0 });
+    return;
+  }
 
-    if (article) {
-      article.title = req.body.title;
-      article.content = req.body.content;
-      article.minutes = req.body.minutes;
+  const article = await Article.findOne({
+    _id: req.body.id,
+    author: req.member.user._id.toString()
+  });
 
-      article.save().then(() => {
-        res.json({ type: 0 });
-      }).catch(() => {
-        // Error
-        res.json({ type: 2, text: 0 });
-      });
-    }
-  } else {
-    // Error
+  if (!article) {
+    res.json({ type: 2, text: 0 });
+  }
+
+  article.title = req.body.title;
+  article.content = req.body.content;
+  article.minutes = req.body.minutes;
+
+  try {
+    await article.save();
+    res.json({ type: 0 });
+  } catch (e) {
     res.json({ type: 2, text: 0 });
   }
 });

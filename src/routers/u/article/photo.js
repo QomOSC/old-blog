@@ -8,7 +8,6 @@ const router = new Router();
 
 const upload = multer({ dest: 'uploads/', limits: 3000000, storage });
 
-
 router.post(
   '/u/article/addonephoto',
   logged,

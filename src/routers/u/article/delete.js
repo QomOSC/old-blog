@@ -13,39 +13,40 @@ router.post('/u/article/delete/:id', logged, async(req, res) => {
   });
   const member = await Member.findOne({ _id: req.member.user._id });
 
-  if (member) {
-    member.articles.splice(req.params.id, 1);
+  if (!member) {
+    res.json({ type: 2 });
+    return;
+  }
 
-    await member.save();
+  member.articles.splice(req.params.id, 1);
 
-    await Tag.remove({ article: article._id });
+  await member.save();
 
-    const regex = /(?:!\[.*]\()([\w\/.]+)(?:\))/gi, subst = '$1';
+  await Tag.remove({ article: article._id });
 
-    let photos = article.content
-    .match(regex, subst);
+  const regex = /(?:!\[.*]\()([\w\/.]+)(?:\))/gi, subst = '$1';
 
-    if (photos) {
-      photos = photos
-      .map(x => x.replace(regex, subst))
-      .map(x => x.split('/')[2]);
+  let photos = article.content
+  .match(regex, subst);
 
-      for (const i of photos) {
-        await removeImage(i);
-      }
+  if (photos) {
+    photos = photos
+    .map(x => x.replace(regex, subst))
+    .map(x => x.split('/')[2]);
+
+    for (const i of photos) {
+      await removeImage(i);
     }
+  }
 
-    if (article.avatar) {
-      await removeImage(article.avatar);
-    }
+  if (article.avatar) {
+    await removeImage(article.avatar);
+  }
 
-    article.remove().then(() => {
-      res.json({ type: 0 });
-    }).catch(() => {
-      res.json({ type: 2 });
-    });
-
-  } else {
+  try {
+    await article.remove();
+    res.json({ type: 0 });
+  } catch (e) {
     res.json({ type: 2 });
   }
 });
