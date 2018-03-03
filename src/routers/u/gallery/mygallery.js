@@ -16,29 +16,29 @@ router.get('/u/gallery/', logged, async(req, res) => {
   .skip(start)
   .limit(stop);
 
-  if (photos.length === 0) {
+  if (!photos.length) {
     res.render('u/gallery/mygallery.njk', {
       empty: true
     });
-  } else {
-
-    const allPhotos = [];
-
-    for (const i of photos) {
-      const onePhoto = {
-        _id: i._id,
-        title: i.title,
-        photo: i.photo,
-        createdAt: moment(i.createdAt),
-        author: {},
-      };
-      allPhotos.push(onePhoto);
-    }
-
-    res.render('u/gallery/mygallery.njk', {
-      photos: allPhotos
-    });
+    return;
   }
+
+  const allPhotos = [];
+
+  for (const i of photos) {
+    const onePhoto = {
+      _id: i._id,
+      title: i.title,
+      photo: i.photo,
+      createdAt: moment(i.createdAt),
+      author: {},
+    };
+    allPhotos.push(onePhoto);
+  }
+
+  res.render('u/gallery/mygallery.njk', {
+    photos: allPhotos
+  });
 });
 
 export default router;

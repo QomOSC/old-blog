@@ -18,7 +18,7 @@ router.get('/gallery', async(req, res) => {
       .skip(start)
       .limit(stop);
 
-  if (photos.length === 0) {
+  if (!photos.length) {
     if (req.query.q) {
       res.render('gallery.njk', {
         type: 1,
@@ -31,47 +31,49 @@ router.get('/gallery', async(req, res) => {
         empty: true
       });
     }
-  } else {
-
-    const allPhotos = [];
-
-      for (const i of photos) {
-
-        const onePhoto = {
-          _id: i._id,
-          title: i.title,
-          photo: i.photo,
-          createdAt: moment(i.createdAt),
-          author: {},
-        };
-
-        const member = await Member.findOne({ _id: i.photographer });
-
-        if (member) {
-          onePhoto.author.fname = member.fname;
-          onePhoto.author.lname = member.lname;
-          onePhoto.author.username = member.username;
-          onePhoto.author.avatar = member.avatar;
-
-          allPhotos.push(onePhoto);
-        } else {
-          res.reply.error();
-        }
-      }
-
-    if (req.query.q) {
-      res.render('gallery.njk', {
-        photos: allPhotos,
-        type: 1,
-        query: req.query.q,
-      });
-    } else {
-      res.render('gallery.njk', {
-        photos: allPhotos,
-        type: 0
-      });
-    }
+    return;
   }
+
+  const allPhotos = [];
+
+  for (const i of photos) {
+
+    const onePhoto = {
+      _id: i._id,
+      title: i.title,
+      photo: i.photo,
+      createdAt: moment(i.createdAt),
+      author: {},
+    };
+
+    const member = await Member.findOne({ _id: i.photographer });
+
+    if (!member) {
+      res.reply.error();
+      return;
+    }
+
+    onePhoto.author.fname = member.fname;
+    onePhoto.author.lname = member.lname;
+    onePhoto.author.username = member.username;
+    onePhoto.author.avatar = member.avatar;
+
+    allPhotos.push(onePhoto);
+  }
+
+  if (req.query.q) {
+    res.render('gallery.njk', {
+      photos: allPhotos,
+      type: 1,
+      query: req.query.q,
+    });
+    return;
+  }
+
+  res.render('gallery.njk', {
+    photos: allPhotos,
+    type: 0
+  });
 });
 
 export default router;

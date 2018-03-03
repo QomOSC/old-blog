@@ -17,25 +17,26 @@ router.post(
   '/u/gallery/add',
   logged,
   upload.single('galleryPhoto'),
-  (req, res) => {
-    if (req.body.title && req.file) {
-      const newGallery = new Gallery({
-        title: req.body.title,
-        photo: req.file.filename,
-        photographer: req.member.user._id
-      });
+  async(req, res) => {
 
-      newGallery.save().then(() => {
-        // OK
-        res.send({ type: 0 });
-      }).catch(() => {
-        // Error
-        res.json({ type: 2 });
-      });
-    } else {
-      // Error
-      res.json({ type: 2 });
-    }
+  if (!req.body.title || !req.file) {
+    // Error
+    res.json({ type: 2 });
+    return;
+  }
+
+  const newGallery = new Gallery({
+    title: req.body.title,
+    photo: req.file.filename,
+    photographer: req.member.user._id
+  });
+
+  try {
+    await newGallery.save();
+    res.send({ type: 0 });
+  } catch (e) {
+    res.json({ type: 2 });
+  }
 });
 
 export default router;
