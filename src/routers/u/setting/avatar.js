@@ -17,35 +17,32 @@ router.post(
   async(req, res) => {
 
   const member = await Member.findOne({ _id: req.member.user._id });
-  
-  if (member) {
-    if (member.avatar) {
-      removeImage(member.avatar)
-        .then(() => {
-          member.avatar = req.file.filename;
 
-          member.save().then(() => {
-            res.json({ type: 0 });
-          }).catch(() => {
-            // Error
-            res.json({ type: 2 });
-          });
-
-        }).catch(() => {
-          res.json({ type: 2 });
-        });
-    } else {
-      member.avatar = req.file.filename;
-
-      member.save().then(() => {
-        res.json({ type: 0 });
-      }).catch(() => {
-        // Error
-        res.json({ type: 2 });
-      });
-    }
-  } else {
+  if (!member) {
     // User not Found
+    res.json({ type: 2 });
+    return;
+  }
+
+  if (!member.avatar) {
+    member.avatar = req.file.filename;
+
+    try {
+      await member.save();
+      res.json({ type: 0 });
+    } catch (e) {
+      res.json({ type: 2 });
+    }
+  }
+
+  removeImage(member.avatar).catch();
+
+  member.avatar = req.file.filename;
+
+  try {
+    await member.save();
+    res.json({ type: 0 });
+  } catch (e) {
     res.json({ type: 2 });
   }
 });

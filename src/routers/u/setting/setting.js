@@ -35,13 +35,14 @@ async function setNewValues(req, res) {
   member.username = req.body.username;
   member.description = req.body.description;
 
-  member.save().then(() => {
-    // All good
+  try {
+    await member.save();
+    // OK
     res.json({ type: 0 });
-  }).catch(() => {
+  } catch (e) {
     // Error
     res.json({ type: 2, text: 2 });
-  });
+  }
 }
 
 router.get('/u/setting', logged, (req, res) => {
@@ -49,42 +50,45 @@ router.get('/u/setting', logged, (req, res) => {
 });
 
 router.post('/u/setting', logged, async(req, res) => {
-  if (req.body.email &&
-      req.body.fname &&
-      req.body.lname &&
-      req.body.username) {
+  if (!req.body.email ||
+      !req.body.fname ||
+      !req.body.lname ||
+      !req.body.username) {
 
-    req.body.email = req.body.email.toLowerCase();
-    req.body.username = req.body.username.toLowerCase();
-
-    const newEmail = await Member.findOne({ email: req.body.email });
-
-    if (newEmail) {
-      if (newEmail.email === req.member.user.email) {
-        // Email OK
-        checkUsername(req).then(() => {
-          // Username OK
-          setNewValues(req, res);
-        }).catch(e => {
-          res.json(e);
-        });
-      } else {
-        // Taken Email
-        res.json({ type: 2, text: 0 });
-      }
-    } else {
-      // Email OK
-      checkUsername(req).then(() => {
-        // Username OK
-        setNewValues(req, res);
-      }).catch(e => {
-        res.json(e);
-      });
-    }
-  } else {
     // Undefined values
     res.json({ type: 2, text: 1 });
+    return;
   }
+
+  req.body.email = req.body.email.toLowerCase();
+  req.body.username = req.body.username.toLowerCase();
+
+  const newEmail = await Member.findOne({ email: req.body.email });
+
+  if (!newEmail) {
+    // Email OK
+    checkUsername(req).then(() => {
+      // Username OK
+      setNewValues(req, res);
+    }).catch(e => {
+      res.json(e);
+    });
+    return;
+  }
+
+  if (newEmail.email !== req.member.user.email) {
+    // Taken Email
+    res.json({ type: 2, text: 0 });
+    return;
+  }
+  
+  // Email OK
+  checkUsername(req).then(() => {
+    // Username OK
+    setNewValues(req, res);
+  }).catch(e => {
+    res.json(e);
+  });
 });
 
 export default router;
