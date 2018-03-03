@@ -26,10 +26,10 @@ const schema = new Schema({
     type: Date,
     default: Date.now
   },
-  attender: {
+  attender: [{
     type: String,
     trim: true
-  },
+  }],
   type: { // 1: just requested 2: declined 3: accepted 4: done
     type: Number,
     enum: [1, 2, 3, 4],

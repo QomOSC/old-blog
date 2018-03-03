@@ -59,7 +59,10 @@
   <div class="date-time">
     <span>تاریخ برگزاری : 96/11/30</span>
   </div>
-  <a href="https://evand.com/events/qomosc16">مشاهده در ایوند</a>
+  <button
+    type="button"
+    id="attend-at-conf"
+    data-id="{{ lastConf._id }}">حظور در جلسه</button>
 </section>
 {% endif %}
 
@@ -129,9 +132,15 @@
 {% endblock %}
 
 {% block scripts %}
+
+{% if not lastConf.empty %}
+<script src="/files/js/attend-conf.js"></script>
+{% endif %}
+
 <script src="/files/js/lib/particles.min.js"></script>
 <script>
   particlesJS.load('particles-js', '/files/js/lib/p.json', function() {
   });
 </script>
+
 {% endblock %}
