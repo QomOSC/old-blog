@@ -13,9 +13,9 @@ router.get('/conference', async(req, res) => {
   const re = new RegExp(`.*${req.query.q || ''}.*`);
 
   const confs = await Conference
-    .find({ description: re, type: { $in: [3, 4] } })
-    .skip(start)
-    .limit(stop);
+  .find({ description: re, type: { $in: [3, 4] } })
+  .skip(start)
+  .limit(stop);
 
   if (!confs.length) {
     if (req.query.q) {
@@ -45,7 +45,7 @@ router.get('/conference', async(req, res) => {
       provider: {},
     };
 
-    const member = Member.findOne({ _id: i.provider });
+    const member = await Member.findOne({ _id: i.provider });
 
     if (!member) {
       res.reply.error();
