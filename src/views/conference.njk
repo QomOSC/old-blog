@@ -19,7 +19,7 @@
 </div>
 {% if type == 0 %}
 <div class="page-title">
-  <span>کنفرانس ها</span>
+  <span>ارائه ها</span>
 </div>
 <div id="content-container">
   {% for i in confs %}
@@ -39,7 +39,7 @@
 
     <div class="cnf-content">
       <div class="confs-title">
-        <h3> موضوع کنفرانس : {{ i.title }}</h3>
+        <h3> موضوع ارائه : {{ i.title }}</h3>
         <span>{{ i.createdAt }}</span>
       </div>
       <p>توضیحات : {{ i.description }}</p>
@@ -69,7 +69,7 @@
     </div>
     <div class="cnf-content">
       <div class="confs-title">
-        <h3> موضوع کنفرانس : {{ i.title }}</h3>
+        <h3> موضوع ارائه : {{ i.title }}</h3>
         <span>{{ i.createdAt }}</span>
       </div>
       <p>توضیحات : {{ i.description }}</p>
