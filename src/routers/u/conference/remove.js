@@ -11,7 +11,7 @@ router.post(
   async(req, res) => {
 
   const conf = await Conference.findOne({
-    provider: req.body.provider,
+    author: req.body.provider,
     _id: req.body.id
   });
 

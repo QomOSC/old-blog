@@ -13,17 +13,31 @@ router.post(
   logged,
   async(req, res) => {
 
+  let providers = req.body.providers
+    .split(',', 5)
+    .map(x => x.trim().replace(/\s/g, '_').trim());
+
+  providers = Array.from(new Set(providers));
+
+  for (let i = 0; i < providers.length; i++) {
+    if (!providers[i].trim()) {
+      providers.splice(i, 1);
+    }
+  }
+
   const newConference = new Conference({
-    provider: req.member.user._id,
+    author: req.member.user._id.toString(),
     title: req.body.title,
-    description: req.body.description
+    description: req.body.description,
+    providers
   });
 
   try {
     await newConference.save();
-    res.json({ type: 2, text: 0 });
-  } catch (e) {
     res.json({ type: 0, text: 0 });
+  } catch (e) {
+    console.log(e);
+    res.json({ type: 2, text: 0 });
   }
 });
 

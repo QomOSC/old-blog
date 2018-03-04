@@ -31,21 +31,25 @@ router.get(
       _id: i._id,
       title: i.title,
       createdAt: moment(i.createdAt),
-      author: {},
+      providers: [],
       description
     };
 
-    const member = await Member.findOne({ _id: i.provider });
-    
-    if (!member) {
-      res.reply.error();
-      return;
-    }
+    for (const j of i.providers) {
 
-    oneConf.author.fname = member.fname;
-    oneConf.author.lname = member.lname;
-    oneConf.author.username = member.username;
-    oneConf.author.avatar = member.avatar;
+      const member = await Member.findOne({ username: j });
+
+      if (member) {
+        const oneProvider = {
+          fname: member.fname,
+          lname: member.lname,
+          username: member.username,
+          avatar: member.avatar
+        };
+
+        oneConf.providers.push(oneProvider);
+      }
+    }
 
     allConfs.push(oneConf);
   }

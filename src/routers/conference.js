@@ -37,26 +37,17 @@ router.get('/conference', async(req, res) => {
 
   for (const i of confs) {
 
+    let description = i.description.split('').slice(0, 130);
+    description.push('.', '.', '.');
+    description = description.join('');
+
     const oneConf = {
       _id: i._id,
       title: i.title,
       createdAt: moment(i.createdAt),
-      description: i.description,
       avatar: i.avatar,
-      provider: {},
+      description
     };
-
-    const member = await Member.findOne({ _id: i.provider });
-
-    if (!member) {
-      res.reply.error();
-      return;
-    }
-
-    oneConf.provider.fname = member.fname;
-    oneConf.provider.lname = member.lname;
-    oneConf.provider.username = member.username;
-    oneConf.provider.avatar = member.avatar;
 
     confArr.push(oneConf);
   }
@@ -91,21 +82,27 @@ router.get('/conference/:id', async(req, res) => {
     description: conf.description,
     createdAt: moment(conf.createdAt),
     attenders: conf.attender.length,
-    provider: {}
+    providers: []
   };
 
-  const provider = await Member.findOne({ _id: conf.provider });
-
-  if (!provider) {
+  if (!conf.providers) {
     res.reply.error();
     return;
   }
 
-  info.provider.fname = provider.fname;
-  info.provider.lname = provider.lname;
-  info.provider.username = provider.username;
-  info.provider.avatar = provider.avatar;
-  info.provider.description = provider.description;
+  for (const i of conf.providers) {
+    const provider = await Member.find({ _id: i });
+
+    const providerInfo = {
+      fname: provider.fname,
+      lname: provider.lname,
+      username: provider.username,
+      avatar: provider.avatar,
+      description: provider.description
+    };
+
+    info.providers.push(providerInfo);
+  }
 
   res.render('conference.njk', { info });
 });
