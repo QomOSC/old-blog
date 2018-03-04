@@ -24,19 +24,6 @@
 <div id="content-container">
   {% for i in confs %}
   <div class="cnf">
-    <div class="avatar-confs">
-      <a href="/user/{{ i.provider.username }}">
-      {% if i.provider.avatar %}
-      <img src="/img/{{ i.provider.avatar }}">
-      {% else %}
-      <img src="/files/image/default-user.png">
-      {% endif %}
-      </a>
-      <a href="/user/{{ i.provider.username }}">
-        <span>{{ i.provider.fname }} {{ i.provider.lname }}</span>
-      </a>
-    </div>
-
     <div class="cnf-content">
       <a href="/conference/{{ i._id }}">
         <div class="confs-title">

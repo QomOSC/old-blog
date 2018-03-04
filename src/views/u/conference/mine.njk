@@ -15,14 +15,14 @@
 </div>
 <div class="conference-container">
   {% for i in confs %}
-    <div class="confs" id="{{ i.provider }}">
+    <div class="confs" id="{{ i.author }}">
       <h3> موضوع ارائه :  {{ i.title }}</h3>
       <h3>توضیحات : </h3>
       <p>{{ i.description }}</p>
 
       <form action="/u/conference/remove" method="post" class="delete-conf">
         <input type="hidden" name="id" value="{{ i._id }}">
-        <input type="hidden" name="provider" value="{{ i.provider }}">
+        <input type="hidden" name="provider" value="{{ i.author }}">
         <input type="submit" value="پاک کردن">
       </form>
     </div>
