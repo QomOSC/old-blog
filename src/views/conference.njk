@@ -1,95 +1,21 @@
 {% extends locals.path + '/index.njk' %}
 
 {% block head %}
-<link rel="stylesheet" href="/files/css/conference.css">
 {% endblock %}
 
 {% block content %}
-{% if empty %}
-<div class="page-title">
-  <span>ارائه ای ثبت نشده است</span>
-</div>
-{% else %}
-<div class="confs-search">
-  <span>دنبال چی میگردی ؟؟</span>
-  <form action="/conference" method="get">
-    <input type="search" name="q" value="{{ query }}" placeholder="جستجو کن">
-    <button type="submit">پیدا کن<i class="icon-search"></i></button>
-  </form>
-</div>
-{% if type == 0 %}
-<div class="page-title">
-  <span>ارائه ها</span>
-</div>
-<div id="content-container">
-  {% for i in confs %}
-  <div class="cnf">
-    <div class="avatar-confs">
-      <a href="/user/{{ i.provider.username }}">
-      {% if i.provider.avatar %}
-      <img src="/img/{{ i.provider.avatar }}">
-      {% else %}
-      <img src="/files/image/default-user.png">
-      {% endif %}
-      </a>
-      <a href="/user/{{ i.provider.username }}">
-        <span>{{ i.provider.fname }} {{ i.provider.lname }}</span>
-      </a>
-    </div>
-
-    <div class="cnf-content">
-      <div class="confs-title">
-        <h3> موضوع ارائه : {{ i.title }}</h3>
-        <span>{{ i.createdAt }}</span>
-      </div>
-      <p>توضیحات : {{ i.description }}</p>
-    </div>
-  </div>
-  {% endfor %}
-</div>
-
-{% elif type == 1 %}
-<div class="page-title">
-  <span>ارائه های جستجو شده</span>
-</div>
-<div id="content-container">
-  {% for i in confs %}
-  <div class="cnf">
-    <div class="avatar-confs">
-      <a href="/user/{{ i.provider.username }}">
-      {% if i.provider.avatar %}
-      <img src="/img/{{ i.provider.avatar }}">
-      {% else %}
-      <img src="/files/image/default-user.png">
-      {% endif %}
-      </a>
-      <a href="/user/{{ i.provider.username }}">
-      <span>{{ i.provider.fname }} {{ i.provider.lname }}</span>
-      </a>
-    </div>
-    <div class="cnf-content">
-      <div class="confs-title">
-        <h3> موضوع ارائه : {{ i.title }}</h3>
-        <span>{{ i.createdAt }}</span>
-      </div>
-      <p>توضیحات : {{ i.description }}</p>
-    </div>
-  </div>
-  {% endfor %}
-</div>
-{% endif %}
-{% endif %}
-
-<div class="confs-control">
-  <a href="/gallery" id="previous">
-    <button>قبلی</button>
-  </a>
-  <a href="/gallery" id="next">
-    <button>بعدی</button>
-  </a>
-</div>
+<h1>صفحه ارائه</h1>
+<p>_id: {{ info._id }}</p>
+<p>عنوان ارائه: {{ info.title }}</p>
+<p>توضیحات: {{ info.description }}</p>
+<p>ساخته شده در: {{ info.createdAt }}</p>
+<p>افرادی که حظور پیدا میکنند: {{ info.attenders }}</p>
+<br><br>
+<p>اسم کسی که ارائه میده: {{ info.provider.fname }} {{ info.provider.lname }}</p>
+<p>یوزرنیم کسی که ارائه میده: {{ info.provider.username }}</p>
+<p>عکسش: {{ info.provider.avatar }}</p>
+<p>توضیحاتش: {{ info.provider.description }}</p>
 {% endblock %}
 
 {% block scripts %}
-<script src="/files/js/conference.js"></script>
 {% endblock %}

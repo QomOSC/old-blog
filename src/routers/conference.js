@@ -19,13 +19,13 @@ router.get('/conference', async(req, res) => {
 
   if (!confs.length) {
     if (req.query.q) {
-      res.render('conference.njk', {
+      res.render('conferences.njk', {
         type: 1,
         query: req.query.q,
         empty: true
       });
     } else {
-      res.render('conference.njk', {
+      res.render('conferences.njk', {
         type: 0,
         empty: true
       });
@@ -38,6 +38,7 @@ router.get('/conference', async(req, res) => {
   for (const i of confs) {
 
     const oneConf = {
+      _id: i._id,
       title: i.title,
       createdAt: moment(i.createdAt),
       description: i.description,
@@ -61,7 +62,7 @@ router.get('/conference', async(req, res) => {
   }
 
   if (req.query.q) {
-    res.render('conference.njk', {
+    res.render('conferences.njk', {
       confs: confArr,
       type: 1,
       query: req.query.q,
@@ -69,10 +70,44 @@ router.get('/conference', async(req, res) => {
     return;
   }
 
-  res.render('conference.njk', {
+  res.render('conferences.njk', {
     confs: confArr,
     type: 0
   });
+});
+
+router.get('/conference/:id', async(req, res) => {
+  const conf = await Conference
+  .findOne({ _id: req.params.id, type: { $in: [3, 4] } });
+
+  if (!conf) {
+    res.reply.notFound();
+    return;
+  }
+
+  const info = {
+    _id: conf._id,
+    title: conf.title,
+    description: conf.description,
+    createdAt: moment(conf.createdAt),
+    attenders: conf.attender.length,
+    provider: {}
+  };
+
+  const provider = await Member.findOne({ _id: conf.provider });
+
+  if (!provider) {
+    res.reply.error();
+    return;
+  }
+
+  info.provider.fname = provider.fname;
+  info.provider.lname = provider.lname;
+  info.provider.username = provider.username;
+  info.provider.avatar = provider.avatar;
+  info.provider.description = provider.description;
+
+  res.render('conference.njk', { info });
 });
 
 export default router;
