@@ -2,10 +2,13 @@ import mongoose, { Schema } from 'mongoose';
 import autoIncrement from 'mongoose-auto-increment';
 
 const schema = new Schema({
-  provider: { // The ID from Member model
-    type: Schema.Types.ObjectId,
-    ref: 'Member',
-    required: true
+  providers: [{ // The ID from Member model
+    type: String,
+    trim: true
+  }],
+  author: {
+    type: String,
+    trim: true
   },
   title: {
     type: String,
