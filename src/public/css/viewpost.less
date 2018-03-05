@@ -46,8 +46,9 @@
 .viewpost-body {
   padding: 40px 15px;
   display: flex;
-  flex-direction: row;
+  flex-direction:column;
   justify-content: center;
+  align-items: center;
 }
 
 .viewpost-text {
@@ -493,6 +494,20 @@
   }
 }
 
+.article-title {
+  background: linear-gradient(135deg,#7983ff,#5f9de9);
+  padding: 10px;
+  width: 68%;
+  text-align: center;
+  font-size: 22px;
+
+  color: #fff;
+  text-shadow: 2px 0 10px rgba(0,0,0,0.5);
+
+  span{
+    font-family: SB;
+  }
+}
 @media (min-width: 120px) and (max-width: 500px) {
   body {
     overflow-x: hidden;
@@ -646,5 +661,7 @@
   .cmt-row {
     flex-direction: column;
   }
-
+ .article-title {
+   width: 100%;
+ }
 }

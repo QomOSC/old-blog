@@ -31,13 +31,15 @@
     <div class="progress-bar" id="myBar"></div>
   </div>
 </section>
+
 <div class="viewpost" style="background-image: url('/img/{{ p.article.avatar }}');">
-  <span>{{ p.article.title }}</span>
+<span>{{ p.article.title }}</span>
   <div class="viewpost-details">
     <a href="/user/{{ p.author.username }}">
       <div class="profile-img" style="background-image: url('/img/{{ p.author.avatar }}');
        background-size: cover;"></div>
     </a>
+
     <span>{{ p.author.fname }}
       {{ p.author.lname }}</span>
     <span>
@@ -47,6 +49,7 @@
       </div>
     </div>
     <div class="viewpost-all">
+
       <div class="viewpost-info-all">
         <div class="viewpost-info">
           <div class="viewpost-info-in">
@@ -73,8 +76,10 @@
 
       </div>
       <div class="viewpost-body">
+        <div class="article-title">
+          <span>{{ p.article.title }}</span>
+        </div>
         <div class="viewpost-text">
-          <h1>{{ p.article.title }}</h1>
           <div id="markdowned-text">
             {{ p.article.content }}
           </div>
