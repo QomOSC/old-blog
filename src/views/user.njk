@@ -83,9 +83,9 @@
     <div class="title-user">
       <span>مقالات اخیر</span>
     </div>
-
+<div class="recent-posts">
     {% for i in posts %}
-    <div class="recent-posts">
+
       <div class="posts">
         <a href="/article/{{ i.id }}">
           <div class="posts-pic">
@@ -118,8 +118,9 @@
           </a>
         </div>
       </div>
-    </div>
+
     {% endfor %}
+    </div>
   </div>
 </div>
 {% endblock %}
