@@ -9,9 +9,12 @@
 <div class="page-title">
 {% if empty %}
   <span>شما هیچ کس رو نپذیرفتید</span>
+  </div>
+  <div class="page-title">
 {% elif subs | join !== "" %}
    <span>مدیریت کاربران تایید شده</span>
 </div>
+
 <div class="sub-container">
 {% for i in subs %}
 
