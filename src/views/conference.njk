@@ -1,11 +1,22 @@
 {% extends locals.path + '/index.njk' %}
 
 {% block head %}
-{% endblock %}
+<link rel="stylesheet" href="/files/css/conferences.css">
 
+{% endblock %}
+<div class="page-title">
+<span>صفحه ارائه</span>
+</div>
 {% block content %}
-<h1>صفحه ارائه</h1>
-<p>_id: {{ info._id }}</p>
+<div class="view-conf">
+  <div class="conf-info">
+     <h3>جماعه متن باز قم - رویداد هفدهم</h3>
+     <label>ضروع رویداد</label>
+     <div>پنج شنبه 17 اسفند 96  16:00</div>
+     <label>پایان رویداد</label>
+     <div>پنج شنبه 17 اسفند 96  16:00</div>
+  </div>
+</div>
 <p>عنوان ارائه: {{ info.title }}</p>
 <p>توضیحات: {{ info.description }}</p>
 <p>ساخته شده در: {{ info.createdAt }}</p>
@@ -14,7 +25,12 @@
 {% for i in info.providers %}
 <p>اسم کسی که ارائه میده: {{ i.fname }} {{ i.lname }}</p>
 <p>یوزرنیم کسی که ارائه میده: {{ i.username }}</p>
-<p>عکسش: {{ i.avatar }}</p>
+{% if i.avatar %}
+<img src="/img/{{ i.avatar }}">
+{% else %}
+  <img src="/files/image/default-avatar.png">
+{% endif %}
+
 <p>توضیحاتش: {{ i.description }}</p>
 {% endfor %}
 {% endblock %}
