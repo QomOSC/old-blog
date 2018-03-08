@@ -1,28 +1,156 @@
 .view-conf {
-background: url(https://fossbytes.com/wp-content/uploads/2017/03/microsoft-open-source-company-640x360.png);
-background-repeat: no-repeat;
-background-size: cover;
+  background: url("https://fossbytes.com/wp-content/uploads/2017/03/microsoft-open-source-company-640x360.png");
+  background-repeat: no-repeat;
+  background-size: cover;
   width: 100%;
   height: 350px;
   position: relative;
 }
 
 .conf-info {
-  padding: 15px;
+  padding: 20px 30px;
   position: absolute;
   top: 0;
   right: 10%;
-  height: 100%;
+  height: auto;
   bottom: 0;
   background: #fff;
 
   h3 {
     font-family: SB;
     font-size: 17px;
+    margin-bottom: 10px;
+  }
+
+  div {
+    margin-bottom: 7px;
+    font-size: 15px;
+    color: #748494;
   }
 
   label {
     color: #989898;
-    font-size: 13px;
+    font-size: 12px;
   }
+
+  #attend-at-conf {
+    width: 100%;
+
+    &:hover {
+      box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    }
+  }
+}
+
+.view-conf-container {
+  display: flex;
+  width: 90%;
+  margin: auto;
+}
+
+.view-conf-right {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  p {
+    font-weight: 400;
+    font-size: 0.91em;
+    line-height: 2em;
+    margin-top: 20px;
+  }
+}
+
+.view-conf-des {
+  background: #fff;
+  color: #003662;
+  box-shadow: 0 12px 27px 0 rgba(0,0,0,.06);
+  border: 1px solid #eee;
+  padding: 15px;
+  margin: 15px;
+
+  h3 {
+    font-family: SB;
+    font-size: 22px;
+    margin-top: 15px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+  }
+}
+
+.view-conf-left {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+}
+
+.amap {
+  margin: 10px;
+  width: 100%;
+}
+
+.map-conf {
+  box-shadow: 0 12px 27px 0 rgba(0,0,0,.06);
+  border: 1px solid #eee;
+  margin: 15px;
+  background: #fff;
+  padding: 15px;
+  height: 300px;
+
+  p {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .map {
+    background-image: url("/files/image/map.png");
+    background-size: cover;
+    cursor: pointer;
+    width: 100%;
+    height: 200px;
+  }
+}
+
+.conf-user {
+  background: #fff;
+  box-shadow: 0 12px 27px 0 rgba(0,0,0,.06);
+  border: 1px solid #eee;
+  margin: 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+
+  h3 {
+    font-family: SB;
+    font-size: 22px;
+    margin-top: 15px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+  }
+
+  img {
+    border-radius: 100%;
+    width: 180px;
+  }
+
+  .users {
+    display: flex;
+  }
+
+  .user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #eee;
+    padding: 15px 8px;
+    margin-top: 10px;
+
+    .username {
+      font-family: SB;
+    }
+  }
+}
+
+.spn-num {
+  margin-top: 20px;
 }
