@@ -54,7 +54,7 @@ router.get('/', async(req, res) => {
     lastConf.avatar = conf[0].avatar;
     lastConf.createdAt = moment(conf[0].createdAt);
 
-    const provider = await Member.findOne({ _id: conf[0].provider });
+    const provider = await Member.findOne({ _id: conf[0].author });
 
     if (provider) {
       lastConf.provider.fname = provider.fname;
