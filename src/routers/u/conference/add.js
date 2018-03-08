@@ -36,7 +36,6 @@ router.post(
     await newConference.save();
     res.json({ type: 0, text: 0 });
   } catch (e) {
-    console.log(e);
     res.json({ type: 2, text: 0 });
   }
 });

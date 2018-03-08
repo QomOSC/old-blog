@@ -90,20 +90,25 @@ router.get('/conference/:id', async(req, res) => {
     return;
   }
 
+  console.log(conf);
+
   for (const i of conf.providers) {
-    const provider = await Member.find({ _id: i });
+    const provider = await Member.findOne({ username: i });
 
-    const providerInfo = {
-      fname: provider.fname,
-      lname: provider.lname,
-      username: provider.username,
-      avatar: provider.avatar,
-      description: provider.description
-    };
+    if (provider) {
+      console.log(i);
+      const providerInfo = {
+        fname: provider.fname,
+        lname: provider.lname,
+        username: provider.username,
+        avatar: provider.avatar,
+        description: provider.description
+      };
 
-    info.providers.push(providerInfo);
+      info.providers.push(providerInfo);
+    }
   }
-
+  
   res.render('conference.njk', { info });
 });
 

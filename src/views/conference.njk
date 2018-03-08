@@ -11,10 +11,12 @@
 <p>ساخته شده در: {{ info.createdAt }}</p>
 <p>افرادی که حظور پیدا میکنند: {{ info.attenders }}</p>
 <br><br>
-<p>اسم کسی که ارائه میده: {{ info.provider.fname }} {{ info.provider.lname }}</p>
-<p>یوزرنیم کسی که ارائه میده: {{ info.provider.username }}</p>
-<p>عکسش: {{ info.provider.avatar }}</p>
-<p>توضیحاتش: {{ info.provider.description }}</p>
+{% for i in info.providers %}
+<p>اسم کسی که ارائه میده: {{ i.fname }} {{ i.lname }}</p>
+<p>یوزرنیم کسی که ارائه میده: {{ i.username }}</p>
+<p>عکسش: {{ i.avatar }}</p>
+<p>توضیحاتش: {{ i.description }}</p>
+{% endfor %}
 {% endblock %}
 
 {% block scripts %}
