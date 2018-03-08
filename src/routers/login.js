@@ -28,8 +28,7 @@ router.post('/login', login, async(req, res) => {
     return;
   }
 
-  if (crypt.decrypt(member.password, member.email) !==
-  req.body.password) {
+  if (crypt.decrypt(member.password, member.email) !== req.body.password) {
     // Wrong Password
     res.json({ type: 2, text: 0 });
     return;
