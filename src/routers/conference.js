@@ -69,8 +69,15 @@ router.get('/conference', async(req, res) => {
 });
 
 router.get('/conference/:id', async(req, res) => {
-  const conf = await Conference
-  .findOne({ _id: req.params.id, type: { $in: [3, 4] } });
+  let conf;
+
+  try {
+    conf = await Conference
+    .findOne({ _id: req.params.id, type: { $in: [3, 4] } });
+  } catch (e) {
+    res.reply.error();
+    return;
+  }
 
   if (!conf) {
     res.reply.notFound();
