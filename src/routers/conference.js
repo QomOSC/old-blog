@@ -90,13 +90,10 @@ router.get('/conference/:id', async(req, res) => {
     return;
   }
 
-  console.log(conf);
-
   for (const i of conf.providers) {
     const provider = await Member.findOne({ username: i });
 
     if (provider) {
-      console.log(i);
       const providerInfo = {
         fname: provider.fname,
         lname: provider.lname,
@@ -108,7 +105,7 @@ router.get('/conference/:id', async(req, res) => {
       info.providers.push(providerInfo);
     }
   }
-  
+
   res.render('conference.njk', { info });
 });
 
