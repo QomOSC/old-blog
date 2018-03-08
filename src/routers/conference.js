@@ -14,6 +14,7 @@ router.get('/conference', async(req, res) => {
 
   const confs = await Conference
   .find({ description: re, type: { $in: [3, 4] } })
+  .sort({ createdAt: -1 })
   .skip(start)
   .limit(stop);
 
