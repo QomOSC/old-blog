@@ -49,10 +49,6 @@ const schema = new Schema({
     type: String,
     trim: true,
     required: true
-  },
-  subject: {
-    type: String,
-    trim: true
   }
 });
 

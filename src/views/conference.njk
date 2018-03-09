@@ -12,9 +12,9 @@
     <div class="conf-info">
       <h3>جامعه متن باز قم - رویداد هفدهم</h3>
       <label>شروع رویداد</label>
-      <div>پنج شنبه 17 اسفند 96 16:00</div>
+      <div>{{ info.start }}</div>
       <label>پایان رویداد</label>
-      <div>پنج شنبه 17 اسفند 96 16:00</div>
+      <div>{{ info.end }}</div>
       <div>
         <label>مکان رویداد</label>
         قم</div>
@@ -22,7 +22,10 @@
         <label>موضوع رویداد</label>
         نرم افزار
       </div>
-      <button type="button" id="attend-at-conf" data-id="{{ lastConf._id }}">حضور در جلسه</button>
+      <button
+        type="button"
+        id="attend-at-conf"
+        data-id="{{ info._id }}">حضور در جلسه</button>
       <div>
         <span class="spn-num">تعداد افرادی که حضور پیدا خواهند کرد :‌
           {{ info.attenders }}</span>
@@ -43,7 +46,7 @@
 
       <div class="conf-user">
         <div>
-          <h3>اراپه دهندگان</h3>
+          <h3>ارائه دهندگان</h3>
         </div>
         <div class="users">
           <div class="user">
@@ -78,4 +81,6 @@
 
 {% endblock %}
 
-{% block scripts %}{% endblock %}
+{% block scripts %}
+<script src="/files/js/attend-conf.js"></script>
+{% endblock %}

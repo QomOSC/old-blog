@@ -29,6 +29,8 @@ router.post(
     author: req.member.user._id.toString(),
     title: req.body.title,
     description: req.body.description,
+    start: req.body.start,
+    end: req.body.end,
     providers
   });
 

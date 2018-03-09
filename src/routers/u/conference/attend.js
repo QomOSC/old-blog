@@ -31,6 +31,7 @@ router.post('/u/conference/attend/:id', async(req, res) => {
     await conf.save();
     res.json({ type: 0 });
   } catch (e) {
+    console.log(e);
     // Error
     res.json({ type: 2, text: 3 });
   }

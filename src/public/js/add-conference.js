@@ -6,7 +6,9 @@ document.forms['add-conference'].addEventListener('submit', e => {
   {
     title: e.target.title.value,
     description: e.target.description.value,
-    providers: e.target.providers.value
+    providers: e.target.providers.value,
+    start: e.target.start.value,
+    end: e.target.end.value
   }).then(res => {
     if (res.type === 0) {
       localStorage.setItem('requestforconferencesuccessful', 1);

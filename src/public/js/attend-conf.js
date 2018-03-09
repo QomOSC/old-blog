@@ -4,7 +4,7 @@ attend.addEventListener('click', e => {
   e.preventDefault();
 
   send({ url: `/u/conference/attend/${e.target.dataset.id}` }, e)
-  .then(res => {  
+  .then(res => {
     if (res.type === 0) {
       iziToast.success({
         rtl: true,

@@ -90,6 +90,8 @@ router.get('/conference/:id', async(req, res) => {
     description: conf.description,
     createdAt: moment(conf.createdAt),
     attenders: conf.attender.length,
+    start: conf.start,
+    end: conf.end,
     providers: []
   };
 
