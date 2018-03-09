@@ -50,7 +50,7 @@ const schema = new Schema({
     trim: true,
     required: true
   }
-});
+}, { usePushEach: true });
 
 autoIncrement.initialize(mongoose);
 
