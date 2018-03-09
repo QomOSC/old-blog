@@ -81,8 +81,13 @@
       <div class="conf-share">
          <b>دوستان خود را دعوت کنید</b>
          <div>
-             <input type="text" placeholder="لینک دعوت" disabled="disabled">
-             <button>کپی لینک</button>
+             <input
+               type="text"
+               placeholder="لینک دعوت"
+               id="short-link-conf"
+               value="@@LINK@@/conference/{{ info._id }}"
+               onclick="copyLink();">
+             <button onclick="copyLink();">کپی لینک</button>
          </div>
       </div>
     </div>
@@ -92,4 +97,15 @@
 
 {% block scripts %}
 <script src="/files/js/attend-conf.js"></script>
+<script>
+  function copyLink() {
+    const text = document.getElementById('short-link-conf');
+    text.select();
+    document.execCommand('Copy');
+    iziToast.success({
+      rtl: true,
+      title: 'لینک با موفقیت کپی شد'
+    });
+  }
+</script>
 {% endblock %}
