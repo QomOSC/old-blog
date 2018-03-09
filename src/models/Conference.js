@@ -39,6 +39,20 @@ const schema = new Schema({
     required: [true, 'type'],
     trim: true,
     default: 1
+  },
+  start: {
+    type: String,
+    trim: true,
+    required: true
+  },
+  end: {
+    type: String,
+    trim: true,
+    required: true
+  },
+  subject: {
+    type: String,
+    trim: true
   }
 });
 
