@@ -17,7 +17,7 @@ router.get('/article', async(req, res) => {
   .skip(start)
   .limit(stop);
 
-  if (articles.length === 0) {
+  if (!articles.length) {
     res.render('articles.njk', {
       empty: true,
       q: req.query.q

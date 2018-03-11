@@ -10,7 +10,7 @@ router.get('/signup', login, (req, res) => {
   res.render('signup.njk');
 });
 
-router.post('/signup', login, (req, res) => {
+router.post('/signup', login, async(req, res) => {
   if (!req.body.fname ||
       !req.body.lname ||
       !req.body.email ||
@@ -23,9 +23,7 @@ router.post('/signup', login, (req, res) => {
     return;
   }
 
-  req.body.captcha = req.body.captcha.toLowerCase();
-
-  if (req.body.captcha !== req.session.captcha) {
+  if (req.body.captcha.toLowerCase() !== req.session.captcha) {
     // Wrong Captcha
     res.json({ type: 2, text: 5 });
     return;
@@ -49,10 +47,9 @@ router.post('/signup', login, (req, res) => {
     type: 1
   });
 
-  member.save().then(async() => {
-    // OK
-
-    email.signup(req.body.email).catch();
+  try {
+    await member.save();
+    email.signup(req.body.email);
 
     const nl = await Newsletter.findOne({ email: req.body.email });
 
@@ -67,15 +64,12 @@ router.post('/signup', login, (req, res) => {
       email: req.body.email
     });
 
-    addToNewsletter.save().then(() => {
-      // Done
-      req.session.captcha = null;
-      res.json({ type: 0 });
-    }).catch(() => {
-      // Error
-      res.json({ type: 2, text: 2 });
-    });
-  }).catch(e => {
+    await addToNewsletter.save();
+
+    // Done
+    req.session.captcha = null;
+    res.json({ type: 0 });
+  } catch (e) {
     const err = e.errmsg.split(' ');
 
     if (err.includes('duplicate')) {
@@ -90,7 +84,7 @@ router.post('/signup', login, (req, res) => {
       // Error
       res.json({ type: 2, text: 2 });
     }
-  });
+  }
 });
 
 export default router;
