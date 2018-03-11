@@ -18,7 +18,7 @@ router.post('/article/like/:id', async(req, res) => {
     return;
   }
 
-  if (article.likes.indexOf(req.member.user._id) !== -1) {
+  if (!article.likes.includes(req.member.user._id)) {
     // Duplicate
     res.json({ type: 0, text: 1 });
     return;
