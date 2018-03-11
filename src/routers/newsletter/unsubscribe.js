@@ -11,9 +11,8 @@ router.get('/unsubscribe', (req, res) => {
 
 router.post('/unsubscribe', async(req, res) => {
   req.body.email = req.body.email.toLowerCase();
-  req.body.captcha = req.body.captcha.toLowerCase();
 
-  if (req.body.captcha !== req.session.captcha) {
+  if (req.body.captcha.toLowerCase() !== req.session.captcha) {
     // Wrong Captcha
     res.json({ type: 2, text: 0 });
     return;

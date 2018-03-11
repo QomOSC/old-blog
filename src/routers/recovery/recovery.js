@@ -19,7 +19,7 @@ router.post('/recovery', login, async(req, res) => {
 
   req.body.email = req.body.email.toLowerCase();
 
-  if (req.body.captcha !== req.session.captcha) {
+  if (req.body.captcha.toLowerCase() !== req.session.captcha) {
     // Wrong Captcha
     res.json({ type: 2, text: 1 });
     return;
@@ -41,15 +41,14 @@ router.post('/recovery', login, async(req, res) => {
     member: member._id
   });
 
-  rec.save().then(() => {
-
+  try {
+    await rec.save();
     res.json({ type: 0 });
-    email.recovery(req.body.email, rec.token).catch();
-
-  }).catch(() => {
+    email.recovery(req.body.email, rec.token);
+  } catch (e) {
     // Error
     res.json({ type: 2, text: 2 });
-  });
+  }
 });
 
 router.get('/recovery/:token', login, async(req, res) => {
@@ -60,7 +59,7 @@ router.get('/recovery/:token', login, async(req, res) => {
     res.reply.notFound();
     return;
   }
-  
+
   res.render('recovery/change.njk', {
     token: req.params.token
   });
