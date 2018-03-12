@@ -77,6 +77,6 @@ const schema = new Schema({
     type: String,
     trim: true
   }],
-});
+}, { usePushEach: true });
 
 export default mongoose.model('Member', schema);

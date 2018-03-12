@@ -16,15 +16,15 @@ router.post(
 
   const member = await Member.findOne({ username: req.params.username });
 
-  if (!member || !member.type === 1) {
+  if (!member || member.type !== 1) {
     res.json({ type: 2, text: 0 });
     return;
   }
 
   member.type = 2;
 
-  member.save().then(async() => {
-
+  try {
+    await member.save();
     const admin = await Member.findOne({ _id: req.member.user._id });
 
     if (!admin) {
@@ -32,22 +32,21 @@ router.post(
       return;
     }
 
-    if (admin.submembers.indexOf(member._id) !== -1) {
+    if (admin.submembers.includes(member._id)) {
       res.json({ type: 2, text: 0 });
       return;
     }
 
     admin.submembers.push(member._id);
 
-    admin.save().then(() => {
-      res.json({ type: 0 });
-      email.submembers.accept(member.email).catch();
-    }).catch(() => {
-      res.json({ type: 2, text: 0 });
-    });
-  }).catch(() => {
+    await admin.save();
+
+    res.json({ type: 0 });
+    await email.submembers.accept(member.email);
+  } catch (e) {
+    console.log(e);
     res.json({ type: 2, text: 0 });
-  });
+  }
 });
 
 export default router;
