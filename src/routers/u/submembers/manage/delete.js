@@ -24,8 +24,27 @@ router.post(
 
   const member = await Member.findOne({ username: req.params.username });
 
-  if (!member || member.type >= 2) {
+  if (!member) {
+    // User not found
     res.json({ type: 2, text: 0 });
+    return;
+  }
+
+  if (req.member.user.type === 3 && member.type === 3) {
+    // You can't remove someone who is in the same category with you
+    res.json({ type: 1, text: 0 });
+    return;
+  }
+
+  if (req.member.user.type === 4 && member.type === 4) {
+    // You can't remove someone who is in the same category with you
+    res.json({ type: 1, text: 0 });
+    return;
+  }
+
+  if (req.member.user.type === 3 && member.type === 4) {
+    // You can't remove someone who is in the upper category than you
+    res.json({ type: 1, text: 1 });
     return;
   }
 
@@ -42,20 +61,14 @@ router.post(
 
     const admin = await Member.findOne({ _id: req.member.user._id });
 
-    if (!admin || admin.submembers.length === 0) {
-      res.json({ type: 2, text: 0 });
-      return;
+    if (admin.submembers.includes(member)) {
+      admin.submembers.splice(member, 1);
     }
 
-    admin.submembers.splice(member, 1);
-
-    admin.save().then(() => {
-      // OK
-      res.json({ type: 0 });
-      email.submembers.delete().catch();
-    }).catch(() => {
-      res.json({ type: 2, text: 0 });
-    });
+    await admin.save();
+    // OK
+    res.json({ type: 0 });
+    email.submembers.delete(member.email);
   } catch (e) {
     res.json({ type: 2, text: 0 });
   }
