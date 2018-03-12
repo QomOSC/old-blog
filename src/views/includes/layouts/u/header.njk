@@ -50,9 +50,11 @@
               <span>اضافه کردن</span>
             </a>
             <a href="/u/conference">ارائه های من</a>
+            {% if locals.logged.type >= 3 %}
             <a href="/u/conference/manage">
               <span>مدیریت</span>
             </a>
+            {% endif %}
           </div>
         </div>
       </div>
