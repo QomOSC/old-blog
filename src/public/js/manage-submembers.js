@@ -30,6 +30,11 @@ removeIm.addEventListener('submit', e => {
         rtl: true,
         title: 'کاربر با موفقیت حذف شد'
       });
+    } else if (res.type === 1) {
+      iziToast.warning({
+        rtl: true,
+        title: 'شما اجازه حذف این کاربر را ندارید'
+      });
     } else {
       iziErr();
     }
