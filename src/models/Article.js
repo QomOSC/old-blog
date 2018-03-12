@@ -42,7 +42,14 @@ const schema = new Schema({
   embeds: [{ // The ID of members
     type: String,
     trim: true
-  }]
+  }],
+  type: {
+    enum: [1, 2], // 1: Not Accepted, 2: Accepted
+    type: Number,
+    required: true,
+    default: 1,
+    trim: true
+  }
 });
 
 autoIncrement.initialize(mongoose);
