@@ -11,6 +11,7 @@ router.get('/login', login, (req, res) => {
 });
 
 router.post('/login', login, async(req, res) => {
+  // eu = Email or Username
   req.body.eu = req.body.eu.toLowerCase();
   req.body.captcha = req.body.captcha.toLowerCase();
 
