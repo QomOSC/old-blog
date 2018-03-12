@@ -1,7 +1,7 @@
 document.forms['login-form'].addEventListener('submit', e => {
 
   send({ url: '/login' }, e, {
-    email: e.target.email.value,
+    eu: e.target.email.value,
     password: e.target.password.value,
     captcha: e.target.captcha.value
   }).then(res => {

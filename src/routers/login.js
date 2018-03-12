@@ -11,7 +11,7 @@ router.get('/login', login, (req, res) => {
 });
 
 router.post('/login', login, async(req, res) => {
-  req.body.email = req.body.email.toLowerCase();
+  req.body.eu = req.body.eu.toLowerCase();
   req.body.captcha = req.body.captcha.toLowerCase();
 
   if (req.body.captcha !== req.session.captcha) {
@@ -20,7 +20,11 @@ router.post('/login', login, async(req, res) => {
     return;
   }
 
-  const member = await Member.findOne({ email: req.body.email });
+  let member = await Member.findOne({ email: req.body.eu });
+
+  if (!member) {
+    member = await Member.findOne({ username: req.body.eu });
+  }
 
   if (!member) {
     // User Not Found
