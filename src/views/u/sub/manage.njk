@@ -1,62 +1,61 @@
 {% extends locals.path + '/u.njk' %}
 
 {% block head %}
-<link rel="stylesheet" href="/files/css/sub.css">
+  <link rel="stylesheet" href="/files/css/sub.css">
 
 {% endblock %}
 
 {% block content %}
-<div class="page-title">
-{% if empty %}
-  <span>شما هیچ کس رو نپذیرفتید</span>
-  </div>
-  <div class="page-title">
-{% elif subs | join !== "" %}
-   <span>مدیریت کاربران تایید شده</span>
-</div>
 
-<div class="sub-container">
-{% for i in subs %}
+  {% if empty %}
+    <div class="page-title">
+      <span>شما هیچ کس رو نپذیرفتید</span>
+    </div>
 
-<div class="sub">
-  <div id="{{ i.username }}">
-    <h3>نام کاربری :  {{ i.username }}</h3>
-    <p> نام و نام خانوداگی :  {{i.fname}} {{i.lname}}</p>
+  {% elif subs | join !== "" %}
+    <div class="page-title">
+      <span>مدیریت کاربران تایید شده</span>
+    </div>
 
-    <form
-      action="/u/sub/manage/remove/{{ i.username }}"
-      method="post"
-      class="remove">
+    <div class="sub-container">
+      {% for i in subs %}
 
-      <input type="hidden" name="username" value="{{ i.username }}">
-      <input type="submit" value="حذف کاربر">
+        <div class="sub">
+          <div id="{{ i.username }}">
+            <h3>نام کاربری :
+              {{ i.username }}</h3>
+            <p>
+              نام و نام خانوداگی :
+              {{i.fname}}
+              {{i.lname}}</p>
 
-    </form>
+            <form action="/u/sub/manage/remove/{{ i.username }}" method="post" class="remove">
 
-  </div>
+              <input type="hidden" name="username" value="{{ i.username }}">
+              <input type="submit" value="حذف کاربر">
 
-</div>
+            </form>
 
-{% endfor %}
-</div>
-{% endif %}
-<h1>حذف فوری</h1>
-<form
-  action="/u/sub/manage/remove/"
-  method="post"
-  name="remove-immidiately">
+          </div>
 
-  <input
-    type="text"
-    name="username"
-    value="{{ i.username }}"
-    placeholder="یوزرنیم">
+        </div>
 
-  <input type="submit" value="حذف کاربر">
+      {% endfor %}
+    </div>
+  {% endif %}
+  <div class="del-sub">
 
-</form>
-{% endblock %}
+    <h2>حذف فوری<h2>
+        <form action="/u/sub/manage/remove/" method="post" name="remove-immidiately">
 
-{% block scripts %}
-<script src="/files/js/manage-submembers.js"></script>
-{% endblock %}
+          <input type="text" name="username" value="{{ i.username }}" placeholder="یوزرنیم">
+
+          <input type="submit" value="حذف کاربر" class="green-btn">
+
+        </form>
+      </div>
+    {% endblock %}
+
+    {% block scripts %}
+      <script src="/files/js/manage-submembers.js"></script>
+    {% endblock %}
