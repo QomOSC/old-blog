@@ -4,16 +4,18 @@
 {% endblock %}
 
 {% block content %}
-{% for i in articles %}
-  <p>{{ i._id }}</p>
-  <p>{{ i.title }}</p>
-  <p>{{ i.content }}</p>
-  <p>{{ i.avatar }}</p>
-  <p>{{ i.createdAt }}</p>
+{% for article in articles %}
+  <p>{{ article._id }}</p>
+  <p>{{ article.title }}</p>
+  <p>{{ article.content }}</p>
+  <p>{{ article.avatar }}</p>
+  <p>{{ article.createdAt }}</p>
   <h1>Author Information</h1>
-  <p>{{ i.author.fname }} {{ i.author.lname }}</p>
-  <p>{{ i.author.username }}</p>
-  <p>{{ i.author.avatar }}</p>
+  <p>{{ article.author.fname }} {{ article.author.lname }}</p>
+  <p>{{ article.author.username }}</p>
+  <p>{{ article.author.avatar }}</p>
+  <a href='/u/article/manage/{{ article._id }}'>قبول کردن یا نکردن</a>
+  <br><br>
 {% endfor %}
 {% endblock %}
 
