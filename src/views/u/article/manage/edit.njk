@@ -1,0 +1,61 @@
+{% extends locals.path + '/u.njk' %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+<p>{{ article._id }}</p>
+<p>{{ article.title }}</p>
+<p>{{ article.createdAt }}</p>
+
+<h1>Author Information</h1>
+<p>{{ article.author.fname }} {{ article.author.lname }}</p>
+<p>{{ article.author.username }}</p>
+<p>{{ article.author.avatar }}</p>
+
+<form action="/u/article/manage/{{ article._id }}/accept" method="post" name="add-post">
+  <div class="add-post">
+
+    <input
+      type="text"
+      name="title"
+      required="required"
+      placeholder="عنوان"
+      maxlength="100"
+      value="{{ article.title }}"
+      class="post-title"
+    />
+
+
+    {% include locals.include + '/tools/editor-icon.njk' %}
+
+
+    <input
+      type="file"
+      title="اضافه کردن عکس"
+      id="add-photo-to-post"
+      style="display: none;"
+    />
+
+    <textarea
+      id="post-content"
+      name="content"
+      rows="8"
+      cols="80"
+      required="required"
+      placeholder="متن"
+      maxlength="10000">{{ article.content }}</textarea>
+
+  <input type="submit" value="ثبت" class="green-btn">
+</div>
+</form>
+<form class="" action="index.html" method="post">
+
+</form>
+<form action="/u/article/manage/{{ article._id }}/reject" method="post">
+  <button type="submit">قبول نکردن مقاله</button>
+</form>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
