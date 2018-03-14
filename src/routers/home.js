@@ -7,7 +7,10 @@ const router = new Router();
 
 router.get('/', async(req, res) => {
 
-  const doc = await Article.find({}).sort({ createdAt: -1 }).limit(20);
+  const doc = await Article
+  .find({ type: 2 })
+  .sort({ createdAt: -1 })
+  .limit(20);
 
   const conf = await Conference
   .find({ type: { $in: [3, 4] } })

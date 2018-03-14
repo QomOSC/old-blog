@@ -31,7 +31,7 @@ router.get('/user/:username', async(req, res) => {
   });
 
   const articles = await Article
-    .find({ author: member._id })
+    .find({ author: member._id, type: 2 })
     .limit(12)
     .sort({ createdAt: -1 });
 

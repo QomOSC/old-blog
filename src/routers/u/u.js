@@ -8,7 +8,7 @@ const router = new Router();
 router.get('/u', logged, async(req, res) => {
 
   const articles = await Article
-  .find({ author: req.member.user._id })
+  .find({ author: req.member.user._id, type: 2 })
   .limit(9)
   .sort({ createdAt: -1 });
 

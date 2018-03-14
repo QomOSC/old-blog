@@ -25,7 +25,7 @@ router.get('/tag/:tagname', async(req, res) => {
       article: {}
     };
 
-    const article = await Article.findOne({ _id: i.article });
+    const article = await Article.findOne({ _id: i.article, type: 2 });
 
     if (!article) {
       return;
@@ -49,7 +49,7 @@ router.get('/tag/:tagname', async(req, res) => {
       res.reply.error();
       return;
     }
-    
+
     oneTag.author.fname = member.fname;
     oneTag.author.lname = member.lname;
     oneTag.author.username = member.username;
