@@ -108,3 +108,10 @@ if (localStorage.getItem('recoveryLinkHasSentSuccess')) {
   });
   localStorage.removeItem('recoveryLinkHasSentSuccess');
 }
+if (localStorage.getItem('rejectArticleSuccessful')) {
+  iziToast.success({
+    rtl: true,
+    title: 'مقاله با موفقیت حذف شد'
+  });
+  localStorage.removeItem('rejectArticleSuccessful');
+}
