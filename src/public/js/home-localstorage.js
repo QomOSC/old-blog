@@ -115,3 +115,10 @@ if (localStorage.getItem('rejectArticleSuccessful')) {
   });
   localStorage.removeItem('rejectArticleSuccessful');
 }
+if (localStorage.getItem('acceptArticleSuccessful')) {
+  iziToast.success({
+    rtl: true,
+    title: 'مقاله با موفقیت تایید شد'
+  });
+  localStorage.removeItem('acceptArticleSuccessful');
+}
