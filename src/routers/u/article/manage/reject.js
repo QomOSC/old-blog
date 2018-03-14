@@ -7,7 +7,7 @@ const { removeImage } = rootRequire('./utils');
 const router = new Router();
 
 router.post(
-  '/u/article/manage/:id/accept',
+  '/u/article/manage/:id/reject',
   logged, u.admin,
   async(req, res) => {
 

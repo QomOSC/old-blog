@@ -4,16 +4,15 @@
 {% endblock %}
 
 {% block content %}
-<p>{{ article._id }}</p>
-<p>{{ article.title }}</p>
-<p>{{ article.createdAt }}</p>
-
 <h1>Author Information</h1>
 <p>{{ article.author.fname }} {{ article.author.lname }}</p>
 <p>{{ article.author.username }}</p>
 <p>{{ article.author.avatar }}</p>
 
-<form action="/u/article/manage/{{ article._id }}/accept" method="post" name="add-post">
+<form
+  action="/u/article/manage/{{ article._id }}/accept"
+  method="post"
+  name="add-post">
   <div class="add-post">
 
     <input
@@ -53,7 +52,10 @@
 
 </form>
 <form action="/u/article/manage/{{ article._id }}/reject" method="post">
-  <button type="submit">قبول نکردن مقاله</button>
+  <input
+    type="submit"
+    value="قبول نکردن مقالع"
+  />
 </form>
 {% endblock %}
 
