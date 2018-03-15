@@ -59,7 +59,7 @@
           <i class="icon-file" aria-hidden="true"></i>
         </td>
         <td>تعداد مقالات:
-          {{ member.postsLength }}
+          {{ member.articles }}
         </td>
       </tr>
       <tr>
@@ -84,7 +84,7 @@
       <span>مقالات اخیر</span>
     </div>
 <div class="recent-posts">
-    {% for i in posts %}
+    {% for i in articles %}
 
       <div class="posts">
         <a href="/article/{{ i.id }}">
