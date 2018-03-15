@@ -10,40 +10,26 @@ router.get('/contact-us', (req, res) => {
 });
 
 router.get('/contact', async(req, res) => {
-  const lastTenComments = await Comment
+  const comments = await Comment
   .find({ type: 2 })
   .sort({ createdAt: -1 })
-  .limit(10);
+  .limit(10)
+  .lean();
 
-  const comments = [];
+  console.log(comments);
 
-
-  for (const i of lastTenComments) {
-    const oneCom = {
-      name: i.name,
-      email: i.email,
-      title: i.title,
-      answer: i.answer,
-      description: i.description,
-      createdAt: moment(i.createdAt),
-      admin: {}
-    };
+  for (const i of comments.keys()) {
+    comments[i].createdAt = moment(comments[i].createdAt);
 
     if (i.admin) {
-      const admin = await Member.findOne({ _id: i.admin });
-      oneCom.admin.username = admin.username;
-      oneCom.admin.fname = admin.fname;
-      oneCom.admin.lname = admin.lname;
-      oneCom.admin.avatar = admin.avatar;
+      comments[i].admin = await Member.findOne({ _id: comments[i].admin });
     }
 
     const commenter = await Member.findOne({ email: i.email });
 
     if (commenter && commenter.avatar) {
-      oneCom.avatar = commenter.avatar;
+      comments[i].avatar = commenter.avatar;
     }
-
-    comments.push(oneCom);
   }
 
   res.render('contact.njk', {
