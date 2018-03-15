@@ -13,10 +13,12 @@ router.get('/gallery', async(req, res) => {
   const re = new RegExp(`.*${req.query.q || ''}.*`);
 
   const photos = await Gallery
-      .find({ title: re })
-      .sort({ createdAt: -1 })
-      .skip(start)
-      .limit(stop);
+    .find({ title: re })
+    .select('-__v -_id')
+    .sort({ createdAt: -1 })
+    .skip(start)
+    .limit(stop)
+    .lean();
 
   if (!photos.length) {
     if (req.query.q) {
@@ -34,36 +36,17 @@ router.get('/gallery', async(req, res) => {
     return;
   }
 
-  const allPhotos = [];
+  for (const i of photos.keys()) {
+    photos[i].createdAt = moment(photos[i].createdAt);
 
-  for (const i of photos) {
-
-    const onePhoto = {
-      _id: i._id,
-      title: i.title,
-      photo: i.photo,
-      createdAt: moment(i.createdAt),
-      author: {},
-    };
-
-    const member = await Member.findOne({ _id: i.photographer });
-
-    if (!member) {
-      res.reply.error();
-      return;
-    }
-
-    onePhoto.author.fname = member.fname;
-    onePhoto.author.lname = member.lname;
-    onePhoto.author.username = member.username;
-    onePhoto.author.avatar = member.avatar;
-
-    allPhotos.push(onePhoto);
+    photos[i].author = await Member
+      .findOne({ _id: photos[i].photographer })
+      .select('-password -_id -__v -submembers -articles -createdAt -type');
   }
 
   if (req.query.q) {
     res.render('gallery.njk', {
-      photos: allPhotos,
+      photos,
       type: 1,
       query: req.query.q,
     });
@@ -71,8 +54,8 @@ router.get('/gallery', async(req, res) => {
   }
 
   res.render('gallery.njk', {
-    photos: allPhotos,
-    type: 0
+    type: 0,
+    photos
   });
 });
 
