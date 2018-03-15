@@ -16,8 +16,6 @@ router.get('/contact', async(req, res) => {
   .limit(10)
   .lean();
 
-  console.log(comments);
-
   for (const i of comments.keys()) {
     comments[i].createdAt = moment(comments[i].createdAt);
 
