@@ -14,17 +14,17 @@
       <div class="posts">
         <div class="posts-head">
           <div class="posts-head-right">
-            <a href="/user/{{ i.author.username }}">
+            <a href="/user/{{ i.member.username }}">
               <div
               class="profile-img"
-style="background-image: url(/img/{{ i.author.avatar }}); background-size: cover;">
+style="background-image: url(/img/{{ i.member.avatar }}); background-size: cover;">
               </div>
             </a>
             <div class="col-name">
-              <a href="/user/{{ i.author.username }}">
+              <a href="/user/{{ i.member.username }}">
                 <span title="نام نویسنده">
-                  {{ i.author.fname }}
-                  {{ i.author.lname }}
+                  {{ i.member.fname }}
+                  {{ i.member.lname }}
                 </span>
               </a>
               <small class="spn-time">{{ i.article.createdAt }}</small>

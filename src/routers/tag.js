@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 const { Article, Member, Tag } = rootRequire('./models');
-const { moment } = rootRequire('./utils');
+const { moment, shorten } = rootRequire('./utils');
 
 const router = new Router();
 
@@ -12,6 +12,7 @@ router.get('/tag/:tagname', async(req, res) => {
 
   const tags = await Tag
   .find({ tagname: req.params.tagname })
+  .select('-__v')
   .sort({ createdAt: -1 })
   .skip(start)
   .limit(stop);
@@ -20,42 +21,30 @@ router.get('/tag/:tagname', async(req, res) => {
 
   for (const i of tags) {
 
-    const oneTag = {
-      author: {},
-      article: {}
-    };
-
-    const article = await Article.findOne({ _id: i.article, type: 2 });
+    const article = await Article
+      .findOne({ _id: i.article, type: 2 })
+      .select('-__v -embeds -type -minutes')
+      .lean();
 
     if (!article) {
       return;
     }
 
-    let content = article.content.split('').slice(0, 130);
-    content.push('.', '.', '.');
-    content = content.join('');
+    article.createdAt = moment(article.createdAt);
+    article.likes = article.likes.length;
+    article.viewers = article.viewers.length;
+    article.content = shorten(article.content);
 
-    oneTag.article.title = article.title;
-    oneTag.article._id = article._id;
-    oneTag.article.createdAt = moment(article.createdAt);
-    oneTag.article.likes = article.likes.length;
-    oneTag.article.viewers = article.viewers.length;
-    oneTag.article.avatar = article.avatar;
-    oneTag.article.content;
-
-    const member = await Member.findOne({ _id: article.author });
+    const member = await Member
+      .findOne({ _id: article.author })
+      .select('-__v -_id -password -submembers -articles -createdAt -type');
 
     if (!member) {
       res.reply.error();
       return;
     }
 
-    oneTag.author.fname = member.fname;
-    oneTag.author.lname = member.lname;
-    oneTag.author.username = member.username;
-    oneTag.author.avatar = member.avatar;
-
-    tagsInfo.push(oneTag);
+    tagsInfo.push({ article, member });
   }
 
   res.render('tag.njk', {
