@@ -14,15 +14,6 @@ router.get('/', async(req, res) => {
   .limit(20)
   .lean();
 
-  let lastConference = await Conference
-  .find({ type: { $in: [3, 4] } })
-  .select('-attender -createdAt -__v -type')
-  .sort({ createdAt: -1 })
-  .limit(1)
-  .lean();
-
-  lastConference = lastConference[0];
-
   for (const i of articles.keys()) {
     articles[i].content = shorten(articles[i].content);
     articles[i].viewers = articles[i].viewers.length;
@@ -36,6 +27,18 @@ router.get('/', async(req, res) => {
     articles[i].author = member;
   }
 
+
+
+
+  let lastConference = await Conference
+  .find({ type: { $in: [3, 4] } })
+  .select('-attender -createdAt -__v -type')
+  .sort({ createdAt: -1 })
+  .limit(1)
+  .lean();
+
+  lastConference = lastConference[0];
+
   if (lastConference) {
     lastConference.createdAt = moment(lastConference.createdAt);
 
@@ -45,6 +48,7 @@ router.get('/', async(req, res) => {
   } else {
     lastConference.empty = true;
   }
+
 
   res.render('home.njk', {
     lastConf: lastConference,
