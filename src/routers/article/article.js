@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 const { Article, Member, Tag, Comment } = rootRequire('./models');
-const { moment } = rootRequire('./utils');
+const { moment, shorten } = rootRequire('./utils');
 
 const router = new Router();
 
@@ -13,10 +13,12 @@ router.get('/article', async(req, res) => {
   const re = new RegExp(`.*${req.query.q || ''}.*`);
 
   const articles = await Article
-    .find({ title: re })
+    .find({ title: re, type: 2 })
+    .select('-__v -minutes -embeds -type')
     .sort({ createdAt: -1 })
     .skip(start)
-    .limit(stop);
+    .limit(stop)
+    .lean();
 
   if (!articles.length) {
     res.render('articles.njk', {
@@ -26,42 +28,25 @@ router.get('/article', async(req, res) => {
     return;
   }
 
-  const allArts = [];
+  for (const i of articles.keys()) {
+    articles[i].content = shorten(articles[i].content);
+    articles[i].createdAt = moment(articles[i].createdAt);
+    articles[i].likes = articles[i].likes.length;
+    articles[i].viewers = articles[i].viewers.length;
 
-  for (const i of articles) {
-      let content = i.content.split('').slice(0, 130);
-      content.push('.', '.', '.');
-      content = content.join('');
+    const author = await Member
+      .findOne({ _id: articles[i].author })
+      .select()
+      .lean();
 
-      const oneArt = {
-        _id: i._id,
-        title: i.title,
-        createdAt: moment(i.createdAt),
-        likes: i.likes.length,
-        viewers: i.viewers.length,
-        avatar: i.avatar,
-        author: {},
-        content
-      };
-
-      const member = await Member.findOne({ _id: i.author });
-
-      if (!member) {
-        res.reply.error();
-        return;
-      }
-
-      oneArt.author.fname = member.fname;
-      oneArt.author.lname = member.lname;
-      oneArt.author.username = member.username;
-      oneArt.author.avatar = member.avatar;
-
-      allArts.push(oneArt);
+    if (author) {
+      articles[i].author = author;
+    }
   }
 
   res.render('articles.njk', {
     q: req.query.q,
-    arts: allArts
+    arts: articles
   });
 });
 
