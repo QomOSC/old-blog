@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 const { Conference, Member } = rootRequire('./models');
-const { moment } = rootRequire('./utils');
+const { moment, shorten } = rootRequire('./utils');
 
 const router = new Router();
 
@@ -14,9 +14,11 @@ router.get('/conference', async(req, res) => {
 
   const confs = await Conference
   .find({ description: re, type: { $in: [3, 4] } })
+  .select('-__v -providers -attender -type')
   .sort({ createdAt: -1 })
   .skip(start)
-  .limit(stop);
+  .limit(stop)
+  .lean();
 
   if (!confs.length) {
     if (req.query.q) {
@@ -34,39 +36,26 @@ router.get('/conference', async(req, res) => {
     return;
   }
 
-  const confArr = [];
-
-  for (const i of confs) {
-
-    let description = i.description.split('').slice(0, 130);
-    description.push('.', '.', '.');
-    description = description.join('');
-
-    const oneConf = {
-      _id: i._id,
-      title: i.title,
-      createdAt: moment(i.createdAt),
-      avatar: i.avatar,
-      description
-    };
-
-    confArr.push(oneConf);
+  for (const i of confs.keys()) {
+    confs[i].description = shorten(confs[i].description);
+    confs[i].createdAt = moment(confs[i].createdAt);
   }
 
   if (req.query.q) {
     res.render('conferences.njk', {
-      confs: confArr,
       type: 1,
       query: req.query.q,
+      confs
     });
     return;
   }
 
   res.render('conferences.njk', {
-    confs: confArr,
-    type: 0
+    type: 0,
+    confs
   });
 });
+
 
 router.get('/conference/:id', async(req, res) => {
   let conf;
