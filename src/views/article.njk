@@ -13,16 +13,16 @@
       <a href="/">
         <img src="/files/image/qomosc.png" width="55px">
       </a>
-      <h3>{{ p.article.title }}</h3>
+      <h3>{{ article.title }}</h3>
     </div>
     <div>
-      <a href="https://telegram.me/share/url?url=@@LINK@@/article/{{ p.article._id }}&amp;text={{ p.article.title }} در جامعه متن باز قم" target="_blank">
+      <a href="https://telegram.me/share/url?url=@@LINK@@/article/{{ article._id }}&amp;text={{ article.title }} در جامعه متن باز قم" target="_blank">
         <i class="icon-telegram"></i>
       </a>
-      <a href="https://twitter.com/intent/tweet?text=@@LINK@@/article/{{ p.article._id }} {{ p.article.title }} در جامعه متن باز قم" data-size="large">
+      <a href="https://twitter.com/intent/tweet?text=@@LINK@@/article/{{ article._id }} {{ article.title }} در جامعه متن باز قم" data-size="large">
         <i class="icon-twitter"></i>
       </a>
-      <a href="mailto:?subject={{ p.article.title }} در جامعه متن باز قم&body=این مطلب را در جامعه متن باز قم کامل بخوانید @@LINK@@/article/{{ p.article._id }}">
+      <a href="mailto:?subject={{ article.title }} در جامعه متن باز قم&body=این مطلب را در جامعه متن باز قم کامل بخوانید @@LINK@@/article/{{ article._id }}">
         <i class="icon-email"></i>
       </a>
     </div>
@@ -32,20 +32,20 @@
   </div>
 </section>
 
-<div class="viewpost" style="background-image: url('/img/{{ p.article.avatar }}');">
-<span>{{ p.article.title }}</span>
+<div class="viewpost" style="background-image: url('/img/{{ article.avatar }}');">
+<span>{{ article.title }}</span>
   <div class="viewpost-details">
-    <a href="/user/{{ p.author.username }}">
-      <div class="profile-img" style="background-image: url('/img/{{ p.author.avatar }}');
+    <a href="/user/{{ article.author.username }}">
+      <div class="profile-img" style="background-image: url('/img/{{ article.author.avatar }}');
        background-size: cover;"></div>
     </a>
 
-    <span>{{ p.author.fname }}
-      {{ p.author.lname }}</span>
+    <span>{{ article.author.fname }}
+      {{ article.author.lname }}</span>
     <span>
       <i class="icon-circle"></i>
     </span>
-        <span>{{ p.other.createdAt }}</span>
+        <span>{{ article.createdAt }}</span>
       </div>
     </div>
     <div class="viewpost-all">
@@ -54,21 +54,21 @@
         <div class="viewpost-info">
           <div class="viewpost-info-in">
             <div class="view-post-head-right">
-              <a href="/user/{{ p.author.username }}">
-                <div class="profile-img" style="background-image: url('/img/{{ p.author.avatar }}');
+              <a href="/user/{{ article.author.username }}">
+                <div class="profile-img" style="background-image: url('/img/{{ article.author.avatar }}');
                 background-size: cover;"></a>
               </div>
-              <a href="/user/{{ p.author.username }}">
-                <span>{{ p.author.fname }}
-                  {{ p.author.lname }}</span>
+              <a href="/user/{{ article.author.username }}">
+                <span>{{ article.author.fname }}
+                  {{ article.author.lname }}</span>
               </a>
             </div>
             <div class="viewpost-icon">
               <span>
                 <i class="icon-eye" aria-hidden="true">
-                </i>&nbsp;{{ p.other.viewers }}</span>
+                </i>&nbsp;{{ article.viewers }}</span>
               <span>
-                مطالعه : &nbsp;&nbsp;{{ p.article.minutes }}&nbsp; دقیقه
+                مطالعه : &nbsp;&nbsp;{{ article.minutes }}&nbsp; دقیقه
               </span>
             </div>
           </div>
@@ -77,36 +77,36 @@
       </div>
       <div class="viewpost-body">
         <div class="article-title">
-          <span>{{ p.article.title }}</span>
+          <span>{{ article.title }}</span>
         </div>
         <div class="viewpost-text">
           <div id="markdowned-text">
-            {{ p.article.content }}
+            {{ article.content }}
           </div>
-          {% for embed in p.article.embeds %}
+          {% for embed in article.embeds %}
             {{ embed | safe }}
           {% endfor %}
           <div class="event">
             <div class="posts-event">
               <div id="dislike-btn">
-                {% if p.liked %}
-                  <i class="icon-like" aria-hidden="true" id="like-dislike-btn" data-id="{{ p.article._id }}" data-status="liked"></i>
+                {% if article.liked %}
+                  <i class="icon-like" aria-hidden="true" id="like-dislike-btn" data-id="{{ article._id }}" data-status="liked"></i>
                 {% else %}
-                  <i class="icon-dislike" aria-hidden="true" id="like-dislike-btn" data-id="{{ p.article._id }}" data-status="disliked"></i>
+                  <i class="icon-dislike" aria-hidden="true" id="like-dislike-btn" data-id="{{ article._id }}" data-status="disliked"></i>
                 {% endif %}
                 &nbsp;
               </div>
-              <span class="like-spn" id="like-and-dislike-number">{{ p.other.likes }}</span>
+              <span class="like-spn" id="like-and-dislike-number">{{ article.likes }}</span>
               <span>
                 <i class="icon-calendar" aria-hidden="true"></i>
-                &nbsp;{{ p.other.createdAt }}
+                &nbsp;{{ article.createdAt }}
               </span>
             </div>
 
             <div class="dtags">
               <span>برچسب ها:
               </span>
-              {% for i in p.tags %}
+              {% for i in article.tags %}
                 <a href="/tag/{{ i }}" class="atags">{{ i }}</a>
               {% endfor %}
             </div>
@@ -115,23 +115,23 @@
       </div>
       <div class="user-info">
         <div class="user-info-right">
-          <a href="/user/{{ p.author.username }}">
-            <div class="profile-img" style="background-image: url('/img/{{ p.author.avatar }}');
+          <a href="/user/{{ article.author.username }}">
+            <div class="profile-img" style="background-image: url('/img/{{ article.author.avatar }}');
             background-size: cover;"></div>
           </a>
         </div>
         <div class="user-info-left">
           <div>
             <span class="username">
-              <a href="/user/{{ p.author.username }}">
-                <span>{{ p.author.fname }}
-                  {{ p.author.lname }}</span>
+              <a href="/user/{{ article.author.username }}">
+                <span>{{ article.author.fname }}
+                  {{ article.author.lname }}</span>
               </a>
             </span>
           </div>
           <div>
-            {% if p.author.description %}
-              <p>{{ p.author.description }}</p>
+            {% if article.author.description %}
+              <p>{{ article.author.description }}</p>
             {% endif %}
           </div>
         </div>
@@ -140,7 +140,7 @@
     <div class="cmt-send">
       <h2>ارسال نظر</h2>
     <form
-      action="/article/{{ p.article._id }}/comment/add"
+      action="/article/{{ article._id }}/comment/add"
       name="comment-form"
       method="post">
        <div class="cmt-row">
@@ -169,7 +169,7 @@
     </form>
     </div>
     <div class="cmt-container">
-      {% for i in p.comments %}
+      {% for i in article.comments %}
         <div class="comment">
           <div class="cmt-avatar">
             <img src="/files/image/default-avatar.png">
@@ -227,7 +227,7 @@
 
 {% block scripts %}
   <script>
-    var URL = '{{ p.article._id }}';
+    var URL = '{{ article._id }}';
   </script>
   <script src="/files/js/lib/showdown.min.js"></script>
   <script src='/files/js/ipchecker.js'></script>

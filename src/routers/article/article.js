@@ -12,10 +12,11 @@ router.get('/article', async(req, res) => {
 
   const re = new RegExp(`.*${req.query.q || ''}.*`);
 
-  const articles = await Article.find({ title: re })
-  .sort({ createdAt: -1 })
-  .skip(start)
-  .limit(stop);
+  const articles = await Article
+    .find({ title: re })
+    .sort({ createdAt: -1 })
+    .skip(start)
+    .limit(stop);
 
   if (!articles.length) {
     res.render('articles.njk', {
@@ -64,72 +65,94 @@ router.get('/article', async(req, res) => {
   });
 });
 
+
+
 router.get('/article/:id', async(req, res) => {
   req.params.id = req.params.id.toLowerCase();
+  let article;
 
-  const article = await Article.findOne({ _id: req.params.id });
+  try {
+    article = await Article
+      .findOne({ _id: req.params.id, type: 2 })
+      .select('-type -__v')
+      .lean();
+  } catch (e) {
+    res.reply.notFound();
+    return;
+  }
 
   if (!article) {
     res.reply.notFound();
     return;
   }
 
-  const oneArt = { article, author: {}, other: {}, liked: false, tags: [] };
-
-  oneArt.other.createdAt = moment(article.createdAt);
-  oneArt.other.likes = article.likes.length;
-  oneArt.other.viewers = article.viewers.length;
-
   if (req.member.user) {
-    oneArt.liked =
-      article.likes.indexOf(req.member.user._id) !== -1 ? true : false;
+    article.liked = article.likes.includes(req.member.user._id);
   }
 
-  const tags = await Tag.find({ article: article._id });
+  article.createdAt = moment(article.createdAt);
+  article.likes = article.likes.length;
+  article.viewers = article.viewers.length;
+  article.tags = [];
+  article.comments = [];
+
+  const tags = await Tag
+    .find({ article: article._id })
+    .select('-__v -_id -article -createdAt');
 
   if (tags.length) {
     for (const i of tags) {
-      oneArt.tags.push(i.tagname);
+      article.tags.push(i.tagname);
     }
   }
 
-  const comment = await Comment.find({ type: 2, article: req.params.id });
+  const comment = await Comment
+    .find({ type: 2, article: req.params.id })
+    .select('-_id -article -type -__v')
+    .lean();
 
-  if (comment.length !== 0) {
-    const allComments = [];
+  if (comment.length) {
+    for (const i of comment.keys()) {
+      comment[i].createdAt = moment(comment[i].createdAt);
 
-    for (const i of comment) {
-      const oneCom = {
-        name: i.name,
-        email: i.email,
-        title: i.title,
-        answer: i.answer,
-        description: i.description,
-        createdAt: moment(i.createdAt)
-      };
-      allComments.push(oneCom);
+      let commentAdmin;
+
+      if (comment[i].author) {
+        try {
+          commentAdmin = await Member
+            .findOne({ _id: comment[i].author })
+            .select(`-_id -password -__v
+            -submembers -articles -createdAt -type`)
+            .lean();
+
+          comment[i].admin = commentAdmin;
+        } catch (e) {
+          comment[i].admin = null;
+        }
+      }
+
+      article.comments.push(comment[i]);
     }
-    oneArt.comments = allComments;
   }
 
-  const member = await Member.findOne({ _id: article.author });
+  const author = await Member
+    .findOne({ _id: article.author })
+    .select('-__v -_id -password -submembers -articles -createdAt -type')
+    .lean();
 
-  if (!member) {
+  if (!author) {
     res.reply.notFound();
     return;
   }
 
-  oneArt.author.avatar = member.avatar;
-  oneArt.author.fname = member.fname;
-  oneArt.author.lname = member.lname;
-  oneArt.author.username = member.username;
-  oneArt.author.description = member.description;
+  article.author = author;
 
-  res.render('article.njk', { p: oneArt });
+  console.log(JSON.stringify(article, null, 2));
+  res.render('article.njk', { article });
 });
 
-// Add viewer IP
 
+// Add viewer IP
 router.post('/article/:id', async(req, res) => {
   req.params.id = req.params.id.toLowerCase();
 
