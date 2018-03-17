@@ -62,9 +62,11 @@ router.get('/conference/:id', async(req, res) => {
 
   try {
     conf = await Conference
-    .findOne({ _id: req.params.id, type: { $in: [3, 4] } });
+      .findOne({ _id: req.params.id, type: { $in: [3, 4] } })
+      .select('-__v -type')
+      .lean();
   } catch (e) {
-    res.reply.error();
+    res.reply.notFound();
     return;
   }
 
@@ -73,39 +75,29 @@ router.get('/conference/:id', async(req, res) => {
     return;
   }
 
-  const info = {
-    _id: conf._id,
-    title: conf.title,
-    description: conf.description,
-    createdAt: moment(conf.createdAt),
-    attenders: conf.attender.length,
-    start: conf.start,
-    end: conf.end,
-    providers: []
-  };
+  conf.createdAt = moment(conf.createdAt);
+  conf.attenders = conf.attender.length;
 
   if (!conf.providers) {
     res.reply.error();
     return;
   }
 
-  for (const i of conf.providers) {
-    const provider = await Member.findOne({ username: i });
+  conf.provs = [];
+
+  for (const i of conf.providers.keys()) {
+    const provider = await Member
+      .findOne({ username: conf.providers[i] })
+      .select('-_id -__v -type -articles -submembers -password -createdAt');
 
     if (provider) {
-      const providerInfo = {
-        fname: provider.fname,
-        lname: provider.lname,
-        username: provider.username,
-        avatar: provider.avatar,
-        description: provider.description
-      };
-
-      info.providers.push(providerInfo);
+       conf.provs.push(provider);
     }
   }
 
-  res.render('conference.njk', { info });
+  res.render('conference.njk', {
+    info: conf
+  });
 });
 
 export default router;
