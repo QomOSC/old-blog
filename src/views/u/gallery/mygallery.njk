@@ -26,15 +26,6 @@
           </div>
           <div class="gallery-body">
             <span>{{ i.title }}</span>
-            <div>
-              {% if i.author.avatar %}
-                <img src="/img/{{ i.author.avatar }}">
-              {% else %}
-                <img src="/files/image/default-user.png">
-              {% endif %}
-              <span>{{ i.author.fname }}
-                {{ i.author.lname }}</span>
-            </div>
           </div>
         </div>
         <form

@@ -17,7 +17,7 @@
 {% for i in confs %}
 <div class="cnf-manage" id="{{ i._id }}">
   <h3>ارائه دهندگان:</h3>
-  {% for j in i.providers %}
+  {% for j in i.provs %}
   <div>نام کاربر :
     <a href="/user/{{ j.username }}">
     {{ j.fname }} {{ f.lname }}
