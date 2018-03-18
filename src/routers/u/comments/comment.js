@@ -7,10 +7,10 @@ const { moment } = rootRequire('./utils');
 const router = new Router();
 
 router.get('/u/comments', perms.logged, perms.u.admin, async(req, res) => {
-  const comments = await Comment.find({
-    type: 1,
-    article: null
-  });
+  const comments = await Comment
+  .find({ type: 1, article: null, contact: true })
+  .select('-__v -type -contact')
+  .lean();
 
   if (!comments.length) {
     res.render('u/comments/comment.njk', {
@@ -19,24 +19,12 @@ router.get('/u/comments', perms.logged, perms.u.admin, async(req, res) => {
     return;
   }
 
-  const allComments = [];
-
-  for (const i of comments) {
-    const oneComment = {
-      _id: i._id,
-      name: i.name,
-      email: i.email,
-      title: i.title,
-      description: i.description,
-      createdAt: moment(i.createdAt)
-    };
-
-    allComments.push(oneComment);
-
+  for (const i of comments.keys()) {
+    comments[i].createdAt = moment(comments[i].createdAt);
   }
 
   res.render('u/comments/comment.njk', {
-    comment: allComments
+    comment: comments
   });
 });
 

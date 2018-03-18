@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 const { Conference, Member } = rootRequire('./models');
 const perms = rootRequire('./perms');
-const { moment } = rootRequire('./utils');
+const { moment, shorten } = rootRequire('./utils');
 
 const router = new Router();
 router.get(
@@ -11,7 +11,10 @@ router.get(
   perms.u.admin,
   async(req, res) => {
 
-  const confs = await Conference.find({ type: 1 });
+  const confs = await Conference
+    .find({ type: 1 })
+    .select('-__v -type')
+    .lean();
 
   if (!confs.length) {
     res.render('u/conference/manage/manage.njk', {
@@ -20,42 +23,24 @@ router.get(
     return;
   }
 
-  const allConfs = [];
+  for (const i of confs.keys()) {
+    confs[i].description = shorten(confs[i].description);
+    confs[i].createdAt = moment(confs[i].createdAt);
+    confs[i].provs = [];
 
-  for (const i of confs) {
-    let description = i.description.split('').slice(0, 130);
-    description.push('.', '.', '.');
-    description = description.join('');
+    for (const j of confs[i].providers) {
+      const provider = await Member
+      .findOne({ username: j })
+      .select('fname lname username avatar');
 
-    const oneConf = {
-      _id: i._id,
-      title: i.title,
-      createdAt: moment(i.createdAt),
-      providers: [],
-      description
-    };
-
-    for (const j of i.providers) {
-
-      const member = await Member.findOne({ username: j });
-
-      if (member) {
-        const oneProvider = {
-          fname: member.fname,
-          lname: member.lname,
-          username: member.username,
-          avatar: member.avatar
-        };
-
-        oneConf.providers.push(oneProvider);
+      if (provider) {
+        confs[i].provs.push(provider);
       }
     }
-
-    allConfs.push(oneConf);
   }
 
   res.render('u/conference/manage/manage.njk', {
-    confs: allConfs
+    confs
   });
 });
 
