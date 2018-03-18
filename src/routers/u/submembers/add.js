@@ -44,7 +44,6 @@ router.post(
     res.json({ type: 0 });
     await email.submembers.accept(member.email);
   } catch (e) {
-    console.log(e);
     res.json({ type: 2, text: 0 });
   }
 });

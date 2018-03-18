@@ -29,11 +29,11 @@ async function setNewValues(req, res) {
 
   const member = await Member.findOne({ _id: req.member.user._id });
 
-  member.fname = req.body.fname;
-  member.lname = req.body.lname;
-  member.email = req.body.email;
-  member.username = req.body.username;
-  member.description = req.body.description;
+  member.fname = req.body.fname || member.fname;
+  member.lname = req.body.lname || member.lname;
+  member.email = req.body.email || member.email;
+  member.username = req.body.username || member.username;
+  member.description = req.body.description || member.description;
 
   try {
     await member.save();
@@ -81,7 +81,7 @@ router.post('/u/setting', logged, async(req, res) => {
     res.json({ type: 2, text: 0 });
     return;
   }
-  
+
   // Email OK
   checkUsername(req).then(() => {
     // Username OK
