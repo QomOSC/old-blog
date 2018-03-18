@@ -13,8 +13,10 @@ router.get('/u/gallery/', logged, async(req, res) => {
 
   const photos = await Gallery
   .find({ photographer: req.member.user._id })
+  .select('-__v -photographer')
   .skip(start)
-  .limit(stop);
+  .limit(stop)
+  .lean();
 
   if (!photos.length) {
     res.render('u/gallery/mygallery.njk', {
@@ -23,21 +25,12 @@ router.get('/u/gallery/', logged, async(req, res) => {
     return;
   }
 
-  const allPhotos = [];
-
-  for (const i of photos) {
-    const onePhoto = {
-      _id: i._id,
-      title: i.title,
-      photo: i.photo,
-      createdAt: moment(i.createdAt),
-      author: {},
-    };
-    allPhotos.push(onePhoto);
+  for (const i of photos.keys()) {
+    photos[i].createdAt = moment(photos[i].createdAt);
   }
 
   res.render('u/gallery/mygallery.njk', {
-    photos: allPhotos
+    photos
   });
 });
 
