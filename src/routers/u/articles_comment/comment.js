@@ -7,10 +7,10 @@ const { moment } = rootRequire('./utils');
 const router = new Router();
 
 router.get('/u/article-comments', logged, async(req, res) => {
-  const comments = await Comment.find({
-    type: 1,
-    author: req.member.user._id
-  });
+  const comments = await Comment
+    .find({ type: 1, author: req.member.user._id })
+    .select('-__v -type')
+    .lean();
 
   if (!comments.length) {
     res.render('u/comments/comment.njk', {
@@ -19,34 +19,20 @@ router.get('/u/article-comments', logged, async(req, res) => {
     return;
   }
 
-  const allComments = [];
+  for (const i of comments.keys()) {
+    comments[i].createdAt = moment(comments[i].createdAt);
 
-  for (const i of comments) {
-    const oneComment = {
-      _id: i._id,
-      name: i.name,
-      email: i.email,
-      description: i.description,
-      createdAt: moment(i.createdAt)
-    };
-
-    const article = await Article.findOne({ _id: i.article });
+    const article = await Article
+      .findOne({ _id: comments[i].article })
+      .select('title avatar _id');
 
     if (article) {
-      const obj = {
-        _id: article._id,
-        title: article.title,
-        avatar: article.avatar
-      };
-
-      oneComment.article = obj;
+      comments[i].article = article;
     }
-
-    allComments.push(oneComment);
   }
 
   res.render('u/article/comment.njk', {
-    comment: allComments
+    comment: comments
   });
 });
 
