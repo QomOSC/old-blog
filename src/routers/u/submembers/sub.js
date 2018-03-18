@@ -7,7 +7,9 @@ const router = new Router();
 
 router.get('/u/sub', perm.logged, perm.u.admin, async(req, res) => {
 
-  const members = await Member.find({ type: 1 });
+  const members = await Member
+  .find({ type: 1 })
+  .select('-__v -type -article -submembers -password');
 
   if (members.length) {
     res.render('u/sub/all.njk', {
