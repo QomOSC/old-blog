@@ -4,17 +4,16 @@ import captcha from 'svg-captcha';
 const router = new Router();
 
 router.get('/captcha', (req, res) => {
-  const newCaptcha = captcha.create({
+  const { data, text } = captcha.create({
     size: 4,
     ignoreChars: '0o1ilIQ8',
     noise: 1,
     color: true
   });
 
-  // Captcha is case-insensitive
-  req.session.captcha = newCaptcha.text.toLowerCase();
+  req.session.captcha = text.toLowerCase();
 
-  res.json({ captcha: newCaptcha.data });
+  res.json({ captcha: data });
 });
 
 export default router;
