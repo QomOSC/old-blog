@@ -13,12 +13,12 @@ router.get('/conference', async(req, res) => {
   const re = new RegExp(`.*${req.query.q || ''}.*`);
 
   const confs = await Conference
-  .find({ description: re, type: { $in: [3, 4] } })
-  .select('-__v -providers -attender -type')
-  .sort({ createdAt: -1 })
-  .skip(start)
-  .limit(stop)
-  .lean();
+    .find({ description: re, type: { $in: [3, 4] } })
+    .select('-__v -providers -attender -type')
+    .sort({ createdAt: -1 })
+    .skip(start)
+    .limit(stop)
+    .lean();
 
   if (!confs.length) {
     if (req.query.q) {

@@ -11,10 +11,10 @@ router.get('/contact-us', (req, res) => {
 
 router.get('/contact', async(req, res) => {
   const comments = await Comment
-  .find({ type: 2 })
-  .sort({ createdAt: -1 })
-  .limit(10)
-  .lean();
+    .find({ type: 2 })
+    .sort({ createdAt: -1 })
+    .limit(10)
+    .lean();
 
   for (const i of comments.keys()) {
     comments[i].createdAt = moment(comments[i].createdAt);

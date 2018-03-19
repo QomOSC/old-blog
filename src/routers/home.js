@@ -8,11 +8,11 @@ const router = new Router();
 router.get('/', async(req, res) => {
 
   const articles = await Article
-  .find({ type: 2 })
-  .select('-__v -type -minutes -embeds')
-  .sort({ createdAt: -1 })
-  .limit(20)
-  .lean();
+    .find({ type: 2 })
+    .select('-__v -type -minutes -embeds')
+    .sort({ createdAt: -1 })
+    .limit(20)
+    .lean();
 
   for (const i of articles.keys()) {
     articles[i].content = shorten(articles[i].content);

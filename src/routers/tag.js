@@ -11,11 +11,11 @@ router.get('/tag/:tagname', async(req, res) => {
   stop = page * 12 + 12;
 
   const tags = await Tag
-  .find({ tagname: req.params.tagname })
-  .select('-__v')
-  .sort({ createdAt: -1 })
-  .skip(start)
-  .limit(stop);
+    .find({ tagname: req.params.tagname })
+    .select('-__v')
+    .sort({ createdAt: -1 })
+    .skip(start)
+    .limit(stop);
 
   const tagsInfo = [];
 
@@ -26,23 +26,16 @@ router.get('/tag/:tagname', async(req, res) => {
       .select('-__v -embeds -type -minutes')
       .lean();
 
-    if (!article) {
-      return;
+    if (article) {
+      article.createdAt = moment(article.createdAt);
+      article.likes = article.likes.length;
+      article.viewers = article.viewers.length;
+      article.content = shorten(article.content);
     }
-
-    article.createdAt = moment(article.createdAt);
-    article.likes = article.likes.length;
-    article.viewers = article.viewers.length;
-    article.content = shorten(article.content);
 
     const member = await Member
       .findOne({ _id: article.author })
       .select('-__v -_id -password -submembers -articles -createdAt -type');
-
-    if (!member) {
-      res.reply.error();
-      return;
-    }
 
     tagsInfo.push({ article, member });
   }
