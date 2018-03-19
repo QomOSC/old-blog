@@ -5,11 +5,7 @@ const { moment } = rootRequire('./utils');
 
 const router = new Router();
 
-router.get('/contact-us', (req, res) => {
-  res.redirect('/contact');
-});
-
-router.get('/contact', async(req, res) => {
+router.get('/contact*', async(req, res) => {
   const comments = await Comment
     .find({ type: 2 })
     .sort({ createdAt: -1 })
