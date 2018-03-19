@@ -31,15 +31,16 @@ router.get('/', async(req, res) => {
 
 
   let lastConference = await Conference
-  .find({ type: { $in: [3, 4] } })
-  .select('-attender -createdAt -__v -type')
-  .sort({ createdAt: -1 })
-  .limit(1)
-  .lean();
+    .find({ type: { $in: [3, 4] } })
+    .select('-attender -createdAt -__v -type')
+    .sort({ createdAt: -1 })
+    .limit(1)
+    .lean();
 
-  lastConference = lastConference[0];
 
-  if (lastConference) {
+  if (lastConference.length) {
+    lastConference = lastConference[0];
+
     lastConference.createdAt = moment(lastConference.createdAt);
 
     const provider = await Member.findOne({ _id: lastConference.author });
