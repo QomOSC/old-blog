@@ -4,13 +4,6 @@
   "description": "",
   "main": "build/app.js",
   "scripts": {
-    "client:build": "gulp client:dev client:watch",
-    "server:build": "gulp server:dev server:watch",
-    "full:build": "gulp full:dev full:watch",
-    "devserver": "nodemon --delay 0.5 build/app.js -e js,njk",
-    "compress": "tar -czvf app.tar.gz build package.json",
-    "app": "node build/app.js",
-    "build": "gulp full:dev"
   },
   "repository": {
     "type": "git"
@@ -22,44 +15,11 @@
   "author": "Matin Kaboli <matinkaboli@aol.com>",
   "license": "MIT",
   "dependencies": {
-    "babel-polyfill": "^6.26.0",
-    "body-parser": "^1.18.2",
-    "commander": "^2.11.0",
-    "connect-flash": "^0.1.1",
-    "connect-mongo": "^2.0.0",
-    "cookie-parser": "^1.4.3",
-    "crypto-js": "^3.1.9-1",
     "express": "^4.16.2",
-    "express-session": "^1.15.6",
-    "fs-extra": "^4.0.2",
-    "helmet": "^3.9.0",
     "moment-jalaali": "^0.7.2",
     "mongoose": "^4.13.5",
-    "mongoose-auto-increment": "^5.0.1",
-    "morgan": "^1.9.0",
-    "multer": "^1.3.0",
-    "nodemailer": "^4.3.1",
-    "nunjucks": "^3.0.1",
-    "replace": "^0.3.0",
-    "require-directory": "^2.1.1",
     "svg-captcha": "^1.3.11"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-eslint": "^8.0.1",
-    "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-preset-env": "^1.6.1",
-    "del": "^3.0.0",
-    "eslint": "^4.9.0",
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^4.0.0",
-    "gulp-babel": "^7.0.0",
-    "gulp-clean-css": "^3.9.0",
-    "gulp-eslint": "^4.0.0",
-    "gulp-htmlmin": "^3.0.0",
-    "gulp-less": "^3.3.2",
-    "gulp-nunjucks": "^3.0.0",
-    "gulp-replace": "^0.6.1",
-    "gulp-uglify": "^3.0.0"
   }
 }

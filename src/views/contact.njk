@@ -1,136 +1,0 @@
-{% extends locals.path + '/index.njk' %}
-
-{% block head %}
-<link rel="stylesheet" href="/files/css/about.css">
-{% endblock %}
-
-{% block content %}
-<div class="page-title">
-  <span>تماس با ما</span>
-</div>
-
-<div class="contact-container">
-  <div class="contact-form">
-    <div class="contact-info">
-      <span>تماس با جامعه متن باز قم</span>
-      <p>مهمترین عضو تیم ما شما هستید! دوست داریم پیشنهادات و انتقادات شما را بشنویم. حتما با ما در تماس باشید.</p>
-    </div>
-    <form action="/contact" method="post" name="contact-form">
-
-      <input
-        type="text"
-        name="name"
-        required="required"
-        placeholder="نام">
-
-      <input
-      type="email"
-      name="email"
-      required="required"
-      placeholder="ایمیل">
-
-      <input
-        type="text"
-        name="title"
-        required="required"
-        placeholder="موضوع">
-
-      <textarea
-        name="description"
-        required="required"
-        placeholder="توضیحات"></textarea>
-
-      <div class="cap">
-        <p id="svg-captcha"></p>
-
-        <i class="icon-refresh" id="change-captcha"></i>
-      </div>
-
-      <input type="text" name="captcha" required="required" placeholder="کد امنیتی">
-      <div class="div-btn">
-        <input type="submit" value="ارسال پیام" class="green-btn">
-      </div>
-    </form>
-
-  </div>
-  <div class="left-col-contact">
-    <div class="contact-us">
-      <span>آدرس : چهار راه شهدا (چهار راه بیمارستان) - مجتمع موبایل آسیا - طبقه منفی۲
-      </span>
-      <div class="mail-time">
-        <a href="mailto:oscqom@gmail.com">oscqom@gmail.com</a>
-        <span>ساعت برگزاری جلسه: ۱۶ تا ۱۸</span>
-      </div>
-      <p>بعد از ارائه‌ جلسه دورهمی دوستانه جهت آشنایی و انتقال اطلاعات برقرار است. در صورتی که سوالی دارید و دنبال پاسخ آن هستید شرکت در این جلسات را به شما پیشنهاد می‌دهیم. از همه علاقه‌مندان و دوستداران متن‌باز و لینوکس برای شرکت در این جلسه دعوت به عمل
-        می‌آید. عزیزان توجه داشته باشید بلیت‌های این جلسه 🆓رایگان🆓 هستند و موقع خرید بلیت در ایوند نیاز به پرداخت هزینه ندارید. گزینه حمایت مالی هم بصورت اختیاری برای دوستانی که تمایل به کمک به جامعه برای برگزاری جلسات دارند، قرارداده شده.
-      </p>
-    </div>
-    <a href="https://www.google.com/maps/place/%D8%A8%D8%A7%D8%B2%D8%A7%D8%B1+%D9%85%D9%88%D8%A8%D8%A7%DB%8C%D9%84+%D8%A2%D8%B3%DB%8C%D8%A7%E2%80%AD/@34.6390078,50.8748855,19z/data=!4m8!1m2!7m1!2e1!3m4!1s0x0:0x1f7ce6e28d5ee814!8m2!3d34.63885!4d50.874773" class="amap">
-    <div class="map" title="برای دیدن نقشه کلیک کنید">
-    </div>
-      </a>
-  </div>
-
-</div>
-<h2 class="cmt-h2">دیدگاه ها</h2>
-<div class="cmt-container">
-  {% for i in comments %}
-    <div class="comment">
-      <div class="cmt-avatar">
-        {% if i.avatar %}
-          <img src="/img/{{ i.avatar }}">
-        {% else %}
-          <img src="/files/image/default-avatar.png">
-        {% endif %}
-      </div>
-      <div class="cmt-content">
-        <div class="cmt-title">
-          <div class="cmt-top">
-            <span class="cmt-name">{{ i.name }}</span>
-            <span class="toptitle">عنوان : {{i.title}}</span>
-          </div>
-          <div class="cmt-event">
-            <span>{{ i.createdAt }}</span>
-          </div>
-        </div>
-        <div class="cmt-des">
-          <p>{{ i.description }}</p>
-        </div>
-
-        {% if i.answer %}
-          <a href="/user/{{ i.admin.username }}">
-
-            <div class="cmt-ans">
-              <div><i class="icon-reply"></i></div>
-              <div class="cmt-ans-avatar">
-                {% if i.admin.avatar %}
-                  <img src="/img/{{ i.admin.avatar }}">
-                {% else %}
-                  <img src="/files/image/default-user.png">
-                {% endif %}
-              </div>
-              <div class="cmt-ans-content">
-                <div class="cmt-ans-user">
-                  <span>
-                    {{ i.admin.fname }}
-                    {{ i.admin.lname }}
-                  </span>
-                </div>
-                <div class="cmt-ans-des">
-                  <p>{{ i.answer }}</p>
-                </div>
-              </div>
-
-            </div>
-          </a>
-        {% endif %}
-      </div>
-    </div>
-  {% endfor %}
-</div>
-{% endblock %}
-
-{% block scripts %}
-
-<script src="/files/js/contact.js"></script>
-{% endblock %}
