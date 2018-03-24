@@ -7,6 +7,8 @@ import process from 'process';
 
 import config from './config';
 
+import routers from './routers';
+
 mongoose.Promise = global.Promise;
 mongoose.connect(config.db);
 
@@ -25,6 +27,10 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.use('/static', express.static(join(__dirname, './static')));
+
+for (const router of routers) {
+  app.use(router);
+}
 
 app.use((req, res) => {
   res.sendFile(join(__dirname, '/index.html'));
