@@ -14,15 +14,26 @@
     "type": "git",
     "url": "git+https://github.com/qomosc/blog.git"
   },
-  "keywords": ["blog"],
+  "keywords": [
+    "blog"
+  ],
   "author": "Matin Kaboli <matinkaboli@aol.com>",
   "license": "MIT",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "body-parser": "^1.18.2",
+    "connect-mongo": "^2.0.1",
+    "crypto-js": "^3.1.9-1",
     "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "helmet": "^3.12.0",
+    "moment-jalaali": "^0.7.2",
     "mongoose": "^5.0.1",
+    "mongoose-auto-increment": "^5.0.1",
     "morgan": "^1.9.0",
-    "svg-captcha": "^1.3.11",
+    "multer": "^1.3.0",
+    "nodemailer": "^4.6.3",
+    "svg-captcha": "^1.3.11"
   },
   "devDependencies": {
     "autoprefixer": "^7.2.5",

@@ -21,25 +21,25 @@ gulp.task('copy', () =>
 );
 
 gulp.task('dev:client', () =>
-  gulp.src('src/client/client.js')
+  gulp.src('src/client/App.js')
   .pipe(webpack(require('./webpack/client/dev.js')))
   .pipe(gulp.dest('build/static/js'))
 );
 
 gulp.task('prod:client', () =>
-  gulp.src('src/client/client.js')
+  gulp.src('src/client/App.js')
   .pipe(webpack(require('./webpack/client/prod.js')))
   .pipe(gulp.dest('build/static/js'))
 );
 
 gulp.task('dev:server', () =>
-  gulp.src('src/app.js')
+  gulp.src('src/server/app.js')
   .pipe(webpack(require('./webpack/server/dev.js')))
   .pipe(gulp.dest('build/'))
 );
 
 gulp.task('prod:server', () =>
-  gulp.src('src/app.js')
+  gulp.src('src/server/app.js')
   .pipe(webpack(require('./webpack/server/prod.js')))
   .pipe(gulp.dest('build/'))
 );
