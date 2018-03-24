@@ -1,3 +1,3 @@
 export default [
-  require('./hey')
+  require('./a')
 ];
