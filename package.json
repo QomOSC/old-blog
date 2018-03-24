@@ -1,20 +1,24 @@
 {
-  "dependencies": {
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-prop-types": "^0.4.0",
-    "react-router-dom": "^4.2.2"
+  "name": "qomosc",
+  "version": "2.0.0",
+  "description": "QOM Open Source Community Website",
+  "main": "build/app.js",
+  "scripts": {
+    "dev": "gulp dev",
+    "prod": "gulp prod",
+    "server": "NODE_ENV=development nodemon build/app.js -e js -w build/app.js",
+    "compress": "tar -czvf app.tar.gz build package.json",
+    "app": "node build/app.js"
   },
-  "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.4",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-1": "^6.24.1",
-    "css-loader": "^0.28.11",
-    "html-webpack-plugin": "^3.1.0",
-    "style-loader": "^0.20.3",
-    "webpack": "^4.2.0",
-    "webpack-dev-server": "^3.1.1"
-  }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qomosc/blog.git"
+  },
+  "keywords": ["blog"],
+  "author": "Matin Kaboli <matinkaboli@aol.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/qomosc/blog/issues"
+  },
+  "homepage": "https://github.com/qomosc/blog#readme"
 }
