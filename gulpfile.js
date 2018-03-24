@@ -21,13 +21,13 @@ gulp.task('copy', () =>
 );
 
 gulp.task('dev:client', () =>
-  gulp.src('src/client/App.js')
+  gulp.src('src/client/client.js')
   .pipe(webpack(require('./webpack/client/dev.js')))
   .pipe(gulp.dest('build/static/js'))
 );
 
 gulp.task('prod:client', () =>
-  gulp.src('src/client/App.js')
+  gulp.src('src/client/client.js')
   .pipe(webpack(require('./webpack/client/prod.js')))
   .pipe(gulp.dest('build/static/js'))
 );
