@@ -5,7 +5,7 @@ import {
   Switch
 } from 'react-router-dom';
 
-import Home from './Home';
+import Public from './Public';
 
 
 class App extends Component {
@@ -13,7 +13,7 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route exact path='/' component={Home} />
+          <Route path='/' component={Public} />
         </Switch>
       </Router>
     );
