@@ -10,6 +10,8 @@ import bind from 'Root/js/bind';
 
 import Form from 'Root/components/Form';
 
+import styles from './index.less';
+
 
 class Signup extends Component {
   @bind
@@ -93,11 +95,15 @@ class Signup extends Component {
     ];
 
     return (
-      <Form
-        inputs={inputs}
-        submitFunction={this.signup}>
-        <h1>ثبت نام</h1>
-      </Form>
+      <div className={styles.container}>
+        <div>
+          <Form
+            inputs={inputs}
+            submitFunction={this.signup}>
+            <h1>ثبت نام</h1>
+          </Form>
+        </div>
+      </div>
     );
   }
 }
