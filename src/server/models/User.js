@@ -3,16 +3,10 @@ import mongoose, { Schema } from 'mongoose';
 import { email } from 'Root/utils/validator';
 
 const schema = new Schema({
-  fname: { // First Name
+  name: {
     type: String,
     trim: true,
-    required: [true, 'fname'],
-    maxlength: 50
-  },
-  lname: { // Last Name
-    type: String,
-    trim: true,
-    required: [true, 'lname'],
+    required: [true, 'name'],
     maxlength: 50
   },
   email: {
