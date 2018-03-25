@@ -29,8 +29,9 @@ class Signup extends Component {
     signup({
       name: refs.name.value,
       email: refs.email.value,
+      username: refs.username.value
       password: refs.password.value
-    }, refs.captcha.value, this.props.history.push);    
+    }, refs.captcha.value, this.props.history.push);
   }
 
   componentDidMount() {
@@ -45,6 +46,15 @@ class Signup extends Component {
           type: 'text',
           name: 'name',
           placeholder: 'نام',
+          required: true
+        }
+      },
+      {
+        tag: 'input',
+        attrs: {
+          type: 'text',
+          name: 'username',
+          placeholder: 'نام کاربری',
           required: true
         }
       },
