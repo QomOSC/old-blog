@@ -1,6 +1,8 @@
 import { Router } from 'express';
 import captcha from 'svg-captcha';
 
+import Captcha from 'Root/models/Captcha';
+
 const router = new Router();
 
 router.get('/captcha', (req, res) => {
@@ -11,9 +13,11 @@ router.get('/captcha', (req, res) => {
     color: true
   });
 
-  req.session.captcha = text.toLowerCase();
+  const c = new Captcha({
+    captcha: text.toLowerCase()
+  });
 
-  res.json({ captcha: data });
+  res.json({ captcha: data, token: c._id });
 });
 
 export default router;

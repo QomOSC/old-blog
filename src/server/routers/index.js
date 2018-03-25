@@ -1,3 +1,4 @@
 export default [
-  require('./captcha')
+  require('./captcha'),
+  require('./signup')
 ];
