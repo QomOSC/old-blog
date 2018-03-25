@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 import Header from './Include/Header';
+import Footer from './Include/Footer';
 
 import NotFound from 'Root/components/NotFound';
 import Contact from './Contact';
@@ -15,6 +16,7 @@ class Public extends Component {
     return (
       <div>
         <Header />
+
         <Switch>
           <Route exact path='/' component={Home} />
           <Route exact path='/login' component={Login} />
@@ -26,6 +28,8 @@ class Public extends Component {
             <Redirect to='/notfound' />
           </Route>
         </Switch>
+
+        <Footer />
       </div>
     );
   }
