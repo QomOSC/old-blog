@@ -1,0 +1,66 @@
+@import '~Root/css/colors';
+
+:local(.header) {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: @blue-base;
+  padding: 20px;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.4);
+
+  > a {
+    text-shadow: 1px 3px 3px #333;
+    font-family: SB;
+    color: white;
+    font-size: 20px;
+  }
+
+  ul {
+    list-style-type: none;
+
+    li {
+      margin: 0 30px;
+      display: inline;
+
+      a {
+        color: white;
+        position: relative;
+        display: inline-block;
+
+        &::before, &::after {
+          position: absolute;
+          color: transparent;
+          display: flex;
+          align-content: center;
+          align-items: center;
+          align-self: center;
+          top: 53%;
+          transition: all 0.3s;
+        }
+
+        &::before {
+          content: ']';
+          left: -15px;
+          transform: translate(-20px, -50%) scale(0.5, 0.5);
+        }
+
+        &::after {
+          content: '[';
+          right: -15px;
+          transform: translate(20px, -50%) scale(0.5, 0.5);
+        }
+
+        &:hover::before, &:hover::after {
+          color: white;
+          transform: translate(0px, -50%) scale(1, 1);
+        }
+
+        &:active, &:hover {
+          color: @grey-base;
+        }
+      }
+    }
+  }
+}
