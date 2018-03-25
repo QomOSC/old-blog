@@ -11,7 +11,7 @@ router.get('/captcha', (req, res) => {
     color: true
   });
 
-  console.log(text);
+  req.session.captcha = text.toLowerCase();
 
   res.json({ captcha: data });
 });

@@ -7,7 +7,7 @@ const schema = new Schema({
     type: String,
     trim: true,
     required: [true, 'name'],
-    maxlength: 50
+    maxlength: 100
   },
   email: {
     type: String,
@@ -44,7 +44,6 @@ const schema = new Schema({
   description: {
     type: String,
     trim: true,
-    required: false,
     maxlength: 250
   },
   type: {
@@ -56,8 +55,7 @@ const schema = new Schema({
   },
   avatar: {
     type: String,
-    trim: true,
-    required: false
+    trim: true
   },
   createdAt: {
     type: Date,

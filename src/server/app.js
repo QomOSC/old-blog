@@ -1,9 +1,13 @@
 import 'babel-polyfill';
-import express from 'express';
 import { join } from 'path';
-import mongoose from 'mongoose';
 import morgan from 'morgan';
+import express from 'express';
 import process from 'process';
+import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
+import session from 'express-session';
+import cookieParser from 'cookie-parser';
+import connectMongo from 'connect-mongo';
 
 import config from './config';
 
@@ -27,6 +31,31 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.use('/static', express.static(join(__dirname, './static')));
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({ limit: 100000000 }));
+
+/**
+ * cookie parser
+ */
+app.use(cookieParser());
+
+/**
+ * session
+ */
+let MongoStore = connectMongo(session);
+
+app.use(session({
+  secret: process.env.SECRET_KEY || 'QIFE564%?sKb]JTqeN0Uz.9vH4ahjM1l~',
+  resave: true,
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 60 * 60 * 1000 * 24
+  },
+  store: new MongoStore({
+    url: process.env.DB || config.db
+  })
+}));
 
 for (const router of routers) {
   app.use(router);
