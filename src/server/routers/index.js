@@ -1,3 +1,4 @@
 export default [
-  require('./a')
+  require('./a'),
+  require('./captcha')
 ];

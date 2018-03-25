@@ -12,7 +12,6 @@ class Header extends Component {
         <ul>
           <li><Link to='/login'>ورود</Link></li>
           <li><Link to='/signup'>ثبت نام</Link></li>
-          <li><Link to='/about'>درباره ما</Link></li>
           <li><Link to='/contact'>تماس با ما</Link></li>
         </ul>
       </header>
