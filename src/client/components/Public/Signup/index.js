@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import izitoast from 'izitoast';
 
 import captcha from 'Root/actions/captcha';
-// import signup from 'Root/actions/signup';
+import signup from 'Root/actions/user/signup';
 
 import { email } from 'Root/js/validator';
 import bind from 'Root/js/bind';
@@ -25,7 +26,11 @@ class Signup extends Component {
       return;
     }
 
-    console.log(refs.email.value);
+    signup({
+      name: refs.name.value,
+      email: refs.email.value,
+      password: refs.password.value
+    }, refs.captcha.value, this.props.history.push);    
   }
 
   componentDidMount() {
@@ -108,8 +113,10 @@ class Signup extends Component {
   }
 }
 
-export default connect(
-  state => ({
-    captcha: state.captcha
-  })
-)(Signup);
+export default withRouter(
+  connect(
+    state => ({
+      captcha: state.captcha
+    })
+  )(Signup)
+);
