@@ -3,8 +3,12 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 
 import Header from './Include/Header';
 
-import Home from './Home';
 import NotFound from 'Root/components/NotFound';
+import Contact from './Contact';
+import Signup from './Signup';
+import Login from './Login';
+import About from './About';
+import Home from './Home';
 
 class Public extends Component {
   render() {
@@ -13,6 +17,10 @@ class Public extends Component {
         <Header />
         <Switch>
           <Route exact path='/' component={Home} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/signup' component={Signup} />
+          <Route exact path='/about' component={About} />
+          <Route exact path='/contact' component={Contact} />
           <Route path='/notfound' component={NotFound} />
           <Route>
             <Redirect to='/notfound' />
