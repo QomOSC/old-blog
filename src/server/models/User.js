@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 
-import { email } from 'Root/utils/validator';
+import { email, username } from 'Root/utils/validator';
 
 const schema = new Schema({
   name: {
@@ -33,7 +33,7 @@ const schema = new Schema({
     required: [true, 'username'],
     validate: {
       validator(v) {
-        return email(v);
+        return username(v);
       },
       message: 'It is not a valid username'
     },
@@ -55,7 +55,8 @@ const schema = new Schema({
   },
   avatar: {
     type: String,
-    trim: true
+    trim: true,
+    maxlength: 100
   },
   createdAt: {
     type: Date,
