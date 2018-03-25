@@ -29,7 +29,7 @@ class Signup extends Component {
     signup({
       name: refs.name.value,
       email: refs.email.value,
-      username: refs.username.value
+      username: refs.username.value,
       password: refs.password.value
     }, refs.captcha.value, this.props.history.push);
   }
