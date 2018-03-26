@@ -1,6 +1,6 @@
 import izitoast from 'izitoast';
 
-export default (data, captcha, push) => {
+export default (data, push) => {
   fetch('/signup', {
     method: 'POST',
     headers: new Headers({
@@ -8,12 +8,40 @@ export default (data, captcha, push) => {
       'Accept': 'application/json'
     }),
     body: JSON.stringify({
-      data,
-      captcha,
-      captchaToken: localStorage.getItem('captchaToken')
+      ...data
     })
-  }).then(res => res.json()).then(data => {
-    console.log(data);
-    console.log(push);
+  }).then(res => res.json()).then(res => {
+    if (res.type === 2) {
+
+      if (res.text === 1) {
+        izitoast.error({
+          rtl: true,
+          title: 'ایمیل توسط کاربر دیگری استفاده میشود'
+        });
+      }
+
+      else if (res.text === 2) {
+        izitoast.error({
+          rtl: true,
+          title: 'یوزرنیم توسط کاربر دیگری استفاده میشود'
+        });
+      }
+
+      else if (res.text === 3) {
+        izitoast.error({
+          rtl: true,
+          title: 'خطا! بعدا امتحان کنید'
+        });
+      }
+    }
+
+    else if (res.type === 0) {
+      izitoast.success({
+        rtl: true,
+        title: 'حساب شما با موفقیت ساخته شد، تا زمان تایید آن صبر کنید'
+      });
+
+      push('/');
+    }
   });
 };

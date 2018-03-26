@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import izitoast from 'izitoast';
 
-import captcha from 'Root/actions/captcha';
 import signup from 'Root/actions/user/signup';
 
-import { email } from 'Root/js/validator';
+import { email, password, username } from 'Root/js/validator';
 import bind from 'Root/js/bind';
 
 import Form from 'Root/components/Form';
@@ -26,16 +24,30 @@ class Signup extends Component {
       return;
     }
 
+    if (!password(refs.password.value)) {
+      izitoast.warning({
+        rtl: true,
+        title: 'رمز عبور باید حداقل ۸ رقم باشد'
+      });
+
+      return;
+    }
+
+    if (!username(refs.username.value)) {
+      izitoast.warning({
+        rtl: true,
+        title: 'نام کاربری معتبر نمیباشد'
+      });
+
+      return;
+    }
+
     signup({
       name: refs.name.value,
       email: refs.email.value,
       username: refs.username.value,
       password: refs.password.value
-    }, refs.captcha.value, this.props.history.push);
-  }
-
-  componentDidMount() {
-    captcha();
+    }, this.props.history.push);
   }
 
   render() {
@@ -77,30 +89,6 @@ class Signup extends Component {
         }
       },
       {
-        tag: 'div',
-        attrs: {
-          dangerouslySetInnerHTML: {
-            __html: this.props.captcha
-          }
-        }
-      },
-      {
-        tag: 'i',
-        attrs: {
-          className: 'icon icon-refresh',
-          onClick: captcha
-        }
-      },
-      {
-        tag: 'input',
-        attrs: {
-          type: 'text',
-          name: 'captcha',
-          placeholder: 'کد امنیتی',
-          required: true
-        }
-      },
-      {
         tag: 'button',
         html: 'ثبت نام',
         attrs: {
@@ -123,10 +111,4 @@ class Signup extends Component {
   }
 }
 
-export default withRouter(
-  connect(
-    state => ({
-      captcha: state.captcha
-    })
-  )(Signup)
-);
+export default withRouter(Signup);
