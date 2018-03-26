@@ -5,8 +5,6 @@ import send from 'Root/js/send';
 export default async (data, push) => {
   const request = await send('/signup', data);
 
-  console.log(request);
-
   if (request.type === 2) {
 
     if (request.text === 1) {
