@@ -1,7 +1,6 @@
 import { Router } from 'express';
 
 import Newsletter from 'Root/models/Newsletter';
-import Captcha from 'Root/models/Captcha';
 import User from 'Root/models/User';
 
 import { hmac } from 'Root/utils/crypto';
@@ -10,27 +9,17 @@ import config from 'Root/config';
 const router = new Router();
 
 router.post('/signup', async (req, res) => {
-  const captcha = Captcha.findOne({ _id: req.body.data.captchaToken });
+  req.body.username = req.body.username.toLowerCase();
+  req.body.email = req.body.email.toLowerCase();
 
-  if (captcha !== req.body.captcha.toLowerCase()) {
-    res.json({ type: 2, text: 0 });
-
-    return;
-  }
-
-  captcha.remove();
-
-  req.body.data.username = req.body.data.username.toLowerCase();
-  req.body.data.email = req.body.data.email.toLowerCase();
-
-  const email = await User.findOne({ email: req.body.data.email });
+  const email = await User.findOne({ email: req.body.email });
 
   if (email) {
     res.json({ type: 2, text: 1 });
     return;
   }
 
-  const username = await User.findOne({ username: req.body.data.username });
+  const username = await User.findOne({ username: req.body.username });
 
   if (username) {
     res.json({ type: 2, text: 2 });
@@ -38,8 +27,8 @@ router.post('/signup', async (req, res) => {
   }
 
   const user = new User({
-    ...req.body.data,
-    password: hmac(req.body.data.password, config.dbkey)
+    ...req.body,
+    password: hmac(req.body.password, config.dbkey)
   });
 
   try {
@@ -50,7 +39,7 @@ router.post('/signup', async (req, res) => {
   }
 
   let newsletter = await Newsletter.findOne({
-    email: req.body.data.email
+    email: req.body.email
   });
 
   if (newsletter) {
@@ -60,7 +49,7 @@ router.post('/signup', async (req, res) => {
 
 
   newsletter = new Newsletter({
-    email: req.body.data.email
+    email: req.body.email
   });
 
   try {

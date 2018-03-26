@@ -1,3 +1,5 @@
 export default {
-  CAPTCHA: 'CAPTCHA'
+  user: {
+    LOAD: 'user/LOAD'
+  }
 };
