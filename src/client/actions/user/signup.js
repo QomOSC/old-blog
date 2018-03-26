@@ -1,47 +1,42 @@
 import izitoast from 'izitoast';
 
-export default (data, push) => {
-  fetch('/signup', {
-    method: 'POST',
-    headers: new Headers({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    }),
-    body: JSON.stringify({
-      ...data
-    })
-  }).then(res => res.json()).then(res => {
-    if (res.type === 2) {
+import send from 'Root/js/send';
 
-      if (res.text === 1) {
-        izitoast.error({
-          rtl: true,
-          title: 'ایمیل توسط کاربر دیگری استفاده میشود'
-        });
-      }
+export default async (data, push) => {
+  const request = await send('/signup', data);
 
-      else if (res.text === 2) {
-        izitoast.error({
-          rtl: true,
-          title: 'یوزرنیم توسط کاربر دیگری استفاده میشود'
-        });
-      }
+  console.log(request);
 
-      else if (res.text === 3) {
-        izitoast.error({
-          rtl: true,
-          title: 'خطا! بعدا امتحان کنید'
-        });
-      }
-    }
+  if (request.type === 2) {
 
-    else if (res.type === 0) {
-      izitoast.success({
+    if (request.text === 1) {
+      izitoast.error({
         rtl: true,
-        title: 'حساب شما با موفقیت ساخته شد، تا زمان تایید آن صبر کنید'
+        title: 'ایمیل توسط کاربر دیگری استفاده میشود'
       });
-
-      push('/');
     }
-  });
+
+    else if (request.text === 2) {
+      izitoast.error({
+        rtl: true,
+        title: 'یوزرنیم توسط کاربر دیگری استفاده میشود'
+      });
+    }
+
+    else if (request.text === 3) {
+      izitoast.error({
+        rtl: true,
+        title: 'خطا! بعدا امتحان کنید'
+      });
+    }
+  }
+
+  else if (request.type === 0) {
+    izitoast.success({
+      rtl: true,
+      title: 'حساب شما با موفقیت ساخته شد، تا زمان تایید آن صبر کنید'
+    });
+
+    push('/');
+  }
 };
