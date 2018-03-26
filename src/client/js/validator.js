@@ -9,7 +9,11 @@ function validatePassword(password) {
   return true;
 }
 
+const validateUsername = username =>
+  /^[a-zA-Z0-9]+([_ .]?[a-zA-Z0-9])*$/.test(username);
+
 export {
   validateEmail as email,
-  validatePassword as password
+  validatePassword as password,
+  validateUsername as username
 };
