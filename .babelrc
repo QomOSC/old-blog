@@ -1,12 +1,18 @@
 {
   "presets": [
     "env",
-    "react"
+    "react",
+    "es2015"
   ],
   "plugins": [
     "add-module-exports",
     "transform-decorators-legacy",
     "transform-class-properties",
-    "transform-object-rest-spread"
+    "transform-object-rest-spread",
+    "transform-regenerator",
+    "transform-async-to-generator",
+    ["transform-runtime", {
+      "regenerator": true
+    }]
   ]
 }
