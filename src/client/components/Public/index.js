@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
+import LoginRoute from 'Root/components/Perm/login';
 import Header from './Includes/Header';
 import Footer from './Includes/Footer';
 
@@ -12,6 +13,7 @@ import Home from './Home';
 
 import styles from './index.less';
 
+
 class Public extends Component {
   render() {
     return (
@@ -21,8 +23,8 @@ class Public extends Component {
         <div className={styles.content}>
           <Switch>
             <Route exact path='/' component={Home} />
-            <Route exact path='/login' component={Login} />
-            <Route exact path='/signup' component={Signup} />
+            <LoginRoute exact path='/login' component={Login} />
+            <LoginRoute exact path='/signup' component={Signup} />
             <Route exact path='/contact' component={Contact} />
             <Route path='/notfound' component={NotFound} />
             <Route>

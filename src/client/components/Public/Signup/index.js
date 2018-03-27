@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import izitoast from 'izitoast';
 
-import signup from 'Root/actions/user/signup';
+import signup from 'Root/actions/signup';
 
 import { email, password, username } from 'Root/js/validator';
 import bind from 'Root/js/bind';
