@@ -5,17 +5,14 @@ import {
   Switch
 } from 'react-router-dom';
 
-import checkLogin from 'Root/actions/checklogin';
-
 import Logged from './Perm/logged';
 
 import Public from './Public';
 import Panel from './Panel';
 
+
 class App extends Component {
   render() {
-    checkLogin();
-
     return (
       <Router>
         <Switch>

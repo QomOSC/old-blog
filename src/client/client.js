@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 
 import App from './components/App';
 
+import checkLogin from 'Root/actions/checklogin';
 import store from './store';
 
 import 'izitoast/dist/css/iziToast.min.css';
@@ -12,10 +13,12 @@ import './css/index.less';
 import './css/icon.less';
 
 window.onload = () => {
-  render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
-    document.getElementById('root')
-  );
+  checkLogin().then(() => {
+    render(
+      <Provider store={store}>
+        <App />
+      </Provider>,
+      document.getElementById('root')
+    );
+  });
 };

@@ -7,7 +7,6 @@ import styles from './index.less';
 
 class Header extends Component {
   render() {
-    console.log(this.props.logged);
     return (
       <header className={styles.header}>
         <Link to='/'>جامعه متن باز قم</Link>
