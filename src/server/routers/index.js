@@ -1,3 +1,5 @@
 export default [
-  require('./signup')
+  require('./checklogin'),
+  require('./signup'),
+  require('./login')
 ];

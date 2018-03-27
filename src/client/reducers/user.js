@@ -3,10 +3,10 @@ import types from 'Root/actions';
 export default (state = {}, action) => {
   switch (action.type) {
 
-    case types.user.LOAD: {
+    case types.user.LOGIN: {
       return {
-        ...state,
-        ...action.data
+        ...action.user,
+        logged: true
       };
     }
 
