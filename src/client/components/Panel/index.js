@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 
-import HomeU from './HomeU';
+import HomeU from './HomePanel';
 
 
 class U extends Component {
