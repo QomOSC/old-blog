@@ -8,6 +8,7 @@ import config from 'Root/config';
 
 const router = new Router();
 
+
 router.post('/signup', async (req, res) => {
   req.body.username = req.body.username.toLowerCase();
   req.body.email = req.body.email.toLowerCase();
