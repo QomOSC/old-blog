@@ -1,5 +1,5 @@
 export default {
   user: {
-    LOAD: 'user/LOAD'
+    LOGIN: 'user/LOGIN'
   }
 };

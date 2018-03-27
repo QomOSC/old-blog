@@ -1,6 +1,7 @@
 const send = (url, data) => new Promise((resolve, reject) => {
   fetch(url, {
     method: 'POST',
+    credentials: 'include',
     headers: new Headers({
       'Content-Type': 'application/json',
       'Accept': 'application/json'
