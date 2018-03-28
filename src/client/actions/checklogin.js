@@ -11,7 +11,7 @@ export default () => new Promise(async resolve => {
       type: types.user.LOGIN,
       user: request.user
     });
-
-    resolve();
   }
+
+  resolve();
 });
