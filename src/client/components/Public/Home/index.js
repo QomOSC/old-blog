@@ -9,32 +9,34 @@ import styles from './index.less';
 class Home extends Component {
   render() {
     return (
-      <Box>
-        <div className={styles.contact}>
-          <div>
-            <h1>اگر سوالی دارید بپرسید</h1>
-            <p>شما میتوانید تمامی انتقادات و پیشنهادات خود را ارسال کنید</p>
-          </div>
+      <div>
+        <Box>
+          <div className={styles.contact}>
+            <div>
+              <h1>اگر سوالی دارید بپرسید</h1>
+              <p>شما میتوانید تمامی انتقادات و پیشنهادات خود را ارسال کنید</p>
+            </div>
 
-          <div>
-            <input
-              type='text'
-              refs='name'
-              placeholder='نام'
-            />
-            <input
-              type='email'
-              refs='email'
-              placeholder='ایمیل'
-            />
-            <textarea
-              refs='decs'
-              placeholder='توضیحات'
-            />
-            <Button>ارسال</Button>
+            <div>
+              <input
+                type='text'
+                refs='name'
+                placeholder='نام'
+              />
+              <input
+                type='email'
+                refs='email'
+                placeholder='ایمیل'
+              />
+              <textarea
+                refs='decs'
+                placeholder='توضیحات'
+              />
+              <Button>ارسال</Button>
+            </div>
           </div>
-        </div>
-      </Box>
+        </Box>
+      </div>
     );
   }
 }
