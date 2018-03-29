@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import Button from 'Root/components/Utils/Button';
 import Box from 'Root/components/Utils/Box';
 
 import styles from './index.less';
@@ -21,6 +22,16 @@ class Home extends Component {
               refs='name'
               placeholder='نام'
             />
+            <input
+              type='email'
+              refs='email'
+              placeholder='ایمیل'
+            />
+            <textarea
+              refs='decs'
+              placeholder='توضیحات'
+            />
+            <Button>ارسال</Button>
           </div>
         </div>
       </Box>
