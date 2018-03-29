@@ -7,7 +7,7 @@ import login from 'Root/actions/login';
 import { email, password } from 'Root/js/validator';
 import bind from 'Root/js/bind';
 
-import Form from 'Root/components/Form';
+import Form from 'Root/components/Utils/Form';
 
 import styles from './index.less';
 

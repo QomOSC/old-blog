@@ -18,8 +18,6 @@ class Header extends Component {
             <li><Link to='/login'>ورود</Link></li>
             <li><Link to='/signup'>ثبت نام</Link></li>
           </Fragment>}
-
-          <li><Link to='/contact'>تماس با ما</Link></li>
         </ul>
       </header>
     );
