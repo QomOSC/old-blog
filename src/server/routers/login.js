@@ -4,11 +4,12 @@ import User from 'Root/models/User';
 
 import { hmac } from 'Root/utils/crypto';
 import config from 'Root/config';
+import { login } from 'Root/perms';
 
 const router = new Router();
 
 
-router.post('/login', async (req, res) => {
+router.post('/login', login, async (req, res) => {
   req.body.email = req.body.email.toLowerCase();
 
   const user = await User.findOne({
@@ -29,7 +30,16 @@ router.post('/login', async (req, res) => {
 
   req.session.user = user._id.toString();
 
-  res.json({ type: 0, user });
+  res.json({
+    type: 0,
+    user: {
+      name: user.name,
+      type: user.type,
+      email: user.email,
+      avatar: user.avatar,
+      username: user.username
+    }
+  });
 });
 
 export default router;

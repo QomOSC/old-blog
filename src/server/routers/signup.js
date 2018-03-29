@@ -5,11 +5,12 @@ import User from 'Root/models/User';
 
 import { hmac } from 'Root/utils/crypto';
 import config from 'Root/config';
+import { login } from 'Root/perms';
 
 const router = new Router();
 
 
-router.post('/signup', async (req, res) => {
+router.post('/signup', login, async (req, res) => {
   req.body.username = req.body.username.toLowerCase();
   req.body.email = req.body.email.toLowerCase();
 
