@@ -8,7 +8,7 @@ class Button extends Component {
     return (
       <button
         className={`${styles.button} ${styles[this.props.color]}`}
-        handleClick={this.props.handleClick}>
+        onClick={this.props.handleClick}>
         {this.props.children}
       </button>
     );

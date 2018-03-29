@@ -1,20 +1,27 @@
 import React, { Component } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 
-import HomeU from './HomePanel';
+import Header from './Includes/Header';
+
+import Home from './HomePanel';
 
 
-class U extends Component {
+class Panel extends Component {
   render() {
     return (
-      <Switch>
-        <Route exact path='/panel' component={HomeU} />
-        <Route>
-          <Redirect to='/notfound' />
-        </Route>
-      </Switch>
+      <div>
+        <Header />
+
+
+        <Switch>
+          <Route exact path='/panel' component={Home} />
+          <Route>
+            <Redirect to='/notfound' />
+          </Route>
+        </Switch>
+      </div>
     );
   }
 }
 
-export default U;
+export default Panel;

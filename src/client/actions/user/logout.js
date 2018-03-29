@@ -1,9 +1,8 @@
-import { dispatch } from 'Root/store';
 import types from 'Root/actions';
 
 import send from 'Root/js/send';
 
-export default async () => {
+export default push => async dispatch => {
   const request = await send('/panel/logout');
 
   if (request.type === 0) {
@@ -11,6 +10,6 @@ export default async () => {
       type: types.user.LOGOUT
     });
 
-    // push('/');
+    push('/');
   }
 };
