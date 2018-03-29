@@ -1,0 +1,19 @@
+@import 'colors';
+
+.boxShadow() {
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.input() {
+  border: 1px solid @grey-base;
+  padding: 7px;
+  transition: border 300ms;
+
+  &:hover {
+    border: 1px solid @blue-1;
+  }
+
+  &:active, &:focus {
+    border: 1px solid @blue-2;
+  }
+}
