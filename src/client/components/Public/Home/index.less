@@ -5,13 +5,15 @@
   display: flex;
   justify-content: space-around;
 
-  input {
-    .input();
-    display: block;
-    margin: 10px;
+  > div:nth-of-type(2) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
 
-  textarea {
+  input, textarea {
+    margin: 10px 0;
     .input();
   }
 }
