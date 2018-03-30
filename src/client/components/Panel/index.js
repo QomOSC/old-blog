@@ -3,6 +3,7 @@ import { Route, Redirect, Switch } from 'react-router-dom';
 
 import Header from './Includes/Header';
 
+import Setting from './Setting';
 import Home from './HomePanel';
 
 
@@ -14,6 +15,7 @@ class Panel extends Component {
 
         <Switch>
           <Route exact path='/panel' component={Home} />
+          <Route exact path='/panel/setting' component={Setting} />
           <Route>
             <Redirect to='/notfound' />
           </Route>

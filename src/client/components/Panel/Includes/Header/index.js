@@ -15,7 +15,7 @@ class Header extends Component {
   shouldComponentUpdate() {
     return true;
   }
-  
+
   @bind
   logout() {
     this.props.dispatch(logout());
@@ -23,6 +23,10 @@ class Header extends Component {
 
   render() {
     const links = [
+      {
+        to: '/panel/setting',
+        text: 'تنظیمات'
+      },
       {
         to: '#',
         click: this.logout,
