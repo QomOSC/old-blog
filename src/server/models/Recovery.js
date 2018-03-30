@@ -1,14 +1,14 @@
 import mongoose, { Schema } from 'mongoose';
 
 const schema = new Schema({
-  token: {
+  code: {
     type: String,
     required: true,
     trim: true
   },
-  member: {
+  user: {
     type: Schema.Types.ObjectId,
-    ref: 'Member',
+    ref: 'User',
     unique: true,
     required: true,
     trim: true

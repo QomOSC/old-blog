@@ -6,6 +6,7 @@ import Header from './Includes/Header';
 import Footer from './Includes/Footer';
 
 import NotFound from 'Root/components/NotFound';
+import Recovery from './Recovery';
 import Signup from './Signup';
 import Login from './Login';
 import Home from './Home';
@@ -24,6 +25,7 @@ class Public extends Component {
             <Route exact path='/' component={Home} />
             <LoginRoute exact path='/login' component={Login} />
             <LoginRoute exact path='/signup' component={Signup} />
+            <LoginRoute path='/recovery' component={Recovery} />
             <Route path='/notfound' component={NotFound} />
             <Route>
               <Redirect to='/notfound' />
