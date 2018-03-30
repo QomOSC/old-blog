@@ -4,8 +4,8 @@ import types from 'Root/actions';
 
 import send from 'Root/js/send';
 
-export default name => async dispatch => {
-  const request = await send('/panel/user/setting/name', { name });
+export default email => async dispatch => {
+  const request = await send('/panel/user/setting/email', { email });
 
   if (request.type === 0) {
     izitoast.success({
@@ -14,8 +14,8 @@ export default name => async dispatch => {
     });
 
     dispatch({
-      type: types.user.CHANGE_NAME,
-      name
+      type: types.user.CHANGE_EMAIL,
+      email
     });
   }
 
@@ -29,6 +29,13 @@ export default name => async dispatch => {
     }
 
     else if (request.text === 1) {
+      izitoast.error({
+        rtl: true,
+        title: 'این ایمیل توسط شخص دیگری استفاده میشود'
+      });
+    }
+
+    else if (request.text === 2) {
       izitoast.error({
         rtl: true,
         title: 'خطا! بعدا امتحان کنید'

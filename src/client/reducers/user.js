@@ -16,6 +16,20 @@ export default (state = {}, action) => {
       };
     }
 
+    case types.user.CHANGE_NAME: {
+      return {
+        ...state,
+        name: action.name
+      };
+    }
+
+    case types.user.CHANGE_EMAIL: {
+      return {
+        ...state,
+        email: action.email
+      };
+    }
+
     default: {
       return state;
     }

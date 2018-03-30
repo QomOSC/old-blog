@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import izitoast from 'izitoast';
+
+import changeEmail from 'Root/actions/user/setting/email';
+import changeName from 'Root/actions/user/setting/name';
 
 import bind from 'Root/js/bind';
 
@@ -31,7 +35,30 @@ class Setting extends Component {
 
   @bind
   changeName() {
-    this.props.dispatch(this.refs.name.value);
+    if (!this.refs.name.value) {
+      izitoast.warning({
+        rtl: true,
+        title: 'مقادیر کافی نمیباشند'
+      });
+
+      return;
+    }
+
+    this.props.dispatch(changeName(this.refs.name.value));
+  }
+
+  @bind
+  changeEmail() {
+    if (!this.refs.email.value) {
+      izitoast.warning({
+        rtl: true,
+        title: 'مقادیر کافی نمیباشند'
+      });
+
+      return;
+    }
+
+    this.props.dispatch(changeEmail(this.refs.email.value));
   }
 
   render() {
@@ -68,6 +95,20 @@ class Setting extends Component {
             />
             <button
               onClick={this.changeName}>
+              تغییر
+            </button>
+          </Box>
+
+          <Box>
+            <h1 className={styles.title}>ایمیل</h1>
+            <input
+              type='email'
+              ref='email'
+              placeholder='ایمیل'
+              defaultValue={this.props.user.email}
+            />
+            <button
+              onClick={this.changeEmail}>
               تغییر
             </button>
           </Box>
