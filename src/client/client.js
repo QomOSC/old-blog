@@ -20,5 +20,8 @@ window.onload = () => {
       </Provider>,
       document.getElementById('root')
     );
+  }).catch(e => {
+    console.log(e);
+    console.log('Error');
   });
 };

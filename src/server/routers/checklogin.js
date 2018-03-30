@@ -13,7 +13,16 @@ router.post('/checklogin', async (req, res) => {
 
   const user = await User.findById(req.session.user);
 
-  res.json({ type: 0, user });
+  res.json({
+    type: 0,
+    user: {
+      name: user.name,
+      type: user.type,
+      email: user.email,
+      avatar: user.avatar,
+      username: user.username
+    }
+  });  
 });
 
 export default router;
