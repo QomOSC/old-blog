@@ -1,22 +1,45 @@
 import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+
+import NLink from 'Root/components/Utils/NLink';
 
 import styles from './index.less';
 
 
 class Header extends Component {
+  shouldComponentUpdate() {
+    return true;
+  }
+  
   render() {
     return (
       <header className={styles.header}>
         <Link to='/'>جامعه متن باز قم</Link>
+
         <ul>
           {this.props.logged ? <Fragment>
-            <li><Link to='/signup'>داشبورد</Link></li>
+            <li>
+              <NLink
+                to='/panel'
+                text='داشبورد'
+              />
+            </li>
           </Fragment> :
+
           <Fragment>
-            <li><Link to='/login'>ورود</Link></li>
-            <li><Link to='/signup'>ثبت نام</Link></li>
+            <li>
+              <NLink
+                to='/login'
+                text='ورود'
+              />
+            </li>
+            <li>
+              <NLink
+                to='/signup'
+                text='ثبت نام'
+              />
+            </li>
           </Fragment>}
         </ul>
       </header>
@@ -24,8 +47,8 @@ class Header extends Component {
   }
 }
 
-export default connect(
+export default withRouter(connect(
   state => ({
     logged: state.user.logged
   })
-)(Header);
+)(Header));
