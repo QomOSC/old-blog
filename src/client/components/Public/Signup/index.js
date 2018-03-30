@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import izitoast from 'izitoast';
 
 import signup from 'Root/actions/signup';
@@ -105,6 +105,7 @@ class Signup extends Component {
             submitFunction={this.signup}>
             <h1>ثبت نام</h1>
           </Form>
+          <Link to='/login'>حساب داری؟ وارد شو</Link>
         </div>
       </div>
     );

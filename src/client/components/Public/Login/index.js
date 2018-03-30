@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import izitoast from 'izitoast';
 
 import login from 'Root/actions/login';
@@ -76,6 +76,9 @@ class Login extends Component {
             submitFunction={this.login}>
             <h1>ورود</h1>
           </Form>
+          <Link to='/recovery'>فراموشی رمز</Link>
+          <p />
+          <Link to='/signup'>ساخت حساب</Link>
         </div>
       </div>
     );
