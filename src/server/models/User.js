@@ -29,6 +29,7 @@ const schema = new Schema({
     required: [true, 'password']
   },
   username: {
+    lowercase: true,
     type: String,
     required: [true, 'username'],
     validate: {
