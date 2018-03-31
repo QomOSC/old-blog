@@ -68,5 +68,5 @@ app.use((req, res) => {
 });
 
 app.listen(config.port, 'localhost', () => {
-  console.log('The server is running!');
+  console.log(`The server is running on port ${config.port}`);
 });

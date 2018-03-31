@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import izitoast from 'izitoast';
 
+import changeUsername from 'Root/actions/user/setting/username';
 import changeEmail from 'Root/actions/user/setting/email';
 import changeName from 'Root/actions/user/setting/name';
 
+import { username, email } from 'Root/js/validator';
 import bind from 'Root/js/bind';
 
 import Box from 'Root/components/Utils/Box';
@@ -58,7 +60,39 @@ class Setting extends Component {
       return;
     }
 
+    if (!email(this.refs.email.value)) {
+      izitoast.warning({
+        rtl: true,
+        title: 'ایمیل صحیح نمیباشد'
+      });
+
+      return;
+    }
+
     this.props.dispatch(changeEmail(this.refs.email.value));
+  }
+
+  @bind
+  changeUsername() {
+    if (!this.refs.username.value) {
+      izitoast.warning({
+        rtl: true,
+        title: 'مقادیر کافی نمیباشند'
+      });
+
+      return;
+    }
+
+    if (!username(this.refs.username.value)) {
+      izitoast.warning({
+        rtl: true,
+        title: 'یوزرنیم صحیح نمیباشد'
+      });
+
+      return;
+    }
+
+    this.props.dispatch(changeUsername(this.refs.username.value));
   }
 
   render() {
@@ -73,13 +107,15 @@ class Setting extends Component {
                 <td>نام</td>
                 <td>{this.props.user.name}</td>
               </tr>
-              <tr>
-                <td>یوزرنیم</td>
-                <td>{this.props.user.username}</td>
-              </tr>
+
               <tr>
                 <td>ایمیل</td>
                 <td>{this.props.user.email}</td>
+              </tr>
+
+              <tr>
+                <td>یوزرنیم</td>
+                <td>{this.props.user.username}</td>
               </tr>
             </tbody>
           </table>
@@ -109,6 +145,20 @@ class Setting extends Component {
             />
             <button
               onClick={this.changeEmail}>
+              تغییر
+            </button>
+          </Box>
+
+          <Box>
+            <h1 className={styles.title}>یوزرنیم</h1>
+            <input
+              type='text'
+              ref='username'
+              placeholder='یوزرنیم'
+              defaultValue={this.props.user.username}
+            />
+            <button
+              onClick={this.changeUsername}>
               تغییر
             </button>
           </Box>

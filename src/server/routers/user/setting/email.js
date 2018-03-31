@@ -2,6 +2,8 @@ import { Router } from 'express';
 
 import User from 'Root/models/User';
 
+import { email } from 'Root/utils/validator';
+
 import { logged } from 'Root/perms';
 
 const router = new Router();
@@ -15,9 +17,14 @@ router.post('/panel/user/setting/email', logged, async (req, res) => {
     res.json({ type: 2, text: 0 });
   }
 
-  const email = await User.findOne({ email: req.body.email });
+  if (!email(req.body.email)) {
+    res.json({ type: 2, text: 3 });
+    return;
+  }
 
-  if (email) {
+  const Email = await User.findOne({ email: req.body.email });
+
+  if (Email) {
     res.json({ type: 2, text: 1 });
     return;
   }

@@ -9,7 +9,7 @@ import styles from './index.less';
 class Home extends Component {
   render() {
     return (
-      <div>
+      <div className={styles.container}>
         <Box>
           <div className={styles.contact}>
             <div>
