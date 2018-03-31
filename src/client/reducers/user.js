@@ -30,6 +30,13 @@ export default (state = {}, action) => {
       };
     }
 
+    case types.user.CHANGE_USERNAME: {
+      return {
+        ...state,
+        username: action.username
+      };
+    }
+
     default: {
       return state;
     }

@@ -31,7 +31,7 @@ export default email => async dispatch => {
     else if (request.text === 1) {
       izitoast.error({
         rtl: true,
-        title: 'این ایمیل توسط شخص دیگری استفاده میشود'
+        title: 'این ایمیل توسط حساب دیگری استفاده میشود'
       });
     }
 
