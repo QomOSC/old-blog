@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import izitoast from 'izitoast';
 
 import changeDescription from 'Root/actions/user/setting/description';
+import changePassword from 'Root/actions/user/setting/password';
 import changeUsername from 'Root/actions/user/setting/username';
 import changeEmail from 'Root/actions/user/setting/email';
 import changeName from 'Root/actions/user/setting/name';
 
-import { username, email } from 'Root/js/validator';
+import { password, username, email } from 'Root/js/validator';
 import bind from 'Root/js/bind';
 
 import Box from 'Root/components/Utils/Box';
@@ -110,6 +111,29 @@ class Setting extends Component {
     this.props.dispatch(changeDescription(this.refs.description.value));
   }
 
+  @bind
+  changePassword() {
+    if (!this.refs.password.value || !this.refs.newpassword.value) {
+      izitoast.warning({
+        rtl: true,
+        title: 'مقادیر کافی نمیباشند'
+      });
+
+      return;
+    }
+
+    if (!password(this.refs.newpassword.value)) {
+      izitoast.warning({
+        rtl: true,
+        title: 'رمز وارد شده باید حداقل ۸ رقم باشد'
+      });
+
+      return;
+    }
+
+    changePassword(this.refs.password.value, this.refs.newpassword.value);
+  }
+
   render() {
     return (
       <div className={styles.container}>
@@ -179,6 +203,26 @@ class Setting extends Component {
             />
             <button
               onClick={this.changeUsername}>
+              تغییر
+            </button>
+          </Box>
+
+          <Box>
+            <h1 className={styles.title}>رمز عبور</h1>
+            <input
+              type='password'
+              ref='password'
+              placeholder='رمز کنونی'
+            />
+
+            <input
+              type='password'
+              ref='newpassword'
+              placeholder='رمز جدید'
+            />
+
+            <button
+              onClick={this.changePassword}>
               تغییر
             </button>
           </Box>

@@ -11,6 +11,7 @@ router.post('/panel/user/setting/description', logged, async (req, res) => {
 
   if (!user) {
     res.json({ type: 2, text: 0 });
+    return;
   }
 
   user.description = req.body.description;

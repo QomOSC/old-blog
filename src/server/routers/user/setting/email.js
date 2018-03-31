@@ -15,6 +15,7 @@ router.post('/panel/user/setting/email', logged, async (req, res) => {
 
   if (!user) {
     res.json({ type: 2, text: 0 });
+    return;
   }
 
   if (!email(req.body.email)) {
