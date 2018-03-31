@@ -22,9 +22,9 @@ router.post('/panel/user/setting/username', logged, async (req, res) => {
     return;
   }
 
-  const Username = await User.findOne({ username: req.body.username });
+  const checkUsername = await User.findOne({ username: req.body.username });
 
-  if (Username) {
+  if (checkUsername) {
     res.json({ type: 2, text: 1 });
     return;
   }

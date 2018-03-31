@@ -23,9 +23,9 @@ router.post('/panel/user/setting/email', logged, async (req, res) => {
     return;
   }
 
-  const Email = await User.findOne({ email: req.body.email });
+  const checkEmail = await User.findOne({ email: req.body.email });
 
-  if (Email) {
+  if (checkEmail) {
     res.json({ type: 2, text: 1 });
     return;
   }
