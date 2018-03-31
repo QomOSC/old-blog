@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import izitoast from 'izitoast';
 
+import changeDescription from 'Root/actions/user/setting/description';
 import changeUsername from 'Root/actions/user/setting/username';
 import changeEmail from 'Root/actions/user/setting/email';
 import changeName from 'Root/actions/user/setting/name';
@@ -95,6 +96,20 @@ class Setting extends Component {
     this.props.dispatch(changeUsername(this.refs.username.value));
   }
 
+  @bind
+  changeDescription() {
+    if (!this.refs.description.value) {
+      izitoast.warning({
+        rtl: true,
+        title: 'مقادیر کافی نمیباشند'
+      });
+
+      return;
+    }
+
+    this.props.dispatch(changeDescription(this.refs.description.value));
+  }
+
   render() {
     return (
       <div className={styles.container}>
@@ -117,6 +132,11 @@ class Setting extends Component {
                 <td>یوزرنیم</td>
                 <td>{this.props.user.username}</td>
               </tr>
+
+              {this.props.user.description && <tr>
+                <td>توضیحات</td>
+                <td>{this.props.user.description}</td>
+              </tr>}
             </tbody>
           </table>
         </Box>
@@ -159,6 +179,19 @@ class Setting extends Component {
             />
             <button
               onClick={this.changeUsername}>
+              تغییر
+            </button>
+          </Box>
+
+          <Box>
+            <h1 className={styles.title}>درباره شما</h1>
+            <textarea
+              ref='description'
+              placeholder='درباره شما'
+            >{this.props.user.description}</textarea>
+
+            <button
+              onClick={this.changeDescription}>
               تغییر
             </button>
           </Box>

@@ -37,6 +37,13 @@ export default (state = {}, action) => {
       };
     }
 
+    case types.user.CHANGE_DESCRIPTION: {
+      return {
+        ...state,
+        description: action.description
+      };
+    }
+
     default: {
       return state;
     }
