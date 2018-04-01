@@ -50,8 +50,6 @@ app.use(session({
   resave: true,
   saveUninitialized: false,
   cookie: {
-    httpOnly: true,
-    secure: true,
     maxAge: 60 * 60 * 1000 * 24
   },
   store: new MongoStore({
