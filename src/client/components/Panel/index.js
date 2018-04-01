@@ -14,8 +14,8 @@ class Panel extends Component {
         <Header />
 
         <Switch>
-          <Route exact path='/panel' component={Home} />
           <Route exact path='/panel/setting' component={Setting} />
+          <Route exact path='/panel' component={Home} />
           <Route>
             <Redirect to='/notfound' />
           </Route>
