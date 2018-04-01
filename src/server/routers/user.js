@@ -5,7 +5,6 @@ import User from 'Root/models/User';
 const router = new Router();
 
 router.post('/user/:username', async (req, res) => {
-  console.log('hEy');
   req.params.username = req.params.username.toLowerCase();
 
   const user = await User

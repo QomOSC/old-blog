@@ -65,6 +65,6 @@ app.use((req, res) => {
   res.sendFile(join(__dirname, '/index.html'));
 });
 
-app.listen(config.port, 'localhost', () => {
+app.listen(config.port, config.origin, () => {
   console.log(`The server is running on port ${config.port}`);
 });
