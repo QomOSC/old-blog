@@ -8,6 +8,7 @@ import checkLogin from 'Root/actions/checklogin';
 import store from './store';
 
 import 'izitoast/dist/css/iziToast.min.css';
+import 'nprogress/nprogress.css';
 import './css/font-fa.less';
 import './css/index.less';
 import './css/icon.less';
