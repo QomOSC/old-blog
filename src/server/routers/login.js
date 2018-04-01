@@ -12,10 +12,11 @@ const router = new Router();
 router.post('/login', login, async (req, res) => {
   req.body.email = req.body.email.toLowerCase();
 
-  const user = await User.findOne({
-    email: req.body.email,
-    password: hmac(req.body.password, config.dbkey)
-  });
+  const user = await User
+    .findOne({ email: req.body.email,
+      password: hmac(req.body.password, config.dbkey)
+    })
+    .select('_id name type email avatar username description');
 
   if (!user) {
     res.json({ type: 2, text: 0 });
@@ -30,17 +31,7 @@ router.post('/login', login, async (req, res) => {
 
   req.session.user = user._id.toString();
 
-  res.json({
-    type: 0,
-    user: {
-      name: user.name,
-      type: user.type,
-      email: user.email,
-      avatar: user.avatar,
-      username: user.username,
-      description: user.description
-    }
-  });
+  res.json({ type: 0, user });
 });
 
 export default router;

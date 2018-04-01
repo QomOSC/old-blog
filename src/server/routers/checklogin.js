@@ -11,19 +11,11 @@ router.post('/checklogin', async (req, res) => {
     return;
   }
 
-  const user = await User.findById(req.session.user);
+  const user = await User
+    .findById(req.session.user)
+    .select('_id name type email avatar username description');
 
-  res.json({
-    type: 0,
-    user: {
-      name: user.name,
-      type: user.type,
-      email: user.email,
-      avatar: user.avatar,
-      username: user.username,
-      description: user.description
-    }
-  });
+  res.json({ type: 0, user });
 });
 
 export default router;
