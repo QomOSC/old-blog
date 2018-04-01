@@ -9,14 +9,21 @@ router.post('/user/:username', async (req, res) => {
 
   const user = await User
     .findOne({ username: req.params.username })
-    .select('_id name type email avatar username description');
+    .select('-submembers -password -__v')
+    .lean();
 
   if (!user) {
-    res.json({ type: 2, text: 0 });
+    res.json({ type: 2 });
     return;
   }
 
-  res.json({ type: 0, user });
+  res.json({
+    type: 0,
+    user: {
+      ...user,
+      articles: user.articles.length
+    }
+  });
 });
 
 export default router;
