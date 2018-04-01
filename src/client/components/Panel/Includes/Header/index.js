@@ -24,6 +24,10 @@ class Header extends Component {
   render() {
     const links = [
       {
+        to: '/panel',
+        text: 'داشبورد'
+      },
+      {
         to: '/panel/setting',
         text: 'تنظیمات'
       },
