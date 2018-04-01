@@ -45,7 +45,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      Root: resolve(__dirname, '../../', 'src/client'),
+      Root: resolve(__dirname, '../../', 'src/client')
     }
   },
   plugins: [
