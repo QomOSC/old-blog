@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import bind from 'Root/js/bind';
@@ -36,7 +37,12 @@ class Home extends Component {
           {this.renderImage()}
           <p>نام: {this.props.user.name}</p>
           <p>ایمیل: {this.props.user.email}</p>
-          <p>یوزرنیم: {this.props.user.username}</p>
+          <p>
+            <Link
+              to={`/user/${this.props.user.username}`}>
+              یوزرنیم: {this.props.user.username}
+            </Link>
+          </p>
         </Box>
         <Box />
         <Box />
