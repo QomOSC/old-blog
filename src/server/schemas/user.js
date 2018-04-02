@@ -34,7 +34,10 @@ const UserSchema = new GraphQLObjectType({
     },
     articles: {
       type: GraphQLInt
-    }
+    },
+    // userArticles: {
+    //   type: new GraphQLList()
+    // }
   })
 });
 

@@ -1,10 +1,10 @@
 import mongoose, { Schema } from 'mongoose';
-import autoIncrement from 'mongoose-auto-increment';
+// import autoIncrement from 'mongoose-auto-increment';
 
 const schema = new Schema({
   author: { // The ID from Member model
     type: Schema.Types.ObjectId,
-    ref: 'Member',
+    ref: 'User',
     required: true
   },
   title: {
@@ -51,9 +51,9 @@ const schema = new Schema({
     trim: true
   }
 });
-
-autoIncrement.initialize(mongoose);
-
-schema.plugin(autoIncrement.plugin, 'Article');
+//
+// autoIncrement.initialize(mongoose);
+//
+// schema.plugin(autoIncrement.plugin, 'Article');
 
 export default mongoose.model('Article', schema);

@@ -1,7 +1,14 @@
-import { GraphQLObjectType, GraphQLSchema, GraphQLString } from 'graphql';
+import {
+  GraphQLObjectType,
+  GraphQLSchema,
+  GraphQLString,
+  GraphQLID
+} from 'graphql';
 
+import Article from 'Root/models/Article';
 import User from 'Root/models/User';
 
+import ArticleSchema from './article';
 import UserSchema from './user';
 
 const RootQuery = new GraphQLObjectType({
@@ -27,6 +34,19 @@ const RootQuery = new GraphQLObjectType({
         };
 
         return user;
+      }
+    },
+    article: {
+      type: ArticleSchema,
+      args: {
+        _id: {
+          type: GraphQLID
+        }
+      },
+      async resolve(parent, args) {
+        const a = await Article.findOne({ _id: args._id }).lean();
+
+        return a;
       }
     }
   }
