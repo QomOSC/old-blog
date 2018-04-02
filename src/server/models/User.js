@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 
-import { email, username } from 'Root/utils/validator';
+import { email, username, password } from 'Root/utils/validator';
 
 const schema = new Schema({
   name: {
@@ -26,7 +26,13 @@ const schema = new Schema({
   password: {
     type: String,
     trim: true,
-    required: [true, 'password']
+    required: [true, 'password'],
+    validate: {
+      validator(v) {
+        return password(v);
+      },
+      message: 'It is not a valid password'
+    },
   },
   username: {
     lowercase: true,

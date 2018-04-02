@@ -6,11 +6,12 @@ import process from 'process';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import session from 'express-session';
+import graphql from 'express-graphql';
 import cookieParser from 'cookie-parser';
 import connectMongo from 'connect-mongo';
 
 import config from './config';
-
+import schema from './schemas';
 import routers from './routers';
 
 mongoose.Promise = global.Promise;
@@ -60,6 +61,11 @@ app.use(session({
 for (const router of routers) {
   app.use(router);
 }
+
+app.use('/graphql', graphql({
+  schema,
+  graphiql: true
+}));
 
 app.use((req, res) => {
   res.sendFile(join(__dirname, '/index.html'));
