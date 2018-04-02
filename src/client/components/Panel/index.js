@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Route, Redirect, Switch } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Header from './Includes/Header';
 
+import Articles from './Articles';
 import Setting from './Setting';
 import Home from './HomePanel';
 
@@ -14,6 +15,7 @@ class Panel extends Component {
         <Header />
 
         <Switch>
+          <Route path='/panel/articles' component={Articles} />
           <Route exact path='/panel/setting' component={Setting} />
           <Route exact path='/panel' component={Home} />
           <Route>
