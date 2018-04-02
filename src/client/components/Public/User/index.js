@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter, Redirect } from 'react-router-dom';
+
 import nprogress from 'nprogress';
 
 import moment from 'Root/js/moment';
