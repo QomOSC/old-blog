@@ -1,7 +1,11 @@
 import mongoose, { Schema } from 'mongoose';
-// import autoIncrement from 'mongoose-auto-increment';
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const schema = new Schema({
+  _id: {
+    type: Number,
+    required: true
+  },
   author: { // The ID from Member model
     type: Schema.Types.ObjectId,
     ref: 'User',
@@ -50,10 +54,10 @@ const schema = new Schema({
     default: 1,
     trim: true
   }
+}, {
+  _id: false
 });
-//
-// autoIncrement.initialize(mongoose);
-//
-// schema.plugin(autoIncrement.plugin, 'Article');
+
+schema.plugin(AutoIncrement);
 
 export default mongoose.model('Article', schema);
