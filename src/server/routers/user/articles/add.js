@@ -38,6 +38,8 @@ router.post(
 
     user.articles.push(article._id);
 
+    await user.save();
+    
     res.json({ type: 0 });
   } catch (e) {
     res.json({ type: 2 });
