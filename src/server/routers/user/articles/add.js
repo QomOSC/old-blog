@@ -2,6 +2,7 @@ import { Router } from 'express';
 import multer from 'multer';
 
 import Article from 'Root/models/Article';
+import User from 'Root/models/User';
 
 import storage from 'Root/utils/storage';
 
@@ -18,7 +19,7 @@ router.post(
   upload.single('avatar'),
   async (req, res) => {
 
-  const article = new Article({
+  let article = new Article({
     title: req.body.title,
     content: req.body.content,
     author: req.session.user,
@@ -27,7 +28,15 @@ router.post(
   });
 
   try {
-    await article.save();
+    article = await article.save();
+
+    const user = await User.findById(req.session.user);
+
+    if (!user) {
+      res.json({ type: 2 });
+    }
+
+    user.articles.push(article._id);
 
     res.json({ type: 0 });
   } catch (e) {

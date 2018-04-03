@@ -82,6 +82,7 @@ class AddArticle extends Component {
         />
         <SimpleMDE
           ref='content'
+          value={this.state.content}
           onChange={this.handle}
           options={{
             spellChecker: false

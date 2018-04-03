@@ -70,7 +70,7 @@ const schema = new Schema({
     default: Date.now
   },
   articles: [{ // The ID of your articles
-    type: String,
+    type: Number,
     trim: true
   }],
   submembers: [{ // The ID of those members who request and you accept
