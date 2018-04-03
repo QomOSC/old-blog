@@ -1,7 +1,8 @@
 import {
   GraphQLObjectType,
   GraphQLString,
-  GraphQLInt
+  GraphQLInt,
+  GraphQLID
 } from 'graphql';
 
 import User from 'Root/models/User';
@@ -11,6 +12,9 @@ import UserSchema from './user';
 const ArticleSchema = new GraphQLObjectType({
   name: 'Article',
   fields: () => ({
+    _id: {
+      type: GraphQLID
+    },
     title: {
       type: GraphQLString
     },

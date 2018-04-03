@@ -1,9 +1,14 @@
 import {
   GraphQLObjectType,
-  GraphQLID,
   GraphQLString,
-  GraphQLInt
+  GraphQLList,
+  GraphQLInt,
+  GraphQLID,
 } from 'graphql';
+
+import Article from 'Root/models/Article';
+
+import ArticleSchema from './article';
 
 const UserSchema = new GraphQLObjectType({
   name: 'User',
@@ -35,9 +40,14 @@ const UserSchema = new GraphQLObjectType({
     articles: {
       type: GraphQLInt
     },
-    // userArticles: {
-    //   type: new GraphQLList()
-    // }
+    userArticles: {
+      type: new GraphQLList(ArticleSchema),
+      async resolve(parent) {
+        const article = await Article.find({ author: parent._id }).lean();
+
+        return article;
+      }
+    }
   })
 });
 
