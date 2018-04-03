@@ -32,7 +32,10 @@ class Home extends Component {
                 refs='decs'
                 placeholder='توضیحات'
               />
-              <Button>ارسال</Button>
+              <Button
+                color='grey'>
+                ارسال
+              </Button>
             </div>
           </div>
         </Box>

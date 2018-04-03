@@ -1,3 +1,53 @@
+@import '~Root/css/colors';
+
+
 :local(.button) {
-  
+  min-width: 200px;
+  min-height: 40px;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 300ms;
+}
+
+:local(.blue) {
+  background-color: @blue-base;
+
+  &:hover, &:active {
+    background-color: @blue-2;
+  }
+}
+
+:local(.red) {
+  background-color: #fa4659;
+
+  &:hover, &:active {
+    background-color: darken(#fa4659, 15%);
+  }
+}
+
+:local(.black) {
+  background-color: @black-base;
+
+  &:hover, &:active {
+    background-color: @black-2;
+  }
+}
+
+:local(.dark) {
+  background-color: @dark-base;
+
+  &:hover, &:active {
+    background-color: @dark-2;
+  }
+}
+
+:local(.grey) {
+  color: black;
+  background-color: white;
+
+  &:hover, &:active {
+    color: white;
+    background-color: @black-base;
+  }
 }
