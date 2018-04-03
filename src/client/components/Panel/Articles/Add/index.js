@@ -4,6 +4,8 @@ import izitoast from 'izitoast';
 
 import bind from 'Root/js/bind';
 
+import Button from 'Root/components/Utils/Button';
+
 import 'Root/css/simplemde.less';
 import styles from './index.less';
 
@@ -57,7 +59,6 @@ class AddArticle extends Component {
     reader.readAsBinaryString(this.refs.file.files[0]);
 
     this.setState({ avatar: this.refs.file.files[0] });
-    console.log('Changed');
   }
 
   @bind
@@ -92,13 +93,13 @@ class AddArticle extends Component {
           className={styles.avatarInput}
           onChange={this.updateAvatar} />
 
-        <button
+        <Button
           onClick={this.openInput}
           color='blue'>
           اضافه کردن عکس
-        </button>
+        </Button>
 
-        <button onClick={this.post}>ثبت</button>
+        <Button onClick={this.post} color='blue'>ثبت</Button>
       </div>
     );
   }
