@@ -18,9 +18,6 @@ router.post(
   upload.single('avatar'),
   async (req, res) => {
 
-    console.log(req.body);
-    console.log(req.file);
-
   const article = new Article({
     title: req.body.title,
     content: req.body.content,
@@ -32,7 +29,6 @@ router.post(
     await article.save();
     res.json({ type: 0 });
   } catch (e) {
-    console.log(e);
     res.json({ type: 2 });
   }
 });
