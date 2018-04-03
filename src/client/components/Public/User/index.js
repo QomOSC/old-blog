@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { withRouter, Redirect } from 'react-router-dom';
-
+import { createApolloFetch } from 'apollo-fetch';
 import nprogress from 'nprogress';
 
 import moment from 'Root/js/moment';
-import send from 'Root/js/send';
 import bind from 'Root/js/bind';
+
+import Article from 'Root/components/Utils/Article';
 
 import userDefault from 'Root/images/u.png';
 import styles from './index.less';
@@ -13,7 +14,7 @@ import styles from './index.less';
 
 class User extends Component {
   state = {
-    data: null
+    data: undefined
   };
 
   componentWillMount() {
@@ -21,8 +22,36 @@ class User extends Component {
   }
 
   componentDidMount() {
-    send(`/user/${this.props.match.params.username}`).then(data => {
-      this.setState({ data });
+
+    const apolloFetch = createApolloFetch({
+      uri: `${location.origin}/graphql`
+    });
+
+    const query = `
+      query {
+        user(username: "${this.props.match.params.username}") {
+          description
+          createdAt
+          articles
+          username
+          avatar
+          email
+          type
+          name
+
+          userArticles {
+            createdAt
+            minutes
+            content
+            avatar
+            title
+          }
+        }
+      }
+    `;
+
+    apolloFetch({ query }).then(data => {
+      this.setState({ data: data.data });
       nprogress.done();
     });
   }
@@ -59,7 +88,7 @@ class User extends Component {
       return <h1>در حال گرفتن اطلاعات</h1>;
     }
 
-    if (this.state.data.type === 2) {
+    if (this.state.data.user === null) {
       return <Redirect to='/notfound' />;
     }
 
@@ -73,12 +102,25 @@ class User extends Component {
           {this.state.data.user.description && <p>
             درباره: {this.state.data.user.description}
           </p>}
-          <p>عضو شده در:‌{moment(this.state.data.user.createdAt)}</p>
+          <p>عضو شده در:‌ {moment(new Date(this.state.data.user.createdAt))}</p>
           <p>تعداد مقالات: {this.state.data.user.articles}</p>
         </div>
 
+
         <div className={styles.articles}>
-          <h1>Articles</h1>
+          {this.state.data.user.userArticles.length && <h1>مقالات</h1>}
+
+          {this.state.data.user.userArticles.map((v, i) =>
+            <Article
+              key={i}
+              user={{ ...this.state.data.user }}
+              art={{
+                ...v,
+                createdAt: moment(new Date(v.createdAt)),
+                avatar: `/static/uploads/${v.avatar}`
+              }}
+            />
+          )}
         </div>
       </div>
     );
