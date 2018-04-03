@@ -16,7 +16,7 @@ class Home extends Component {
     if (this.props.user.avatar) {
       return (
         <img
-          src={`/uploads/${this.props.user.avatar}`}
+          src={`/static/uploads/${this.props.user.avatar}`}
           className={styles.userAvatar}
         />
       );

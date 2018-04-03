@@ -72,7 +72,7 @@ class User extends Component {
   renderImage() {
     if (this.state.data.user.avatar) {
       return <img
-        src={`/static/image/${this.state.data.user.avatar}`}
+        src={`/static/uploads/${this.state.data.user.avatar}`}
         className={styles.userImage}
       />;
     }
