@@ -25,8 +25,6 @@ class AddArticle extends Component {
       });
       return;
     }
-
-    console.log(this.state);
   }
 
   @bind
@@ -94,12 +92,12 @@ class AddArticle extends Component {
           onChange={this.updateAvatar} />
 
         <Button
-          onClick={this.openInput}
+          handleClick={this.openInput}
           color='blue'>
           اضافه کردن عکس
         </Button>
 
-        <Button onClick={this.post} color='blue'>ثبت</Button>
+        <Button handleClick={this.post} color='blue'>ثبت</Button>
       </div>
     );
   }

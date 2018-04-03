@@ -176,7 +176,7 @@ class Setting extends Component {
             />
             <Button
               color='black'
-              onClick={this.changeName}>
+              handleClick={this.changeName}>
               تغییر
             </Button>
           </Box>
@@ -191,7 +191,7 @@ class Setting extends Component {
             />
             <Button
               color='black'
-              onClick={this.changeEmail}>
+              handleClick={this.changeEmail}>
               تغییر
             </Button>
           </Box>
@@ -206,7 +206,7 @@ class Setting extends Component {
             />
             <Button
               color='black'
-              onClick={this.changeUsername}>
+              handleClick={this.changeUsername}>
               تغییر
             </Button>
           </Box>
@@ -227,7 +227,7 @@ class Setting extends Component {
 
             <Button
               color='black'
-              onClick={this.changePassword}>
+              handleClick={this.changePassword}>
               تغییر
             </Button>
           </Box>
@@ -241,7 +241,7 @@ class Setting extends Component {
 
             <Button
               color='black'
-              onClick={this.changeDescription}>
+              handleClick={this.changeDescription}>
               تغییر
             </Button>
           </Box>
