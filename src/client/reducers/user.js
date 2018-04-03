@@ -30,6 +30,20 @@ export default (state = {}, action) => {
       };
     }
 
+    case types.user.UPDATE_AVATAR: {
+      return {
+        ...state,
+        avatar: action.avatar
+      };
+    }
+
+    case types.user.REMOVE_AVATAR: {
+      return {
+        ...state,
+        avatar: null
+      };
+    }
+
     case types.user.CHANGE_USERNAME: {
       return {
         ...state,

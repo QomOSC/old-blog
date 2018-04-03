@@ -5,6 +5,7 @@ import izitoast from 'izitoast';
 
 import newArticle from 'Root/actions/user/articles/add';
 
+import { image } from 'Root/js/validator';
 import bind from 'Root/js/bind';
 
 import Button from 'Root/components/Utils/Button';
@@ -49,33 +50,17 @@ class AddArticle extends Component {
   @bind
   updateAvatar() {
     let reader = new FileReader();
-    let file = this.refs.file.files[0];
-    let type = file.type.split('/')[1];
 
     reader.addEventListener('loadend', () => {
-      if (file.size > 1048576) {
-        izitoast.warning({
-          rtl: true,
-          title: 'حجم فایل حداکثر می تواند ۱ مگابایت باشد.'
-        });
-
+      if (!image(this.refs.file.type.split('/')[1],
+      this.refs.file.files[0].size)) {
         return;
       }
 
-      if (!['jpg', 'jpeg', 'png'].includes(type)) {
-        izitoast.warning({
-          rtl: true,
-          title: 'فرمت فایل باید jpg یا png باشد'
-        });
-
-        return;
-      }
-
+      this.setState({ avatar: this.refs.file.files[0] });
     });
 
     reader.readAsBinaryString(this.refs.file.files[0]);
-
-    this.setState({ avatar: this.refs.file.files[0] });
   }
 
   @bind

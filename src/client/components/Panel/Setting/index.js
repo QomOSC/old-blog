@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import izitoast from 'izitoast';
 
 import changeDescription from 'Root/actions/user/setting/description';
+import removeAvatar from 'Root/actions/user/setting/avatar/remove';
+import updateAvatar from 'Root/actions/user/setting/avatar/update';
 import changePassword from 'Root/actions/user/setting/password';
 import changeUsername from 'Root/actions/user/setting/username';
 import changeEmail from 'Root/actions/user/setting/email';
@@ -135,12 +137,47 @@ class Setting extends Component {
     changePassword(this.refs.password.value, this.refs.newpassword.value);
   }
 
+  @bind
+  updateAvatar() {
+    this.props.dispatch(updateAvatar(avatar));
+  }
+
+  @bind
+  removeAvatar() {
+    this.props.dispatch(removeAvatar());
+  }
+
+  @bind
+  openInput() {
+    this.refs.file.click();
+  }
+
   render() {
     return (
       <div className={styles.container}>
         <Box>
           <h1 className={styles.title}>اطلاعات کاربر</h1>
           {this.renderImage()}
+          <div className={styles.buttons}>
+            <input
+              type='file'
+              ref='file'
+              className={styles.avatarInput}
+              onChange={this.updateAvatar} />
+
+            <Button
+              color='blue'
+              handleClick={this.openInput}>
+              {this.props.user.avatar ? 'تغییر' : 'اضافه'}
+            </Button>
+            {this.props.user.avatar &&
+              <Button
+                color='red'
+                handleClick={this.removeAvatar}>
+                حذف
+              </Button>
+            }
+          </div>
           <table>
             <tbody>
               <tr>
