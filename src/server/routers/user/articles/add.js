@@ -28,6 +28,7 @@ router.post(
 
   try {
     await article.save();
+
     res.json({ type: 0 });
   } catch (e) {
     res.json({ type: 2 });

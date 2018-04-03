@@ -52,8 +52,7 @@ class AddArticle extends Component {
     let reader = new FileReader();
 
     reader.addEventListener('loadend', () => {
-      if (!image(this.refs.file.type.split('/')[1],
-      this.refs.file.files[0].size)) {
+      if (!image(this.refs.file.files[0])) {
         return;
       }
 

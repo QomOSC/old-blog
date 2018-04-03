@@ -13,8 +13,10 @@ function validatePassword(password) {
 const validateUsername = username =>
   /^[a-zA-Z0-9]+([_.]?[a-zA-Z0-9])*$/.test(username);
 
-const validateImage = (type, size) => {
-  if (size > 1048576) {
+const validateImage = img => {
+  const type = img.type.split('/')[1];
+
+  if (img.size > 1048576) {
     izitoast.warning({
       rtl: true,
       title: 'حجم فایل حداکثر می تواند ۱ مگابایت باشد.'
@@ -24,6 +26,7 @@ const validateImage = (type, size) => {
   }
 
   if (!['jpg', 'jpeg', 'png'].includes(type)) {
+    console.log(type);
     izitoast.warning({
       rtl: true,
       title: 'فرمت فایل باید jpg یا png باشد'

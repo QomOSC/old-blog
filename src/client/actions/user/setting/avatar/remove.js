@@ -10,7 +10,7 @@ export default () => async dispatch => {
   if (request.type === 0) {
     izitoast.success({
       rtl: true,
-      title: 'با موفقیت حذف شذ'
+      title: 'با موفقیت حذف شد'
     });
 
     dispatch({

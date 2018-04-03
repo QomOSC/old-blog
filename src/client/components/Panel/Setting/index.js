@@ -10,7 +10,7 @@ import changeUsername from 'Root/actions/user/setting/username';
 import changeEmail from 'Root/actions/user/setting/email';
 import changeName from 'Root/actions/user/setting/name';
 
-import { password, username, email } from 'Root/js/validator';
+import { password, username, email, image } from 'Root/js/validator';
 import bind from 'Root/js/bind';
 
 import Button from 'Root/components/Utils/Button';
@@ -26,7 +26,7 @@ class Setting extends Component {
     if (this.props.user.avatar) {
       return (
         <img
-          src={`/uploads/${this.props.user.avatar}`}
+          src={`/static/uploads/${this.props.user.avatar}`}
           className={styles.userAvatar}
         />
       );
@@ -139,7 +139,17 @@ class Setting extends Component {
 
   @bind
   updateAvatar() {
-    this.props.dispatch(updateAvatar(avatar));
+    let reader = new FileReader();
+
+    reader.addEventListener('loadend', () => {
+      if (!image(this.refs.file.files[0])) {
+        return;
+      }
+
+      this.props.dispatch(updateAvatar(this.refs.file.files[0]));
+    });
+
+    reader.readAsBinaryString(this.refs.file.files[0]);
   }
 
   @bind
