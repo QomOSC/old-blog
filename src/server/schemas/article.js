@@ -47,11 +47,13 @@ const ArticleSchema = new GraphQLObjectType({
           .select('-password -submembers -__v')
           .lean();
 
-        user = {
-          ...user,
-          createdAt: +user.createdAt,
-          articles: user.articles.length
-        };
+        if (user) {
+          user = {
+            ...user,
+            createdAt: +user.createdAt,
+            articles: user.articles.length
+          };
+        }
 
         return user;
       }

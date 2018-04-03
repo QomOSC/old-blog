@@ -27,11 +27,13 @@ const RootQuery = new GraphQLObjectType({
           .select('-password -__v -submembers')
           .lean();
 
-        user = {
-          ...user,
-          createdAt: +user.createdAt,
-          articles: user.articles.length
-        };
+        if (user) {
+          user = {
+            ...user,
+            createdAt: +user.createdAt,
+            articles: user.articles.length
+          };
+        }
 
         return user;
       }
