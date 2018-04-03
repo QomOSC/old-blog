@@ -50,7 +50,6 @@ const ArticleSchema = new GraphQLObjectType({
         if (user) {
           user = {
             ...user,
-            createdAt: +user.createdAt,
             articles: user.articles.length
           };
         }
