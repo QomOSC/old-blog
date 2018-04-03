@@ -41,7 +41,8 @@ class AddArticle extends Component {
     newArticle({
       title: this.refs.title.value,
       content: this.state.content,
-      avatar: this.state.avatar
+      avatar: this.state.avatar,
+      minutes: Math.ceil(this.state.content.length / 386)
     }, this.props.history.push);
   }
 

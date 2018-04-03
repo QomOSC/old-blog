@@ -18,7 +18,8 @@ class Article extends Component {
             <Link to={`/user/${this.props.user.username}`}>
               {this.props.user.name || 'سلام به روی ماهت'}
             </Link>
-            <p>{this.props.art.createdAt} - {this.props.art.minutes} خواندن</p>
+            <p>{this.props.art.createdAt} -
+              &nbsp;{this.props.art.minutes} دقیقه خواندن</p>
           </div>
         </div>
         {this.props.art.title && <h1>{this.props.art.title}</h1>}

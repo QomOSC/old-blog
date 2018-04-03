@@ -22,6 +22,7 @@ router.post(
     title: req.body.title,
     content: req.body.content,
     author: req.session.user,
+    minutes: req.body.minutes,
     avatar: req.file.filename
   });
 
@@ -29,6 +30,7 @@ router.post(
     await article.save();
     res.json({ type: 0 });
   } catch (e) {
+    console.log(e);
     res.json({ type: 2 });
   }
 });
