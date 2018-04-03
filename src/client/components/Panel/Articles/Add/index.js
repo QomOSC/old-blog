@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import SimpleMDE from 'react-simplemde-editor';
+import { withRouter } from 'react-router-dom';
 import izitoast from 'izitoast';
+
+import newArticle from 'Root/actions/user/articles/add';
 
 import bind from 'Root/js/bind';
 
@@ -25,6 +28,21 @@ class AddArticle extends Component {
       });
       return;
     }
+
+    if (!this.state.avatar) {
+      izitoast.warning({
+        rtl: true,
+        title: 'مقاله شما باید عکس داشته باشد'
+      });
+
+      return;
+    }
+
+    newArticle({
+      title: this.refs.title.value,
+      content: this.state.content,
+      avatar: this.state.avatar
+    }, this.props.history.push);
   }
 
   @bind
@@ -103,4 +121,4 @@ class AddArticle extends Component {
   }
 }
 
-export default AddArticle;
+export default withRouter(AddArticle);
