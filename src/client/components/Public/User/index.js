@@ -114,11 +114,7 @@ class User extends Component {
             <Article
               key={i}
               user={{ ...this.state.data.user }}
-              art={{
-                ...v,
-                createdAt: moment(new Date(v.createdAt)),
-                avatar: `/static/uploads/${v.avatar}`
-              }}
+              art={{ ...v }}
             />
           )}
         </div>
