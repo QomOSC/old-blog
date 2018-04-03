@@ -3,8 +3,7 @@ const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const schema = new Schema({
   _id: {
-    type: Number,
-    required: true
+    type: Number
   },
   author: { // The ID from Member model
     type: Schema.Types.ObjectId,
