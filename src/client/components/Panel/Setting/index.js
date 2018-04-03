@@ -11,6 +11,7 @@ import changeName from 'Root/actions/user/setting/name';
 import { password, username, email } from 'Root/js/validator';
 import bind from 'Root/js/bind';
 
+import Button from 'Root/components/Utils/Button';
 import Box from 'Root/components/Utils/Box';
 
 import userDefault from 'Root/images/u.png';
@@ -173,10 +174,11 @@ class Setting extends Component {
               placeholder='نام'
               defaultValue={this.props.user.name}
             />
-            <button
+            <Button
+              color='black'
               onClick={this.changeName}>
               تغییر
-            </button>
+            </Button>
           </Box>
 
           <Box>
@@ -187,10 +189,11 @@ class Setting extends Component {
               placeholder='ایمیل'
               defaultValue={this.props.user.email}
             />
-            <button
+            <Button
+              color='black'
               onClick={this.changeEmail}>
               تغییر
-            </button>
+            </Button>
           </Box>
 
           <Box>
@@ -201,10 +204,11 @@ class Setting extends Component {
               placeholder='یوزرنیم'
               defaultValue={this.props.user.username}
             />
-            <button
+            <Button
+              color='black'
               onClick={this.changeUsername}>
               تغییر
-            </button>
+            </Button>
           </Box>
 
           <Box>
@@ -221,10 +225,11 @@ class Setting extends Component {
               placeholder='رمز جدید'
             />
 
-            <button
+            <Button
+              color='black'
               onClick={this.changePassword}>
               تغییر
-            </button>
+            </Button>
           </Box>
 
           <Box>
@@ -234,10 +239,11 @@ class Setting extends Component {
               placeholder='درباره شما'
             >{this.props.user.description}</textarea>
 
-            <button
+            <Button
+              color='black'
               onClick={this.changeDescription}>
               تغییر
-            </button>
+            </Button>
           </Box>
         </div>
       </div>

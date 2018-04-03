@@ -33,7 +33,7 @@ class Home extends Component {
                 placeholder='توضیحات'
               />
               <Button
-                color='grey'>
+                color='blue'>
                 ارسال
               </Button>
             </div>
