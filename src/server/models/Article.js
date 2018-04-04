@@ -42,10 +42,6 @@ const schema = new Schema({
     type: String,
     trim: true
   }],
-  embeds: [{ // The ID of members
-    type: String,
-    trim: true
-  }],
   type: {
     enum: [1, 2], // 1: Not Accepted, 2: Accepted
     type: Number,

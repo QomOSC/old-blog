@@ -2,6 +2,7 @@ import {
   GraphQLObjectType,
   GraphQLSchema,
   GraphQLString,
+  GraphQLList,
   GraphQLID
 } from 'graphql';
 
@@ -48,6 +49,22 @@ const RootQuery = new GraphQLObjectType({
         const a = await Article.findOne({ _id: args._id }).lean();
 
         return a;
+      }
+    },
+    articles: {
+      type: new GraphQLList(ArticleSchema),
+      async resolve() {
+        let arts = await Article
+          .find()
+          .select('-__v')
+          .lean();
+
+        for (const i of arts.keys()) {
+          arts[i].viewers = arts[i].viewers.length;
+          arts[i].likes = arts[i].likes.length;
+        }
+
+        return arts;
       }
     }
   }

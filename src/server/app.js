@@ -62,10 +62,13 @@ for (const router of routers) {
   app.use(router);
 }
 
-app.use('/graphql', graphql({
-  schema,
-  graphiql: true
-}));
+app.use('/graphql', (req, res) =>
+  graphql({
+    schema,
+    graphiql: true,
+    context: { req, res }
+  })(req, res)
+);
 
 app.use((req, res) => {
   res.sendFile(join(__dirname, '/index.html'));
