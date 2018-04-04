@@ -1,5 +1,6 @@
-import send from 'Root/js/send';
 import izitoast from 'izitoast';
+
+import send from 'Root/js/send';
 
 export default async (email, push) => {
   const request = await send('/recovery', { email });

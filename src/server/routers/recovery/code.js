@@ -17,17 +17,20 @@ router.post('/recovery/:code', login, async (req, res) => {
     return;
   }
 
-  const user = await User.findById(rec.user);
-
-  if (req.body.pass !== req.body.repass) {
+  if (!req.body.password) {
     res.json({ type: 2, text: 1 });
     return;
   }
 
-  user.password = hmac(req.body.pass, config.dbkey);
+  const user = await User.findById(rec.user);
+
+  user.password = hmac(req.body.password, config.dbkey);
 
   try {
     await user.save();
+
+    await rec.remove();
+
     res.json({ type: 0 });
   } catch (e) {
     res.json({ type: 2, text: 2 });

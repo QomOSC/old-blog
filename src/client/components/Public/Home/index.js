@@ -1,6 +1,9 @@
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { createHttpLink } from 'apollo-link-http';
 import React, { Component } from 'react';
-import { createApolloFetch } from 'apollo-fetch';
+import ApolloClient from 'apollo-client';
 import nprogress from 'nprogress';
+import gql from 'graphql-tag';
 
 import Article from 'Root/components/Utils/Article';
 import Button from 'Root/components/Utils/Button';
@@ -19,34 +22,39 @@ class Home extends Component {
   }
 
   componentDidMount() {
-
-    const apolloFetch = createApolloFetch({
-      uri: `${location.origin}/graphql`
+    const link = createHttpLink({
+      uri: '/graphql',
+      credentials: 'same-origin'
     });
 
-    const query = `
-      query {
-        articles {
-          createdAt
-          minutes
-          avatar
-          title
+    const client = new ApolloClient({
+      cache: new InMemoryCache(),
+      link
+    });
 
-          user {
-            description
+    client.query({
+      query: gql`
+        query {
+          articles {
             createdAt
-            articles
-            username
+            minutes
             avatar
-            email
-            type
-            name
+            title
+
+            user {
+              description
+              createdAt
+              articles
+              username
+              avatar
+              email
+              type
+              name
+            }
           }
         }
-      }
-    `;
-
-    apolloFetch({ query }).then(data => {
+      `
+    }).then(data => {
       this.setState({ data: data.data });
       nprogress.done();
     });
