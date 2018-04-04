@@ -42,7 +42,6 @@ class User extends Component {
           userArticles {
             createdAt
             minutes
-            content
             avatar
             title
           }
