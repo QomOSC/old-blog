@@ -66,6 +66,24 @@ const RootQuery = new GraphQLObjectType({
 
         return arts;
       }
+    },
+    userself: {
+      type: UserSchema,
+      async resolve(parent, args, context) {
+        let user = await User
+          .findById(context.req.session.user)
+          .select('-password -__v -submembers')
+          .lean();
+
+        if (user) {
+          user = {
+            ...user,
+            articles: user.articles.length
+          };
+        }
+
+        return user;
+      }
     }
   }
 });
