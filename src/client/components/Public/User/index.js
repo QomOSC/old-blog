@@ -1,7 +1,10 @@
-import React, { Component } from 'react';
 import { withRouter, Redirect } from 'react-router-dom';
-import { createApolloFetch } from 'apollo-fetch';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { createHttpLink } from 'apollo-link-http';
+import React, { Component } from 'react';
+import ApolloClient from 'apollo-client';
 import nprogress from 'nprogress';
+import gql from 'graphql-tag';
 
 import moment from 'Root/js/moment';
 import bind from 'Root/js/bind';
@@ -22,34 +25,39 @@ class User extends Component {
   }
 
   componentDidMount() {
-
-    const apolloFetch = createApolloFetch({
-      uri: `${location.origin}/graphql`
+    const link = createHttpLink({
+      uri: '/graphql',
+      credentials: 'same-origin'
     });
 
-    const query = `
-      query {
-        user(username: "${this.props.match.params.username}") {
-          description
-          createdAt
-          articles
-          username
-          avatar
-          email
-          type
-          name
+    const client = new ApolloClient({
+      cache: new InMemoryCache(),
+      link
+    });
 
-          userArticles {
+    client.query({
+      query: gql`
+        query {
+          user(username: "${this.props.match.params.username}") {
+            description
             createdAt
-            minutes
+            articles
+            username
             avatar
-            title
+            email
+            type
+            name
+
+            userArticles {
+              createdAt
+              minutes
+              avatar
+              title
+            }
           }
         }
-      }
-    `;
-
-    apolloFetch({ query }).then(data => {
+      `
+    }).then(data => {
       this.setState({ data: data.data });
       nprogress.done();
     });
