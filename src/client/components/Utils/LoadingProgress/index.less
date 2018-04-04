@@ -1,0 +1,137 @@
+
+:local(.skFadingCircle) {
+  margin: 100px auto;
+  width: 70px;
+  height: 70px;
+  position: relative;
+}
+
+:local(.skFadingCircle) :local(.skCircle) {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+:local(.skFadingCircle) :local(.skCircle)::before {
+  content: '';
+  display: block;
+  margin: 0 auto;
+  width: 15%;
+  height: 15%;
+  background-color: #333;
+  border-radius: 100%;
+  animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
+}
+
+:local(.skFadingCircle) :local(.skCircle2) {
+  transform: rotate(30deg);
+}
+
+:local(.skFadingCircle) :local(.skCircle3) {
+  transform: rotate(60deg);
+}
+
+:local(.skFadingCircle) :local(.skCircle4) {
+  transform: rotate(90deg);
+}
+
+:local(.skFadingCircle) :local(.skCircle5) {
+  transform: rotate(120deg);
+}
+
+:local(.skFadingCircle) :local(.skCircle6) {
+  transform: rotate(150deg);
+}
+
+:local(.skFadingCircle) :local(.skCircle7) {
+  transform: rotate(180deg);
+}
+
+:local(.skFadingCircle) :local(.skCircle8) {
+  transform: rotate(210deg);
+}
+
+:local(.skFadingCircle) :local(.skCircle9) {
+  transform: rotate(240deg);
+}
+
+:local(.skFadingCircle) :local(.skCircle10) {
+  transform: rotate(270deg);
+}
+
+:local(.skFadingCircle) :local(.skCircle11) {
+  transform: rotate(300deg);
+}
+
+:local(.skFadingCircle) :local(.skCircle12) {
+  transform: rotate(330deg);
+}
+
+:local(.skFadingCircle) :local(.skCircle2)::before {
+  animation-delay: -1.1s;
+}
+
+:local(.skFadingCircle) :local(.skCircle3)::before {
+  animation-delay: -1s;
+}
+
+:local(.skFadingCircle) :local(.skCircle4)::before {
+  animation-delay: -0.9s;
+}
+
+:local(.skFadingCircle) :local(.skCircle5)::before {
+  animation-delay: -0.8s;
+}
+
+:local(.skFadingCircle) :local(.skCircle6)::before {
+  animation-delay: -0.7s;
+}
+
+:local(.skFadingCircle) :local(.skCircle7)::before {
+  animation-delay: -0.6s;
+}
+
+:local(.skFadingCircle) :local(.skCircle8)::before {
+  animation-delay: -0.5s;
+}
+
+:local(.skFadingCircle) :local(.skCircle9)::before {
+  animation-delay: -0.4s;
+}
+
+:local(.skFadingCircle) :local(.skCircle10)::before {
+  animation-delay: -0.3s;
+}
+
+:local(.skFadingCircle) :local(.skCircle11)::before {
+  animation-delay: -0.2s;
+}
+
+:local(.skFadingCircle) :local(.skCircle12)::before {
+  animation-delay: -0.1s;
+}
+
+@-webkit-keyframes sk-circleFadeDelay {
+  0%, 39%, 100% { opacity: 0; }
+  40% { opacity: 1; }
+}
+
+@keyframes sk-circleFadeDelay {
+  0%, 39%, 100% { opacity: 0; }
+  40% { opacity: 1; }
+}
+
+:local(.loadingContainer) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
