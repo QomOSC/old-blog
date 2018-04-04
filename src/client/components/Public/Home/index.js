@@ -1,9 +1,7 @@
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { createHttpLink } from 'apollo-link-http';
 import React, { Component } from 'react';
-import ApolloClient from 'apollo-client';
 import nprogress from 'nprogress';
-import gql from 'graphql-tag';
+
+import gql from 'Root/js/gql';
 
 import Article from 'Root/components/Utils/Article';
 import Button from 'Root/components/Utils/Button';
@@ -22,39 +20,29 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    const link = createHttpLink({
-      uri: '/graphql',
-      credentials: 'same-origin'
-    });
+    const query = `
+      query {
+        articles {
+          createdAt
+          minutes
+          avatar
+          title
 
-    const client = new ApolloClient({
-      cache: new InMemoryCache(),
-      link
-    });
-
-    client.query({
-      query: gql`
-        query {
-          articles {
+          user {
+            description
             createdAt
-            minutes
+            articles
+            username
             avatar
-            title
-
-            user {
-              description
-              createdAt
-              articles
-              username
-              avatar
-              email
-              type
-              name
-            }
+            email
+            type
+            name
           }
         }
-      `
-    }).then(data => {
+      }
+    `;
+
+    gql(query).then(data => {
       this.setState({ data: data.data });
       nprogress.done();
     });

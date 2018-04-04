@@ -40,7 +40,6 @@ class Recovery extends Component {
       return;
     }
 
-    console.log(this.props.match);
     change(
       this.props.match.params.code,
       refs.password.value,
