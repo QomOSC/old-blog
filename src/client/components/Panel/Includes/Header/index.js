@@ -32,6 +32,14 @@ class Header extends Component {
         text: 'تنظیمات'
       },
       {
+        to: '/panel/articles',
+        text: 'مقالات شما'
+      },
+      {
+        to: '/panel/articles/add',
+        text: 'اضافه کردن مقاله'
+      },
+      {
         to: '#',
         click: this.logout,
         text: 'خروج'

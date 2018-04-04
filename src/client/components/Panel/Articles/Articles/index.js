@@ -19,9 +19,16 @@ class Articles extends Component {
       uri: `${location.origin}/graphql`
     });
 
+    apolloFetch.use(({ request, options }, next) => {
+      console.log(request);
+      console.log(options);
+
+      next();
+    });
+
     const query = `
       query {
-        userself {
+        user {
           name
         }
       }
