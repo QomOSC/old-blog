@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { createApolloFetch } from 'apollo-fetch';
 import nprogress from 'nprogress';
 
+import LoadingProgress from 'Root/components/Utils/LoadingProgress';
 import Article from 'Root/components/Utils/Article';
+
+import gql from 'Root/js/gql';
+
 
 class Articles extends Component {
   state = {
@@ -14,18 +17,6 @@ class Articles extends Component {
   }
 
   componentDidMount() {
-
-    const apolloFetch = createApolloFetch({
-      uri: `${location.origin}/graphql`
-    });
-
-    apolloFetch.use(({ request, options }, next) => {
-      console.log(request);
-      console.log(options);
-
-      next();
-    });
-
     const query = `
       query {
         user {
@@ -34,8 +25,7 @@ class Articles extends Component {
       }
     `;
 
-    apolloFetch({ query }).then(data => {
-      console.log(data);
+    gql(query).then(data => {
       this.setState({ data: data.data });
       nprogress.done();
     });
@@ -43,22 +33,7 @@ class Articles extends Component {
 
   render() {
     if (!this.state.data) {
-      return <div className='loadingContainer'>
-        <div className="sk-fading-circle">
-          <div className="sk-circle1 sk-circle" />
-          <div className="sk-circle2 sk-circle" />
-          <div className="sk-circle3 sk-circle" />
-          <div className="sk-circle4 sk-circle" />
-          <div className="sk-circle5 sk-circle" />
-          <div className="sk-circle6 sk-circle" />
-          <div className="sk-circle7 sk-circle" />
-          <div className="sk-circle8 sk-circle" />
-          <div className="sk-circle9 sk-circle" />
-          <div className="sk-circle10 sk-circle" />
-          <div className="sk-circle11 sk-circle" />
-          <div className="sk-circle12 sk-circle" />
-        </div>
-      </div>;
+      return <LoadingProgress />;
     }
 
     return (
