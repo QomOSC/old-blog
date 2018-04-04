@@ -22,11 +22,20 @@ const RootQuery = new GraphQLObjectType({
           type: GraphQLString
         }
       },
-      async resolve(parent, args) {
-        let user = await User
-          .findOne({ username: args.username })
-          .select('-password -__v -submembers')
-          .lean();
+      async resolve(parent, args, context) {
+        let user;
+
+        if (!args.username) {
+          user = await User
+            .findById(context.req.session.user)
+            .select('-password -__v -submembers')
+            .lean();
+        } else {
+          user = await User
+            .findOne({ username: args.username.toLowerCase() })
+            .select('-password -__v -submembers')
+            .lean();
+        }
 
         if (user) {
           user = {
@@ -65,24 +74,6 @@ const RootQuery = new GraphQLObjectType({
         }
 
         return arts;
-      }
-    },
-    userself: {
-      type: UserSchema,
-      async resolve(parent, args, context) {
-        let user = await User
-          .findById(context.req.session.user)
-          .select('-password -__v -submembers')
-          .lean();
-
-        if (user) {
-          user = {
-            ...user,
-            articles: user.articles.length
-          };
-        }
-
-        return user;
       }
     }
   }
