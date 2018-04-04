@@ -55,9 +55,13 @@ const RootQuery = new GraphQLObjectType({
         }
       },
       async resolve(parent, args) {
-        const a = await Article.findOne({ _id: args._id }).lean();
+        try {
+          const a = await Article.findById(args._id).lean();
 
-        return a;
+          return a;
+        } catch (e) {
+          return {};
+        }
       }
     },
     articles: {
