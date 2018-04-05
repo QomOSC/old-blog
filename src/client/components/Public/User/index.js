@@ -102,9 +102,9 @@ class User extends Component {
         </div>
 
 
+        {this.state.data.user.userArticles.length && <h1>مقالات</h1>}
+        
         <div className={styles.articles}>
-          {this.state.data.user.userArticles.length && <h1>مقالات</h1>}
-
           {this.state.data.user.userArticles.map((v, i) =>
             <Article
               key={i}

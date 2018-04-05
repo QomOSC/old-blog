@@ -22,9 +22,25 @@
 }
 
 :local(.articles) {
-  width: 100%;
+  background-color: #f5f5f5;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-wrap: wrap;
+
+  > div {
+    width: 40%;
+    margin: 20px;
+  }
+}
+
+@media (min-width: 120px) and (max-width: 580px) {
+  :local(.articles) {
+    flex-direction: column;
+
+    > div {
+      width: 95%;
+      margin: 5px;
+    }
+  }  
 }
