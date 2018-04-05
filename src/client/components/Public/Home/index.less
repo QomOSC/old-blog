@@ -2,22 +2,55 @@
 @import '~Root/css/colors';
 
 :local(.container) {
-  margin: 50px 50px 0 50px;
-}
-
-:local(.contact) {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 50px;
 
-  > div:nth-of-type(2) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+  > div {
+    width: 40%;
+    margin: 20px;
   }
 
-  input, textarea {
-    margin: 10px 0;
-    .input();
+  > div:last-child {
+    width: 70%;
+
+    > div {
+      display: flex;
+      justify-content: space-around;
+
+      > div:nth-of-type(2) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      input, textarea {
+        margin: 10px 0;
+        .input();
+      }
+    }
+  }
+}
+
+@media (min-width: 120px) and (max-width: 580px) {
+  :local(.container) {
+    flex-direction: column;
+    margin: 5px;
+
+    > div {
+      width: 95%;
+      margin: 5px;
+    }
+
+    > div:last-child {
+      width: 95%;
+
+      > div {
+        flex-direction: column;
+      }
+    }
   }
 }
