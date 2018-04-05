@@ -2,16 +2,33 @@ import React, { Component, Fragment } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import bind from 'Root/js/bind';
+
+import SlideOut from 'Root/components/Utils/SlideOut';
 import NLink from 'Root/components/Utils/NLink';
 
 import styles from './index.less';
 
 
 class Header extends Component {
+  state = {
+    isOpen: false
+  };
+
+  @bind
+  showSlideOut() {
+    this.setState({ isOpen: true });
+  }
+
+  @bind
+  hideSlideOut() {
+    this.setState({ isOpen: false });
+  }
+
   shouldComponentUpdate() {
     return true;
   }
-  
+
   render() {
     return (
       <header className={styles.header}>
@@ -42,6 +59,16 @@ class Header extends Component {
             </li>
           </Fragment>}
         </ul>
+
+        <div
+          className={`icon icon-bars ${styles.linksButton}`}
+          onClick={this.showSlideOut} />
+
+        <SlideOut isOpen={this.state.isOpen}>
+          <div
+            className={`icon icon-exit ${styles.linksButton}`}
+            onClick={this.hideSlideOut} />            
+        </SlideOut>
       </header>
     );
   }
