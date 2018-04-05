@@ -2,10 +2,19 @@
 
 :local(.footer) {
   width: 100%;
-  height: auto;
-  padding: 20px;
+  height: 80px;
   display: flex;
+  justify-content: center;
   align-items: center;
   background-color: @black-base;
   color: white;
+  margin-bottom: 20px;
+
+  a {
+    color: #777;
+
+    &:hover, &:active {
+      color: white;
+    }
+  }
 }

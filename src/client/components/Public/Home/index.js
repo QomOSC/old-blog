@@ -56,13 +56,34 @@ class Home extends Component {
 
     return (
       <div className={styles.container}>
-        {this.state.data.articles.map((v, i) =>
-          <Article
-            key={i}
-            user={{ ...v.user }}
-            art={{ ...v }}
-          />
-        )}
+        <div className={styles.intro}>
+          <h2>به جامعه متن باز قم خوش آمدید</h2>
+          <p>
+            جامعه متن باز قم با هدف فراهم کردن محیطی برای
+            به اشتراک گذاری دانش و تجربیات افرادی که در زمینه
+            های مختلف متن باز فعالیت میکنند تاسیس شده است.
+          </p>
+
+          <br />
+
+          <h2>اهداف</h2>
+          <ul>
+            <li>حمایت و پشتیبانی از کاربران تکنولوژی‌های متن باز</li>
+            <li>فرهنگ‌سازی استفاده از تکنولوژی‌های متن باز</li>
+            <li>کمک به توسعه تکنولوژی‌های متن باز</li>
+            <li> آموزش تکنولوژی‌های متن باز</li>
+          </ul>
+        </div>
+
+        <div className={styles.articles}>
+          {this.state.data.articles.map((v, i) =>
+            <Article
+              key={i}
+              user={{ ...v.user }}
+              art={{ ...v }}
+            />
+          )}
+        </div>
 
         <Box>
           <div className={styles.contact}>

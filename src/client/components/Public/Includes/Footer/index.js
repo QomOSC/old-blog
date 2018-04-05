@@ -7,7 +7,13 @@ class Footer extends Component {
   render() {
     return (
       <footer className={styles.footer}>
-        <h1>Footer</h1>
+        <p>
+          این پروژه تماما متن باز بوده و شما با مراجعه به
+          &nbsp;
+          <a href='https://github.com/qomosc/blog'> این صفحه در گیتهاب </a>
+          &nbsp;
+          قادر به همکاری و مشارکت هستید.
+        </p>
       </footer>
     );
   }
