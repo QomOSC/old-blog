@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import nprogress from 'nprogress';
+import izitoast from 'izitoast';
 
+import contact from 'Root/actions/contact';
+
+import { email } from 'Root/js/validator';
+import bind from 'Root/js/bind';
 import gql from 'Root/js/gql';
 
 import LoadingProgress from 'Root/components/Utils/LoadingProgress';
@@ -49,6 +54,37 @@ class Home extends Component {
     });
   }
 
+  @bind
+  contact() {
+    if (
+      !this.refs.name.value ||
+      !this.refs.email.value ||
+      !this.refs.decs.value
+    ) {
+      izitoast.warning({
+        rtl: true,
+        title: 'مقادیر کافی نمیباشد'
+      });
+
+      return;
+    }
+
+    if (!email(this.refs.email.value)) {
+      izitoast.warning({
+        rtl: true,
+        title: 'ایمیل صحیح نمیباشد'
+      });
+
+      return;
+    }
+
+    contact({
+      name: this.refs.name.value,
+      email: this.refs.email.value,
+      decs: this.refs.decs.value
+    });
+  }
+
   render() {
     if (!this.state.data) {
       return <LoadingProgress />;
@@ -75,6 +111,8 @@ class Home extends Component {
           </ul>
         </div>
 
+        <h2>مقالات اخیر</h2>
+
         <div className={styles.articles}>
           {this.state.data.articles.map((v, i) =>
             <Article
@@ -88,26 +126,29 @@ class Home extends Component {
         <Box>
           <div className={styles.contact}>
             <div>
-              <h1>اگر سوالی دارید بپرسید</h1>
-              <p>شما میتوانید تمامی انتقادات و پیشنهادات خود را ارسال کنید</p>
+              <h1>تماس با ما</h1>
+              <p>مهمترین عضو تیم ما شما هستید!</p>
+              <p>دوست داریم پیشنهادات و انتقادات شما را بشنویم</p>
+              <p>حتما با ما در تماس باشید</p>
             </div>
 
             <div>
               <input
                 type='text'
-                refs='name'
+                ref='name'
                 placeholder='نام'
               />
               <input
                 type='email'
-                refs='email'
+                ref='email'
                 placeholder='ایمیل'
               />
               <textarea
-                refs='decs'
+                ref='decs'
                 placeholder='توضیحات'
               />
               <Button
+                handleClick={this.contact}
                 color='blue'>
                 ارسال
               </Button>

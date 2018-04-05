@@ -7,8 +7,15 @@
   align-items: center;
   flex-wrap: wrap;
 
+  h2 {
+    font-family: S;
+    font-size: 45px;
+    color: #333;
+  }
+
   > div:last-child {
     width: 70%;
+    margin: 40px 0;
 
     > div {
       display: flex;
@@ -44,14 +51,11 @@
 
 
 :local(.intro) {
+  width: 100%;
   text-align: center;
   margin: 100px 0;
-
-  h2 {
-    font-family: S;
-    font-size: 45px;
-    color: #333;
-  }
+  padding-bottom: 30px;
+  border-bottom: 1px solid #888;
 
   p {
     color: #777;
@@ -74,6 +78,7 @@
 
     > div:last-child {
       width: 95%;
+      text-align: center;
 
       > div {
         flex-direction: column;
