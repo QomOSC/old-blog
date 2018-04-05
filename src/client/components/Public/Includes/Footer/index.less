@@ -6,6 +6,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   background-color: @black-base;
   color: white;
   margin-bottom: 20px;
@@ -16,5 +17,13 @@
     &:hover, &:active {
       color: white;
     }
+  }
+}
+
+@media (min-width: 120px) and (max-width: 580px) {
+  :local(.footer) {
+    margin: 0;
+    padding: 10px;
+    font-size: 13px;
   }
 }

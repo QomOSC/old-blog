@@ -9,9 +9,7 @@ class Footer extends Component {
       <footer className={styles.footer}>
         <p>
           این پروژه تماما متن باز بوده و شما با مراجعه به
-          &nbsp;
           <a href='https://github.com/qomosc/blog'> این صفحه در گیتهاب </a>
-          &nbsp;
           قادر به همکاری و مشارکت هستید.
         </p>
       </footer>
