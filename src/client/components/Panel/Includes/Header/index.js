@@ -6,12 +6,27 @@ import logout from 'Root/actions/user/logout';
 
 import bind from 'Root/js/bind';
 
+import SlideOut from 'Root/components/Utils/SlideOut';
 import NLink from 'Root/components/Utils/NLink';
 
 import styles from './index.less';
 
 
 class Header extends Component {
+  state = {
+    isOpen: false
+  };
+
+  @bind
+  showSlideOut() {
+    this.setState({ isOpen: true });
+  }
+
+  @bind
+  hideSlideOut() {
+    this.setState({ isOpen: false });
+  }
+
   shouldComponentUpdate() {
     return true;
   }
@@ -55,6 +70,24 @@ class Header extends Component {
             <NLink {...v} />
           </li>)}
         </ul>
+
+        <div
+          className={`icon icon-bars ${styles.linksButton}`}
+          onClick={this.showSlideOut} />
+
+        <SlideOut isOpen={this.state.isOpen}>
+          <div className={styles.slideOutContainer}>
+            <div
+              className={`icon icon-exit ${styles.linksButton}`}
+              onClick={this.hideSlideOut} />
+
+            <ul>
+              {links.map((v, i) => <li key={i}>
+                <NLink {...v} />
+              </li>)}
+            </ul>
+          </div>
+        </SlideOut>
       </header>
     );
   }

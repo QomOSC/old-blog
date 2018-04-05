@@ -30,34 +30,37 @@ class Header extends Component {
   }
 
   render() {
+    const links = this.props.logged ?
+      <Fragment>
+        <li>
+          <NLink
+            to='/panel'
+            text='داشبورد'
+          />
+        </li>
+      </Fragment> :
+
+      <Fragment>
+        <li>
+          <NLink
+            to='/login'
+            text='ورود'
+          />
+        </li>
+        <li>
+          <NLink
+            to='/signup'
+            text='ثبت نام'
+          />
+        </li>
+      </Fragment>;
+
     return (
       <header className={styles.header}>
         <Link to='/'>جامعه متن باز قم</Link>
 
         <ul>
-          {this.props.logged ? <Fragment>
-            <li>
-              <NLink
-                to='/panel'
-                text='داشبورد'
-              />
-            </li>
-          </Fragment> :
-
-          <Fragment>
-            <li>
-              <NLink
-                to='/login'
-                text='ورود'
-              />
-            </li>
-            <li>
-              <NLink
-                to='/signup'
-                text='ثبت نام'
-              />
-            </li>
-          </Fragment>}
+          { links }
         </ul>
 
         <div
@@ -65,9 +68,15 @@ class Header extends Component {
           onClick={this.showSlideOut} />
 
         <SlideOut isOpen={this.state.isOpen}>
-          <div
-            className={`icon icon-exit ${styles.linksButton}`}
-            onClick={this.hideSlideOut} />            
+          <div className={styles.slideOutContainer}>
+            <div
+              className={`icon icon-exit ${styles.linksButton}`}
+              onClick={this.hideSlideOut} />
+
+            <ul>
+              { links }
+            </ul>
+          </div>
         </SlideOut>
       </header>
     );
