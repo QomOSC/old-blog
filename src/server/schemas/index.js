@@ -60,10 +60,13 @@ const RootQuery = new GraphQLObjectType({
       },
       async resolve(parent, args) {
         try {
-          const a = await Article.findOne({
+          const a = await Article
+          .findOne({
             _id: args._id,
             type: args.type || 2
-          }).lean();
+          })
+          .sort({ createdAt: -1 })
+          .lean();
 
           return a;
         } catch (e) {
@@ -81,6 +84,7 @@ const RootQuery = new GraphQLObjectType({
       async resolve(parent, args) {
         let arts = await Article
           .find({ type: args.type || 2 })
+          .sort({ createdAt: -1 })
           .select('-__v')
           .lean();
 

@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import MarkdownIt from 'markdown-it';
 
 import gql from 'Root/js/gql';
 
 import LoadingProgress from 'Root/components/Utils/LoadingProgress';
+
+const md = new MarkdownIt();
 
 class ArticlesHome extends Component {
   state = {
@@ -37,8 +40,6 @@ class ArticlesHome extends Component {
   }
 
   render() {
-    console.log(this.state.data);
-
     if (!this.state.data) {
       return <LoadingProgress />;
     }
@@ -59,7 +60,9 @@ class ArticlesHome extends Component {
         <p>minutes: {this.state.data.article.minutes}</p>
         <p>avatar: {this.state.data.article.avatar}</p>
         <p>title {this.state.data.article.title}</p>
-        <pre>{this.state.data.article.content}</pre>   
+        <div dangerouslySetInnerHTML={{
+          __html: md.render(this.state.data.article.content)
+        }} />
       </div>
     );
   }
