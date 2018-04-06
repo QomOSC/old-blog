@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import nprogress from 'nprogress';
 
 import LoadingProgress from 'Root/components/Utils/LoadingProgress';
 import Article from 'Root/components/Utils/Article';
@@ -12,10 +11,6 @@ class Articles extends Component {
     data: undefined
   };
 
-  componentWillMount() {
-    nprogress.start();
-  }
-
   componentDidMount() {
     const query = `
       query {
@@ -27,7 +22,6 @@ class Articles extends Component {
 
     gql(query).then(data => {
       this.setState({ data: data.data });
-      nprogress.done();
     });
   }
 

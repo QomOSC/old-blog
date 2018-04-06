@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withRouter, Redirect } from 'react-router-dom';
-import nprogress from 'nprogress';
 
 import moment from 'Root/js/moment';
 import bind from 'Root/js/bind';
@@ -17,10 +16,6 @@ class User extends Component {
   state = {
     data: undefined
   };
-
-  componentWillMount() {
-    nprogress.start();
-  }
 
   componentDidMount() {
     const query = `
@@ -47,7 +42,6 @@ class User extends Component {
 
     gql(query).then(data => {
       this.setState({ data: data.data });
-      nprogress.done();
     });
   }
 
@@ -103,7 +97,7 @@ class User extends Component {
 
 
         {this.state.data.user.userArticles.length && <h1>مقالات</h1>}
-        
+
         <div className={styles.articles}>
           {this.state.data.user.userArticles.map((v, i) =>
             <Article

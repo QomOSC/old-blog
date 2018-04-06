@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import nprogress from 'nprogress';
 import izitoast from 'izitoast';
 
 import contact from 'Root/actions/contact';
@@ -21,14 +20,10 @@ class Home extends Component {
     data: undefined
   };
 
-  componentWillMount() {
-    nprogress.start();
-  }
-
   componentDidMount() {
     const query = `
       query {
-        articles {
+        articles(type: 1) {
           createdAt
           minutes
           avatar
@@ -50,7 +45,6 @@ class Home extends Component {
 
     gql(query).then(data => {
       this.setState({ data: data.data });
-      nprogress.done();
     });
   }
 

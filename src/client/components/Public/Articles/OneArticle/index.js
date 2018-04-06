@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import nprogress from 'nprogress';
 
 import gql from 'Root/js/gql';
 
@@ -10,10 +9,6 @@ class ArticlesHome extends Component {
   state = {
     data: undefined
   };
-
-  componentWillMount() {
-    nprogress.start();
-  }
 
   componentDidMount() {
     const query = `
@@ -26,7 +21,6 @@ class ArticlesHome extends Component {
 
     gql(query).then(data => {
       this.setState({ data: data.data });
-      nprogress.done();
     });
   }
 
@@ -38,8 +32,6 @@ class ArticlesHome extends Component {
     if (this.state.data.article.title === null) {
       return <Redirect to='/notfound' />;
     }
-
-    console.log(this.state.data);
 
     return (
       <h1>One</h1>

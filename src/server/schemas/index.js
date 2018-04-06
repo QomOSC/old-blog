@@ -3,6 +3,7 @@ import {
   GraphQLSchema,
   GraphQLString,
   GraphQLList,
+  GraphQLInt,
   GraphQLID
 } from 'graphql';
 
@@ -52,11 +53,17 @@ const RootQuery = new GraphQLObjectType({
       args: {
         _id: {
           type: GraphQLID
+        },
+        type: {
+          type: GraphQLInt
         }
       },
       async resolve(parent, args) {
         try {
-          const a = await Article.findById(args._id).lean();
+          const a = await Article.findOne({
+            _id: args._id,
+            type: args.type || 2
+          }).lean();
 
           return a;
         } catch (e) {
@@ -66,9 +73,14 @@ const RootQuery = new GraphQLObjectType({
     },
     articles: {
       type: new GraphQLList(ArticleSchema),
-      async resolve() {
+      args: {
+        type: {
+          type: GraphQLInt
+        }
+      },
+      async resolve(parent, args) {
         let arts = await Article
-          .find()
+          .find({ type: args.type || 2 })
           .select('-__v')
           .lean();
 
