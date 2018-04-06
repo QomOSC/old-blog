@@ -18,9 +18,6 @@ router.post(
   upload.single('avatar'),
   async (req, res) => {
 
-  console.log(req.body);
-  console.log(req.file);
-
   const user = await User.findById(req.session.user);
 
   if (!user) {
