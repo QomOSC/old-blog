@@ -28,6 +28,7 @@ class Home extends Component {
           minutes
           avatar
           title
+          _id
 
           user {
             description
@@ -113,6 +114,7 @@ class Home extends Component {
               key={i}
               user={{ ...v.user }}
               art={{ ...v }}
+              id={v._id}
             />
           )}
         </div>

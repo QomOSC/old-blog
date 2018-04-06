@@ -14,7 +14,19 @@ class ArticlesHome extends Component {
     const query = `
       query {
         article(_id: "${this.props.match.params.id}") {
+          createdAt
+          minutes
+          content
+          avatar
           title
+          _id
+
+          user {
+            username
+            avatar
+            email
+            name
+          }
         }
       }
     `;
@@ -25,6 +37,8 @@ class ArticlesHome extends Component {
   }
 
   render() {
+    console.log(this.state.data);
+
     if (!this.state.data) {
       return <LoadingProgress />;
     }
@@ -34,7 +48,19 @@ class ArticlesHome extends Component {
     }
 
     return (
-      <h1>One</h1>
+      <div>
+        <h1>USER</h1>
+        <p>username: {this.state.data.article.user.username}</p>
+        <p>email: {this.state.data.article.user.email}</p>
+        <p>name: {this.state.data.article.user.name}</p>
+        <p>avatar: {this.state.data.article.user.avatar}</p>
+        <h1>ARTICLE</h1>
+        <p>createdAt: {this.state.data.article.createdAt}</p>
+        <p>minutes: {this.state.data.article.minutes}</p>
+        <p>avatar: {this.state.data.article.avatar}</p>
+        <p>title {this.state.data.article.title}</p>
+        <pre>{this.state.data.article.content}</pre>   
+      </div>
     );
   }
 }

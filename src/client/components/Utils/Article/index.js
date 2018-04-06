@@ -27,13 +27,15 @@ class Article extends Component {
               &nbsp;{this.props.art.minutes} دقیقه خواندن</p>
           </div>
         </div>
-        {this.props.art.title && <h1>{this.props.art.title}</h1>}
-        {this.props.art.avatar && <img src=
-          {`/static/uploads/${this.props.art.avatar}`} />}
+        <Link to={`/articles/${this.props.id}`}>
+          {this.props.art.title && <h1>{this.props.art.title}</h1>}
+          {this.props.art.avatar && <img src=
+            {`/static/uploads/${this.props.art.avatar}`} />}
 
-        <div className={styles.others}>
-          {this.props.children}
-        </div>
+          <div className={styles.others}>
+            {this.props.children}
+          </div>
+        </Link>
       </div>
     );
   }
