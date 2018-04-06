@@ -1,4 +1,8 @@
+import nprogress from 'nprogress';
+
 const send = (url, data, formData) => new Promise((resolve, reject) => {
+  nprogress.start();
+
   const config = {
     method: 'POST',
     credentials: 'include',
@@ -23,6 +27,7 @@ const send = (url, data, formData) => new Promise((resolve, reject) => {
   }
 
   fetch(url, config).then(res => res.json()).then(res => {
+    nprogress.done();
     resolve(res);
   }).catch(e => {
     reject(e);
