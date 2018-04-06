@@ -42,7 +42,7 @@ class ManageEdit extends Component {
 
   @bind
   reject() {
-    rejectArticle(this.state.data.article._id);
+    rejectArticle(this.state.data.article._id, this.props.history.push);
   }
 
   componentDidMount() {

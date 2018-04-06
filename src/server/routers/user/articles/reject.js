@@ -6,7 +6,7 @@ import { admin } from 'Root/perms';
 
 const router = new Router();
 
-router.post('/panel/articles/accept', admin, async (req, res) => {
+router.post('/panel/articles/reject', admin, async (req, res) => {
   try {
     const article = await Article.findById(req.body.id);
 

@@ -2,15 +2,16 @@ import izitoast from 'izitoast';
 
 import send from 'Root/js/send';
 
-export default async id => {
+export default async (id, push) => {
   const request = await send('/panel/articles/reject', { id });
 
   if (request.type === 0) {
     izitoast.success({
       rtl: true,
-      title: 'مقاله شما با موفقیت به ثبت رسید',
-      message: 'تا زمان تایید آن صبر کنید'
+      title: 'این مقاله با موفقیت حذف شذ'
     });
+
+    push('/panel/articles');
   }
 
   else if (request.type === 2) {
