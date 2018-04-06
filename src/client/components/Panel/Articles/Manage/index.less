@@ -1,0 +1,41 @@
+:local(.container) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  h2 {
+    font-family: S;
+    font-size: 45px;
+    color: #333;
+  }
+}
+
+:local(.articles) {
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  > div {
+    width: 40%;
+    margin: 20px;
+  }
+}
+
+@media (min-width: 120px) and (max-width: 580px) {
+  :local(.container) {
+    flex-direction: column;
+    margin: 5px;
+  }
+
+  :local(.articles) {
+    flex-direction: column;
+
+    > div {
+      width: 95%;
+      margin: 5px;
+    }
+  }
+}
