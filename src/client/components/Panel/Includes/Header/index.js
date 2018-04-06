@@ -55,6 +55,11 @@ class Header extends Component {
         text: 'اضافه کردن مقاله'
       },
       {
+        to: '/panel/articles/manage',
+        text: 'مدیریت مقالات جدید',
+        type: 3
+      },
+      {
         to: '#',
         click: this.logout,
         text: 'خروج'
