@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import gql from 'Root/js/gql';
 
 import LoadingProgress from 'Root/components/Utils/LoadingProgress';
 import Article from 'Root/components/Utils/Article';
+import Button from 'Root/components/Utils/Button';
 
 import styles from './index.less';
 
@@ -17,6 +19,7 @@ class Manage extends Component {
     const query = `
       query {
         articles(type: 1) {
+          _id
           createdAt
           minutes
           avatar
@@ -57,7 +60,17 @@ class Manage extends Component {
               user={{ ...v.user }}
               art={{ ...v }}
             >
-              <h1>Hello</h1>
+              <h1>
+                برای پذیرفتن یا نپذیرفتن مقاله
+                وارد قسمت تغییر دادن شوید
+              </h1>
+              <Link to={`/panel/articles/manage/${v._id}`}>
+                <Button
+                  color='blue'
+                >
+                  تغییر دادن
+                </Button>
+              </Link>
             </Article>
           )}
         </div>
