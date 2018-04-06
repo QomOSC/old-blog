@@ -2,8 +2,8 @@ import izitoast from 'izitoast';
 
 import send from 'Root/js/send';
 
-export default async (data, push) => {
-  const request = await send('/panel/user/articles/add', data, 'formData');
+export default async id => {
+  const request = await send('/panel/articles/reject', { id });
 
   if (request.type === 0) {
     izitoast.success({
@@ -11,8 +11,6 @@ export default async (data, push) => {
       title: 'مقاله شما با موفقیت به ثبت رسید',
       message: 'تا زمان تایید آن صبر کنید'
     });
-
-    push('/panel/articles');
   }
 
   else if (request.type === 2) {

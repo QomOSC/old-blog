@@ -70,7 +70,13 @@ class ManageEdit extends Component {
       }
     `;
 
-    gql(query).then(data => this.setState({ data: data.data }));
+    gql(query).then(data => {
+      this.setState({ data: data.data });
+
+      if (data.data.article) {
+        this.setState({ content: data.data.article.content });
+      }
+    });
   }
 
   @bind
@@ -79,11 +85,12 @@ class ManageEdit extends Component {
   }
 
   render() {
+
     if (!this.state.data) {
       return <LoadingProgress />;
     }
 
-    if (!this.state.data.article.title) {
+    if (!this.state.data.article) {
       return <Redirect to='/notfound' />;
     }
 

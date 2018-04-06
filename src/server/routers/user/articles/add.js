@@ -14,7 +14,7 @@ const upload = multer({ dest: config.uploadDir, limits: 3000000, storage });
 const router = new Router();
 
 router.post(
-  '/panel/user/articles/add',
+  '/panel/articles/add',
   logged,
   upload.single('avatar'),
   async (req, res) => {
@@ -39,7 +39,7 @@ router.post(
     user.articles.push(article._id);
 
     await user.save();
-    
+
     res.json({ type: 0 });
   } catch (e) {
     res.json({ type: 2 });
