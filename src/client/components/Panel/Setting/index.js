@@ -178,7 +178,7 @@ class Setting extends Component {
             <Button
               color='blue'
               handleClick={this.openInput}>
-              {this.props.user.avatar ? 'تغییر' : 'اضافه'}
+              {this.props.user.avatar ? 'تغییر عکس' : 'اضافه کردن عکس'}
             </Button>
             {this.props.user.avatar &&
               <Button
@@ -215,82 +215,92 @@ class Setting extends Component {
         <div>
           <Box>
             <h1 className={styles.title}>نام</h1>
-            <input
-              type='text'
-              ref='name'
-              placeholder='نام'
-              defaultValue={this.props.user.name}
-            />
-            <Button
-              color='black'
-              handleClick={this.changeName}>
-              تغییر
-            </Button>
+            <div className={styles.fields}>
+              <input
+                type='text'
+                ref='name'
+                placeholder='نام'
+                defaultValue={this.props.user.name}
+              />
+              <Button
+                color='black'
+                handleClick={this.changeName}>
+                تغییر
+              </Button>
+            </div>
           </Box>
 
           <Box>
             <h1 className={styles.title}>ایمیل</h1>
-            <input
-              type='email'
-              ref='email'
-              placeholder='ایمیل'
-              defaultValue={this.props.user.email}
-            />
-            <Button
-              color='black'
-              handleClick={this.changeEmail}>
-              تغییر
-            </Button>
+            <div className={styles.fields}>
+              <input
+                type='email'
+                ref='email'
+                placeholder='ایمیل'
+                defaultValue={this.props.user.email}
+              />
+              <Button
+                color='black'
+                handleClick={this.changeEmail}>
+                تغییر
+              </Button>
+            </div>
           </Box>
 
           <Box>
             <h1 className={styles.title}>یوزرنیم</h1>
-            <input
-              type='text'
-              ref='username'
-              placeholder='یوزرنیم'
-              defaultValue={this.props.user.username}
-            />
-            <Button
-              color='black'
-              handleClick={this.changeUsername}>
-              تغییر
-            </Button>
+            <div className={styles.fields}>
+              <input
+                type='text'
+                ref='username'
+                placeholder='یوزرنیم'
+                defaultValue={this.props.user.username}
+              />
+              <Button
+                color='black'
+                handleClick={this.changeUsername}>
+                تغییر
+              </Button>
+            </div>
           </Box>
 
           <Box>
             <h1 className={styles.title}>رمز عبور</h1>
-            <input
-              type='password'
-              ref='password'
-              placeholder='رمز کنونی'
-            />
+            <div className={styles.fields}>
+              <input
+                type='password'
+                ref='password'
+                placeholder='رمز کنونی'
+              />
 
-            <input
-              type='password'
-              ref='newpassword'
-              placeholder='رمز جدید'
-            />
+              <input
+                type='password'
+                ref='newpassword'
+                placeholder='رمز جدید'
+              />
 
-            <Button
-              color='black'
-              handleClick={this.changePassword}>
-              تغییر
-            </Button>
+              <Button
+                color='black'
+                handleClick={this.changePassword}>
+                تغییر
+              </Button>
+            </div>
           </Box>
 
           <Box>
             <h1 className={styles.title}>درباره شما</h1>
-            <textarea
-              ref='description'
-              placeholder='درباره شما'
-            >{this.props.user.description}</textarea>
+            <div className={styles.fields}>
+              <textarea
+                ref='description'
+                placeholder='درباره شما'
+                >{this.props.user.description}</textarea>
 
-            <Button
-              color='black'
-              handleClick={this.changeDescription}>
-              تغییر
-            </Button>
+                <Button
+                  color='black'
+                  handleClick={this.changeDescription}>
+                  تغییر
+                </Button>
+            </div>
           </Box>
         </div>
       </div>

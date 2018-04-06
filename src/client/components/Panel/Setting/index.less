@@ -15,6 +15,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    text-align: center;
 
     table {
       width: 100%;
@@ -45,4 +46,37 @@
 
 :local(.avatarInput) {
   display: none;
+}
+
+:local(.fields) {
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+
+  input, textarea {
+    padding: 5px;
+    border-radius: 6px;
+    border: 1px solid #eee;
+    background-color: #eee;
+    margin: 10px;
+  }
+}
+
+@media (min-width: 120px) and (max-width: 580px) {
+  :local(.container) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    > div {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+
+  :local(.fields) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
