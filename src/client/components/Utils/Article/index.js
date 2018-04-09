@@ -31,11 +31,10 @@ class Article extends Component {
           {this.props.art.title && <h1>{this.props.art.title}</h1>}
           {this.props.art.avatar && <img src=
             {`/static/uploads/${this.props.art.avatar}`} />}
-
-          <div className={styles.others}>
-            {this.props.children}
-          </div>
         </Link>
+        <div className={styles.others}>
+          {this.props.children}
+        </div>
       </div>
     );
   }

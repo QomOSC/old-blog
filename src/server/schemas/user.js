@@ -44,7 +44,7 @@ const UserSchema = new GraphQLObjectType({
       type: new GraphQLList(ArticleSchema),
       async resolve(parent) {
         const article = await Article
-        .find({ author: parent._id })
+        .find({ author: parent._id, type: 2 })
         .sort({ createdAt: -1 })
         .lean();
 

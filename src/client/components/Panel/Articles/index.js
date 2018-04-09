@@ -7,12 +7,14 @@ import ManageEdit from './ManageEdit';
 import AddArticle from './Add';
 import Articles from './Articles';
 import Manage from './Manage';
+import Edit from './Edit';
 
 class Article extends Component {
   render() {
     return (
       <Switch>
         <Route exact path='/panel/articles/add' component={AddArticle} />
+        <Route exact path='/panel/articles/edit/:id' component={Edit} />
         <LoginRoute path='/panel/articles/manage/:id' component={ManageEdit} />
         <LoginRoute exact path='/panel/articles/manage' component={Manage} />
         <Route exact path='/panel/articles' component={Articles} />
