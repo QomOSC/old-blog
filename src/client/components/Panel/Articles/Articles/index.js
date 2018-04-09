@@ -5,6 +5,8 @@ import Article from 'Root/components/Utils/Article';
 
 import gql from 'Root/js/gql';
 
+import styles from './index.less';
+
 
 class Articles extends Component {
   state = {
@@ -15,10 +17,18 @@ class Articles extends Component {
     const query = `
       query {
         user {
+          articles
+          username
+          avatar
+          email
           name
 
           userArticles {
+            createdAt
+            minutes
+            avatar
             title
+            _id
           }
         }
       }
@@ -37,15 +47,15 @@ class Articles extends Component {
     }
 
     return (
-      <Article
-        user={{ avatar: 'aaa', username: 'matin', name: 'متین' }}
-        art={{
-          createdAt: 'سه روز پیش',
-          minutes: 'سه دقیقه',
-          title: 'چرا باید نحوه زندگی کردنمان را تغییر دهیم',
-          avatar: 'aaa'
-        }}
-      />
+      <div className={styles.container}>
+        {this.state.data.user.userArticles.map((v, i) =>
+          <Article
+            key={i}
+            user={this.state.data.user}
+            art={v}
+          />
+        )}
+      </div>
     );
   }
 }
