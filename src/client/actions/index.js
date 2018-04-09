@@ -8,5 +8,9 @@ export default {
     CHANGE_NAME: 'user/CHANGE_NAME',
     LOGOUT: 'user/LOGOUT',
     LOGIN: 'user/LOGIN'
+  },
+  articles: {
+    DELETE: 'articles/DELETE',
+    LOAD: 'articles/LOAD'
   }
 };
