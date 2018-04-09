@@ -17,7 +17,9 @@ import styles from './index.less';
 class AddArticle extends Component {
   state = {
     content: '',
-    avatar: ''
+    oneTag: '',
+    avatar: '',
+    tags: [],
   };
 
   @bind
@@ -43,6 +45,7 @@ class AddArticle extends Component {
       title: this.refs.title.value,
       content: this.state.content,
       avatar: this.state.avatar,
+      tags: this.state.tags,
       minutes: Math.ceil(this.state.content.length / 386)
     }, this.props.history.push);
   }
@@ -72,6 +75,19 @@ class AddArticle extends Component {
     this.setState({ content });
   }
 
+  @bind
+  keypress(e) {
+    if (e.key === ' ') {
+      this.state.tags.push(this.state.oneTag);
+      this.setState({ oneTag: '' });
+    }
+  }
+
+  @bind
+  handleChange(e) {
+    this.setState({ oneTag: e.target.value });
+  }
+
   render() {
     return (
       <div className={styles.container}>
@@ -89,11 +105,24 @@ class AddArticle extends Component {
           }}
         />
 
+        {this.state.tags.length ? <p>تگ ها</p> : ''}
+
+        {this.state.tags.map((v, i) => <span key={i}>{v}</span>)}
+
         <input
           type='file'
           ref='file'
           className={styles.avatarInput}
           onChange={this.updateAvatar} />
+
+        <input
+          type='text'
+          value={this.state.oneTag}
+          onChange={this.handleChange}
+          onKeyPress={this.keypress}
+          ref='tags'
+          placeholder='برچست ها (با فاصله جدا کنید)'
+        />
 
         <Button
           handleClick={this.openInput}
