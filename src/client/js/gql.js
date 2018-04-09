@@ -1,27 +1,20 @@
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { createHttpLink } from 'apollo-link-http';
-import ApolloClient from 'apollo-client';
 import nprogress from 'nprogress';
-import gql from 'graphql-tag';
 
 export default query => new Promise((resolve, reject) => {
   nprogress.start();
-  const link = createHttpLink({
-    uri: '/graphql',
-    credentials: 'same-origin'
-  });
 
-  const client = new ApolloClient({
-    cache: new InMemoryCache(),
-    link
-  });
-
-  client.query({
-    query: gql(query)
-  })
-  .then(data => {
-    nprogress.done();
+  fetch('/graphql', {
+    method: 'POST',
+    credentials: 'include',
+    headers: new Headers({
+      'Content-Type': 'application/json'
+    }),
+    body: JSON.stringify({
+      query
+    })
+  }).then(res => res.json()).then(data => {
     resolve(data);
+    nprogress.done();
   }).catch(e => {
     reject(e);
   });

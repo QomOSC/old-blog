@@ -16,6 +16,10 @@ class Articles extends Component {
       query {
         user {
           name
+
+          userArticles {
+            title
+          }
         }
       }
     `;
@@ -26,6 +30,8 @@ class Articles extends Component {
   }
 
   render() {
+    console.log(this.state.data);
+
     if (!this.state.data) {
       return <LoadingProgress />;
     }
