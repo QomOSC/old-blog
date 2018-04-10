@@ -21,26 +21,15 @@
   border-radius: 50%;
 }
 
-:local(.articles) {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+:local(.articleAvatar) {
+  width: 90%;
+  height: 600px;
+}
 
-  > div {
-    width: 60%;
-    margin: 20px;
-  }
+:local(.articleContent) {
+  margin: 10px 0;
+  text-align: right;
 }
 
 @media (min-width: 120px) and (max-width: 580px) {
-  :local(.articles) {
-    flex-direction: column;
-
-    > div {
-      width: 95%;
-      margin: 5px;
-    }
-  }
 }

@@ -2,15 +2,21 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import MarkdownIt from 'markdown-it';
 
+import moment from 'Root/js/moment';
+import bind from 'Root/js/bind';
 import gql from 'Root/js/gql';
 
 import LoadingProgress from 'Root/components/Utils/LoadingProgress';
+
+import userDefault from 'Root/images/u.png';
+import styles from './index.less';
+
 
 const md = new MarkdownIt();
 
 class ArticlesHome extends Component {
   state = {
-    data: undefined
+    article: undefined
   };
 
   componentDidMount() {
@@ -35,34 +41,63 @@ class ArticlesHome extends Component {
     `;
 
     gql(query).then(data => {
-      this.setState({ data: data.data });
+      this.setState({ article: data.data.article });
     });
   }
 
+  @bind
+  renderImage() {
+    if (this.state.article.user.avatar) {
+      return <img
+        src={`/static/uploads/${this.state.article.user.avatar}`}
+        className={styles.userImage}
+      />;
+    }
+
+    return <img
+      src={userDefault}
+      className={styles.userImage}
+    />;
+  }
+
   render() {
-    if (!this.state.data) {
+    if (!this.state.article) {
       return <LoadingProgress />;
     }
 
-    if (this.state.data.article.title === null) {
+    if (this.state.article.title === null) {
       return <Redirect to='/notfound' />;
     }
 
     return (
-      <div>
-        <h1>USER</h1>
-        <p>username: {this.state.data.article.user.username}</p>
-        <p>email: {this.state.data.article.user.email}</p>
-        <p>name: {this.state.data.article.user.name}</p>
-        <p>avatar: {this.state.data.article.user.avatar}</p>
-        <h1>ARTICLE</h1>
-        <p>createdAt: {this.state.data.article.createdAt}</p>
-        <p>minutes: {this.state.data.article.minutes}</p>
-        <p>avatar: {this.state.data.article.avatar}</p>
-        <p>title {this.state.data.article.title}</p>
-        <div dangerouslySetInnerHTML={{
-          __html: md.render(this.state.data.article.content)
-        }} />
+      <div className={styles.container}>
+        <div className={styles.user}>
+          <p>{this.state.article.user.name}</p>
+          <p>{this.state.article.user.email}</p>
+          {this.renderImage()}
+          {this.state.article.user.description && <p>
+            درباره: {this.state.article.user.description}
+          </p>}
+        </div>
+
+        <div className={styles.article}>
+          <br />
+          <h1>{this.state.article.title}</h1>
+          <p>{moment(new Date(this.state.article.createdAt))}</p>
+          <p>{this.state.article.minutes} دقیقه خواندن</p>
+          <br />
+
+          <img
+            className={styles.articleAvatar}
+            src={`/static/uploads/${this.state.article.avatar}`}
+          />
+
+          <div
+            className={styles.articleContent}
+            dangerouslySetInnerHTML={{
+            __html: md.render(this.state.article.content)
+          }} />
+        </div>
       </div>
     );
   }

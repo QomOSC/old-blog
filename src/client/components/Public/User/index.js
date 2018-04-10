@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import moment from 'Root/js/moment';
 import bind from 'Root/js/bind';
@@ -14,7 +14,7 @@ import styles from './index.less';
 
 class User extends Component {
   state = {
-    data: undefined
+    user: undefined
   };
 
   componentDidMount() {
@@ -35,23 +35,29 @@ class User extends Component {
             minutes
             avatar
             title
+            _id
           }
         }
       }
     `;
 
     gql(query).then(data => {
-      this.setState({ data: data.data });
+      if (!data.data.user) {
+        this.props.history.push('/notfound');
+        return;
+      }
+
+      this.setState({ user: data.data.user });
     });
   }
 
   @bind
   role() {
-    if (this.state.data.user.type === 1) {
+    if (this.state.user.type === 1) {
       return 'در انتظار پذیرش';
-    } else if (this.state.data.user.type === 2) {
+    } else if (this.state.user.type === 2) {
       return 'کاربر معمولی';
-    } else if (this.state.data.user.type === 3) {
+    } else if (this.state.user.type === 3) {
       return 'مدیر';
     }
     return 'مدیر کل';
@@ -59,9 +65,9 @@ class User extends Component {
 
   @bind
   renderImage() {
-    if (this.state.data.user.avatar) {
+    if (this.state.user.avatar) {
       return <img
-        src={`/static/uploads/${this.state.data.user.avatar}`}
+        src={`/static/uploads/${this.state.user.avatar}`}
         className={styles.userImage}
       />;
     }
@@ -73,37 +79,34 @@ class User extends Component {
   }
 
   render() {
-    if (!this.state.data) {
+    if (!this.state.user) {
       return <LoadingProgress />;
-    }
-
-    if (this.state.data.user === null) {
-      return <Redirect to='/notfound' />;
     }
 
     return (
       <div className={styles.container}>
         <div className={styles.user}>
-          <p>{this.state.data.user.name}</p>
-          <p>{this.state.data.user.email}</p>
+          <p>{this.state.user.name}</p>
+          <p>{this.state.user.email}</p>
           <p>{this.role()}</p>
           {this.renderImage()}
-          {this.state.data.user.description && <p>
-            درباره: {this.state.data.user.description}
+          {this.state.user.description && <p>
+            درباره: {this.state.user.description}
           </p>}
-          <p>عضو شده در:‌ {moment(new Date(this.state.data.user.createdAt))}</p>
-          <p>تعداد مقالات: {this.state.data.user.articles}</p>
+          <p>عضو شده در:‌ {moment(new Date(this.state.user.createdAt))}</p>
+          <p>تعداد مقالات: {this.state.user.articles}</p>
         </div>
 
 
-        {this.state.data.user.userArticles.length && <h1>مقالات</h1>}
+        {this.state.user.userArticles.length ? <h1>مقالات</h1> : ''}
 
         <div className={styles.articles}>
-          {this.state.data.user.userArticles.map((v, i) =>
+          {this.state.user.userArticles.map((v, i) =>
             <Article
               key={i}
-              user={{ ...this.state.data.user }}
+              user={{ ...this.state.user }}
               art={{ ...v }}
+              id={v._id}
             />
           )}
         </div>

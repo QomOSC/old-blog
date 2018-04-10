@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 
 import gql from 'Root/js/gql';
 
@@ -54,7 +53,7 @@ class ArticlesHome extends Component {
           <h1>مقالات اخیر</h1> :
           <h1>مقاله ای وجود ندارد</h1>
         }
-        
+
         {this.state.articles.map((v, i) =>
           <Article
             key={i}
@@ -68,4 +67,4 @@ class ArticlesHome extends Component {
   }
 }
 
-export default withRouter(ArticlesHome);
+export default ArticlesHome;
