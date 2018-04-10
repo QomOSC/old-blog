@@ -12,6 +12,7 @@ import Signup from './Signup';
 import Login from './Login';
 import Home from './Home';
 import User from './User';
+import Tag from './Tag';
 
 import styles from './index.less';
 
@@ -28,6 +29,7 @@ class Public extends Component {
             <LoginRoute exact path='/login' component={Login} />
             <LoginRoute exact path='/signup' component={Signup} />
             <LoginRoute path='/recovery' component={Recovery} />
+            <Route path='/tag/:tagname' component={Tag} />
             <Route path='/articles' component={Articles} />
             <Route path='/user/:username' component={User} />
             <Route path='/notfound' component={NotFound} />
