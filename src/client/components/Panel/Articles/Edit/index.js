@@ -1,21 +1,97 @@
 import React, { Component } from 'react';
+import SimpleMDE from 'react-simplemde-editor';
 import { withRouter } from 'react-router-dom';
+import izitoast from 'izitoast';
 
-import send from 'Root/js/send';
+import edit from 'Root/actions/user/articles/edit';
+
+import bind from 'Root/js/bind';
+import gql from 'Root/js/gql';
+
+import LoadingProgress from 'Root/components/Utils/LoadingProgress';
+import Button from 'Root/components/Utils/Button';
+
+import styles from './index.less';
+import 'Root/css/simplemde.less';
 
 class Edit extends Component {
-  async componentDidMount() {
-    const check = await send('/panel/articles/edit/check', {
-      id: this.props.match.params.id
-    });
+  state = {
+    article: undefined,
+    content: ''
+  };
 
-    if (check.type === 2) {
-      this.props.history.push('/notfound');
+  async componentDidMount() {
+    const query = `
+      query {
+        user {
+          article (id: "${this.props.match.params.id}") {
+            title
+            content
+          }
+        }
+      }
+    `;
+
+    gql(query).then(data => {
+      if (!data.data.user.article.title) {
+        this.props.history.push('/notfound');
+        return;
+      }
+
+      this.setState({
+        article: data.data.user.article,
+        content: data.data.user.article.content
+      });
+    });
+  }
+
+  @bind
+  edit() {
+    if (!this.state.content || !this.refs.title.value) {
+      izitoast.warning({
+        rtl: true,
+        title: 'مقادیر کافی نمیباشد'
+      });
+
+      return;
     }
+
+    edit({
+      title: this.refs.title.value,
+      content: this.state.content
+    }, this.props.history.push);
+  }
+
+  @bind
+  handle(e) {
+    this.setState({ content: e });
   }
 
   render() {
-    return <h1>Edit</h1>;
+    if (!this.state.article) {
+      return <LoadingProgress />;
+    }
+
+    return (
+      <div className={styles.container}>
+        <input
+          type='text'
+          placeholder='عنوان'
+          ref='title'
+          defaultValue={this.state.article.title}
+        />
+        <SimpleMDE
+          ref='content'
+          value={this.state.content}
+          onChange={this.handle}
+          options={{
+            spellChecker: false
+          }}
+        />
+
+        <Button handleClick={this.edit} color='blue'>ثبت</Button>
+      </div>
+    );
   }
 }
 

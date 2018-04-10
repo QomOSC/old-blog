@@ -50,6 +50,26 @@ const UserSchema = new GraphQLObjectType({
 
         return article;
       }
+    },
+    article: {
+      type: ArticleSchema,
+      args: {
+        id: {
+          type: GraphQLID
+        }
+      },
+      async resolve(parent, args, context) {
+        try {
+          const article = await Article.findOne({
+            _id: args.id,
+            author: context.req.session.user
+          }).lean();
+
+          return article;
+        } catch (e) {
+          return {};
+        }
+      }
     }
   })
 });
