@@ -51,7 +51,7 @@ class Manage extends Component {
 
     return (
       <div className={styles.container}>
-        {this.state.data.articles.length && <h1>مقالات جدید</h1>}
+        {this.state.data.articles.length ? <h1>مقالات جدید</h1> : ''}
 
         <div className={styles.articles}>
           {this.state.data.articles.map((v, i) =>

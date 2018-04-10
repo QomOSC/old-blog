@@ -57,6 +57,7 @@ class Edit extends Component {
     }
 
     edit({
+      id: this.props.match.params.id,
       title: this.refs.title.value,
       content: this.state.content
     }, this.props.history.push);
