@@ -1,5 +1,6 @@
 import izitoast from 'izitoast';
 
+import { error } from 'Root/js/messages';
 import send from 'Root/js/send';
 
 export default async (data, push) => {
@@ -16,9 +17,6 @@ export default async (data, push) => {
   }
 
   else if (request.type === 2) {
-    izitoast.error({
-      rtl: true,
-      title: 'خطا! بعدا امتحان کنید'
-    });
+    error();
   }
 };
