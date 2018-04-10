@@ -5,6 +5,7 @@ import izitoast from 'izitoast';
 import change from 'Root/actions/recovery/change';
 
 import { password } from 'Root/js/validator';
+import send from 'Root/js/send';
 import bind from 'Root/js/bind';
 
 import Form from 'Root/components/Utils/Form';
@@ -13,6 +14,16 @@ import styles from './index.less';
 
 
 class Recovery extends Component {
+  async componentDidMount() {
+    const check = await send('/recovery/check', {
+      code: this.props.match.params.code
+    });
+
+    if (check.type === 2) {
+      this.props.history.push('/notfound');
+    }
+  }
+
   @bind
   async rec(refs) {
     if (!refs.password.value || !refs.repassword.value) {
