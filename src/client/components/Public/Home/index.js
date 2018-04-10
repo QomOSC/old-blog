@@ -17,7 +17,7 @@ import styles from './index.less';
 
 class Home extends Component {
   state = {
-    data: undefined
+    articles: undefined
   };
 
   componentDidMount() {
@@ -45,7 +45,7 @@ class Home extends Component {
     `;
 
     gql(query).then(data => {
-      this.setState({ data: data.data });
+      this.setState({ articles: data.data.articles });
     });
   }
 
@@ -81,7 +81,7 @@ class Home extends Component {
   }
 
   render() {
-    if (!this.state.data) {
+    if (!this.state.articles) {
       return <LoadingProgress />;
     }
 
@@ -106,10 +106,10 @@ class Home extends Component {
           </ul>
         </div>
 
-        <h2>مقالات اخیر</h2>
+        {this.state.articles.length ? <h2>مقالات اخیر</h2> : ''}
 
         <div className={styles.articles}>
-          {this.state.data.articles.map((v, i) =>
+          {this.state.articles.map((v, i) =>
             <Article
               key={i}
               user={{ ...v.user }}
