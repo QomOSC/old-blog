@@ -5,9 +5,8 @@ import {
   GraphQLID
 } from 'graphql';
 
-import User from 'Root/models/User';
-
 import UserSchema from 'Root/schemas/user/schema';
+import resolve from './resolves/user';
 
 const ArticleSchema = new GraphQLObjectType({
   name: 'Article',
@@ -41,21 +40,7 @@ const ArticleSchema = new GraphQLObjectType({
     },
     user: {
       type: UserSchema,
-      async resolve(parent) {
-        let user = await User
-          .findOne({ _id: parent.author })
-          .select('-password -submembers -__v')
-          .lean();
-
-        if (user) {
-          user = {
-            ...user,
-            articles: user.articles.length
-          };
-        }
-
-        return user;
-      }
+      resolve
     }
   })
 });

@@ -6,9 +6,9 @@ import {
   GraphQLObjectType
 } from 'graphql';
 
-import Article from 'Root/models/Article';
-
+import resolveUserArticles from './resolves/userArticles';
 import ArticleSchema from 'Root/schemas/article/schema';
+import resolveArticle from './resolves/article';
 
 const UserSchema = new GraphQLObjectType({
   name: 'User',
@@ -42,14 +42,7 @@ const UserSchema = new GraphQLObjectType({
     },
     userArticles: {
       type: new GraphQLList(ArticleSchema),
-      async resolve(parent) {
-        const article = await Article
-        .find({ author: parent._id, type: 2 })
-        .sort({ createdAt: -1 })
-        .lean();
-
-        return article;
-      }
+      resolve: resolveUserArticles
     },
     article: {
       type: ArticleSchema,
@@ -58,18 +51,7 @@ const UserSchema = new GraphQLObjectType({
           type: GraphQLID
         }
       },
-      async resolve(parent, args, context) {
-        try {
-          const article = await Article.findOne({
-            _id: args.id,
-            author: context.req.session.user
-          }).lean();
-
-          return article;
-        } catch (e) {
-          return {};
-        }
-      }
+      resolve: resolveArticle
     }
   })
 });
