@@ -1,16 +1,17 @@
 import { GraphQLObjectType, GraphQLSchema } from 'graphql';
 
-import { ArticlesField, ArticleField } from './article';
-import { UserField } from './user';
-import { TagField } from './tags';
+import articles from './article/articles';
+import article from './article/article';
+import user from './user/user';
+import tag from './tag/tags';
 
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
-    articles: ArticlesField,
-    article: ArticleField,
-    user: UserField,
-    tag: TagField
+    articles,
+    article,
+    user,
+    tag
   }
 });
 
