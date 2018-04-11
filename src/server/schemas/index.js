@@ -10,6 +10,7 @@ import {
 import Article from 'Root/models/Article';
 import User from 'Root/models/User';
 
+import TagField from './tags';
 import ArticleSchema from './article';
 import UserSchema from './user';
 
@@ -95,7 +96,8 @@ const RootQuery = new GraphQLObjectType({
 
         return arts;
       }
-    }
+    },
+    tag: TagField
   }
 });
 
