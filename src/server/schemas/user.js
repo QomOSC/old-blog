@@ -7,8 +7,9 @@ import {
 } from 'graphql';
 
 import Article from 'Root/models/Article';
+import User from 'Root/models/User';
 
-import ArticleSchema from './article';
+import { ArticleSchema } from './article';
 
 const UserSchema = new GraphQLObjectType({
   name: 'User',
@@ -74,4 +75,40 @@ const UserSchema = new GraphQLObjectType({
   })
 });
 
-export default UserSchema;
+const UserField = {
+  type: UserSchema,
+  args: {
+    username: {
+      type: GraphQLString
+    }
+  },
+  async resolve(parent, args, context) {
+    let user;
+
+    if (!args.username) {
+      user = await User
+        .findById(context.req.session.user)
+        .select('-password -__v -submembers')
+        .lean();
+    } else {
+      user = await User
+        .findOne({ username: args.username.toLowerCase() })
+        .select('-password -__v -submembers')
+        .lean();
+    }
+
+    if (user) {
+      user = {
+        ...user,
+        articles: user.articles.length
+      };
+    }
+
+    return user;
+  }
+};
+
+export default {
+  UserSchema,
+  UserField
+};

@@ -7,7 +7,7 @@ import {
 import Article from 'Root/models/Article';
 import Tag from 'Root/models/Tag';
 
-import ArticleSchema from './article';
+import { ArticleSchema } from './article';
 
 const TagsSchema = new GraphQLObjectType({
   name: 'Tags',
@@ -48,4 +48,7 @@ const TagField = {
   }
 };
 
-export default TagField;
+export default {
+  TagsSchema,
+  TagField
+};
