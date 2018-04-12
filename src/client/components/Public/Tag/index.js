@@ -64,7 +64,7 @@ class Tag extends Component {
             <Article
               user={{ ...v.user }}
               art={{ ...v }}
-              _id={v._id}
+              id={v._id}
               key={i}
             />
           )}

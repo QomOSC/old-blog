@@ -45,7 +45,8 @@ router.post(
     if (req.body.tags) {
       let tags = req.body.tags.split(',');
       tags = tags.map(v => v.trim());
-
+      tags = [...new Set(tags)];
+  
       for (const i of tags) {
         const newTag = new Tag({
           article: article._id,
