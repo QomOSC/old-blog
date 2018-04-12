@@ -5,7 +5,7 @@ const resolve = async (parent, args) => {
     const a = await Article
     .findOne({
       _id: args._id,
-      type: args.type || 2
+      type: parseInt(args.type) || 2
     })
     .sort({ createdAt: -1 })
     .lean();

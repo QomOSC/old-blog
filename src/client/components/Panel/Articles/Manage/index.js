@@ -12,7 +12,7 @@ import styles from './index.less';
 
 class Manage extends Component {
   state = {
-    data: undefined
+    articles: undefined
   };
 
   componentDidMount() {
@@ -40,24 +40,24 @@ class Manage extends Component {
     `;
 
     gql(query).then(data => {
-      this.setState({ data: data.data });
+      this.setState({ articles: data.data.articles });
     });
   }
 
   render() {
-    if (!this.state.data) {
+    if (!this.state.articles) {
       return <LoadingProgress />;
     }
 
     return (
       <div className={styles.container}>
-        {this.state.data.articles.length ?
+        {this.state.articles.length ?
           <h1>مقالات جدید</h1> :
           <h1>مقاله جدیدی وجود ندارد</h1>
         }
 
         <div className={styles.articles}>
-          {this.state.data.articles.map((v, i) =>
+          {this.state.articles.map((v, i) =>
             <Article
               key={i}
               user={{ ...v.user }}

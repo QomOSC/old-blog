@@ -1,6 +1,6 @@
 import { GraphQLList, GraphQLInt } from 'graphql';
 
-import resolve from './resolves/article';
+import resolve from './resolves/articles';
 import ArticleSchema from './schema';
 
 const ArticlesField = {

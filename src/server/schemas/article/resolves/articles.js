@@ -1,8 +1,8 @@
 import Article from 'Root/models/Article';
 
-const resolve = async (parent, args) => {
+export default async (parent, args) => {
   let arts = await Article
-    .find({ type: args.type || 2 })
+    .find({ type: parseInt(args.type) || 2 })
     .sort({ createdAt: -1 })
     .select('-__v')
     .lean();
@@ -14,5 +14,3 @@ const resolve = async (parent, args) => {
 
   return arts;
 };
-
-export default resolve;
