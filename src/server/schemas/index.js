@@ -1,14 +1,11 @@
-import { GraphQLObjectType, GraphQLSchema } from 'graphql';
+import { GraphQLSchema } from 'graphql';
 
 import query from './query';
-
-const Mutation = new GraphQLObjectType({
-  name: 'Mutation',
-
-});
+import mutation from './mutation';
 
 const main = new GraphQLSchema({
-  query
+  query,
+  mutation
 });
 
 export default main;
