@@ -1,19 +1,12 @@
-import Article from 'Root/models/Article';
+import article from 'Root/schemas/utils/article';
 
 const resolve = async (parent, args) => {
-  try {
-    const a = await Article
-    .findOne({
-      _id: args._id,
-      type: parseInt(args.type) || 2
-    })
-    .sort({ createdAt: -1 })
-    .lean();
+  const art = await article(
+    { _id: args._id, type: parseInt(args.type) || 2 },
+    true
+  );
 
-    return a;
-  } catch (e) {
-    return {};
-  }
+  return art;
 };
 
 export default resolve;
