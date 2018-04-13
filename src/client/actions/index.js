@@ -10,6 +10,7 @@ export default {
     LOGIN: 'user/LOGIN'
   },
   users: {
+    DROP: 'users/DROP',
     LOAD: 'users/LOAD'
   },
   articles: {

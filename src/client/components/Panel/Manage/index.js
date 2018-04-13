@@ -11,6 +11,8 @@ import gql from 'Root/js/gql';
 import LoadingProgress from 'Root/components/Utils/LoadingProgress';
 import Button from 'Root/components/Utils/Button';
 
+import styles from './index.less';
+
 
 class Manage extends Component {
   componentDidMount() {
@@ -53,16 +55,15 @@ class Manage extends Component {
     }
 
     return (
-      <div>
+      <div className={styles.container}>
         {!this.props.users.length ?
           <h1>کاربر جدیدی وجود ندارد</h1> :
           <h1>کاربران جدید</h1>
         }
 
         {this.props.users.map((v, i) =>
-          <div key={i}>
+          <div key={i} className={styles.user}>
             <p>{v.name}</p>
-            <p>{v._id}</p>
             <p>{v.email}</p>
             <p>{v.username}</p>
 
