@@ -13,13 +13,13 @@ import './css/font-fa.less';
 import './css/index.less';
 import './css/icon.less';
 
-window.onload = () => {
-  checkLogin().then(() => {
-    render(
-      <Provider store={store}>
-        <App />
-      </Provider>,
-      document.getElementById('root')
-    );
-  });
+window.onload = async () => {
+  await checkLogin();
+  
+  render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById('root')
+  );
 };

@@ -1,3 +1,6 @@
+@import '~Root/css/colors';
+@import '~Root/css/mixins';
+
 :local(.container) {
   display: flex;
   align-items: center;
@@ -29,6 +32,27 @@
 :local(.articleContent) {
   margin: 10px 0;
   text-align: right;
+}
+
+:local(.comment) {
+  width: 60%;
+  padding: 10px;
+  background-color: white;
+  .boxShadow();
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  > * {
+    display: block;
+  }
+
+  textarea, input {
+    border: 1px solid #eee;
+    margin: 10px 0;
+    padding: 5px;
+  }
 }
 
 @media (min-width: 120px) and (max-width: 580px) {

@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 
-import { validator } from '../utils';
+import { email } from 'Root/utils/validator';
 
 const schema = new Schema({
   name: {
@@ -15,7 +15,7 @@ const schema = new Schema({
     trim: true,
     validate: {
       validator(v) {
-        return validator.e(v);
+        return email(v);
       },
       message: 'It is not a valid email'
     },
@@ -29,7 +29,7 @@ const schema = new Schema({
   },
   description: {
     type: String,
-    required: [true, 'content'],
+    required: [true, 'description'],
     trim: true
   },
   admin: {
