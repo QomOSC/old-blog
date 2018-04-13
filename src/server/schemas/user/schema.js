@@ -47,7 +47,7 @@ const UserSchema = new GraphQLObjectType({
     article: {
       type: ArticleSchema,
       args: {
-        id: {
+        _id: {
           type: GraphQLID
         }
       },

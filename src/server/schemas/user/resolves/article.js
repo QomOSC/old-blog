@@ -1,16 +1,12 @@
-import Article from 'Root/models/Article';
+import article from 'Root/schemas/utils/article';
 
 const resolve = async (parent, args, context) => {
-  try {
-    const article = await Article.findOne({
-      _id: args.id,
-      author: context.req.session.user
-    }).lean();
+  const art = await article(
+    { _id: args.id, author: context.req.session.user },
+    true
+  );
 
-    return article;
-  } catch (e) {
-    return {};
-  }
+  return art;
 };
 
 export default resolve;

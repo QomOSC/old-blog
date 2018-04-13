@@ -1,12 +1,9 @@
-import Article from 'Root/models/Article';
+import article from 'Root/schemas/utils/article';
 
 const resolve = async parent => {
-  const article = await Article
-  .find({ author: parent._id, type: 2 })
-  .sort({ createdAt: -1 })
-  .lean();
+  const art = await article({ author: parent._id, type: 2 });
 
-  return article;
+  return art;
 };
 
 export default resolve;
