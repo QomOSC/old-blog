@@ -1,20 +1,15 @@
-import Article from 'Root/models/Article';
+import article from 'Root/schemas/utils/article';
 import Tag from 'Root/models/Tag';
 
 const resolve = async parent => {
   const tags = await Tag.find({ tagname: parent.tagname });
-
+  
   const articles = [];
 
   for (const i of tags) {
-    const article = await Article.findById(i.article).lean();
+    const art = await article({ _id: i.article }, true);
 
-    if (article) {
-      article.viewers = article.viewers.length;
-      article.likes = article.likes.length;
-    }
-
-    articles.push(article);
+    articles.push(art);
   }
 
   return articles;

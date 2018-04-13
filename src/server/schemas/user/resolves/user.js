@@ -1,26 +1,14 @@
-import User from 'Root/models/User';
+import user from 'Root/schemas/utils/user';
 
 export default async (parent, args, context) => {
-  let user;
 
   if (!args.username) {
-    user = await User
-      .findById(context.req.session.user)
-      .select('-password -__v -submembers')
-      .lean();
-  } else {
-    user = await User
-      .findOne({ username: args.username.toLowerCase() })
-      .select('-password -__v -submembers')
-      .lean();
+    const u = await user({ _id: context.req.session.user }, true);
+
+    return u;
   }
 
-  if (user) {
-    user = {
-      ...user,
-      articles: user.articles.length
-    };
-  }
+  const u = await user({ username: args.username.toLowerCase() }, true);
 
-  return user;
+  return u;
 };

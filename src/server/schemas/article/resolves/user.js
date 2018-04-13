@@ -1,19 +1,9 @@
-import User from 'Root/models/User';
+import user from 'Root/schemas/utils/user';
 
 const resolve = async parent => {
-  let user = await User
-    .findOne({ _id: parent.author })
-    .select('-password -submembers -__v')
-    .lean();
+  const u = await user({ _id: parent.author }, true);
 
-  if (user) {
-    user = {
-      ...user,
-      articles: user.articles.length
-    };
-  }
-
-  return user;
+  return u;
 };
 
 export default resolve;

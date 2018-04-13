@@ -1,28 +1,17 @@
-import User from 'Root/models/User';
+import user from 'Root/schemas/utils/user';
 
 export default async (parent, args, context) => {
   if (!context.req.session.user) {
     return [];
   }
 
-  const admin = await User.findById(context.req.session.user);
+  const admin = await user({ _id: context.req.session.user }, true);
 
   if (admin.type < 3) {
     return [];
   }
 
-  const users = await User
-  .find({ type: parseInt(args.type) || 2 })
-  .select('-password -submembers')
-  .lean();
-
-
-  for (const [i, v] of users.entries()) {
-    users[i] = {
-      ...v,
-      articles: v.articles.length
-    };
-  }
+  const users = await user({ type: parseInt(args.type) || 2 });
 
   return users;
 };

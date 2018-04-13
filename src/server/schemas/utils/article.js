@@ -1,13 +1,17 @@
 import Article from 'Root/models/Article';
 
-
 export default (query, one = false) => new Promise(async res => {
   if (one) {
     try {
-      const article = await Article.findOne(query).select('-__v').lean();
+      const article = await Article
+      .findOne(query)
+      .select('-__v')
+      .lean();
 
-      article.viewers = article.viewers.length;
-      article.likes = article.likes.length;
+      if (article) {
+        article.viewers = article.viewers.length;
+        article.likes = article.likes.length;
+      }
 
       res(article);
     }
@@ -15,6 +19,7 @@ export default (query, one = false) => new Promise(async res => {
       res({});
     }
   }
+
   else {
     try {
       const articles = await Article
