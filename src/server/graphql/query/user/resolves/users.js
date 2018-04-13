@@ -1,4 +1,4 @@
-import user from 'Root/schemas/utils/user';
+import user from 'Root/graphql/utils/user';
 
 export default async (parent, args, context) => {
   if (!context.req.session.user) {

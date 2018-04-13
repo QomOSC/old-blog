@@ -11,7 +11,7 @@ import cookieParser from 'cookie-parser';
 import connectMongo from 'connect-mongo';
 
 import config from './config';
-import schema from './schemas';
+import schema from './graphql';
 import routers from './routers';
 
 mongoose.Promise = global.Promise;

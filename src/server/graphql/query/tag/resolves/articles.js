@@ -1,9 +1,9 @@
-import article from 'Root/schemas/utils/article';
+import article from 'Root/graphql/utils/article';
 import Tag from 'Root/models/Tag';
 
 const resolve = async parent => {
   const tags = await Tag.find({ tagname: parent.tagname });
-  
+
   const articles = [];
 
   for (const i of tags) {

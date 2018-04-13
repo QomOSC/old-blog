@@ -1,6 +1,6 @@
 import { GraphQLString } from 'graphql';
 
-import UserSchema from 'Root/schemas/query/user/schema';
+import UserSchema from 'Root/graphql/query/user/schema';
 import resolve from './resolve';
 
 const changeName = {

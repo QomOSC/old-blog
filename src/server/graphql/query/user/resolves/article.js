@@ -1,4 +1,4 @@
-import article from 'Root/schemas/utils/article';
+import article from 'Root/graphql/utils/article';
 
 const resolve = async (parent, args, context) => {
   const art = await article(
