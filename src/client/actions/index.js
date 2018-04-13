@@ -9,6 +9,9 @@ export default {
     LOGOUT: 'user/LOGOUT',
     LOGIN: 'user/LOGIN'
   },
+  users: {
+    LOAD: 'users/LOAD'
+  },
   articles: {
     DELETE: 'articles/DELETE',
     LOAD: 'articles/LOAD'
