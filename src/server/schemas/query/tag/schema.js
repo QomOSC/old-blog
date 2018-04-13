@@ -5,7 +5,7 @@ import {
 } from 'graphql';
 
 import resolve from './resolves/articles';
-import ArticleSchema from 'Root/schemas/article/schema';
+import ArticleSchema from 'Root/schemas/query/article/schema';
 
 const TagsSchema = new GraphQLObjectType({
   name: 'Tags',

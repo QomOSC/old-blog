@@ -5,7 +5,7 @@ import {
   GraphQLID
 } from 'graphql';
 
-import UserSchema from 'Root/schemas/user/schema';
+import UserSchema from 'Root/schemas/query/user/schema';
 import resolve from './resolves/user';
 
 const ArticleSchema = new GraphQLObjectType({
