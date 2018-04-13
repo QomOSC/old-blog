@@ -1,11 +1,14 @@
 import {
   GraphQLObjectType,
   GraphQLString,
+  GraphQLList,
   GraphQLInt,
   GraphQLID
 } from 'graphql';
 
+import CommentSchema from 'Root/graphql/query/comment/schema';
 import UserSchema from 'Root/graphql/query/user/schema';
+import resolveComment from './resolves/comment';
 import resolve from './resolves/user';
 
 const ArticleSchema = new GraphQLObjectType({
@@ -41,6 +44,10 @@ const ArticleSchema = new GraphQLObjectType({
     user: {
       type: UserSchema,
       resolve
+    },
+    comments: {
+      type: new GraphQLList(CommentSchema),
+      resolve: resolveComment
     }
   })
 });
