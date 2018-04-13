@@ -19,8 +19,6 @@ router.post('/article/comment/send', async (req, res) => {
     res.json({ type: 0 });
   }
   catch (e) {
-    console.log(e);
-    
     res.json({ type: 2 });
   }
 });
