@@ -9,13 +9,18 @@ import bind from 'Root/js/bind';
 import gql from 'Root/js/gql';
 
 import LoadingProgress from 'Root/components/Utils/LoadingProgress';
+import Button from 'Root/components/Utils/Button';
+
 
 class Manage extends Component {
   componentDidMount() {
     const query = `
       query {
         users(type: 1) {
+          username
+          email
           name
+          _id
         }
       }
     `;
@@ -38,7 +43,7 @@ class Manage extends Component {
   @bind
   rejectUser(_id) {
     return () => {
-      this.props.dispatch(acceptUser(_id));
+      this.props.dispatch(rejectUser(_id));
     };
   }
 
@@ -54,7 +59,26 @@ class Manage extends Component {
           <h1>کاربران جدید</h1>
         }
 
-        {this.props.users.map((v, i) => <h1 key={i}>{v.name}</h1>)}
+        {this.props.users.map((v, i) =>
+          <div key={i}>
+            <p>{v.name}</p>
+            <p>{v._id}</p>
+            <p>{v.email}</p>
+            <p>{v.username}</p>
+
+            <Button
+              color='blue'
+              handleClick={this.acceptUser(v._id)}>
+              پذیرفتن کاربر
+            </Button>
+
+            <Button
+              color='red'
+              handleClick={this.rejectUser(v._id)}>
+              نپذیرفتن کاربر
+            </Button>
+          </div>
+        )}
       </div>
     );
   }
