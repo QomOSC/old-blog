@@ -24,7 +24,7 @@ router.post('/panel/articles/delete', logged, async (req, res) => {
 
     await article.remove();
 
-    author.articles.splice(req.body.id);
+    author.articles.splice(req.body.id, 1);
 
     await author.save();
 

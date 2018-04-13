@@ -60,6 +60,11 @@ class Header extends Component {
         type: 3
       },
       {
+        to: '/panel/manage',
+        text: 'مدیریت کاربران جدید',
+        type: 3
+      },
+      {
         to: '#',
         click: this.logout,
         text: 'خروج'
