@@ -1,7 +1,8 @@
 import {
   GraphQLBoolean,
   GraphQLList,
-  GraphQLInt
+  GraphQLInt,
+  GraphQLID
 } from 'graphql';
 
 import resolve from './resolve/comment';
@@ -11,13 +12,16 @@ const CommentField = {
   type: new GraphQLList(CommentSchema),
   args: {
     article: {
-      type: GraphQLInt
+      type: GraphQLID
     },
     contact: {
       type: GraphQLBoolean
     },
     myArticles: {
       type: GraphQLBoolean
+    },
+    type: {
+      type: GraphQLInt
     }
   },
   resolve

@@ -3,7 +3,7 @@ import izitoast from 'izitoast';
 import send from 'Root/js/send';
 
 export default async data => {
-  const request = await send('/contact', { data });
+  const request = await send('/contact', data);
 
   if (request.type === 2) {
     izitoast.error({

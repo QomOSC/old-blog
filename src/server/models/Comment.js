@@ -22,11 +22,6 @@ const schema = new Schema({
     required: [true, 'email'],
     maxlength: 200
   },
-  title: {
-    type: String,
-    maxlength: 100,
-    trim: true
-  },
   description: {
     type: String,
     required: [true, 'description'],
@@ -59,7 +54,7 @@ const schema = new Schema({
   },
   author: {
     type: Schema.Types.ObjectId,
-    ref: 'Member'
+    ref: 'User'
   },
   createdAt: {
     type: Date,

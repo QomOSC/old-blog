@@ -13,4 +13,13 @@ export default async (parent, args, context) => {
 
     return comments;
   }
+
+  if (args.contact) {
+    const comments = await Comment.find({
+      contact: true,
+      type: args.type || 2
+    });
+
+    return comments;
+  }
 };

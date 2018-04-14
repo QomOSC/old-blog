@@ -21,9 +21,6 @@ const CommentSchema = new GraphQLObjectType({
     email: {
       type: GraphQLString
     },
-    title: {
-      type: GraphQLString
-    },
     description: {
       type: GraphQLString
     },

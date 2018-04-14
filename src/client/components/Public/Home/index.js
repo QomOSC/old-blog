@@ -54,7 +54,7 @@ class Home extends Component {
     if (
       !this.refs.name.value ||
       !this.refs.email.value ||
-      !this.refs.decs.value
+      !this.refs.description.value
     ) {
       izitoast.warning({
         rtl: true,
@@ -76,8 +76,12 @@ class Home extends Component {
     contact({
       name: this.refs.name.value,
       email: this.refs.email.value,
-      decs: this.refs.decs.value
+      description: this.refs.description.value
     });
+
+    this.refs.name.value = '';
+    this.refs.email.value = '';
+    this.refs.description.value = '';
   }
 
   render() {
@@ -134,15 +138,18 @@ class Home extends Component {
                 ref='name'
                 placeholder='نام'
               />
+
               <input
                 type='email'
                 ref='email'
                 placeholder='ایمیل'
               />
+
               <textarea
-                ref='decs'
+                ref='description'
                 placeholder='توضیحات'
               />
+
               <Button
                 handleClick={this.contact}
                 color='blue'>
