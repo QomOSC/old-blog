@@ -1,0 +1,38 @@
+@import '~Root/css/mixins';
+
+:local(.container) {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+:local(.comment) {
+  margin: 20px 0;
+  width: 65%;
+  padding: 20px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  .boxShadow();
+
+  p {
+    max-width: 200px;
+    word-break: break-all;
+  }
+
+  button {
+    display: block;
+  }
+
+  textarea {
+    border: 1px solid #eee;
+    border-radius: 3px;
+    padding: 5px;
+
+    &:hover, &:active {
+      border: 1px solid #aaa;
+    }
+  }
+}

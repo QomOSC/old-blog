@@ -27,7 +27,6 @@ router.post('/contact', async (req, res) => {
     res.json({ type: 0 });
   }
   catch (e) {
-    console.log(e);
     res.json({ type: 2 });
   }
 });

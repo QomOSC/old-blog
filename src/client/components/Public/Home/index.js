@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import izitoast from 'izitoast';
 
-import contact from 'Root/actions/contact';
+import contact from 'Root/actions/contact/contact';
 
 import { email } from 'Root/js/validator';
 import bind from 'Root/js/bind';
