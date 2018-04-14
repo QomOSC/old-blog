@@ -6,6 +6,7 @@ import Header from './Includes/Header';
 import Footer from './Includes/Footer';
 
 import NotFound from 'Root/components/NotFound';
+import Unsubscribe from './Unsubscribe';
 import Recovery from './Recovery';
 import Articles from './Articles';
 import Signup from './Signup';
@@ -29,6 +30,7 @@ class Public extends Component {
             <LoginRoute exact path='/login' component={Login} />
             <LoginRoute exact path='/signup' component={Signup} />
             <LoginRoute path='/recovery' component={Recovery} />
+            <Route path='/unsubscribe' component={Unsubscribe} />
             <Route path='/tag/:tagname' component={Tag} />
             <Route path='/articles' component={Articles} />
             <Route path='/user/:username' component={User} />
