@@ -6,11 +6,12 @@ const router = new Router();
 
 router.post('/article/comment/send', async (req, res) => {
   const comment = new Comment({
-    name: req.body.name,
-    email: req.body.email,
     description: req.body.description,
-    contact: false,
-    article: req.body.id
+    author: req.session.user,
+    email: req.body.email,
+    article: req.body.id,
+    name: req.body.name,
+    contact: false
   });
 
   try {
