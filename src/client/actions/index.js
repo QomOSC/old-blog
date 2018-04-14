@@ -16,5 +16,9 @@ export default {
   articles: {
     DELETE: 'articles/DELETE',
     LOAD: 'articles/LOAD'
+  },
+  comments: {
+    LOAD: 'comments/LOAD',
+    DROP: 'comments/DROP'
   }
 };

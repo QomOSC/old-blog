@@ -1,0 +1,30 @@
+import { Router } from 'express';
+
+import Comment from 'Root/models/Comment';
+
+const router = new Router();
+
+router.post('/article/comment/reject', async (req, res) => {
+  const comment = await Comment.findOne({
+    author: req.session.user,
+    _id: req.body._id,
+    type: 1
+  });
+
+  if (!comment) {
+    console.log('inja');
+    res.json({ type: 2 });
+    return;
+  }
+
+  try {
+    await comment.remove();
+    res.json({ type: 0 });
+  }
+  catch (e) {
+    console.log(e);
+    res.json({ type: 2 });
+  }
+});
+
+export default router;
