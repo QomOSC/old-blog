@@ -6,6 +6,7 @@ export default {
     REMOVE_AVATAR: 'user/REMOVE_AVATAR',
     CHANGE_EMAIL: 'user/CHANGE_EMAIL',
     CHANGE_NAME: 'user/CHANGE_NAME',
+    DELETE: 'user/DELETE',
     LOGOUT: 'user/LOGOUT',
     LOGIN: 'user/LOGIN'
   },

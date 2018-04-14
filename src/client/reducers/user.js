@@ -16,6 +16,10 @@ export default (state = {}, action) => {
       };
     }
 
+    case types.user.DELETE: {
+      return {};
+    }
+
     case types.user.CHANGE_NAME: {
       return {
         ...state,

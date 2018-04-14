@@ -13,4 +13,4 @@
 
 `npm run server`
 
-Then all you gotta do it to open http://localhost:8080 in your favorite browser.
+Then all you gotta do is to open http://localhost:8080 in your favorite browser.

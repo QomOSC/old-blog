@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import izitoast from 'izitoast';
 
@@ -7,6 +8,7 @@ import removeAvatar from 'Root/actions/user/setting/avatar/remove';
 import updateAvatar from 'Root/actions/user/setting/avatar/update';
 import changePassword from 'Root/actions/user/setting/password';
 import changeUsername from 'Root/actions/user/setting/username';
+import deleteAccount from 'Root/actions/user/setting/delete';
 import changeEmail from 'Root/actions/user/setting/email';
 import changeName from 'Root/actions/user/setting/name';
 
@@ -162,6 +164,11 @@ class Setting extends Component {
     this.refs.file.click();
   }
 
+  @bind
+  deleteAccount() {
+    this.props.dispatch(deleteAccount(this.props.history.push));
+  }
+
   render() {
     return (
       <div className={styles.container}>
@@ -184,7 +191,7 @@ class Setting extends Component {
               <Button
                 color='red'
                 handleClick={this.removeAvatar}>
-                حذف
+                حذف عکس
               </Button>
             }
           </div>
@@ -211,6 +218,9 @@ class Setting extends Component {
               </tr>}
             </tbody>
           </table>
+          <Button color='red' handleClick={this.deleteAccount}>
+            حذف حساب
+          </Button>
         </Box>
         <div>
           <Box>
@@ -308,8 +318,8 @@ class Setting extends Component {
   }
 }
 
-export default connect(
+export default withRouter(connect(
   state => ({
     user: state.user
   })
-)(Setting);
+)(Setting));

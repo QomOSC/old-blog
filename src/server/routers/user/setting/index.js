@@ -3,6 +3,7 @@ export default [
   require('./username'),
   require('./password'),
   require('./avatar'),
+  require('./delete'),
   require('./email'),
   require('./name')
 ];
