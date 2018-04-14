@@ -21,6 +21,8 @@ router.post('/panel/user/setting/delete', logged, async (req, res) => {
     await newsletter.remove();
     await user.remove();
 
+    req.session.user = null;
+
     res.json({ type: 0 });
   }
   catch (e) {

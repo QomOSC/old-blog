@@ -65,6 +65,15 @@ class Header extends Component {
         type: 3
       },
       {
+        to: '/panel/comments',
+        text: 'نظرات درباره جامعه',
+        type: 3
+      },
+      {
+        to: '/panel/articles/comments',
+        text: 'نظرات درباره مقالات شما'
+      },
+      {
         to: '#',
         click: this.logout,
         text: 'خروج'
