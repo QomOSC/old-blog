@@ -48,7 +48,7 @@ class Comments extends Component {
   @bind
   acceptComment(_id) {
     return () => {
-      this.props.dispatch(acceptComment(_id));
+      this.props.dispatch(acceptComment(_id, this.refs.answer.value));
     };
   }
 
@@ -89,6 +89,11 @@ class Comments extends Component {
             </div>
 
             <div>
+              <textarea
+                placeholder='جواب دادن'
+                ref='answer'
+              />
+
               <Button color='blue' handleClick={this.acceptComment(v._id)}>
                 تایید و نشان دادن
               </Button>

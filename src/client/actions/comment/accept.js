@@ -5,8 +5,8 @@ import types from 'Root/actions';
 import { error } from 'Root/js/messages';
 import send from 'Root/js/send';
 
-export default _id => async dispatch => {
-  const request = await send('/article/comment/accept', { _id });
+export default (_id, answer) => async dispatch => {
+  const request = await send('/article/comment/accept', { _id, answer });
 
   if (request.type === 0) {
     izitoast.success({

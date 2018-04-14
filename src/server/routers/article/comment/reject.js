@@ -12,7 +12,6 @@ router.post('/article/comment/reject', async (req, res) => {
   });
 
   if (!comment) {
-    console.log('inja');
     res.json({ type: 2 });
     return;
   }
@@ -22,7 +21,6 @@ router.post('/article/comment/reject', async (req, res) => {
     res.json({ type: 0 });
   }
   catch (e) {
-    console.log(e);
     res.json({ type: 2 });
   }
 });

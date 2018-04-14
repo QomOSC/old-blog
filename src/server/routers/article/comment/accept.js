@@ -18,6 +18,10 @@ router.post('/article/comment/accept', async (req, res) => {
 
   comment.type = 2;
 
+  if (req.body.answer) {
+    comment.answer = req.body.answer;
+  }
+
   try {
     await comment.save();
     res.json({ type: 0 });
