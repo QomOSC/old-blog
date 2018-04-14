@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 
 import code from 'Root/actions/unsubscribe/code';
 
+import LoadingProgress from 'Root/components/Utils/LoadingProgress';
 
 class Code extends Component {
   componentDidMount() {
@@ -10,7 +11,7 @@ class Code extends Component {
   }
 
   render() {
-    return <p>Hello</p>;
+    return <LoadingProgress />;
   }
 }
 
