@@ -55,5 +55,36 @@
   }
 }
 
+:local(.showComments) {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+:local(.oneComment) {
+  width: 50%;
+  background-color: white;
+  margin: 15px 0;
+  padding: 15px;
+  text-align: right;
+  display: flex;
+  justify-content: space-between;
+  .boxShadow();
+
+  > div {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  p {
+    max-width: 200px;
+    word-break: break-all;
+  }
+}
+
 @media (min-width: 120px) and (max-width: 580px) {
 }

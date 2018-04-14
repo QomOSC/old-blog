@@ -41,6 +41,13 @@ class ArticlesHome extends Component {
             email
             name
           }
+
+          comments {
+            description
+            createdAt
+            answer
+            name
+          }
         }
       }
     `;
@@ -159,6 +166,27 @@ class ArticlesHome extends Component {
           <Button color='blue' handleClick={this.comment}>
             ثبت نظر
           </Button>
+        </div>
+
+        <div className={styles.showComments}>
+          {this.state.article.comments.map((v, i) =>
+            <div key={i} className={styles.oneComment}>
+              <div>
+                <p>نام: {v.name}</p>
+                <p>توضیحات: {v.description}</p>
+                <p>{moment(v.createdAt)}</p>
+              </div>
+
+              {v.answer ?
+                <div>
+                  <p>پاسخ</p>
+                  {this.renderImage()}
+                  <p>{v.answer}</p>
+                </div> :
+                ''
+              }
+            </div>
+          )}
         </div>
       </div>
     );
