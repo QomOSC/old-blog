@@ -15,6 +15,9 @@ const CommentField = {
     },
     contact: {
       type: GraphQLBoolean
+    },
+    myArticles: {
+      type: GraphQLBoolean
     }
   },
   resolve

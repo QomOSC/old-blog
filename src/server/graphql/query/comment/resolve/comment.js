@@ -1,15 +1,16 @@
 import Comment from 'Root/models/Comment';
-import User from 'Root/models/User';
 
 export default async (parent, args, context) => {
-  const user = await User.findById(context.req.session.user);
-  let comments;
-
-  if (user.type < 3) {
-    comments = await Comment.find({ article: args.article, type: 1 });
-  } else {
-    comments = await Comment.find({ article: args.article });
+  if (!context.req.session.user) {
+    return [];
   }
 
-  return comments;
+  if (args.myArticles) {
+    const comments = await Comment.find({
+      author: context.req.session.user,
+      type: 1
+    });
+
+    return comments;
+  }
 };

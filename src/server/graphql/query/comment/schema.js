@@ -6,9 +6,15 @@ import {
   GraphQLID
 } from 'graphql';
 
+import ArticleSchema from 'Root/graphql/query/article/schema';
+import resolve from './resolve/article';
+
 const CommentSchema = new GraphQLObjectType({
   name: 'Comment',
   fields: () => ({
+    _id: {
+      type: GraphQLID
+    },
     name: {
       type: GraphQLString
     },
@@ -34,7 +40,11 @@ const CommentSchema = new GraphQLObjectType({
       type: GraphQLBoolean
     },
     article: {
-      type: GraphQLInt
+      type: GraphQLID
+    },
+    articleData: {
+      type: ArticleSchema,
+      resolve
     },
     author: {
       type: GraphQLID
