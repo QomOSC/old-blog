@@ -1,4 +1,5 @@
 export default [
+  require('./subscription'),
   require('./checklogin'),
   require('./recovery'),
   require('./contact'),
