@@ -4,6 +4,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import AdminRoute from 'Root/components/Perm/admin';
 import Header from './Includes/Header';
 
+import Conferences from './Conferences';
 import Articles from './Articles';
 import Comments from './Comments';
 import Setting from './Setting';
@@ -19,6 +20,7 @@ class Panel extends Component {
 
         <Switch>
           <AdminRoute exact path='/panel/comments' component={Comments} />
+          <Route path='/panel/conferences' component={Conferences} />
           <Route path='/panel/articles' component={Articles} />
           <AdminRoute path='/panel/manage' component={Manage} />
           <Route exact path='/panel/setting' component={Setting} />
