@@ -6,8 +6,6 @@ export default async parent => {
   for (const i of parent.providers) {
     const u = await user({ username: i }, true);
 
-    console.log(u);
-
     users.push(u);
   }
 

@@ -21,5 +21,8 @@ export default {
   comments: {
     LOAD: 'comments/LOAD',
     DROP: 'comments/DROP'
+  },
+  conferences: {
+    LOAD: 'conferences/LOAD'
   }
 };
