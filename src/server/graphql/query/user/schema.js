@@ -6,8 +6,10 @@ import {
   GraphQLObjectType
 } from 'graphql';
 
-import resolveUserArticles from './resolves/userArticles';
+import ConferenceSchema from 'Root/graphql/query/conference/schema';
+import resolveConference from './resolves/conference';
 import ArticleSchema from 'Root/graphql/query/article/schema';
+import resolveUserArticles from './resolves/userArticles';
 import resolveArticle from './resolves/article';
 
 const UserSchema = new GraphQLObjectType({
@@ -52,6 +54,15 @@ const UserSchema = new GraphQLObjectType({
         }
       },
       resolve: resolveArticle
+    },
+    conferences: {
+      type: new GraphQLList(ConferenceSchema),
+      args: {
+        type: {
+          type: GraphQLInt
+        }
+      },
+      resolve: resolveConference
     }
   })
 });
