@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 
-class Conferences extends Component {
+
+class MyConferences extends Component {
   render() {
     return (
-      <h1>Hello</h1>
+      <div>
+        <h1>My Conferences</h1>
+      </div>
     );
   }
 }
 
-export default Conferences;
+export default MyConferences;

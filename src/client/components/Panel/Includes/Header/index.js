@@ -74,6 +74,19 @@ class Header extends Component {
         text: 'نظرات درباره مقالات شما'
       },
       {
+        to: '/panel/conferences',
+        text: 'ارائه های شما'
+      },
+      {
+        to: '/panel/conferences/add',
+        text: 'اضافه کردن ارائه'
+      },
+      {
+        to: '/panel/conferences/manage',
+        text: 'مدیریت ارائه ها',
+        type: 3
+      },
+      {
         to: '#',
         click: this.logout,
         text: 'خروج'
