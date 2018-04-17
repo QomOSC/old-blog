@@ -20,10 +20,6 @@ const schema = new Schema({
     required: [true, 'content'],
     trim: true
   },
-  avatar: {
-    type: String,
-    trim: true,
-  },
   createdAt: {
     type: Date,
     default: Date.now
