@@ -1,13 +1,15 @@
 import user from 'Root/graphql/utils/user';
 
 export default async parent => {
-  console.log(parent);
   const users = [];
 
-  // for (const i of parent.providers) {
-  //   const u = await user({ _id: parent.author });
-  //
-  // }
+  for (const i of parent.providers) {
+    const u = await user({ username: i }, true);
+
+    console.log(u);
+
+    users.push(u);
+  }
 
 
   return users;

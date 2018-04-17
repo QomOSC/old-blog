@@ -42,7 +42,7 @@ const ConferenceSchema = new GraphQLObjectType({
       resolve: resolveAuthor
     },
     providers: {
-      type: GraphQLString
+      type: new GraphQLList(GraphQLString)
     },
     providersInfo: {
       type: new GraphQLList(UserSchema),
