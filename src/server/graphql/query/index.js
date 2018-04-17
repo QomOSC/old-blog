@@ -1,5 +1,6 @@
 import { GraphQLObjectType } from 'graphql';
 
+import conferences from './conference/conferences';
 import conference from './conference/conference';
 import articles from './article/articles';
 import article from './article/article';
@@ -11,6 +12,7 @@ import tag from './tag/tags';
 const query = new GraphQLObjectType({
   name: 'Query',
   fields: {
+    conferences,
     conference,
     articles,
     article,
