@@ -1,5 +1,4 @@
 import mongoose, { Schema } from 'mongoose';
-import autoIncrement from 'mongoose-auto-increment';
 
 const schema = new Schema({
   providers: [{ // The ID from Member model
@@ -50,10 +49,8 @@ const schema = new Schema({
     trim: true,
     required: true
   }
-}, { usePushEach: true });
-
-autoIncrement.initialize(mongoose);
-
-schema.plugin(autoIncrement.plugin, 'Conference');
+}, {
+  usePushEach: true
+});
 
 export default mongoose.model('Conference', schema);

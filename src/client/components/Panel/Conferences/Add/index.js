@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import izitoast from 'izitoast';
 
 import addConference from 'Root/actions/user/conferences/add';
 
+import { username } from 'Root/js/validator';
 import bind from 'Root/js/bind';
 
 import Button from 'Root/components/Utils/Button';
@@ -17,13 +20,26 @@ class Conferences extends Component {
 
   @bind
   keypress(e) {
-    if (e.key === ' ') {
-      if (!this.state.providers.includes(this.state.provider.trim())) {
-        this.state.providers.push(this.state.provider.trim());
-      }
-
-      this.setState({ provider: '' });
+    if (e.key !== ' ') {
+      return;
     }
+
+    if (this.state.providers.includes(this.state.provider.trim())) {
+      return;
+    }
+
+    if (!username(this.state.provider.trim())) {
+      izitoast.warning({
+        rtl: true,
+        title: 'یوزرنیم صحیح نمیباشد'
+      });
+
+      return;
+    }
+
+    this.state.providers.push(this.state.provider.trim());
+
+    this.setState({ provider: '' });
   }
 
   @bind
@@ -33,7 +49,28 @@ class Conferences extends Component {
 
   @bind
   submit() {
-    addConference();
+    if (
+      !this.refs.description.value ||
+      !this.state.providers.length ||
+      !this.refs.title.value ||
+      !this.refs.start.value ||
+      !this.refs.end.value
+    ) {
+      izitoast.warning({
+        rtl: true,
+        title: 'مقادیر کافی نمیباشد'
+      });
+
+      return;
+    }
+
+    addConference({
+      description: this.refs.description.value,
+      providers: this.state.providers,
+      title: this.refs.title.value,
+      start: this.refs.start.value,
+      end: this.refs.end.value
+    }, this.props.history.push);
   }
 
   render() {
@@ -72,7 +109,7 @@ class Conferences extends Component {
           value={this.state.provider}
           onChange={this.handleChange}
           onKeyPress={this.keypress}
-          placeholder='ارائه دهندگان (با کاما جدا کنید)'
+          placeholder='یوزرنیم ارائه دهندگان (با کاما جدا کنید)'
         />
 
         <Button color='blue' handleClick={this.submit}>
@@ -83,4 +120,4 @@ class Conferences extends Component {
   }
 }
 
-export default Conferences;
+export default withRouter(Conferences);
