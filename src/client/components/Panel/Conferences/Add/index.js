@@ -109,7 +109,7 @@ class Conferences extends Component {
           value={this.state.provider}
           onChange={this.handleChange}
           onKeyPress={this.keypress}
-          placeholder='یوزرنیم ارائه دهندگان (با کاما جدا کنید)'
+          placeholder='یوزرنیم ارائه دهندگان (با کاما جدا و اضافه کنید)'
         />
 
         <Button color='blue' handleClick={this.submit}>

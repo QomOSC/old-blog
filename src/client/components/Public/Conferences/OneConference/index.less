@@ -1,0 +1,29 @@
+@import '~Root/css/colors';
+
+:local(.container) {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  > div {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+}
+
+:local(.avatarImage) {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+:local(.faded) {
+  color: #333;
+  font-size: 14px;
+}
+
+:local(.username) {
+  color: @blue-base;
+}

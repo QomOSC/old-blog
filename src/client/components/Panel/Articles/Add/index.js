@@ -121,7 +121,7 @@ class AddArticle extends Component {
           onChange={this.handleChange}
           onKeyPress={this.keypress}
           ref='tags'
-          placeholder='برچست ها (با فاصله جدا کنید)'
+          placeholder='برچست ها (با فاصله جدا و اضافه کنید)'
         />
 
         <Button
