@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import moment from 'Root/js/moment';
 import bind from 'Root/js/bind';
@@ -58,6 +59,19 @@ class ArticlesHome extends Component {
     />;
   }
 
+  @bind
+  galleryLink(id) {
+    if (this.props.user && this.props.user.type > 2) {
+      return <Link to={`/panel/conferences/gallery/${id}`}>
+        <Button color='blue'>
+          اضافه کردن عکس
+        </Button>
+      </Link>;
+    }
+
+    return null;
+  }
+
   render() {
     if (!this.state.conferences) {
       return <LoadingProgress />;
@@ -94,6 +108,8 @@ class ArticlesHome extends Component {
                 مشاهده
               </Button>
             </Link>
+
+            {this.galleryLink(v._id)}
           </div>
         )}
       </div>
@@ -101,4 +117,8 @@ class ArticlesHome extends Component {
   }
 }
 
-export default ArticlesHome;
+export default connect(
+  state => ({
+    user: state.user
+  })
+)(ArticlesHome);

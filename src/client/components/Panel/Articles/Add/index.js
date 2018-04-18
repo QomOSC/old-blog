@@ -113,7 +113,8 @@ class AddArticle extends Component {
           type='file'
           ref='file'
           className={styles.avatarInput}
-          onChange={this.updateAvatar} />
+          onChange={this.updateAvatar}
+        />
 
         <input
           type='text'

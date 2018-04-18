@@ -44,7 +44,11 @@ const schema = new Schema({
     type: String,
     trim: true,
     required: true
-  }
+  },
+  galleries: [{
+    type: String,
+    trim: true
+  }]
 }, {
   usePushEach: true
 });
