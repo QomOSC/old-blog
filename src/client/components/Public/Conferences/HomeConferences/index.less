@@ -1,0 +1,37 @@
+@import '~Root/css/mixins';
+
+:local(.container) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 10px 0;
+}
+
+:local(.conf) {
+  width: 40%;
+  height: auto;
+  background-color: white;
+  padding: 20px;
+  .boxShadow();
+  margin: 20px 0;
+  text-align: center;
+
+  span {
+    color: #666;
+    font-size: 14px;
+  }
+}
+
+:local(.user) {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
+}
+
+:local(.avatarImage) {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
