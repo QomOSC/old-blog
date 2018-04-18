@@ -1,0 +1,15 @@
+@import '~Root/css/mixins';
+
+:local(.container) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  input, textarea {
+    width: 400px;
+    margin: 20px 0;
+    padding: 20px;
+    .input();
+  }
+}
