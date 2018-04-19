@@ -60,6 +60,12 @@ const schema = new Schema({
     trim: true,
     default: 1
   },
+  verified: {
+    type: Boolean,
+    required: true,
+    trim: true,
+    default: false
+  },
   avatar: {
     type: String,
     trim: true,

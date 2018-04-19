@@ -10,6 +10,7 @@ import Unsubscribe from './Unsubscribe';
 import Conferences from './Conferences';
 import Recovery from './Recovery';
 import Articles from './Articles';
+import Activate from './Activate';
 import Signup from './Signup';
 import Login from './Login';
 import Home from './Home';
@@ -31,6 +32,7 @@ class Public extends Component {
             <LoginRoute exact path='/login' component={Login} />
             <LoginRoute exact path='/signup' component={Signup} />
             <LoginRoute path='/recovery' component={Recovery} />
+            <LoginRoute path='/activate/:code' component={Activate} />
             <Route path='/conferences' component={Conferences} />
             <Route path='/unsubscribe' component={Unsubscribe} />
             <Route path='/tag/:tagname' component={Tag} />

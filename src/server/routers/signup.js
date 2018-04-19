@@ -1,11 +1,13 @@
 import { Router } from 'express';
 
+import ActivationLink from 'Root/models/ActivationLink';
 import Newsletter from 'Root/models/Newsletter';
 import User from 'Root/models/User';
 
 import { hmac } from 'Root/utils/crypto';
 import { dbkey, url } from 'Root/config';
 import sendEmail from 'Root/utils/email';
+import random from 'Root/utils/random';
 import { login } from 'Root/perms';
 
 const router = new Router();
@@ -34,17 +36,33 @@ router.post('/signup', login, async (req, res) => {
     password: hmac(req.body.password, dbkey)
   });
 
+  const code = await random(25);
+
+  const AL = new ActivationLink({
+    user: user._id,
+    code
+  });
+
   try {
     await user.save();
+    await AL.save();
 
     sendEmail({
       to: user.email,
-      subject: 'ثبت نام موفق',
+      subject: 'تایید حساب',
       html: `
         ثبت نام شما در جامعه متن باز قم با موفقیت انجام شد
+        <br>
         لطفا تا زمان تایید حساب شما توسط مدیران شکیبا باشید
+        <br>
+        برای تایید حساب خود روی لینک زیر کلیک کنید
+        <br>
+        <a href='${url}/activate/${code}'>تایید حساب</a>
+        <br>
         حساب شما به صورت خودکار به خبر نامه اضافه شد
+        <br>
         برای خروج از خبر نامه به این لینک مراجعه فرمایید
+        <br>
         <a href='${url}/unsubscribe'>خروج از خبرنامه</a>
       `
     });

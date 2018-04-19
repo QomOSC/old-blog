@@ -23,6 +23,13 @@ export default async (data, push) => {
         title: 'حساب شما هنوز توسط مدیران تایید نشده'
       });
     }
+
+    else if (request.text === 2) {
+      izitoast.error({
+        rtl: true,
+        title: 'حساب شما تایید نشده، ایمیل خود را چک کنید',
+      });
+    }
   }
 
   else if (request.type === 0) {

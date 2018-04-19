@@ -2,6 +2,8 @@ import { Router } from 'express';
 
 import Comment from 'Root/models/Comment';
 
+import sendEmail from 'Root/utils/email';
+
 import { admin } from 'Root/perms';
 
 const router = new Router();
@@ -23,6 +25,14 @@ router.post('/contact/accept', admin, async (req, res) => {
     }
 
     await comment.save();
+
+    sendEmail({
+      to: comment.email,
+      subject: 'نظر شما به ثبت رسید',
+      html: `
+        نظر شما با موفقیت در جامعه متن باز قم به ثبت رسید
+      `
+    });
 
     res.json({ type: 0 });
   }
