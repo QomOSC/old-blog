@@ -2,6 +2,10 @@ import { Router } from 'express';
 
 import Comment from 'Root/models/Comment';
 
+import sendEmail from 'Root/utils/email';
+
+import { url } from 'Root/config';
+
 const router = new Router();
 
 router.post('/article/comment/accept', async (req, res) => {
@@ -24,6 +28,19 @@ router.post('/article/comment/accept', async (req, res) => {
 
   try {
     await comment.save();
+
+    sendEmail({
+      to: comment.email,
+      subject: 'نظر شما با موفقیت پذیرفته شد',
+      html: `
+        نظر شما با موفقیت تایید شد
+        <br>
+        برای دیدن مقاله به لینک زیر بروید
+        <br>
+        <a href='${url}/articles/${comment.article}'>مقاله</a>
+      `
+    });
+
     res.json({ type: 0 });
   }
   catch (e) {

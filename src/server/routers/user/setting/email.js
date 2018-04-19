@@ -1,8 +1,10 @@
 import { Router } from 'express';
 
+import Newsletter from 'Root/models/Newsletter';
 import User from 'Root/models/User';
 
 import { email } from 'Root/utils/validator';
+import sendEmail from 'Root/utils/email';
 
 import { logged } from 'Root/perms';
 
@@ -30,10 +32,29 @@ router.post('/panel/user/setting/email', logged, async (req, res) => {
     return;
   }
 
+  const newsletter = await Newsletter.findOne({ email: user.email });
+
   user.email = req.body.email;
 
+  if (newsletter) {
+    newsletter.email = req.body.email;
+  }
+
   try {
+    await newsletter.save();
     await user.save();
+
+    sendEmail({
+      to: req.body.email,
+      subject: 'تغییر ایمیل',
+      html: `
+        کاربر گرامی ${user.name},
+        <br>
+        ایمیل شما تغییر کرد،
+        <br>
+        جامعه متن باز قم
+      `
+    });
 
     res.json({ type: 0 });
   } catch (e) {

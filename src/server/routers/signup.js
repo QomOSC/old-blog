@@ -4,7 +4,8 @@ import Newsletter from 'Root/models/Newsletter';
 import User from 'Root/models/User';
 
 import { hmac } from 'Root/utils/crypto';
-import config from 'Root/config';
+import { dbkey, url } from 'Root/config';
+import sendEmail from 'Root/utils/email';
 import { login } from 'Root/perms';
 
 const router = new Router();
@@ -30,11 +31,24 @@ router.post('/signup', login, async (req, res) => {
 
   const user = new User({
     ...req.body,
-    password: hmac(req.body.password, config.dbkey)
+    password: hmac(req.body.password, dbkey)
   });
 
   try {
     await user.save();
+
+    sendEmail({
+      to: user.email,
+      subject: 'ثبت نام موفق',
+      html: `
+        ثبت نام شما در جامعه متن باز قم با موفقیت انجام شد
+        لطفا تا زمان تایید حساب شما توسط مدیران شکیبا باشید
+        حساب شما به صورت خودکار به خبر نامه اضافه شد
+        برای خروج از خبر نامه به این لینک مراجعه فرمایید
+        <a href='${url}/unsubscribe'>خروج از خبرنامه</a>
+      `
+    });
+
   } catch (e) {
     res.json({ type: 2, text: 3 });
     return;
