@@ -76,7 +76,10 @@ class Setting extends Component {
       return;
     }
 
-    this.props.dispatch(changeEmail(this.refs.email.value));
+    this.props.dispatch(changeEmail(
+      this.refs.email.value,
+      this.props.history.push
+    ));
   }
 
   @bind

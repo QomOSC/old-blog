@@ -35,6 +35,7 @@ router.post('/panel/user/setting/email', logged, async (req, res) => {
   const newsletter = await Newsletter.findOne({ email: user.email });
 
   user.email = req.body.email;
+  user.verified = false;
 
   if (newsletter) {
     newsletter.email = req.body.email;

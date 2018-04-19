@@ -4,7 +4,7 @@ import types from 'Root/actions';
 
 import send from 'Root/js/send';
 
-export default email => async dispatch => {
+export default (email, push) => async dispatch => {
   const request = await send('/panel/user/setting/email', { email });
 
   if (request.type === 0) {
@@ -14,9 +14,10 @@ export default email => async dispatch => {
     });
 
     dispatch({
-      type: types.user.CHANGE_EMAIL,
-      email
+      type: types.user.LOGOUT,
     });
+
+    push('/');
   }
 
   else if (request.type === 2) {
