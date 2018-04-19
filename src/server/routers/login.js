@@ -12,7 +12,6 @@ import { login } from 'Root/perms';
 
 const router = new Router();
 
-
 router.post('/login', login, async (req, res) => {
   req.body.email = req.body.email.toLowerCase();
 
@@ -21,7 +20,7 @@ router.post('/login', login, async (req, res) => {
       email: req.body.email,
       password: hmac(req.body.password, dbkey)
     })
-    .select('_id name type email avatar username description');
+    .select('_id name type email avatar username description verified');
 
   if (!user) {
     res.json({ type: 2, text: 0 });
@@ -68,7 +67,7 @@ router.post('/login', login, async (req, res) => {
           <br>
           <a href='${url}/activate/${AL.code}'>تایید حساب</a>
         `
-      });      
+      });
     }
 
     return;
