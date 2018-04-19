@@ -10,7 +10,8 @@ export default (email, push) => async dispatch => {
   if (request.type === 0) {
     izitoast.success({
       rtl: true,
-      title: 'با موفقیت به روز رسانی شد'
+      title: 'با موفقیت به روز رسانی شد',
+      message: 'برای ورود ایمیل خود را تایید کنید'
     });
 
     dispatch({
