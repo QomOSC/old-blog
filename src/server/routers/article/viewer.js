@@ -16,7 +16,7 @@ router.post('/article/viewer', logged, async (req, res) => {
     }
 
     if (article.viewers.includes(req.body.ip)) {
-      res.json({ type: 0 });
+      res.json({ type: 0, text: 1 });
       return;
     }
 
@@ -24,7 +24,7 @@ router.post('/article/viewer', logged, async (req, res) => {
 
     await article.save();
 
-    res.json({ type: 0 });
+    res.json({ type: 0, text: 0 });
   }
 
   catch (e) {
