@@ -23,6 +23,7 @@ export default {
     DROP: 'comments/DROP'
   },
   conferences: {
+    DONE: 'conferences/DONE',
     LOAD: 'conferences/LOAD'
   }
 };

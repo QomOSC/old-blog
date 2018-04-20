@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import makeAsDone from 'Root/actions/user/conferences/done';
+import types from 'Root/actions';
+
 import moment from 'Root/js/moment';
 import bind from 'Root/js/bind';
 import gql from 'Root/js/gql';
@@ -13,9 +16,9 @@ import userDefault from 'Root/images/u.png';
 import styles from './index.less';
 
 
-class ArticlesHome extends Component {
+class ConferencesHome extends Component {
   state = {
-    conferences: null
+    loading: true
   };
 
   componentDidMount() {
@@ -25,6 +28,7 @@ class ArticlesHome extends Component {
         _id
         end
         type
+        done
         title
         start
         createdAt
@@ -40,7 +44,12 @@ class ArticlesHome extends Component {
     `;
 
     gql(query).then(data => {
-      this.setState({ conferences: data.data.conferences });
+      this.props.dispatch({
+        type: types.conferences.LOAD,
+        conferences: data.data.conferences
+      });
+
+      this.setState({ loading: false });
     });
   }
 
@@ -60,20 +69,34 @@ class ArticlesHome extends Component {
   }
 
   @bind
-  galleryLink(id) {
+  makeAsDone(_id) {
+    return () => {
+      this.props.dispatch(makeAsDone(_id));
+    };
+  }
+
+  @bind
+  galleryLink(_id, done) {
     if (this.props.user && this.props.user.type > 2) {
       return (
         <div>
-          <Link to={`/panel/conferences/gallery/${id}`}>
+          <Link to={`/panel/conferences/gallery/${_id}`}>
             <Button color='blue'>
               اضافه کردن عکس
             </Button>
           </Link>
-          <Link to={`/panel/conferences/video/${id}`}>
+
+          <Link to={`/panel/conferences/video/${_id}`}>
             <Button color='black'>
               اضافه کردن ویدیو
             </Button>
           </Link>
+
+          {!done &&
+            <Button color='blue' handleClick={this.makeAsDone(_id)}>
+              به اتمام رساندن
+            </Button>
+          }
         </div>
       );
     }
@@ -82,18 +105,18 @@ class ArticlesHome extends Component {
   }
 
   render() {
-    if (!this.state.conferences) {
+    if (this.state.loading) {
       return <LoadingProgress />;
     }
 
     return (
       <div className={styles.container}>
-        {this.state.conferences.length ?
+        {this.props.conferences.length ?
           <h1>کنفرانس های اخیر</h1> :
           <h1>کنفرانسی وجود ندارد</h1>
         }
 
-        {this.state.conferences.map((v, i) =>
+        {this.props.conferences.map((v, i) =>
           <div key={i} className={styles.conf}>
             <div className={styles.user}>
               <Link to={`/user/${v.authorInfo.username}`}>
@@ -110,6 +133,7 @@ class ArticlesHome extends Component {
             <p>موضوع: {v.title}</p>
             <p>شروع:‌ {v.start}</p>
             <p>اتمام: {v.end}</p>
+            <p>{v.done ? 'به اتمام رسیده است' : 'به اتمام نرسیده است'}</p>
             <span>{moment(new Date(v.createdAt))}</span>
             <p />
             <Link to={`/conferences/${v._id}`}>
@@ -118,7 +142,7 @@ class ArticlesHome extends Component {
               </Button>
             </Link>
 
-            {this.galleryLink(v._id)}
+            {this.galleryLink(v._id, v.done)}
           </div>
         )}
       </div>
@@ -128,6 +152,7 @@ class ArticlesHome extends Component {
 
 export default connect(
   state => ({
-    user: state.user
+    user: state.user,
+    conferences: state.conferences
   })
-)(ArticlesHome);
+)(ConferencesHome);

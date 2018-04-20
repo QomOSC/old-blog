@@ -3,5 +3,6 @@ export default [
   require('./accept'),
   require('./reject'),
   require('./video'),
+  require('./done'),
   require('./add')
 ];
