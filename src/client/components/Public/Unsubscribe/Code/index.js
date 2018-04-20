@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
-import code from 'Root/actions/unsubscribe/code';
+import code from 'Root/actions/subscription/code';
 
 import LoadingProgress from 'Root/components/Utils/LoadingProgress';
 

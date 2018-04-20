@@ -1,15 +1,15 @@
 @import '~Root/css/colors';
+@import '~Root/css/mixins';
 
 :local(.footer) {
   width: 100%;
-  height: 80px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   text-align: center;
   background-color: @black-base;
   color: white;
-  margin-bottom: 20px;
+  padding: 10px 40px;
 
   a {
     color: #777;
@@ -18,6 +18,10 @@
       color: white;
     }
   }
+
+  input {
+    .input();
+  }
 }
 
 @media (min-width: 120px) and (max-width: 580px) {
@@ -25,5 +29,6 @@
     margin: 0;
     padding: 10px;
     font-size: 13px;
+    flex-direction: column;
   }
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import izitoast from 'izitoast';
 
-import unsubscribe from 'Root/actions/unsubscribe/unsubscribe';
+import unsubscribe from 'Root/actions/subscription/unsubscribe';
 
 import { email } from 'Root/js/validator';
 import bind from 'Root/js/bind';
