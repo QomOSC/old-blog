@@ -50,7 +50,8 @@ const schema = new Schema({
     trim: true
   }
 }, {
-  _id: false
+  _id: false,
+  usePushEach: true
 });
 
 schema.plugin(AutoIncrement);

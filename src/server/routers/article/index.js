@@ -1,3 +1,5 @@
 export default [
-  require('./comment')
+  require('./dislike'),
+  require('./comment'),
+  require('./like')
 ];

@@ -127,7 +127,14 @@ class Conference extends Component {
             ''
           }
 
-          {this.state.conference.embeds.map(v => v)}
+          {this.state.conference.embeds.map((v, i) =>
+            <div
+              key={i}
+              dangerouslySetInnerHTML={{
+                __html: v
+              }}
+            />
+          )}
         </div>
 
         <div className={styles.providers}>

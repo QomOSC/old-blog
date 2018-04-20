@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import MarkdownIt from 'markdown-it';
 import izitoast from 'izitoast';
 
+import dislikeArticle from 'Root/actions/article/dislike';
+import likeArticle from 'Root/actions/article/like';
 import send from 'Root/actions/comment/send';
+import types from 'Root/actions';
 
 import { email } from 'Root/js/validator';
 import moment from 'Root/js/moment';
@@ -16,22 +20,25 @@ import Button from 'Root/components/Utils/Button';
 import userDefault from 'Root/images/u.png';
 import styles from './index.less';
 
-
 const md = new MarkdownIt();
+
 
 class ArticlesHome extends Component {
   state = {
-    article: undefined
+    loading: true
   };
 
   componentDidMount() {
     const query = `
       query {
         article(_id: "${this.props.match.params.id}") {
+          viewerLength
+          likeLength
           createdAt
           minutes
           content
           avatar
+          liked
           title
           _id
 
@@ -53,15 +60,30 @@ class ArticlesHome extends Component {
     `;
 
     gql(query).then(data => {
-      this.setState({ article: data.data.article });
+      if (!data.data.article) {
+        this.props.history.push('/notfound');
+        return;
+      }
+
+      if (!data.data.article._id) {
+        this.props.history.push('/notfound');
+        return;
+      }
+
+      this.props.dispatch({
+        type: types.article.LOAD,
+        article: data.data.article
+      });
+
+      this.setState({ loading: false });
     });
   }
 
   @bind
   renderImage() {
-    if (this.state.article.user.avatar) {
+    if (this.props.article.user.avatar) {
       return <img
-        src={`/static/uploads/${this.state.article.user.avatar}`}
+        src={`/static/uploads/${this.props.article.user.avatar}`}
         className={styles.userImage}
       />;
     }
@@ -106,44 +128,69 @@ class ArticlesHome extends Component {
     this.refs.name.value = '';
   }
 
-  render() {
-    if (!this.state.article) {
-      return <LoadingProgress />;
-    }
+  @bind
+  like(_id) {
+    return () => {
+      this.props.dispatch(likeArticle(_id));
+    };
+  }
 
-    if (this.state.article.title === null) {
-      return <Redirect to='/notfound' />;
+  @bind
+  dislike(_id) {
+    return () => {
+      this.props.dispatch(dislikeArticle(_id));
+    };
+  }
+
+  render() {
+    if (this.state.loading) {
+      return <LoadingProgress />;
     }
 
     return (
       <div className={styles.container}>
         <div className={styles.user}>
-          <p>{this.state.article.user.name}</p>
-          <p>{this.state.article.user.email}</p>
+          <p>{this.props.article.user.name}</p>
+          <p>{this.props.article.user.email}</p>
           {this.renderImage()}
-          {this.state.article.user.description && <p>
-            درباره: {this.state.article.user.description}
+          {this.props.article.user.description && <p>
+            درباره: {this.props.article.user.description}
           </p>}
         </div>
 
         <div className={styles.article}>
           <br />
-          <h1>{this.state.article.title}</h1>
-          <p>{moment(new Date(this.state.article.createdAt))}</p>
-          <p>{this.state.article.minutes} دقیقه خواندن</p>
+          <h1>{this.props.article.title}</h1>
+          <p>{moment(new Date(this.props.article.createdAt))}</p>
+          <p>{this.props.article.minutes} دقیقه خواندن</p>
           <br />
 
           <img
             className={styles.articleAvatar}
-            src={`/static/uploads/${this.state.article.avatar}`}
+            src={`/static/uploads/${this.props.article.avatar}`}
           />
 
           <div
             className={styles.articleContent}
             dangerouslySetInnerHTML={{
-            __html: md.render(this.state.article.content)
+            __html: md.render(this.props.article.content)
           }} />
         </div>
+
+        <p>تعداد لایک: {this.props.article.likeLength}</p>
+
+        {this.props.article.liked ?
+          <div
+            title='برداشتن لایک'
+            onClick={this.dislike(this.props.article._id)}
+            className={`icon icon-heart ${styles.liked}`}
+          /> :
+          <div
+            title='لایک کردن'
+            onClick={this.like(this.props.article._id)}
+            className={`icon icon-heart ${styles.disliked}`}
+          />
+        }
 
         <div className={styles.comment}>
           <input
@@ -169,7 +216,7 @@ class ArticlesHome extends Component {
         </div>
 
         <div className={styles.showComments}>
-          {this.state.article.comments.map((v, i) =>
+          {this.props.article.comments.map((v, i) =>
             <div key={i} className={styles.oneComment}>
               <div>
                 <p>نام: {v.name}</p>
@@ -193,4 +240,10 @@ class ArticlesHome extends Component {
   }
 }
 
-export default ArticlesHome;
+export default withRouter(
+  connect(
+    state => ({
+      article: state.article
+    })
+  )(ArticlesHome)
+);

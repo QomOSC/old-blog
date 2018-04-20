@@ -1,5 +1,6 @@
 import {
   GraphQLObjectType,
+  GraphQLBoolean,
   GraphQLString,
   GraphQLList,
   GraphQLInt,
@@ -9,6 +10,7 @@ import {
 import CommentSchema from 'Root/graphql/query/comment/schema';
 import UserSchema from 'Root/graphql/query/user/schema';
 import resolveComment from './resolves/comment';
+import resolveLike from './resolves/like';
 import resolve from './resolves/user';
 
 const ArticleSchema = new GraphQLObjectType({
@@ -32,10 +34,10 @@ const ArticleSchema = new GraphQLObjectType({
     createdAt: {
       type: GraphQLString
     },
-    viewers: {
+    viewerLength: {
       type: GraphQLInt
     },
-    likes: {
+    likeLength: {
       type: GraphQLInt
     },
     type: {
@@ -48,6 +50,10 @@ const ArticleSchema = new GraphQLObjectType({
     comments: {
       type: new GraphQLList(CommentSchema),
       resolve: resolveComment
+    },
+    liked: {
+      type: GraphQLBoolean,
+      resolve: resolveLike
     }
   })
 });

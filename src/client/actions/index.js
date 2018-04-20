@@ -25,5 +25,10 @@ export default {
   conferences: {
     DONE: 'conferences/DONE',
     LOAD: 'conferences/LOAD'
+  },
+  article: {
+    DISLIKE: 'article/DISLIKE',
+    LIKE: 'article/LIKE',
+    LOAD: 'article/LOAD'
   }
 };

@@ -86,5 +86,25 @@
   }
 }
 
+:local(.liked) {
+  font-size: 30px;
+  color: red;
+  transition: font-size 300ms;
+
+  &:hover, &:active {
+    font-size: 50px
+  }
+}
+
+:local(.disliked) {
+  font-size: 30px;
+  color: black;
+  transition: font-size 300ms;
+
+  &:hover, &:active {
+    font-size: 50px
+  }
+}
+
 @media (min-width: 120px) and (max-width: 580px) {
 }

@@ -10,8 +10,8 @@ export default (query, one = false, limit) => new Promise(async res => {
       .lean();
 
       if (article) {
-        article.viewers = article.viewers.length;
-        article.likes = article.likes.length;
+        article.likeLength = article.likes.length;
+        article.viewerLength = article.viewers.length;
       }
 
       res(article);
@@ -31,8 +31,8 @@ export default (query, one = false, limit) => new Promise(async res => {
       .lean();
 
       for (const i of articles.keys()) {
-        articles[i].viewers = articles[i].viewers.length;
-        articles[i].likes = articles[i].likes.length;
+        articles[i].viewerLength = articles[i].viewers.length;
+        articles[i].likeLength = articles[i].likes.length;
       }
 
       res(articles);
