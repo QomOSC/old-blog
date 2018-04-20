@@ -23,6 +23,7 @@ class Conference extends Component {
           _id
           end
           type
+          done
           title
           start
           createdAt
@@ -97,6 +98,8 @@ class Conference extends Component {
           <p>عنوان: {this.state.conference.title}</p>
           <p>شروع کنفرانس: {this.state.conference.start}</p>
           <p>اتمام کنفرانس: {this.state.conference.end}</p>
+          <p>{this.state.conference.done && 'کنفرانس به اتمام رسیده است'}</p>
+
           <p className={styles.faded}>
             {moment(new Date(this.state.conference.createdAt))}
           </p>
