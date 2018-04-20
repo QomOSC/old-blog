@@ -1,11 +1,12 @@
 import Article from 'Root/models/Article';
 
-export default (query, one = false) => new Promise(async res => {
+export default (query, one = false, limit) => new Promise(async res => {
   if (one) {
     try {
       const article = await Article
       .findOne(query)
       .select('-__v')
+      .limit(limit)
       .lean();
 
       if (article) {
@@ -26,6 +27,7 @@ export default (query, one = false) => new Promise(async res => {
       .find(query)
       .sort({ createdAt: -1 })
       .select('-__v')
+      .limit(limit)
       .lean();
 
       for (const i of articles.keys()) {

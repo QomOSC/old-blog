@@ -8,6 +8,9 @@ const ArticlesField = {
   args: {
     type: {
       type: GraphQLInt
+    },
+    limit: {
+      type: GraphQLInt
     }
   },
   resolve

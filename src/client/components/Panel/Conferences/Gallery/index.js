@@ -24,7 +24,7 @@ class Gallery extends Component {
   componentDidMount() {
     const query = `
       query {
-        conference(_id: "5ad72ac745cbd70e80f27397") {
+        conference(_id: "${this.props.match.params.id}") {
           _id
           end
           type

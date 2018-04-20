@@ -44,6 +44,9 @@ const ConferenceSchema = new GraphQLObjectType({
     providers: {
       type: new GraphQLList(GraphQLString)
     },
+    embeds: {
+      type: new GraphQLList(GraphQLString)
+    },
     providersInfo: {
       type: new GraphQLList(UserSchema),
       resolve: resolveProviders

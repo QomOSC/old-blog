@@ -48,6 +48,10 @@ const schema = new Schema({
   galleries: [{
     type: String,
     trim: true
+  }],
+  embeds: [{
+    type: String,
+    trim: true
   }]
 }, {
   usePushEach: true

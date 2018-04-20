@@ -7,6 +7,7 @@ import MyConferences from './Conferences';
 import Gallery from './Gallery';
 import Edit from './ManageEdit';
 import Manage from './Manage';
+import Video from './Video';
 import Add from './Add';
 
 
@@ -18,6 +19,7 @@ class Conferences extends Component {
         <AdminRoute path='/panel/conferences/gallery/:id' component={Gallery} />
         <AdminRoute path='/panel/conferences/manage/:id' component={Edit} />
         <AdminRoute exact path='/panel/conferences/manage' component={Manage} />
+        <AdminRoute path='/panel/conferences/video/:id' component={Video} />
         <Route path='/panel/conferences' component={MyConferences} />
         <Route>
           <Redirect to='/notfound' />

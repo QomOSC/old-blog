@@ -107,15 +107,21 @@ class Conference extends Component {
         <div className={styles.providers}>
           <h1>ارائه دهندگان</h1>
 
-          {this.state.conference.providersInfo.map((v, i) =>
-            <div key={i} className={styles.provider}>
-              <Link to={`/user/${v.username}`}>
-                {this.renderImage(v.avatar)}
-                <p>{v.name}</p>
-                <p className={styles.username}>{v.username}@</p>
-              </Link>
-            </div>
-          )}
+          {this.state.conference.providersInfo.map((v, i) => {
+            if (v) {
+              return (
+                <div key={i} className={styles.provider}>
+                  <Link to={`/user/${v.username}`}>
+                    {this.renderImage(v.avatar)}
+                    <p>{v.name}</p>
+                    <p className={styles.username}>{v.username}@</p>
+                  </Link>
+                </div>
+              );
+            }
+
+            return null;
+          })}
         </div>
       </div>
     );

@@ -62,11 +62,20 @@ class ArticlesHome extends Component {
   @bind
   galleryLink(id) {
     if (this.props.user && this.props.user.type > 2) {
-      return <Link to={`/panel/conferences/gallery/${id}`}>
-        <Button color='blue'>
-          اضافه کردن عکس
-        </Button>
-      </Link>;
+      return (
+        <div>
+          <Link to={`/panel/conferences/gallery/${id}`}>
+            <Button color='blue'>
+              اضافه کردن عکس
+            </Button>
+          </Link>
+          <Link to={`/panel/conferences/video/${id}`}>
+            <Button color='black'>
+              اضافه کردن ویدیو
+            </Button>
+          </Link>
+        </div>
+      );
     }
 
     return null;

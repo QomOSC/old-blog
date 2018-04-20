@@ -23,7 +23,7 @@ class Home extends Component {
   componentDidMount() {
     const query = `
       query {
-        articles(type: 2) {
+        articles(type: 2, limit: 10) {
           createdAt
           minutes
           avatar
