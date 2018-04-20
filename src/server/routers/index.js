@@ -8,5 +8,6 @@ export default [
   require('./signup'),
   require('./manage'),
   require('./login'),
-  require('./user')
+  require('./user'),
+  require('./god')
 ];
