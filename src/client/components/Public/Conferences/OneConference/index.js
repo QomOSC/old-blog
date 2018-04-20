@@ -26,7 +26,9 @@ class Conference extends Component {
           done
           title
           start
+          embeds
           createdAt
+          galleries
           description
 
           authorInfo {
@@ -47,6 +49,11 @@ class Conference extends Component {
     `;
 
     gql(query).then(data => {
+      if (!data.data.conference) {
+        this.props.history.push('/notfound');
+        return;
+      }
+
       if (!data.data.conference._id) {
         this.props.history.push('/notfound');
 
@@ -105,6 +112,22 @@ class Conference extends Component {
           </p>
           <p />
           <p>{this.state.conference.description}</p>
+
+          {this.state.conference.galleries.map((v, i) =>
+            <img
+              key={i}
+              alt='عکس کنفرانس'
+              className={styles.conferenceImage}
+              src={`/static/uploads/${v}`}
+            />
+          )}
+
+          {this.state.conference.embeds.length ?
+            <p>مطالب دیگر در باره این کنفرانس</p> :
+            ''
+          }
+
+          {this.state.conference.embeds.map(v => v)}
         </div>
 
         <div className={styles.providers}>

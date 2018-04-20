@@ -1,4 +1,5 @@
 @import '~Root/css/colors';
+@import '~Root/css/mixins';
 
 :local(.container) {
   width: 100%;
@@ -26,4 +27,10 @@
 
 :local(.username) {
   color: @blue-base;
+}
+
+:local(.conferenceImage) {
+  margin: 20px 0;
+  width: 50%;
+  .boxShadow();
 }
