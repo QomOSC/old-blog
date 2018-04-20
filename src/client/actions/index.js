@@ -28,6 +28,7 @@ export default {
   },
   article: {
     DISLIKE: 'article/DISLIKE',
+    VIEWER: 'article/VIEWER',
     LIKE: 'article/LIKE',
     LOAD: 'article/LOAD'
   }

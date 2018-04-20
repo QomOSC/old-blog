@@ -16,11 +16,17 @@ export default (state = {}, action) => {
     }
 
     case types.article.DISLIKE: {
-      console.log(state);
       return {
         ...state,
         liked: false,
         likeLength: state.likeLength - 1
+      };
+    }
+
+    case types.article.VIEWER: {
+      return {
+        ...state,
+        viewerLength: state.viewerLength + 1
       };
     }
 

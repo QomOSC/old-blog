@@ -6,6 +6,7 @@ import izitoast from 'izitoast';
 
 import dislikeArticle from 'Root/actions/article/dislike';
 import likeArticle from 'Root/actions/article/like';
+import addViewer from 'Root/actions/article/viewer';
 import send from 'Root/actions/comment/send';
 import types from 'Root/actions';
 
@@ -74,6 +75,8 @@ class ArticlesHome extends Component {
         type: types.article.LOAD,
         article: data.data.article
       });
+
+      this.props.dispatch(addViewer(data.data.article._id, 'USER_IP'));
 
       this.setState({ loading: false });
     });
@@ -177,6 +180,7 @@ class ArticlesHome extends Component {
           }} />
         </div>
 
+        <p>تعداد بازدید ها: {this.props.article.viewerLength}</p>
         <p>تعداد لایک: {this.props.article.likeLength}</p>
 
         {this.props.article.liked ?
