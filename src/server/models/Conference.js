@@ -52,7 +52,11 @@ const schema = new Schema({
   embeds: [{
     type: String,
     trim: true
-  }]
+  }],
+  done: {
+    type: Boolean,
+    default: false
+  }
 }, {
   usePushEach: true
 });

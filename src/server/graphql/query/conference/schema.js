@@ -1,5 +1,6 @@
 import {
   GraphQLObjectType,
+  GraphQLBoolean,
   GraphQLString,
   GraphQLList,
   GraphQLInt,
@@ -43,6 +44,9 @@ const ConferenceSchema = new GraphQLObjectType({
     },
     providers: {
       type: new GraphQLList(GraphQLString)
+    },
+    done: {
+      type: GraphQLBoolean
     },
     embeds: {
       type: new GraphQLList(GraphQLString)
