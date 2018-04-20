@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "gulp dev",
     "prod": "gulp prod",
-    "server": "NODE_ENV=development nodemon build/app.js -e js -w build/app.js",
+    "server": "SET NODE_ENV=development & nodemon build/app.js -e js -w build/app.js",
     "compress": "tar -czvf app.tar.gz build package.json",
     "app": "node build/app.js"
   },
