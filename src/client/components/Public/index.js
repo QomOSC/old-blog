@@ -13,6 +13,7 @@ import Articles from './Articles';
 import Activate from './Activate';
 import Signup from './Signup';
 import Login from './Login';
+import About from './About';
 import Home from './Home';
 import User from './User';
 import Tag from './Tag';
@@ -38,6 +39,7 @@ class Public extends Component {
             <Route path='/tag/:tagname' component={Tag} />
             <Route path='/articles' component={Articles} />
             <Route path='/user/:username' component={User} />
+            <Route path='/about' component={About} />
             <Route path='/notfound' component={NotFound} />
             <Route>
               <Redirect to='/notfound' />
