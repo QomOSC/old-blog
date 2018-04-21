@@ -1,7 +1,7 @@
 @import 'colors';
 
 .boxShadow() {
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);  
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
 }
 
 .input() {
@@ -25,13 +25,16 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: white;
+  background-color: #40AA54;
   padding: 20px;
+  z-index: 2;
 
   > a {
     font-family: SB;
-    color: @blue-base;
-    font-size: 20px;
+    color: #fff;
+    font-size: 30px;
+    z-index: 2;
+    text-shadow: 0 3px 5px black;
 
     &:active, &:hover {
       color: @blue-3;
@@ -46,7 +49,7 @@
       display: inline;
 
       a {
-        color: @blue-base;
+        color: fff;
         position: relative;
         display: inline-block;
 

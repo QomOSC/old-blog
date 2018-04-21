@@ -45,6 +45,7 @@ li {
       text-align: center;
       height: auto;
       padding: 20px;
+      z-index: 2;
     }
 
      div:nth-of-type(2) {
@@ -52,6 +53,7 @@ li {
       width: 100%;
       text-align: center;
       padding: 20px;
+      z-index: 2;
     }
 
   }
@@ -75,18 +77,32 @@ li {
   width: 100%;
   text-align: center;
   background-color: #2b2b2b;
-  height: 300px;
+  height: 350px;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1;
 
   h1 {
     font-family: SB;
-    color: @blue-base;
+    color: #40AA54;
     font-size: 40px;
     text-shadow: rgba(0,0,0,0.5);
   }
 
+img {
+  width: 45%;
+  z-index: -5;
+  opacity: 1;
+   transition: 2s;
+
+
+  &:hover {
+    transform: rotate(360deg);
+    filter: blur(2px);
+  }
+
+}
 
 }
 
