@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 
-const schema = new Schema({
+export default mongoose.model('Tag', new Schema({
   article: {
     type: Number,
     required: true
@@ -16,6 +16,4 @@ const schema = new Schema({
     type: Date,
     default: Date.now
   }
-});
-
-export default mongoose.model('Tag', schema);
+}));

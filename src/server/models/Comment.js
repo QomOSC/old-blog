@@ -2,7 +2,7 @@ import mongoose, { Schema } from 'mongoose';
 
 import { email } from 'Root/utils/validator';
 
-const schema = new Schema({
+export default mongoose.model('Comment', new Schema({
   name: {
     type: String,
     trim: true,
@@ -60,6 +60,4 @@ const schema = new Schema({
     type: Date,
     default: Date.now
   }
-});
-
-export default mongoose.model('Comment', schema);
+}));

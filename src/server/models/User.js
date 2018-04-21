@@ -2,7 +2,7 @@ import mongoose, { Schema } from 'mongoose';
 
 import { email, username, password } from 'Root/utils/validator';
 
-const schema = new Schema({
+export default mongoose.model('User', new Schema({
   name: {
     type: String,
     trim: true,
@@ -83,6 +83,4 @@ const schema = new Schema({
     type: String,
     trim: true
   }],
-}, { usePushEach: true });
-
-export default mongoose.model('User', schema);
+}, { usePushEach: true }));

@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 
-const schema = new Schema({
+export default mongoose.model('Conference', new Schema({
   providers: [{ // The ID from Member model
     type: String,
     trim: true
@@ -59,6 +59,4 @@ const schema = new Schema({
   }
 }, {
   usePushEach: true
-});
-
-export default mongoose.model('Conference', schema);
+}));
