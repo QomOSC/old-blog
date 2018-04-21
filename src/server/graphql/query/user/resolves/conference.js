@@ -7,10 +7,13 @@ export default async (parent, args, context) => {
 
   const conferences = [];
 
-  const authors = await Conference.find({
+  const authors = await Conference
+  .find({
     author: context.req.session.user,
     type: args.type || 2
-  }).lean();
+  })
+  .sort({ createdAt: -1 })
+  .lean();
 
   conferences.push(...authors);
 

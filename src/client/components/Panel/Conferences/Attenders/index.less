@@ -1,0 +1,37 @@
+@import '~Root/css/colors';
+
+:local(.container) {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+:local(.attenders) {
+  margin: 40px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+:local(.attender) {
+  text-align: center;
+  width: 200px;
+  height: 200px;
+
+  a {
+    color: @blue-base;
+
+    &:hover, &:active {
+      color: @blue-3;
+    }
+  }
+}
+
+:local(.userAvatar) {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}

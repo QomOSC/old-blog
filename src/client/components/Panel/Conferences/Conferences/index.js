@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import types from 'Root/actions';
 
 import LoadingProgress from 'Root/components/Utils/LoadingProgress';
+import Button from 'Root/components/Utils/Button';
 
 import moment from 'Root/js/moment';
 import gql from 'Root/js/gql';
@@ -65,6 +66,12 @@ class MyConferences extends Component {
               <p>{v.done && 'کنفرانس به اتمام رسیده است'}</p>
 
               <span>{moment(new Date(v.createdAt))}</span>
+            </Link>
+
+            <Link to={`/panel/conferences/attenders/${v._id}`}>
+              <Button color='black'>
+                افرادی که حظور پیدا میکنند
+              </Button>
             </Link>
           </div>
         )}

@@ -97,6 +97,12 @@ class ConferencesHome extends Component {
               به اتمام رساندن
             </Button>
           }
+
+          <Link to={`/panel/conferences/attenders/${_id}`}>
+            <Button color='black'>
+              افرادی که حظور پیدا میکنند
+            </Button>
+          </Link>
         </div>
       );
     }
