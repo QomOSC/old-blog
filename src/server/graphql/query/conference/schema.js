@@ -7,6 +7,8 @@ import {
   GraphQLID
 } from 'graphql';
 
+import attendersLengthResolve from './resolves/attendersLength';
+import attendersInfoResolve from './resolves/attendersInfo';
 import UserSchema from 'Root/graphql/query/user/schema';
 import resolveProviders from './resolves/providers';
 import resolveAuthor from './resolves/author';
@@ -50,6 +52,17 @@ const ConferenceSchema = new GraphQLObjectType({
     },
     embeds: {
       type: new GraphQLList(GraphQLString)
+    },
+    attenders: {
+      type: new GraphQLList(GraphQLString)
+    },
+    attendersLength: {
+      type: GraphQLInt,
+      resolve: attendersLengthResolve
+    },
+    attendersInfo: {
+      type: new GraphQLList(UserSchema),
+      resolve: attendersInfoResolve
     },
     galleries: {
       type: new GraphQLList(GraphQLString)
