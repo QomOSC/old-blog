@@ -5,9 +5,9 @@ import types from 'Root/actions';
 import send from 'Root/js/send';
 
 export default () => async dispatch => {
-  const request = await send('/panel/user/setting/avatar/remove');
+  const { type } = await send('/panel/user/setting/avatar/remove');
 
-  if (request.type === 0) {
+  if (type === 0) {
     izitoast.success({
       rtl: true,
       title: 'با موفقیت حذف شد'

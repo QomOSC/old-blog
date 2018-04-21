@@ -4,9 +4,9 @@ import { error } from 'Root/js/messages';
 import send from 'Root/js/send';
 
 export default async (data, push) => {
-  const request = await send('/panel/conferences/video', data);
+  const { type, text } = await send('/panel/conferences/video', data);
 
-  if (request.type === 0) {
+  if (type === 0) {
     izitoast.success({
       rtl: true,
       title: 'ویدیو با موفقیت اضافه شد'
@@ -17,14 +17,14 @@ export default async (data, push) => {
 
   else {
 
-    if (request.text === 0) {
+    if (text === 0) {
       izitoast.error({
         rtl: true,
         title: 'چنین کنفرانسی وجود ندارد'
       });
     }
 
-    else if (request.text === 1) {
+    else if (text === 1) {
       error();
     }
   }

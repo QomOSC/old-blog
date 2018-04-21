@@ -4,9 +4,9 @@ import { error } from 'Root/js/messages';
 import send from 'Root/js/send';
 
 export default async (data, push) => {
-  const request = await send('/panel/articles/edit', data);
+  const { type } = await send('/panel/articles/edit', data);
 
-  if (request.type === 0) {
+  if (type === 0) {
     izitoast.success({
       rtl: true,
       title: 'مقاله با موفقیت تغییر یافت',
@@ -14,9 +14,9 @@ export default async (data, push) => {
     });
 
     push('/panel');
+
+    return;
   }
 
-  else if (request.type === 2) {
-    error();
-  }
+  error();
 };

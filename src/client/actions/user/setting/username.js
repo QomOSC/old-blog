@@ -2,12 +2,14 @@ import izitoast from 'izitoast';
 
 import types from 'Root/actions';
 
+import { error } from 'Root/js/messages';
 import send from 'Root/js/send';
 
 export default username => async dispatch => {
-  const request = await send('/panel/user/setting/username', { username });
+  const { type, text } =
+    await send('/panel/user/setting/username', { username });
 
-  if (request.type === 0) {
+  if (type === 0) {
     dispatch({
       type: types.user.CHANGE_USERNAME,
       username
@@ -19,27 +21,24 @@ export default username => async dispatch => {
     });
   }
 
-  else if (request.type === 2) {
+  else if (type === 2) {
 
-    if (request.text === 0) {
+    if (text === 0) {
       izitoast.error({
         rtl: true,
         title: 'چنین حسابی وجود ندارد'
       });
     }
 
-    else if (request.text === 1) {
+    else if (text === 1) {
       izitoast.error({
         rtl: true,
         title: 'این یوزرنیم توسط حساب دیگری استفاده میشود'
       });
     }
 
-    else if (request.text === 2) {
-      izitoast.error({
-        rtl: true,
-        title: 'خطا! بعدا امتحان کنید'
-      });
+    else if (text === 2) {
+      error();
     }
   }
 };

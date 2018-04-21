@@ -6,9 +6,9 @@ import { error } from 'Root/js/messages';
 import send from 'Root/js/send';
 
 export default _id => async dispatch => {
-  const request = await send('/article/comment/reject', { _id });
+  const { type } = await send('/article/comment/reject', { _id });
 
-  if (request.type === 0) {
+  if (type === 0) {
     izitoast.success({
       rtl: true,
       title: 'نظر با موفقیت حذف شد'
@@ -18,9 +18,9 @@ export default _id => async dispatch => {
       type: types.comments.DROP,
       _id
     });
+
+    return;
   }
 
-  else if (request.type === 2) {
-    error();
-  }
+  error();
 };

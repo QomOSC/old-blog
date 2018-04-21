@@ -6,9 +6,9 @@ import { error } from 'Root/js/messages';
 import send from 'Root/js/send';
 
 export default push => async dispatch => {
-  const request = await send('/panel/user/setting/delete');
+  const { type } = await send('/panel/user/setting/delete');
 
-  if (request.type === 0) {
+  if (type === 0) {
     izitoast.success({
       rtl: true,
       title: 'حساب شما با موفقیت حذف شد'
@@ -19,9 +19,9 @@ export default push => async dispatch => {
     });
 
     push('/');
+
+    return;
   }
 
-  else {
-    error();
-  }
+  error();
 };

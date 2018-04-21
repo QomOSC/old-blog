@@ -4,12 +4,12 @@ import types from 'Root/actions';
 import send from 'Root/js/send';
 
 export default () => new Promise(async resolve => {
-  const request = await send('/checklogin');
+  const { type, user } = await send('/checklogin');
 
-  if (request.type === 0) {
+  if (type === 0) {
     dispatch({
       type: types.user.LOGIN,
-      user: request.user
+      user
     });
   }
 

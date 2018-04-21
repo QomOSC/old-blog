@@ -1,23 +1,21 @@
 import izitoast from 'izitoast';
 
+import { error } from 'Root/js/messages';
 import send from 'Root/js/send';
 
 export default async (data, push) => {
-  const request = await send('/panel/articles/accept', data);
+  const { type } = await send('/panel/articles/accept', data);
 
-  if (request.type === 0) {
+  if (type === 0) {
     izitoast.success({
       rtl: true,
       title: 'مقاله با موفقیت پذیرفته شد'
     });
 
     push('/panel/articles');
+
+    return;
   }
 
-  else if (request.type === 2) {
-    izitoast.error({
-      rtl: true,
-      title: 'خطا! بعدا امتحان کنید'
-    });
-  }
+  error();
 };

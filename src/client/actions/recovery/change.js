@@ -1,13 +1,14 @@
 import izitoast from 'izitoast';
 
+import { error } from 'Root/js/messages';
 import send from 'Root/js/send';
 
 export default async (code, password, push) => {
-  const request = await send(`/recovery/${code}`, { password });
+  const { type, text } = await send(`/recovery/${code}`, { password });
 
-  if (request.type === 2) {
+  if (type === 2) {
 
-    if (request.text === 0) {
+    if (text === 0) {
       izitoast.error({
         rtl: true,
         title: 'کد خراب است!'
@@ -16,22 +17,19 @@ export default async (code, password, push) => {
       push('/');
     }
 
-    else if (request.text === 1) {
+    else if (text === 1) {
       izitoast.error({
         rtl: true,
         title: 'مقادیر کافی نمیباشد'
       });
     }
 
-    else if (request.text === 2) {
-      izitoast.error({
-        rtl: true,
-        title: 'خطا! بعدا امتحان کنید'
-      });
+    else if (text === 2) {
+      error();
     }
   }
 
-  else if (request.type === 0) {
+  else if (type === 0) {
     izitoast.success({
       rtl: true,
       title: 'رمز شما با موفقیت تغییر پیدا کرد'

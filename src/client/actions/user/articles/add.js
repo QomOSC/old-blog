@@ -1,11 +1,12 @@
 import izitoast from 'izitoast';
 
+import { error } from 'Root/js/messages';
 import send from 'Root/js/send';
 
 export default async (data, push) => {
-  const request = await send('/panel/articles/add', data, 'formData');
+  const { type } = await send('/panel/articles/add', data, 'formData');
 
-  if (request.type === 0) {
+  if (type === 0) {
     izitoast.success({
       rtl: true,
       title: 'مقاله شما با موفقیت به ثبت رسید',
@@ -13,12 +14,9 @@ export default async (data, push) => {
     });
 
     push('/panel/articles');
+
+    return;
   }
 
-  else if (request.type === 2) {
-    izitoast.error({
-      rtl: true,
-      title: 'خطا! بعدا امتحان کنید'
-    });
-  }
+  error();
 };

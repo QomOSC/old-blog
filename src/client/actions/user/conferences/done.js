@@ -6,9 +6,9 @@ import { error } from 'Root/js/messages';
 import send from 'Root/js/send';
 
 export default _id => async dispatch => {
-  const request = await send('/panel/conferences/done', { _id });
+  const { type } = await send('/panel/conferences/done', { _id });
 
-  if (request.type === 0) {
+  if (type === 0) {
     izitoast.success({
       rtl: true,
       title: 'کنفرانس با موفقیت به اتمام رسید'

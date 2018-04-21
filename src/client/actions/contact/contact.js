@@ -1,15 +1,13 @@
 import izitoast from 'izitoast';
 
+import { error } from 'Root/js/messages';
 import send from 'Root/js/send';
 
 export default async data => {
-  const request = await send('/contact', data);
+  const { type } = await send('/contact', data);
 
-  if (request.type === 2) {
-    izitoast.error({
-      rtl: true,
-      title: 'خطا! بعدا امتحان کنید'
-    });
+  if (type === 2) {
+    error();
   }
 
   else {

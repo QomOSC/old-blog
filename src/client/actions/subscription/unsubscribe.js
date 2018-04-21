@@ -4,9 +4,9 @@ import { error } from 'Root/js/messages';
 import send from 'Root/js/send';
 
 export default async (email, push) => {
-  const request = await send('/unsubscribe', { email });
+  const { type, text } = await send('/unsubscribe', { email });
 
-  if (request.type === 0) {
+  if (type === 0) {
     izitoast.success({
       rtl: true,
       title: 'درخواست با موفقیت ارسال شد، ایمیل خود را چک کنید'
@@ -15,9 +15,9 @@ export default async (email, push) => {
     push('/');
   }
 
-  else if (request.type === 2) {
+  else if (type === 2) {
 
-    if (request.type === 0) {
+    if (text === 0) {
       izitoast.warning({
         rtl: true,
         title: 'چنین ایمیلی در خبرنامه وجود ندارد'
@@ -26,7 +26,7 @@ export default async (email, push) => {
       push('/');
     }
 
-    else if (request.type === 1) {
+    else if (text === 1) {
       error();
     }
   }

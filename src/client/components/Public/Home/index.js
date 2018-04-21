@@ -12,8 +12,8 @@ import Article from 'Root/components/Utils/Article';
 import Button from 'Root/components/Utils/Button';
 import Box from 'Root/components/Utils/Box';
 
-import styles from './index.less';
 import qomosc from 'Root/images/qomosc.png';
+import styles from './index.less';
 
 class Home extends Component {
   state = {
@@ -95,26 +95,28 @@ class Home extends Component {
           <img src={qomosc}/>
           <h1>جامعه متن باز قم</h1>
         </div>
+
         <div className={styles.description}>
           <div>
-          <p>
-            جامعه متن باز قم با هدف فراهم کردن محیطی برای
-            به اشتراک گذاری دانش و تجربیات افرادی که در زمینه
-            های مختلف متن باز فعالیت میکنند تاسیس شده است.
-          </p>
-        </div>
-        <div>
-          <h2>اهداف</h2>
-          <ul>
-            <li>حمایت و پشتیبانی از کاربران تکنولوژی‌های متن باز</li>
-            <li>فرهنگ‌سازی استفاده از تکنولوژی‌های متن باز</li>
-            <li>کمک به توسعه تکنولوژی‌های متن باز</li>
-            <li> آموزش تکنولوژی‌های متن باز</li>
-          </ul>
-        </div>
+            <p>
+              جامعه متن باز قم با هدف فراهم کردن محیطی برای
+              به اشتراک گذاری دانش و تجربیات افرادی که در زمینه
+              های مختلف متن باز فعالیت میکنند تاسیس شده است.
+            </p>
+          </div>
+
+          <div>
+            <h2>اهداف</h2>
+            <ul>
+              <li>حمایت و پشتیبانی از کاربران تکنولوژی‌های متن باز</li>
+              <li>فرهنگ‌سازی استفاده از تکنولوژی‌های متن باز</li>
+              <li>کمک به توسعه تکنولوژی‌های متن باز</li>
+              <li> آموزش تکنولوژی‌های متن باز</li>
+            </ul>
+          </div>
         </div>
 
-        {this.state.articles.length ? <h2>مقالات اخیر</h2> : '' }
+        {this.state.articles.length && <h2>مقالات اخیر</h2>}
 
         <div className={styles.articles}>
           {this.state.articles.map((v, i) =>

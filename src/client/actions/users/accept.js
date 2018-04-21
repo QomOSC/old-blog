@@ -7,9 +7,9 @@ import send from 'Root/js/send';
 
 
 export default _id => async dispatch => {
-  const request = await send('/panel/manage/accept', { _id });
+  const { type } = await send('/panel/manage/accept', { _id });
 
-  if (request.type === 0) {
+  if (type === 0) {
     izitoast.success({
       rtl: true,
       title: 'با موفقت پذیرفته شد'
@@ -19,9 +19,9 @@ export default _id => async dispatch => {
       type: types.users.DROP,
       _id
     });
+
+    return;
   }
 
-  else if (request.type === 2) {
-    error();
-  }
+  error();
 };

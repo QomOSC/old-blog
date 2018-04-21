@@ -4,9 +4,9 @@ import { error } from 'Root/js/messages';
 import send from 'Root/js/send';
 
 export default async (data, push) => {
-  const request = await send('/panel/conferences/add', data);
+  const { type } = await send('/panel/conferences/add', data);
 
-  if (request.type === 0) {
+  if (type === 0) {
     izitoast.success({
       rtl: true,
       title: 'درخواست شما با موفقیت به ثبت رسید',
@@ -14,9 +14,9 @@ export default async (data, push) => {
     });
 
     push('/panel');
+
+    return;
   }
 
-  else {
-    error();
-  }
+  error();
 };

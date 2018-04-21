@@ -2,12 +2,13 @@ import izitoast from 'izitoast';
 
 import types from 'Root/actions';
 
+import { error } from 'Root/js/messages';
 import send from 'Root/js/send';
 
 export default name => async dispatch => {
-  const request = await send('/panel/user/setting/name', { name });
+  const { type, text } = await send('/panel/user/setting/name', { name });
 
-  if (request.type === 0) {
+  if (type === 0) {
     izitoast.success({
       rtl: true,
       title: 'با موفقیت به روز رسانی شد'
@@ -19,20 +20,17 @@ export default name => async dispatch => {
     });
   }
 
-  else if (request.type === 2) {
+  else if (type === 2) {
 
-    if (request.text === 0) {
+    if (text === 0) {
       izitoast.error({
         rtl: true,
         title: 'چنین حسابی وجود ندارد'
       });
     }
 
-    else if (request.text === 1) {
-      izitoast.error({
-        rtl: true,
-        title: 'خطا! بعدا امتحان کنید'
-      });
+    else if (text === 1) {
+      error();
     }
   }
 };

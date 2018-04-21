@@ -1,35 +1,33 @@
 import izitoast from 'izitoast';
 
+import { error } from 'Root/js/messages';
 import send from 'Root/js/send';
 
 export default async (data, push) => {
-  const request = await send('/signup', data);
+  const { type, text } = await send('/signup', data);
 
-  if (request.type === 2) {
+  if (type === 2) {
 
-    if (request.text === 1) {
+    if (text === 1) {
       izitoast.error({
         rtl: true,
         title: 'ایمیل توسط کاربر دیگری استفاده میشود'
       });
     }
 
-    else if (request.text === 2) {
+    else if (text === 2) {
       izitoast.error({
         rtl: true,
         title: 'یوزرنیم توسط کاربر دیگری استفاده میشود'
       });
     }
 
-    else if (request.text === 3) {
-      izitoast.error({
-        rtl: true,
-        title: 'خطا! بعدا امتحان کنید'
-      });
+    else if (text === 3) {
+      error();
     }
   }
 
-  else if (request.type === 0) {
+  else if (type === 0) {
     izitoast.success({
       rtl: true,
       title: 'حساب شما با موفقیت ساخته شد، تا زمان تایید آن صبر کنید'
