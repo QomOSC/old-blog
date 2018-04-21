@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 
+import attendConference from 'Root/actions/conference/attend';
+
 import moment from 'Root/js/moment';
 import bind from 'Root/js/bind';
 import gql from 'Root/js/gql';
 
 import LoadingProgress from 'Root/components/Utils/LoadingProgress';
+import Button from 'Root/components/Utils/Button';
 
 import userDefault from 'Root/images/u.png';
 import styles from './index.less';
@@ -81,6 +84,13 @@ class Conference extends Component {
     />;
   }
 
+  @bind
+  attend(_id) {
+    return () => {
+      attendConference(_id);
+    };
+  }
+
   render() {
     if (!this.state.conference) {
       return <LoadingProgress />;
@@ -112,6 +122,14 @@ class Conference extends Component {
           </p>
           <p />
           <p>{this.state.conference.description}</p>
+
+          {!this.state.conference.done &&
+            <Button
+              color='black'
+              handleClick={this.attend(this.state.conference._id)}>
+              حظور در کنفرانس
+            </Button>
+          }
 
           {this.state.conference.galleries.map((v, i) =>
             <img

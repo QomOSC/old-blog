@@ -24,7 +24,7 @@ const schema = new Schema({
     type: Date,
     default: Date.now
   },
-  attender: [{
+  attenders: [{
     type: String,
     trim: true
   }],
