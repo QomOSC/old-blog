@@ -40,8 +40,9 @@ li {
     width: 100%;
 
      div:nth-of-type(1) {
-      background: @blue-2;
+      background: @green-1;
       width: 100%;
+      color: #f2f2f2;
       text-align: center;
       height: auto;
       padding: 20px;
@@ -49,7 +50,8 @@ li {
     }
 
      div:nth-of-type(2) {
-      background: @grey-3;
+      background: @dark-3;
+      color: #f2f2f2;
       width: 100%;
       text-align: center;
       padding: 20px;
@@ -91,11 +93,11 @@ li {
   }
 
 img {
-  width: 45%;
+  width: 44%;
   z-index: -5;
   opacity: 1;
-   transition: 2s;
-
+  transition: 2s;
+  image-rendering: auto;
 
   &:hover {
     transform: rotate(360deg);

@@ -25,7 +25,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #40AA54;
+  background-color: @green-base;
   padding: 20px;
   z-index: 2;
 
@@ -49,7 +49,7 @@
       display: inline;
 
       a {
-        color: fff;
+        color: #fff;
         position: relative;
         display: inline-block;
 
@@ -65,14 +65,14 @@
         }
 
         &::before {
-          content: ']';
+          content: '>';
           left: -15px;
           transform: translate(-20px, -50%) scale(0.5, 0.5);
         }
 
         &::after {
-          content: '[';
-          right: -15px;
+          content: ' </';
+          right: -20px;
           transform: translate(20px, -50%) scale(0.5, 0.5);
         }
 
@@ -82,7 +82,7 @@
         }
 
         &:active, &:hover {
-          color: @blue-3;
+          color: @grey-base;
         }
       }
     }
