@@ -3,7 +3,7 @@ import { GraphQLList, GraphQLID } from 'graphql';
 import resolve from './resolves/users';
 import UserSchema from './schema';
 
-const UsersField = {
+export default {
   type: new GraphQLList(UserSchema),
   args: {
     type: {
@@ -12,5 +12,3 @@ const UsersField = {
   },
   resolve
 };
-
-export default UsersField;

@@ -1,7 +1,7 @@
 import article from 'Root/graphql/utils/article';
 import Tag from 'Root/models/Tag';
 
-const resolve = async parent => {
+export default async parent => {
   const tags = await Tag.find({ tagname: parent.tagname });
 
   const articles = [];
@@ -14,5 +14,3 @@ const resolve = async parent => {
 
   return articles;
 };
-
-export default resolve;

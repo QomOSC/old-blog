@@ -1,9 +1,9 @@
-import { GraphQLID, GraphQLInt } from 'graphql';
+import { GraphQLInt, GraphQLID } from 'graphql';
 
 import resolve from './resolves/article';
 import ArticleSchema from './schema';
 
-const ArticleField = {
+export default {
   type: ArticleSchema,
   args: {
     _id: {
@@ -15,5 +15,3 @@ const ArticleField = {
   },
   resolve
 };
-
-export default ArticleField;

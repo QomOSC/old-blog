@@ -8,7 +8,7 @@ import {
 import resolve from './resolve/comment';
 import CommentSchema from './schema';
 
-const CommentField = {
+export default {
   type: new GraphQLList(CommentSchema),
   args: {
     article: {
@@ -26,5 +26,3 @@ const CommentField = {
   },
   resolve
 };
-
-export default CommentField;

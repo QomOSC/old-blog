@@ -13,7 +13,7 @@ import UserSchema from 'Root/graphql/query/user/schema';
 import resolveProviders from './resolves/providers';
 import resolveAuthor from './resolves/author';
 
-const ConferenceSchema = new GraphQLObjectType({
+export default new GraphQLObjectType({
   name: 'Conference',
   fields: () => ({
     _id: {
@@ -73,5 +73,3 @@ const ConferenceSchema = new GraphQLObjectType({
     }
   })
 });
-
-export default ConferenceSchema;

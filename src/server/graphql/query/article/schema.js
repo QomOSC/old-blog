@@ -13,7 +13,7 @@ import resolveComment from './resolves/comment';
 import resolveLike from './resolves/like';
 import resolve from './resolves/user';
 
-const ArticleSchema = new GraphQLObjectType({
+export default new GraphQLObjectType({
   name: 'Article',
   fields: () => ({
     _id: {
@@ -57,5 +57,3 @@ const ArticleSchema = new GraphQLObjectType({
     }
   })
 });
-
-export default ArticleSchema;
