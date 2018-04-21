@@ -92,15 +92,17 @@ class Home extends Component {
     return (
       <div className={styles.container}>
         <div className={styles.intro}>
-          <h2>به جامعه متن باز قم خوش آمدید</h2>
+          <h1>جامعه متن باز قم</h1>
+        </div>
+        <div className={styles.description}>
+          <div>
           <p>
             جامعه متن باز قم با هدف فراهم کردن محیطی برای
             به اشتراک گذاری دانش و تجربیات افرادی که در زمینه
             های مختلف متن باز فعالیت میکنند تاسیس شده است.
           </p>
-
-          <br />
-
+        </div>
+        <div>
           <h2>اهداف</h2>
           <ul>
             <li>حمایت و پشتیبانی از کاربران تکنولوژی‌های متن باز</li>
@@ -108,6 +110,7 @@ class Home extends Component {
             <li>کمک به توسعه تکنولوژی‌های متن باز</li>
             <li> آموزش تکنولوژی‌های متن باز</li>
           </ul>
+        </div>
         </div>
 
         {this.state.articles.length ? <h2>مقالات اخیر</h2> : '' }

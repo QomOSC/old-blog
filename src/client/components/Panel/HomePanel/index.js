@@ -37,12 +37,12 @@ class Home extends Component {
           {this.renderImage()}
           <p>نام: {this.props.user.name}</p>
           <p>ایمیل: {this.props.user.email}</p>
-          <p>
-            <Link
-              to={`/user/${this.props.user.username}`}>
+          <Link
+            to={`/user/${this.props.user.username}`}>
+            <p className={styles.username}>
               یوزرنیم: {this.props.user.username}
-            </Link>
-          </p>
+            </p>
+          </Link>
         </Box>
         <Box />
         <Box />
