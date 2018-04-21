@@ -1,13 +1,13 @@
 import {
-  GraphQLList,
+  GraphQLObjectType,
   GraphQLString,
-  GraphQLObjectType
+  GraphQLList
 } from 'graphql';
 
-import resolve from './resolves/articles';
 import ArticleSchema from 'Root/graphql/query/article/schema';
+import resolve from './resolves/articles';
 
-const TagsSchema = new GraphQLObjectType({
+export default new GraphQLObjectType({
   name: 'Tags',
   fields: () => ({
     tagname: {
@@ -19,5 +19,3 @@ const TagsSchema = new GraphQLObjectType({
     }
   })
 });
-
-export default TagsSchema;

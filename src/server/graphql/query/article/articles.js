@@ -3,7 +3,7 @@ import { GraphQLList, GraphQLInt } from 'graphql';
 import resolve from './resolves/articles';
 import ArticleSchema from './schema';
 
-const ArticlesField = {
+export default {
   type: new GraphQLList(ArticleSchema),
   args: {
     type: {
@@ -15,5 +15,3 @@ const ArticlesField = {
   },
   resolve
 };
-
-export default ArticlesField;

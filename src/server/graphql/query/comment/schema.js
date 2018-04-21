@@ -9,7 +9,7 @@ import {
 import ArticleSchema from 'Root/graphql/query/article/schema';
 import resolve from './resolve/article';
 
-const CommentSchema = new GraphQLObjectType({
+export default new GraphQLObjectType({
   name: 'Comment',
   fields: () => ({
     _id: {
@@ -51,5 +51,3 @@ const CommentSchema = new GraphQLObjectType({
     }
   })
 });
-
-export default CommentSchema;

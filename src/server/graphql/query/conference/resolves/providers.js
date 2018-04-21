@@ -9,6 +9,5 @@ export default async parent => {
     users.push(u);
   }
 
-
   return users;
 };

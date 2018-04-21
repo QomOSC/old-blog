@@ -9,7 +9,7 @@ import users from './user/users';
 import user from './user/user';
 import tag from './tag/tags';
 
-const query = new GraphQLObjectType({
+export default new GraphQLObjectType({
   name: 'Query',
   fields: {
     conferences,
@@ -22,5 +22,3 @@ const query = new GraphQLObjectType({
     tag
   }
 });
-
-export default query;

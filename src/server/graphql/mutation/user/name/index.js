@@ -3,7 +3,7 @@ import { GraphQLString } from 'graphql';
 import UserSchema from 'Root/graphql/query/user/schema';
 import resolve from './resolve';
 
-const changeName = {
+export default {
   type: UserSchema,
   args: {
     name: {
@@ -12,5 +12,3 @@ const changeName = {
   },
   resolve
 };
-
-export default changeName;

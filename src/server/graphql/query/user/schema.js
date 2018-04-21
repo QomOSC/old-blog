@@ -1,18 +1,18 @@
 import {
-  GraphQLID,
-  GraphQLInt,
-  GraphQLList,
+  GraphQLObjectType,
   GraphQLString,
-  GraphQLObjectType
+  GraphQLList,
+  GraphQLInt,
+  GraphQLID
 } from 'graphql';
 
 import ConferenceSchema from 'Root/graphql/query/conference/schema';
-import resolveConference from './resolves/conference';
 import ArticleSchema from 'Root/graphql/query/article/schema';
 import resolveUserArticles from './resolves/userArticles';
+import resolveConference from './resolves/conference';
 import resolveArticle from './resolves/article';
 
-const UserSchema = new GraphQLObjectType({
+export default new GraphQLObjectType({
   name: 'User',
   fields: () => ({
     _id: {
@@ -66,5 +66,3 @@ const UserSchema = new GraphQLObjectType({
     }
   })
 });
-
-export default UserSchema;

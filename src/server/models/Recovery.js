@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 
-const schema = new Schema({
+export default mongoose.model('Recovery', new Schema({
   code: {
     type: String,
     required: true,
@@ -18,6 +18,4 @@ const schema = new Schema({
     expires: 60 * 60 * 5,
     default: Date.now
   }
-});
-
-export default mongoose.model('Recovery', schema);
+}));

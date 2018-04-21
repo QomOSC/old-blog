@@ -3,7 +3,7 @@ import { GraphQLString } from 'graphql';
 import resolve from './resolves/tags';
 import TagsSchema from './schema';
 
-const TagField = {
+export default {
   type: TagsSchema,
   args: {
     tagname: {
@@ -12,5 +12,3 @@ const TagField = {
   },
   resolve
 };
-
-export default TagField;

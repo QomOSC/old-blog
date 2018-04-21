@@ -3,7 +3,7 @@ import { GraphQLInt, GraphQLID } from 'graphql';
 import resolve from './resolves/conference';
 import ConferenceSchema from './schema';
 
-const ConferenceField = {
+export default {
   type: ConferenceSchema,
   args: {
     _id: {
@@ -15,5 +15,3 @@ const ConferenceField = {
   },
   resolve
 };
-
-export default ConferenceField;
