@@ -1,3 +1,3 @@
-import Article from 'Root/models/Article';
+import article from 'Root/graphql/utils/article';
 
-export default async parent => await Article.findById(parent.article).lean();
+export default async parent => await article({ _id: parent.article }, true);

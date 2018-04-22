@@ -63,8 +63,6 @@ router.post('/panel/god/remove', god, async (req, res) => {
   }
 
   catch (e) {
-    console.log(e);
-
     res.json({ type: 2, text: 3 });
   }
 });
