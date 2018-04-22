@@ -1,9 +1,9 @@
 /* eslint-disable */
 
-const webpack = require('webpack');
-const { resolve } = require('path');
 var nodeExternals = require('webpack-node-externals')
 const babelConfig = require('../babel.config.json');
+const { resolve } = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   output: {

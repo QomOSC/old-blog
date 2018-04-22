@@ -1,9 +1,9 @@
 /* eslint-disable */
 
-const webpack = require('webpack');
+const babelConfig = require('../babel.config.json');
 const autoprefixer = require('autoprefixer');
 const { resolve } = require('path');
-const babelConfig = require('../babel.config.json');
+const webpack = require('webpack');
 
 module.exports = {
   output: {
