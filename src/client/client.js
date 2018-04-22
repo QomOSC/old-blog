@@ -15,7 +15,7 @@ import './css/icon.less';
 
 window.onload = async () => {
   await checkLogin();
-  
+
   render(
     <Provider store={store}>
       <App />

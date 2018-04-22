@@ -3,8 +3,8 @@ import { Router } from 'express';
 import Comment from 'Root/models/Comment';
 
 import sendEmail from 'Root/utils/email';
-
 import { admin } from 'Root/perms';
+import { url } from 'Root/config';
 
 const router = new Router();
 
@@ -31,6 +31,12 @@ router.post('/contact/accept', admin, async (req, res) => {
       subject: 'نظر شما به ثبت رسید',
       html: `
         نظر شما با موفقیت در جامعه متن باز قم به ثبت رسید
+        <br>
+        برای دیدن جواب آن، روی لینک زیر کلیک کنید
+        <br>
+        <a href='${url}/contact'>مشاهده نظرات</a>
+        <br>
+        جامعه متن باز قم
       `
     });
 

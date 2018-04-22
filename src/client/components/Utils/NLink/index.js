@@ -9,11 +9,15 @@ class NLink extends Component {
   render() {
     if (this.props.type === 3) {
       if (this.props.user.type >= 3) {
-        return <NavLink
-          to={this.props.to}
-          exact={this.props.exact || true}
-          activeClassName={styles.activedNavLink}
-          onClick={this.props.click}>{this.props.text}</NavLink>;
+        return (
+          <NavLink
+            to={this.props.to}
+            exact={this.props.exact || true}
+            activeClassName={styles.activedNavLink}
+            onClick={this.props.click}>
+            {this.props.text}
+          </NavLink>
+        );
       } else {
         return null;
       }
