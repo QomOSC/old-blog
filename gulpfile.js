@@ -20,14 +20,15 @@ gulp.task('copy', () => {
   }
 
   return [
-      gulp.src([
+    gulp.src([
       'src/index.html'
     ])
     .pipe(gulp.dest('build/')),
+
     gulp.src([
-      'src/server/sslcert/*'
+      'src/server/ssl/*'
     ])
-    .pipe(gulp.dest('build/sslcert'))
+    .pipe(gulp.dest('build/ssl'))
   ];
 });
 

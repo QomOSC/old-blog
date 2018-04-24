@@ -1,6 +1,7 @@
 import 'babel-polyfill';
 import spdy from 'spdy';
 import { join } from 'path';
+import { createServer } from 'http';
 import morgan from 'morgan';
 import express from 'express';
 import process from 'process';
@@ -31,6 +32,13 @@ const app = express();
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('short'));
+}
+
+if (process.env.NODE_ENV !== 'development') {
+  createServer((req, res) => {
+      res.writeHead(301, { Location: `${config.url}${req.url}` });
+      res.end();
+  }).listen(80);
 }
 
 app.use('/static', express.static(join(__dirname, './static')));
@@ -81,6 +89,7 @@ if (process.env.NODE_ENV === 'development') {
     console.log(`The server is running on port ${config.port}`);
   });
 } else {
+  console.log('hey man');
   spdy.createServer({
     cert: readFileSync(join(__dirname, 'ssl/f.pem')),
     key: readFileSync(join(__dirname, 'ssl/p.pem'))
