@@ -1,9 +1,11 @@
 import 'babel-polyfill';
+import spdy from 'spdy';
 import { join } from 'path';
 import morgan from 'morgan';
 import express from 'express';
 import process from 'process';
 import mongoose from 'mongoose';
+import { readFileSync } from 'fs';
 import bodyParser from 'body-parser';
 import session from 'express-session';
 import graphql from 'express-graphql';
@@ -74,6 +76,13 @@ app.use((req, res) => {
   res.sendFile(join(__dirname, '/index.html'));
 });
 
-app.listen(config.port, config.origin, () => {
-  console.log(`The server is running on port ${config.port}`);
-});
+if (process.env.NODE_ENV === 'development') {
+  app.listen(config.port, config.origin, () => {
+    console.log(`The server is running on port ${config.port}`);
+  });
+} else {
+  spdy.createServer({
+    cert: readFileSync(join(__dirname, 'ssl/f.pem')),
+    key: readFileSync(join(__dirname, 'ssl/p.pem'))
+  }, app).listen(config.port);
+}

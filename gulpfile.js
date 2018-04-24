@@ -1,7 +1,8 @@
-const gulp = require('gulp');
+const { existsSync, mkdirSync } = require('fs');
 const webpack = require('webpack-stream');
-const del = require('del');
 const lint = require('gulp-eslint');
+const gulp = require('gulp');
+const del = require('del');
 
 gulp.task('clean', () =>
   del([
@@ -13,12 +14,22 @@ gulp.task('clean', () =>
   ])
 );
 
-gulp.task('copy', () =>
-  gulp.src([
-    'src/index.html'
-  ])
-  .pipe(gulp.dest('build/'))
-);
+gulp.task('copy', () => {
+  if (!existsSync('build/static/uploads')) {
+    mkdirSync('build/static/uploads');
+  }
+
+  return [
+      gulp.src([
+      'src/index.html'
+    ])
+    .pipe(gulp.dest('build/')),
+    gulp.src([
+      'src/server/sslcert/*'
+    ])
+    .pipe(gulp.dest('build/sslcert'))
+  ];
+});
 
 gulp.task('dev:client', () =>
   gulp.src('src/client/client.js')
