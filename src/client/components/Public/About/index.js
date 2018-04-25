@@ -8,12 +8,7 @@ class About extends Component {
   render() {
     return (
       <div className={styles.container}>
-        <div>
-          <img
-            src='/static/images/about.jpg'
-            className={styles.aboutImage}
-            alt='عکس اعضای جامعه متن باز قم'
-          />
+        <div className={styles.top}>
           <h1> درباره جامعه متن باز قم </h1>
         </div>
 
@@ -75,7 +70,7 @@ class About extends Component {
               <div className={styles.developerInfo}>
                 <img
                   src='/static/images/developers/mm.jpg'
-                  className={styles.developerImage}
+                  className={`${styles.developerImage} ${styles.msm}`}
                 />
                 <h1>محمد سیفی مرندی</h1>
                 <p>طراحی وب</p>
