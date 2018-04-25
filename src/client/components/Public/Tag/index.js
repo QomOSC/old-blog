@@ -57,7 +57,9 @@ class Tag extends Component {
 
     return (
       <div className={styles.container}>
-        <h1>برچسب: {this.props.match.params.tagname}</h1>
+        <h1 className={styles.title}>
+          برچسب: {this.props.match.params.tagname}
+        </h1>
 
         <div className={styles.articles}>
           {this.state.articles.map((v, i) =>

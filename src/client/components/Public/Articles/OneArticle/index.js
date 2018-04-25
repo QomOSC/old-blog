@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import MarkdownIt from 'markdown-it';
 import izitoast from 'izitoast';
@@ -55,6 +55,10 @@ class ArticlesHome extends Component {
             createdAt
             answer
             name
+          }
+
+          tags {
+            tagname
           }
         }
       }
@@ -198,6 +202,20 @@ class ArticlesHome extends Component {
             className={`icon icon-heart ${styles.disliked}`}
           />
         }
+
+        {this.props.article.tags.length &&
+          <div className={styles.tags}>
+            <p>برچسب ها: </p>
+            {this.props.article.tags.map((v, i) =>
+              <Link to={`/tag/${v.tagname}`} key={i}>
+                <p className={styles.tag}>
+                  &nbsp;&nbsp;#{v.tagname}
+                </p>
+              </Link>
+            )}
+          </div>
+      }
+
 
         <div className={styles.comment}>
           <input

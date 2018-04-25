@@ -105,9 +105,18 @@
   }
 }
 
+:local(.tags) {
+  display: flex;
+  border-bottom: 1px solid black;
+}
+
 @media (min-width: 120px) and (max-width: 580px) {
   :local(.comment) {
     width: 90%;
     padding: 30px;
+  }
+
+  :local(.tags) {
+    flex-direction: column;
   }
 }

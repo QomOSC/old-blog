@@ -9,8 +9,10 @@ import {
 
 import CommentSchema from 'Root/graphql/query/comment/schema';
 import UserSchema from 'Root/graphql/query/user/schema';
+import TagSchema from 'Root/graphql/query/tag/schema';
 import resolveComment from './resolves/comment';
 import resolveLike from './resolves/like';
+import resolveTag from './resolves/tag';
 import resolve from './resolves/user';
 
 export default new GraphQLObjectType({
@@ -54,6 +56,10 @@ export default new GraphQLObjectType({
     liked: {
       type: GraphQLBoolean,
       resolve: resolveLike
+    },
+    tags: {
+      type: new GraphQLList(TagSchema),
+      resolve: resolveTag
     }
   })
 });
