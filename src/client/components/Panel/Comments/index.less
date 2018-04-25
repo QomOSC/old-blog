@@ -36,3 +36,22 @@
     }
   }
 }
+
+:local(.title) {
+  font-size: 30px;
+  color: #222;
+  margin: 20px 0;
+  text-align: center;
+}
+
+@media (min-width: 120px) and (max-width: 580px) {
+  :local(.comment) {
+    width: 90%;
+    text-align: center;
+    flex-direction: column;
+
+    > div {
+      margin: 20px 0;
+    }
+  }
+}

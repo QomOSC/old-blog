@@ -55,10 +55,12 @@ class Comments extends Component {
 
     return (
       <div className={styles.container}>
-        {this.props.comments.length ?
-          <h1>نظرات کاربران درباره جامعه</h1> :
-          <h1>هیچ نظری ثبت نشده است</h1>
-        }
+        <h1 className={styles.title}>
+          {this.props.comments.length ?
+            'نظرات کاربران درباره جامعه' :
+            'هیچ نظری ثبت نشده است'
+          }
+        </h1>
 
         {this.props.comments.map((v, i) =>
           <div key={i} className={styles.comment}>

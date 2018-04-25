@@ -76,7 +76,7 @@ class Conferences extends Component {
   render() {
     return (
       <div className={styles.container}>
-        <h1>ایجاد یک کنفرانس</h1>
+        <h1 className={styles.title}>ایجاد یک کنفرانس</h1>
 
         <input
           type='text'

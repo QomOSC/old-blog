@@ -49,10 +49,12 @@ class Manage extends Component {
 
     return (
       <div className={styles.container}>
-        {this.props.conferences.length ?
-          <h1>مدیریت کنفرانس های جدید</h1> :
-          <h1>کنفرانس جدیدی برای مدیریت وجود ندارد</h1>
-        }
+        <h1 className={styles.title}>
+          {this.props.conferences.length ?
+            'مدیریت کنفرانس های جدید' :
+            'کنفرانس جدیدی برای مدیریت وجود ندارد'
+          }
+        </h1>
 
         {this.props.conferences.map((v, i) =>
           <div key={i} className={styles.conf}>

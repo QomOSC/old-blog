@@ -13,3 +13,15 @@
     .input();
   }
 }
+
+:local(.title) {
+  font-size: 30px;
+  color: #222;
+  margin: 20px 0;
+}
+
+@media (min-width: 120px) and (max-width: 580px) {
+  :local(.container) input, :local(.container) textarea {
+    width: 90%;
+  }
+}

@@ -1,6 +1,7 @@
 @import '~Root/css/mixins';
 
 :local(.container) {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,5 +21,17 @@
   span {
     color: #666;
     font-size: 14px;
+  }
+}
+
+:local(.title) {
+  color: #222;
+  font-size: 30px;
+  text-align: center;
+}
+
+@media (min-width: 120px) and (max-width: 580px) {
+  :local(.conf) {
+    width: 90%;
   }
 }

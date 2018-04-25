@@ -52,10 +52,12 @@ class MyConferences extends Component {
 
     return (
       <div className={styles.container}>
-        {this.props.conferences.length ?
-          <h1>کنفرانس های شما</h1> :
-          <h1>شما هیچ کنفرانسی ندارید</h1>
-        }
+        <h1 className={styles.title}>
+          {this.props.conferences.length ?
+            'کنفرانس های شما' :
+            'شما هیچ کنفرانسی ندارید'
+          }
+        </h1>
 
         {this.props.conferences.map((v, i) =>
           <div key={i} className={styles.conf}>

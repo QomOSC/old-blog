@@ -64,7 +64,7 @@ class ManageEdit extends Component {
 
     return (
       <div className={styles.container}>
-        <h1>مدیریت کنفرانس</h1>
+        <h1 className={styles.title}>مدیریت کنفرانس</h1>
 
         <input
           type='text'
