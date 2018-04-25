@@ -96,14 +96,17 @@ class AddArticle extends Component {
           placeholder='عنوان'
           ref='title'
         />
-        <SimpleMDE
-          ref='content'
-          value={this.state.content}
-          onChange={this.handle}
-          options={{
-            spellChecker: false
-          }}
-        />
+
+        <div className={styles.simplemde}>
+          <SimpleMDE
+            ref='content'
+            value={this.state.content}
+            onChange={this.handle}
+            options={{
+              spellChecker: false
+            }}
+          />
+        </div>
 
         {this.state.tags.length ? <p>تگ ها</p> : ''}
 

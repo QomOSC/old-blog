@@ -10,3 +10,21 @@
     margin: 20px 0;
   }
 }
+
+:local(.title) {
+  margin: 20px;
+  font-size: 30px;
+  color: #222;
+}
+
+@media (min-width: 120px) and (max-width: 580px) {
+  :local(.container) > div {
+    width: 95%;
+
+    button {
+      display: flex;
+      justify-content: center;
+      align-self: center;
+    }
+  }
+}

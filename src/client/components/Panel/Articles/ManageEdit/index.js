@@ -96,22 +96,31 @@ class ManageEdit extends Component {
 
     return (
       <div className={styles.container}>
-        <Button handleClick={this.accept} color='blue'>پذیرفتن</Button>
-        <Button handleClick={this.reject} color='red'>نپذیرفتن</Button>
+
+        <h1 className={styles.title}>مدیریت مقاله</h1>
+
         <input
           type='text'
           placeholder='عنوان'
           ref='title'
           defaultValue={this.state.data.article.title}
         />
-        <SimpleMDE
-          ref='content'
-          value={this.state.data.article.content}
-          onChange={this.handle}
-          options={{
-            spellChecker: false
-          }}
-        />
+
+        <div className={styles.simplemde}>
+          <SimpleMDE
+            ref='content'
+            value={this.state.data.article.content}
+            onChange={this.handle}
+            options={{
+              spellChecker: false
+            }}
+          />
+        </div>
+
+        <div className={styles.buttons}>
+          <Button handleClick={this.accept} color='blue'>پذیرفتن</Button>
+          <Button handleClick={this.reject} color='red'>نپذیرفتن</Button>
+        </div>
       </div>
     );
   }

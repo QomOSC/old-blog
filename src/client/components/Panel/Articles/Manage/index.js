@@ -51,10 +51,12 @@ class Manage extends Component {
 
     return (
       <div className={styles.container}>
-        {this.state.articles.length ?
-          <h1>مقالات جدید</h1> :
-          <h1>مقاله جدیدی وجود ندارد</h1>
-        }
+        <h1 className={styles.title}>
+          {this.state.articles.length ?
+            'مقالات جدید' :
+            'مقاله جدیدی وجود ندارد'
+          }
+        </h1>
 
         <div className={styles.articles}>
           {this.state.articles.map((v, i) =>

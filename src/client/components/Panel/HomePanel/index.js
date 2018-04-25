@@ -44,8 +44,6 @@ class Home extends Component {
             </p>
           </Link>
         </Box>
-        <Box />
-        <Box />
       </div>
     );
   }

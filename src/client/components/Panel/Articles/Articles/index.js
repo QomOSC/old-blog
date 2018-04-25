@@ -68,7 +68,13 @@ class Articles extends Component {
 
     return (
       <div className={styles.container}>
-        {this.props.articles.length === 0 ? <h1>شما مقاله ای ندارید</h1> : ''}
+        <h1 className={styles.title}>
+          {this.props.articles.length ?
+            'مقالات شما' :
+            'شما مقاله ای ندارید'
+          }
+        </h1>
+
         {this.props.articles.map((v, i) =>
           <Article
             key={i}
