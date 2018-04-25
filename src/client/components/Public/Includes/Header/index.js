@@ -25,10 +25,6 @@ class Header extends Component {
     this.setState({ isOpen: false });
   }
 
-  shouldComponentUpdate() {
-    return true;
-  }
-
   render() {
     const links = [
       {

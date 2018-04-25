@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import styles from './index.less';
 
 
 class NLink extends Component {
+  forceUpdate() {
+    return true;
+  }
+
+  componentShouldUpdate() {
+    return true;
+  }
+
   render() {
     if (this.props.type === 3) {
       if (this.props.user.type >= 3) {
@@ -43,8 +51,8 @@ class NLink extends Component {
   }
 }
 
-export default connect(
+export default withRouter(connect(
   state => ({
     user: state.user
   })
-)(NLink);
+)(NLink));

@@ -27,10 +27,6 @@ class Header extends Component {
     this.setState({ isOpen: false });
   }
 
-  shouldComponentUpdate() {
-    return true;
-  }
-
   @bind
   logout() {
     this.props.dispatch(logout());
