@@ -51,23 +51,13 @@ class Header extends Component {
         text: 'اضافه کردن مقاله'
       },
       {
+        to: '/panel/articles/comments',
+        text: 'نظرات درباره مقالات شما'
+      },
+      {
         to: '/panel/articles/manage',
         text: 'مدیریت مقالات جدید',
         type: 3
-      },
-      {
-        to: '/panel/manage',
-        text: 'مدیریت کاربران جدید',
-        type: 3
-      },
-      {
-        to: '/panel/comments',
-        text: 'نظرات درباره جامعه',
-        type: 3
-      },
-      {
-        to: '/panel/articles/comments',
-        text: 'نظرات درباره مقالات شما'
       },
       {
         to: '/panel/conferences',
@@ -83,26 +73,30 @@ class Header extends Component {
         type: 3
       },
       {
-        to: '#',
-        click: this.logout,
-        text: 'خروج'
+        to: '/panel/comments',
+        text: 'نظرات درباره جامعه',
+        type: 3
+      },
+      {
+        to: '/panel/manage',
+        text: 'مدیریت کاربران جدید',
+        type: 3
       },
       {
         to: '/panel/god/manage',
         text: 'حذف فوری کاربر',
         type: 4
+      },
+      {
+        to: '#',
+        click: this.logout,
+        text: 'خروج'
       }
     ];
 
     return (
       <header className={styles.header}>
         <Link to='/'>جامعه متن باز قم</Link>
-
-        <ul>
-          {links.map((v, i) => <li key={i}>
-            <NLink {...v} />
-          </li>)}
-        </ul>
 
         <div
           className={`icon icon-bars ${styles.linksButton}`}

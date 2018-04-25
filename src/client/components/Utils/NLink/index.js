@@ -10,10 +10,6 @@ class NLink extends Component {
     return true;
   }
 
-  componentShouldUpdate() {
-    return true;
-  }
-
   render() {
     if (this.props.type === 3) {
       if (this.props.user.type >= 3) {
