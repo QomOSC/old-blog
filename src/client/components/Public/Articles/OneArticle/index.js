@@ -60,7 +60,7 @@ class ArticlesHome extends Component {
       }
     `;
 
-    gql(query).then(data => {
+    gql(query).then(async data => {
       if (!data.data.article) {
         this.props.history.push('/notfound');
         return;
@@ -76,7 +76,10 @@ class ArticlesHome extends Component {
         article: data.data.article
       });
 
-      this.props.dispatch(addViewer(data.data.article._id, 'USER_IP'));
+      const { ip } = await fetch('https://json.geoiplookup.io/api')
+        .then(res => res.json());
+
+      this.props.dispatch(addViewer(data.data.article._id, ip));
 
       this.setState({ loading: false });
     });

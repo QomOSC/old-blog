@@ -89,7 +89,6 @@ if (process.env.NODE_ENV === 'development') {
     console.log(`The server is running on port ${config.port}`);
   });
 } else {
-  console.log('hey man');
   spdy.createServer({
     cert: readFileSync(join(__dirname, 'ssl/f.pem')),
     key: readFileSync(join(__dirname, 'ssl/p.pem'))

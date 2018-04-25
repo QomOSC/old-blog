@@ -11,6 +11,6 @@
 
 `npm run prod`
 
-`npm run server`
+`npm run linux-server` or `npm run windows-server`
 
 Then all you gotta do is to open http://localhost:8080 in your favorite browser.

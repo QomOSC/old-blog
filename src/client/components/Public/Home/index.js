@@ -116,7 +116,9 @@ class Home extends Component {
           </div>
         </div>
 
-        {this.state.articles.length && <h2>مقالات اخیر</h2>}
+        {this.state.articles.length &&
+          <h2 className={styles.title}>مقالات اخیر</h2>
+        }
 
         <div className={styles.articles}>
           {this.state.articles.map((v, i) =>

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -30,37 +30,45 @@ class Header extends Component {
   }
 
   render() {
-    const links = this.props.logged ?
-      <Fragment>
-        <li>
-          <NLink
-            to='/panel'
-            text='داشبورد'
-          />
-        </li>
-      </Fragment> :
+    const links = [
+      {
+        to: '/conferences',
+        text: 'کنفرانس ها'
+      },
+      {
+        to: '/articles',
+        text: 'مقالات'
+      }
+    ];
 
-      <Fragment>
-        <li>
-          <NLink
-            to='/login'
-            text='ورود'
-          />
-        </li>
-        <li>
-          <NLink
-            to='/signup'
-            text='ثبت نام'
-          />
-        </li>
-      </Fragment>;
+    if (this.props.logged) {
+      links.push(
+        {
+          to: '/panel',
+          text: 'داشبورد'
+        }
+      );
+    } else {
+      links.push(
+        {
+          to: '/login',
+          text: 'ورود'
+        },
+        {
+          to: '/signup',
+          text: 'ثبت نام'
+        }
+      );
+    }
 
     return (
       <header className={styles.header}>
         <Link to='/'>جامعه متن باز قم</Link>
 
         <ul>
-          { links }
+          {links.map((v, i) =>
+            <li key={i}><NLink {...v} /></li>
+          )}
         </ul>
 
         <div
@@ -74,7 +82,9 @@ class Header extends Component {
               onClick={this.hideSlideOut} />
 
             <ul>
-              { links }
+              {links.map((v, i) =>
+                <li key={i}><NLink {...v} /></li>
+              )}
             </ul>
           </div>
         </SlideOut>

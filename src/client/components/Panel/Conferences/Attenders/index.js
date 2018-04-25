@@ -74,8 +74,6 @@ class Attenders extends Component {
       return <LoadingProgress />;
     }
 
-    console.log(this.state.conference);
-
     return (
       <div className={styles.container}>
         <h1>درباره کنفرانس</h1>
