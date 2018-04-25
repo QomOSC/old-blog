@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import aboutImage from 'Root/images/about.jpg';
-import sg from 'Root/images/developers/sg.jpg';
-import mk from 'Root/images/developers/mk.jpg';
-import mm from 'Root/images/developers/mm.jpg';
 import styles from './index.less';
 
 
@@ -14,7 +10,7 @@ class About extends Component {
       <div className={styles.container}>
         <div>
           <img
-            src={aboutImage}
+            src='/static/images/about.jpg'
             className={styles.aboutImage}
             alt='عکس اعضای جامعه متن باز قم'
           />
@@ -27,7 +23,7 @@ class About extends Component {
 
             <div className={styles.authorInfo}>
               <img
-                src={sg}
+                src='/static/images/developers/sg.jpg'
                 className={styles.developerImage}
               />
               <h1>سجاد گرامی</h1>
@@ -56,7 +52,7 @@ class About extends Component {
             <div className={styles.developersInfo}>
               <div className={styles.developerInfo}>
                 <img
-                  src={mk}
+                  src='/static/images/developers/mk.jpg'
                   className={styles.developerImage}
                 />
                 <h1>محمد متین کابلی</h1>
@@ -78,7 +74,7 @@ class About extends Component {
 
               <div className={styles.developerInfo}>
                 <img
-                  src={mm}
+                  src='/static/images/developers/mm.jpg'
                   className={styles.developerImage}
                 />
                 <h1>محمد سیفی مرندی</h1>

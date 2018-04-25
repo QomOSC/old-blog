@@ -12,7 +12,6 @@ import Article from 'Root/components/Utils/Article';
 import Button from 'Root/components/Utils/Button';
 import Box from 'Root/components/Utils/Box';
 
-import qomosc from 'Root/images/qomosc.png';
 import styles from './index.less';
 
 class Home extends Component {
@@ -92,7 +91,7 @@ class Home extends Component {
     return (
       <div className={styles.container}>
         <div className={styles.intro}>
-          <img src={qomosc}/>
+          <img src='/static/images/qomosc.png' />
           <h1>جامعه متن باز قم</h1>
         </div>
 

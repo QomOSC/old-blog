@@ -28,7 +28,12 @@ gulp.task('copy', () => {
     gulp.src([
       'src/server/ssl/*'
     ])
-    .pipe(gulp.dest('build/ssl'))
+    .pipe(gulp.dest('build/ssl')),
+
+    gulp.src([
+      'src/images/**/*'
+    ])
+    .pipe(gulp.dest('build/static/images'))
   ];
 });
 
