@@ -24,7 +24,7 @@ class Edit extends Component {
     const query = `
       query {
         user {
-          article (id: "${this.props.match.params.id}") {
+          article (_id: "${this.props.match.params.id}") {
             title
             content
           }
@@ -81,14 +81,17 @@ class Edit extends Component {
           ref='title'
           defaultValue={this.state.article.title}
         />
-        <SimpleMDE
-          ref='content'
-          value={this.state.content}
-          onChange={this.handle}
-          options={{
-            spellChecker: false
-          }}
-        />
+
+        <div className={styles.simplemde}>
+          <SimpleMDE
+            ref='content'
+            value={this.state.content}
+            onChange={this.handle}
+            options={{
+              spellChecker: false
+            }}
+          />
+        </div>
 
         <Button handleClick={this.edit} color='blue'>ثبت</Button>
       </div>

@@ -90,6 +90,11 @@ class Header extends Component {
         to: '#',
         click: this.logout,
         text: 'خروج'
+      },
+      {
+        to: '/panel/god/manage',
+        text: 'حذف فوری کاربر',
+        type: 4
       }
     ];
 

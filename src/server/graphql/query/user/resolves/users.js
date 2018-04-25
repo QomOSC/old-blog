@@ -5,7 +5,9 @@ export default async (parent, args, context) => {
     return [];
   }
 
-  return await user({ _id: context.req.session.user }, true).type < 3 ?
-    await user({ type: parseInt(args.type) || 2 }) :
+  const admin = await user({ _id: context.req.session.user }, true);
+
+  return admin.type >= 3 ?
+    await user({ type: args.type || 2 }) :
     [];
 };

@@ -28,6 +28,7 @@ class Manage extends Component {
     `;
 
     gql(query).then(data => {
+      console.log(data);
       this.props.dispatch({
         type: types.users.LOAD,
         users: data.data.users
@@ -56,28 +57,32 @@ class Manage extends Component {
 
     return (
       <div className={styles.container}>
-        {!this.props.users.length ?
-          <h1>کاربر جدیدی وجود ندارد</h1> :
-          <h1>کاربران جدید</h1>
-        }
+        <h1 className={styles.title}>
+          {this.props.users.length ?
+            'کاربران جدید' :
+            'کاربر جدیدی وجود ندارد'
+          }
+        </h1>
 
         {this.props.users.map((v, i) =>
           <div key={i} className={styles.user}>
-            <p>{v.name}</p>
-            <p>{v.email}</p>
-            <p>{v.username}</p>
+            <p>نام: {v.name}</p>
+            <p>ایمیل: {v.email}</p>
+            <p>نام کاربری: {v.username}</p>
 
-            <Button
-              color='blue'
-              handleClick={this.acceptUser(v._id)}>
-              پذیرفتن کاربر
-            </Button>
+            <div className={styles.buttons}>
+              <Button
+                color='blue'
+                handleClick={this.acceptUser(v._id)}>
+                پذیرفتن کاربر
+              </Button>
 
-            <Button
-              color='red'
-              handleClick={this.rejectUser(v._id)}>
-              نپذیرفتن کاربر
-            </Button>
+              <Button
+                color='red'
+                handleClick={this.rejectUser(v._id)}>
+                نپذیرفتن کاربر
+              </Button>
+            </div>
           </div>
         )}
       </div>
