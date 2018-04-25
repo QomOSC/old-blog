@@ -41,6 +41,15 @@ class AddArticle extends Component {
       return;
     }
 
+    if (this.refs.tags.value.length > 1) {
+      izitoast.warning({
+        rtl: true,
+        title: 'برای اضافه کردن برچسب،‌ از فاصله استفاده کنید'
+      });
+
+      return;
+    }
+
     newArticle({
       title: this.refs.title.value,
       content: this.state.content,

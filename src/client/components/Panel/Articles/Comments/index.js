@@ -16,7 +16,7 @@ import styles from './index.less';
 
 class Comments extends Component {
   state = {
-    comments: null
+    loading: true
   };
 
   componentDidMount() {
@@ -42,6 +42,10 @@ class Comments extends Component {
         type: types.comments.LOAD,
         comments: data.data.comment
       });
+
+      this.setState({
+        loading: false
+      });
     });
   }
 
@@ -60,8 +64,14 @@ class Comments extends Component {
   }
 
   render() {
-    if (!this.props.comments) {
+    if (this.props.loading) {
       return <LoadingProgress />;
+    }
+
+    if (this.props.comments.length) {
+      if (!this.props.comments[0].articleData) {
+        return <LoadingProgress />;
+      }
     }
 
     return (

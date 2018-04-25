@@ -49,6 +49,15 @@ class Conferences extends Component {
 
   @bind
   submit() {
+    if (this.refs.providers.value.length > 1) {
+      izitoast.warning({
+        rtl: true,
+        title: 'برای اضافه کردن ارائه دهندگان، از فاصله استفاده کنید'
+      });
+
+      return;
+    }
+    
     if (
       !this.refs.description.value ||
       !this.state.providers.length ||
