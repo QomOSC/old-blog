@@ -20,6 +20,7 @@ open http://localhost:8080
 ### Production
 
 `npm run prod`
+
 `pm2 build/app.js`
 
 **NOTE:** you need to have a TLS certificate in order to run the project in
