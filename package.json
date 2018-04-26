@@ -8,10 +8,8 @@
     "prod": "gulp prod",
     "app": "node build/app.js",
     "compress": "tar -czvf app.tar.gz build package.json",
-    "linux-server":
-      "NODE_ENV=development nodemon build/app.js -e js -w build/app.js",
-    "windows-server":
-      "set NODE_ENV=development&&nodemon build/app.js -e js -w build/app.js"
+    "linux-server": "NODE_ENV=development nodemon build/app.js -e js -w build/app.js",
+    "windows-server": "set NODE_ENV=development&&nodemon build/app.js -e js -w build/app.js"
   },
   "repository": {
     "type": "git",
@@ -62,6 +60,7 @@
     "eslint-plugin-react": "^7.6.0",
     "gulp": "^3.9.1",
     "gulp-eslint": "^4.0.2",
+    "gulp-htmlmin": "^4.0.0",
     "izitoast": "^1.2.0",
     "less": "^3.0.1",
     "less-loader": "^4.0.5",

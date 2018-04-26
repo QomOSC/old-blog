@@ -1,5 +1,6 @@
 const { existsSync, mkdirSync } = require('fs');
 const webpack = require('webpack-stream');
+const htmlmin = require('gulp-htmlmin');
 const lint = require('gulp-eslint');
 const gulp = require('gulp');
 const del = require('del');
@@ -23,6 +24,7 @@ gulp.task('copy', () => {
     gulp.src([
       'src/index.html'
     ])
+    .pipe(htmlmin({ collapseWhitespace: true }))
     .pipe(gulp.dest('build/')),
 
     gulp.src([

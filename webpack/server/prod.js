@@ -1,5 +1,6 @@
 /* eslint-disable */
 
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 var nodeExternals = require('webpack-node-externals')
 const babelConfig = require('../babel.config.json');
 const { resolve } = require('path');
@@ -38,6 +39,9 @@ module.exports = {
       'process.env': {
         'NODE_ENV': JSON.stringify('production')
       }
+    }),
+    new UglifyJsPlugin({
+      cache: true
     })
   ]
 };
