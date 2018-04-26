@@ -3,6 +3,7 @@ import { Router } from 'express';
 import Newsletter from 'Root/models/Newsletter';
 import User from 'Root/models/User';
 
+import removeConferences from 'Root/utils/remove/removeConferences';
 import removeArticles from 'Root/utils/remove/removeArticles';
 import removeImage from 'Root/utils/removeImage';
 
@@ -17,6 +18,17 @@ router.post('/panel/user/setting/delete', logged, async (req, res) => {
     const user = await User.findById(req.session.user);
     const newsletter = await Newsletter.findOne({ email: user.email });
 
+    if (user.avatar) {
+      await removeImage(user.avatar);
+    }
+
+    await removeArticles(req.session.user);
+    await removeConferences(req.session.user);
+
+    await newsletter.remove();
+    await user.remove();
+
+
     sendEmail({
       to: user.email,
       subject: 'حذف حساب، جامعه متن باز قم',
@@ -26,12 +38,6 @@ router.post('/panel/user/setting/delete', logged, async (req, res) => {
         حساب شما با موفقیت در جامعه متن باز قم حذف شد
       `
     });
-
-    await removeImage(user.avatar);
-    await removeArticles(req.session.user);
-
-    await newsletter.remove();
-    await user.remove();
 
     req.session.user = null;
 

@@ -5,19 +5,22 @@
   height: 100%;
   width: 1px;
   opacity: 0;
-  transition: all .75s ease;
+  transition: opacity .75s ease, width .75s ease;
   position: absolute;
   top: 0;
   bottom: 0;
   z-index: 999999;
+  display: none;
 }
 
 :local(.show) {
   opacity: 1;
-  width: 100%
+  width: 100%;
+  display: block;
 }
 
 :local(.hide) {
+  display: none;
   opacity: 0;
   width: 1px;
 }

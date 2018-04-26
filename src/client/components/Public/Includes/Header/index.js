@@ -34,6 +34,10 @@ class Header extends Component {
       {
         to: '/articles',
         text: 'مقالات'
+      },
+      {
+        to: '/about',
+        text: 'درباره'
       }
     ];
 

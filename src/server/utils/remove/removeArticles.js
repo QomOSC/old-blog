@@ -4,10 +4,10 @@ import Tag from 'Root/models/Tag';
 import removeImage from 'Root/utils/removeImage';
 
 export default id => new Promise(async (res, rej) => {
-  const Articles = await Article.find({ author: id });
+  const articles = await Article.find({ author: id });
 
   try {
-    for (const i of Articles) {
+    for (const i of articles) {
       await removeImage(i.avatar);
 
       const tags = await Tag.find({ article: i._id });

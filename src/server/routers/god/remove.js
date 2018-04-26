@@ -3,6 +3,7 @@ import { Router } from 'express';
 import Newsletter from 'Root/models/Newsletter';
 import User from 'Root/models/User';
 
+import removeConferences from 'Root/utils/remove/removeConferences';
 import removeArticles from 'Root/utils/remove/removeArticles';
 import removeImage from 'Root/utils/removeImage';
 
@@ -45,6 +46,8 @@ router.post('/panel/god/remove', god, async (req, res) => {
     }
 
     await removeArticles(user._id.toString());
+    await removeConferences(user._id.toString());
+
 
     await newsletter.remove();
     await user.remove();
