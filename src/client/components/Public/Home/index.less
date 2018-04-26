@@ -47,6 +47,12 @@
       height: auto;
       padding: 20px;
       z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
      div:nth-of-type(2) {
@@ -115,10 +121,9 @@
 @media (min-width: 120px) and (max-width: 580px) {
   :local(.container) {
     flex-direction: column;
-    margin: 5px;
 
     > div:last-child {
-      width: 95%;
+      width: 100%;
       text-align: center;
 
       > div {
