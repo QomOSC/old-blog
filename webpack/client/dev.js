@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 const babelConfig = require('../babel.config.json');
 const autoprefixer = require('autoprefixer');
 const { resolve } = require('path');
@@ -51,7 +49,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify('development')
+        NODE_ENV: JSON.stringify('development')
       }
     })
   ],

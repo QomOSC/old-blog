@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const babelConfig = require('../babel.config.json');
 const autoprefixer = require('autoprefixer');
@@ -52,7 +50,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify('production')
+        NODE_ENV: JSON.stringify('production')
       }
     }),
     new UglifyJsPlugin({
