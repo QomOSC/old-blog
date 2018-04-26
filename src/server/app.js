@@ -92,5 +92,5 @@ if (process.env.NODE_ENV === 'development') {
   spdy.createServer({
     cert: readFileSync(join(__dirname, 'ssl/f.pem')),
     key: readFileSync(join(__dirname, 'ssl/p.pem'))
-  }, app).listen(config.port);
+  }, app).listen(443);
 }
