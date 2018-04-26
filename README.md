@@ -9,8 +9,15 @@
 
 `npm install`
 
-`npm run prod`
+### Development
+
+`npm run dev`
 
 `npm run linux-server` or `npm run windows-server`
 
-Then all you gotta do is to open http://localhost:8080 in your favorite browser.
+open http://localhost:8080
+
+### Production
+
+`npm run prod`
+`pm2 build/app.js`
