@@ -190,12 +190,13 @@ class Setting extends Component {
               handleClick={this.openInput}>
               {this.props.user.avatar ? 'تغییر عکس' : 'اضافه کردن عکس'}
             </Button>
-            {this.props.user.avatar &&
+            {this.props.user.avatar ?
               <Button
                 color='red'
                 handleClick={this.removeAvatar}>
                 حذف عکس
-              </Button>
+              </Button> :
+              ''
             }
           </div>
           <table>

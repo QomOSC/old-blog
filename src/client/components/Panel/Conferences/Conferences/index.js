@@ -65,7 +65,7 @@ class MyConferences extends Component {
               <p>موضوع: {v.title}</p>
               <p>شروع:‌ {v.start}</p>
               <p>اتمام: {v.end}</p>
-              <p>{v.done && 'کنفرانس به اتمام رسیده است'}</p>
+              <p>{v.done ? 'کنفرانس به اتمام رسیده است' : ''}</p>
 
               <span>{moment(new Date(v.createdAt))}</span>
             </Link>

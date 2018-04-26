@@ -92,10 +92,11 @@ class ConferencesHome extends Component {
             </Button>
           </Link>
 
-          {!done &&
+          {!done ?
             <Button color='blue' handleClick={this.makeAsDone(_id)}>
               به اتمام رساندن
-            </Button>
+            </Button> :
+            ''
           }
 
           <Link to={`/panel/conferences/attenders/${_id}`}>

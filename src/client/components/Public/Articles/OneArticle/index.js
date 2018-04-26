@@ -163,9 +163,12 @@ class ArticlesHome extends Component {
           <p>{this.props.article.user.name}</p>
           <p>{this.props.article.user.email}</p>
           {this.renderImage()}
-          {this.props.article.user.description && <p>
+          {this.props.article.user.description ?
+            <p>
             درباره: {this.props.article.user.description}
-          </p>}
+            </p> :
+            ''
+          }
         </div>
 
         <div className={styles.article}>
@@ -203,7 +206,7 @@ class ArticlesHome extends Component {
           />
         }
 
-        {this.props.article.tags.length &&
+        {this.props.article.tags.length ?
           <div className={styles.tags}>
             <p>برچسب ها: </p>
             {this.props.article.tags.map((v, i) =>
@@ -213,8 +216,9 @@ class ArticlesHome extends Component {
                 </p>
               </Link>
             )}
-          </div>
-      }
+          </div> :
+          ''
+        }
 
 
         <div className={styles.comment}>

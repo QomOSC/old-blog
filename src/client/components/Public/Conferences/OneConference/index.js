@@ -115,7 +115,9 @@ class Conference extends Component {
           <p>عنوان: {this.state.conference.title}</p>
           <p>شروع کنفرانس: {this.state.conference.start}</p>
           <p>اتمام کنفرانس: {this.state.conference.end}</p>
-          <p>{this.state.conference.done && 'کنفرانس به اتمام رسیده است'}</p>
+          <p>
+            {this.state.conference.done ? 'کنفرانس به اتمام رسیده است' : ''}
+          </p>
 
           <p className={styles.faded}>
             {moment(new Date(this.state.conference.createdAt))}
@@ -123,12 +125,13 @@ class Conference extends Component {
           <p />
           <p>{this.state.conference.description}</p>
 
-          {!this.state.conference.done &&
+          {!this.state.conference.done ?
             <Button
               color='black'
               handleClick={this.attend(this.state.conference._id)}>
               حظور در کنفرانس
-            </Button>
+            </Button> :
+            ''
           }
 
           {this.state.conference.galleries.map((v, i) =>
