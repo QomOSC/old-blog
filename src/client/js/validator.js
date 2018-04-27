@@ -11,7 +11,7 @@ function validatePassword(password) {
 }
 
 const validateUsername = username =>
-  /^[a-zA-Z0-9]+([_.]?[a-zA-Z0-9])*$/.test(username);
+  /^[a-zA-Z ]{2,30}$/.test(username);
 
 const validateImage = img => {
   const type = img.type.split('/')[1];

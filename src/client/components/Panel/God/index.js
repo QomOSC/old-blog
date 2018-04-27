@@ -1,48 +1,22 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import izitoast from 'izitoast';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
-import remove from 'Root/actions/god/remove';
-
-import Button from 'Root/components/Utils/Button';
-
-import bind from 'Root/js/bind';
-
-import styles from './index.less';
+import Promote from './Promote';
+import Remove from './Remove';
 
 
 class God extends Component {
-  @bind
-  remove() {
-    if (!this.refs.username.value) {
-      izitoast.warning({
-        rtl: true,
-        title: 'مقادیر کافی نمی باشد'
-      });
-
-      return;
-    }
-
-    remove(this.refs.username.value, this.props.history.push);
-  }
-
   render() {
     return (
-      <div className={styles.container}>
-        <h1>حذف فوری</h1>
-
-        <input
-          type='text'
-          ref='username'
-          placeholder='یوزرنیم کاربر'
-        />
-
-        <Button color='blue' handleClick={this.remove}>
-          حذف فوری کاربر
-        </Button>
-      </div>
+      <Switch>
+        <Route exact path='/panel/god/remove' component={Remove} />
+        <Route path='/panel/god/promote' component={Promote} />
+        <Route>
+          <Redirect to='/notfound' />
+        </Route>
+      </Switch>
     );
   }
 }
 
-export default withRouter(God);
+export default God;

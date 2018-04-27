@@ -83,8 +83,18 @@ class Header extends Component {
         type: 3
       },
       {
-        to: '/panel/god/manage',
+        to: '/panel/god/remove',
         text: 'حذف فوری کاربر',
+        type: 4
+      },
+      {
+        to: '/panel/god/promote/toadmin',
+        text: 'تفریع دادن کاربران به مدیر',
+        type: 4
+      },
+      {
+        to: '/panel/god/promote/togod',
+        text: 'ترفیع دادن کاربر به مدیر کل',
         type: 4
       },
       {

@@ -1,0 +1,27 @@
+@import '~Root/css/mixins';
+
+:local(.container) {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  > * {
+    margin: 20px 0;
+  }
+
+  p, h1 {
+    text-align: center;
+  }
+
+  input {
+    .input();
+  }
+}
+
+:local(.title) {
+  font-size: 30px;
+  color: #222;
+  margin: 20px 0;
+}

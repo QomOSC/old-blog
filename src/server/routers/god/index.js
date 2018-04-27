@@ -1,3 +1,4 @@
 export default [
-  require('./remove')
+  require('./promote'),
+  require('./remove'),
 ];
