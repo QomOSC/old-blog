@@ -98,6 +98,11 @@ class Header extends Component {
         type: 4
       },
       {
+        to: '/panel/god/demote',
+        text: 'عزل کردن مدیر',
+        type: 4
+      },
+      {
         to: '#',
         click: this.logout,
         text: 'خروج'
