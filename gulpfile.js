@@ -15,7 +15,7 @@ gulp.task('clean', () =>
   ])
 );
 
-gulp.task('copy', () => {
+gulp.task('copy', ['clean'], () => {
   if (!existsSync('build/static/uploads')) {
     mkdirSync('build/static/uploads');
   }
