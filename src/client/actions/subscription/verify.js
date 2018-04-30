@@ -4,7 +4,7 @@ import { error } from 'Root/js/messages';
 import send from 'Root/js/send';
 
 export default async (token, push) => {
-  const { type, text } = send('/subscribe/verify', { token });
+  const { type, text } = await send('/subscribe/verify', { token });
 
   if (type === 2) {
 
@@ -23,5 +23,7 @@ export default async (token, push) => {
       rtl: true,
       title: 'ایمیل شما با موفقیت وارد خبرنامه شد'
     });
+
+    push('/');
   }
 };
