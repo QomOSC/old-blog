@@ -1,7 +1,6 @@
 import { Router } from 'express';
 
 import ActivationLink from 'Root/models/ActivationLink';
-import Newsletter from 'Root/models/Newsletter';
 import User from 'Root/models/User';
 
 import { hmac } from 'Root/utils/crypto';
@@ -59,38 +58,15 @@ router.post('/signup', login, async (req, res) => {
         <br>
         <a href='${url}/activate/${code}'>تایید حساب</a>
         <br>
-        حساب شما به صورت خودکار به خبر نامه اضافه شد
+        شما میتوانید در خبرنامه ثبت نام کنید و از اخبار جدید با خبر شوید
         <br>
-        برای خروج از خبر نامه به این لینک مراجعه فرمایید
-        <br>
-        <a href='${url}/unsubscribe'>خروج از خبرنامه</a>
+        جامعه متن باز قم
       `
     });
 
   } catch (e) {
     res.json({ type: 2, text: 3 });
     return;
-  }
-
-  let newsletter = await Newsletter.findOne({
-    email: req.body.email
-  });
-
-  if (newsletter) {
-    res.json({ type: 0 });
-    return;
-  }
-
-
-  newsletter = new Newsletter({
-    email: req.body.email
-  });
-
-  try {
-    await newsletter.save();
-    res.json({ type: 0 });
-  } catch (e) {
-    res.json({ type: 2, text: 3 });
   }
 });
 

@@ -15,15 +15,28 @@ export default async email => {
       });
     }
 
-    else {
+    if (text === 1) {
       izitoast.success({
         rtl: true,
-        title: 'ایمیل شما با موفقیت وارد خبر نامه شد'
+        title: 'ایمیل ثبت شد، برای استفاده ایمیل خود را تایید کنید',
+        message: 'ایمیل خود را چک کنید'
+      });
+    }
+  }
+
+  else if (type === 2) {
+
+    if (text === 0) {
+      izitoast.warning({
+        rtl: true,
+        title: 'ایمیل شما تایید نشده',
+        message: 'ایمیل خود را چک کنید'
       });
     }
 
-    return;
-  }
+    else if (text === 1) {
+      error();
+    }
 
-  error();
+  }
 };

@@ -16,5 +16,14 @@ export default mongoose.model('Newsletter', new Schema({
     },
     required: [true, 'email'],
     maxlength: 200
+  },
+  verified: {
+    default: false,
+    type: Boolean,
+    trim: true
+  },
+  token: {
+    type: String,
+    trim: true
   }
 }));
