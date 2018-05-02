@@ -8,8 +8,7 @@
     "prod": "gulp prod",
     "app": "node build/app.js",
     "compress": "tar -czvf app.tar.gz build package.json",
-    "linux-server": "NODE_ENV=development nodemon build/app.js -e js -w build/app.js",
-    "windows-server": "set NODE_ENV=development&&nodemon build/app.js -e js -w build/app.js"
+    "server": "cross-env NODE_ENV=development nodemon build/app.js -e js -w build/app.js"
   },
   "repository": {
     "type": "git",
@@ -53,6 +52,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "cross-env": "^5.1.4",
     "css-loader": "^0.28.9",
     "del": "^3.0.0",
     "eslint": "^4.16.0",
@@ -66,6 +66,7 @@
     "less-loader": "^4.0.5",
     "markdown-it": "^8.4.1",
     "moment-jalaali": "^0.7.2",
+    "nodemon": "^1.17.3",
     "nprogress": "^0.2.0",
     "postcss-loader": "^2.1.4",
     "prop-types": "^15.6.0",

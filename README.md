@@ -13,7 +13,7 @@
 
 `npm run dev`
 
-`npm run linux-server` or `npm run windows-server`
+`npm run server`
 
 open http://localhost:8080
 
