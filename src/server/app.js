@@ -16,14 +16,18 @@ import schema from './graphql';
 import routers from './routers';
 
 mongoose.Promise = global.Promise;
-mongoose.connect(config.db);
+mongoose.connect(config.db, () => {
+  console.log('Connected to database successfully.')
+});
 
-mongoose.connection.on('error', () => {
-  process.exit(0);
+mongoose.connection.on('error', error => {
+  console.error('Database connection error!', error);
+  process.exit(1);
 });
 
 mongoose.connection.on('disconnected', () => {
-  process.exit(0);
+  console.error('Disconnected from database!');
+  process.exit(1);
 });
 
 const app = express();
