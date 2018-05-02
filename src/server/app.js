@@ -79,6 +79,6 @@ app.use((req, res) => {
   res.sendFile(join(__dirname, '/index.html'));
 });
 
-  app.listen(config.port, config.origin, () => {
-    console.log(`The server is running on port ${config.port}`);
-  });
+app.listen(config.port, () => {
+  console.log(`The server is running on port ${config.port}`);
+});

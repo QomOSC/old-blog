@@ -17,7 +17,7 @@
 
 open http://localhost:8080
 
-### Production
+### Deploying with PM2
 
 `npm run prod`
 
@@ -25,3 +25,13 @@ open http://localhost:8080
 
 **NOTE:** Don't forget to change configurations in
 `src/server/config.js`
+
+### Deploying with Docker
+
+Run `cp .env.example .env` and change configurations in `.env`. We will use `SECRET_KEY` to secure sessions and sensetive data.
+
+You can then run using Docker Compose:
+
+```
+docker-compose up -d
+```
