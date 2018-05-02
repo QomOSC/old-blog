@@ -57,6 +57,7 @@
     "del": "^3.0.0",
     "eslint": "^4.16.0",
     "eslint-plugin-react": "^7.6.0",
+    "fs-extra": "^6.0.0",
     "gulp": "^3.9.1",
     "gulp-eslint": "^4.0.2",
     "gulp-htmlmin": "^4.0.0",

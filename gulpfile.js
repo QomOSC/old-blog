@@ -1,4 +1,4 @@
-const { existsSync, mkdirSync } = require('fs');
+const { ensureDirSync } = require('fs-extra');
 const webpack = require('webpack-stream');
 const htmlmin = require('gulp-htmlmin');
 const lint = require('gulp-eslint');
@@ -16,9 +16,7 @@ gulp.task('clean', () =>
 );
 
 gulp.task('copy', ['clean'], () => {
-  if (!existsSync('build/static/uploads')) {
-    mkdirSync('build/static/uploads');
-  }
+  ensureDirSync('build/static/uploads');
 
   return [
     gulp.src([
