@@ -4,7 +4,6 @@ import morgan from 'morgan';
 import express from 'express';
 import process from 'process';
 import mongoose from 'mongoose';
-import { readFileSync } from 'fs';
 import bodyParser from 'body-parser';
 import session from 'express-session';
 import graphql from 'express-graphql';
@@ -16,17 +15,20 @@ import schema from './graphql';
 import routers from './routers';
 
 mongoose.Promise = global.Promise;
+
 mongoose.connect(config.db, () => {
-  console.log('Connected to database successfully.')
+  console.log('Connected to database successfully.');
 });
 
 mongoose.connection.on('error', error => {
   console.error('Database connection error!', error);
+
   process.exit(1);
 });
 
 mongoose.connection.on('disconnected', () => {
   console.error('Disconnected from database!');
+
   process.exit(1);
 });
 
@@ -63,10 +65,16 @@ app.use(session({
   })
 }));
 
+/**
+ * routers
+ */
 for (const router of routers) {
   app.use(router);
 }
 
+/**
+ * graphQL
+ */
 app.use('/graphql', (req, res) =>
   graphql({
     schema,
@@ -75,6 +83,9 @@ app.use('/graphql', (req, res) =>
   })(req, res)
 );
 
+/**
+ * react
+ */
 app.use((req, res) => {
   res.sendFile(join(__dirname, '/index.html'));
 });

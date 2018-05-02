@@ -78,6 +78,7 @@
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "simplemde": "^1.11.2",
+    "split": "^1.0.1",
     "style-loader": "^0.20.1",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "url-loader": "^0.6.2",
