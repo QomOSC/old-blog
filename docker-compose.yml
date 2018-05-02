@@ -1,0 +1,32 @@
+version: "3"
+services:
+
+  app:
+    depends_on:
+      - db
+    build: .
+    ports:
+      - ${EXTERNAL_PORT}:8080
+    networks:
+      - net
+    volumes:
+        - uploads:/app/build/static/uploads
+    environment:
+      URL: ${EXTERNAL_URL}
+      NODE_ENV: production
+      DB: mongodb://db/qomosc
+      SECRET_KEY: ${SECRET_KEY}
+
+  db:
+    image: mongo:3.6
+    networks:
+      - net
+    volumes:
+      - db:/data/db
+
+volumes:
+  db:
+  uploads:
+
+networks:
+  net:

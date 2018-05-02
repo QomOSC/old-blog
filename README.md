@@ -13,17 +13,25 @@
 
 `npm run dev`
 
-`npm run linux-server` or `npm run windows-server`
+`npm run server`
 
 open http://localhost:8080
 
-### Production
+### Deploying with PM2
 
 `npm run prod`
 
 `pm2 build/app.js`
 
-**NOTE:** you need to have a TLS certificate in order to run the project in
-production mode, you have to put certificate files in `src/server/ssl` with
-names `p.pem` and `f.pem`. Don't forget to change configurations in
+**NOTE:** Don't forget to change configurations in
 `src/server/config.js`
+
+### Deploying with Docker
+
+Run `cp .env.example .env` and change configurations in `.env`. We will use `SECRET_KEY` to secure sessions and sensetive data.
+
+You can then run using Docker Compose:
+
+```
+docker-compose up -d
+```
