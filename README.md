@@ -23,7 +23,5 @@ open http://localhost:8080
 
 `pm2 build/app.js`
 
-**NOTE:** you need to have a TLS certificate in order to run the project in
-production mode, you have to put certificate files in `src/server/ssl` with
-names `p.pem` and `f.pem`. Don't forget to change configurations in
+**NOTE:** Don't forget to change configurations in
 `src/server/config.js`
