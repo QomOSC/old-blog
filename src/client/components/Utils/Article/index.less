@@ -2,22 +2,27 @@
 @import '~Root/css/mixins';
 
 :local(.article) {
-  padding-bottom: 30px;
-  border-radius: 5px;
   background-color: white;
   .boxShadow();
   color: #444;
+  overflow: hidden;
+
 
   h1 {
     font-size: 22px;
-    padding: 20px;
+    padding: 10px;
   }
 
   img {
     display: block;
-    margin: 0 auto;
-    width: 90%;
+    width: 100%;
     height: 200px;
+    object-fit: cover;
+    transition: 0.3s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 }
 
@@ -25,9 +30,10 @@
   display: flex;
   align-items: center;
   font-size: 14px;
+  border-bottom: solid 1px #f2f2f2;
 
   img {
-    margin: 20px 20px;
+    margin: 8px 8px;
     width: 40px;
     height: 40px;
     border-radius: 50%;

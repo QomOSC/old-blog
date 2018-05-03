@@ -28,9 +28,10 @@ class Article extends Component {
           </div>
         </div>
         <Link to={`/articles/${this.props.id}`}>
-          {this.props.art.title ? <h1>{this.props.art.title}</h1> : ''}
           {this.props.art.avatar ? <img src=
             {`/static/uploads/${this.props.art.avatar}`} /> : ''}
+          {this.props.art.title ? <h1>{this.props.art.title}</h1> : ''}
+
         </Link>
         <div className={styles.others}>
           {this.props.children}

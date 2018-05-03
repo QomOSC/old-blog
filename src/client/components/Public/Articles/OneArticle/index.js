@@ -90,21 +90,6 @@ class ArticlesHome extends Component {
   }
 
   @bind
-  renderImage() {
-    if (this.props.article.user.avatar) {
-      return <img
-        src={`/static/uploads/${this.props.article.user.avatar}`}
-        className={styles.userImage}
-      />;
-    }
-
-    return <img
-      src={userDefault}
-      className={styles.userImage}
-    />;
-  }
-
-  @bind
   comment() {
     if (
       !this.refs.name.value ||
@@ -159,29 +144,25 @@ class ArticlesHome extends Component {
 
     return (
       <div className={styles.container}>
-        <div className={styles.user}>
-          <p>{this.props.article.user.name}</p>
-          <p>{this.props.article.user.email}</p>
-          {this.renderImage()}
+        <div className={styles.user} style={{ backgroundImage: `url(/static/uploads/${this.props.article.avatar})` }}>
+          <span>{this.props.article.user.name}</span>
           {this.props.article.user.description ?
             <p>
             درباره: {this.props.article.user.description}
             </p> :
             ''
           }
+          <h1>{this.props.article.title}</h1>
+          <p>{moment(new Date(this.props.article.createdAt))}</p>
+          <p>{this.props.article.minutes} دقیقه خواندن</p>
         </div>
 
         <div className={styles.article}>
           <br />
-          <h1>{this.props.article.title}</h1>
-          <p>{moment(new Date(this.props.article.createdAt))}</p>
-          <p>{this.props.article.minutes} دقیقه خواندن</p>
+
           <br />
 
-          <img
-            className={styles.articleAvatar}
-            src={`/static/uploads/${this.props.article.avatar}`}
-          />
+        
 
           <div
             className={styles.articleContent}

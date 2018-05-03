@@ -94,7 +94,7 @@ class User extends Component {
             <p>درباره: {this.state.user.description}</p> :
             ''
           }
-          
+
           <p>عضو شده در:‌ {moment(new Date(this.state.user.createdAt))}</p>
           <p>تعداد مقالات: {this.state.user.articles}</p>
         </div>
