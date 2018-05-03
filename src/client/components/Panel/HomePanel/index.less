@@ -1,23 +1,26 @@
 @import '~Root/css/colors';
 
-:local(.container) {
-  display: flex;
-
-  > div {
-    width: 100%;
-    margin: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-}
-
 :local(.userAvatar) {
-  width: 280px;
-  height: 280px;
+  width: 40%;
+  border-radius: 50%;
+  margin: 10px auto;
 }
 
-:local(.username) {
-  color: @blue-1;
+:local(.userInfo) {
+  width: 150px;
+  background-color: @black-base;
+  color: white;
+  font-size: 25px;
+  height: 87.1vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  a {
+    color: @blue-2;
+
+    &:hover, &:active {
+      color: @blue-3;
+    }
+  }
 }

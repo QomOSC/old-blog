@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 
 import bind from 'Root/js/bind';
 
-import Box from 'Root/components/Utils/Box';
-
 import userDefault from 'Root/images/u.png';
 import styles from './index.less';
 
@@ -33,17 +31,16 @@ class Home extends Component {
   render() {
     return (
       <div className={styles.container}>
-        <Box>
+        <div className={styles.userInfo}>
           {this.renderImage()}
-          <p>نام: {this.props.user.name}</p>
-          <p>ایمیل: {this.props.user.email}</p>
+          <p>{this.props.user.name}</p>
           <Link
             to={`/user/${this.props.user.username}`}>
             <p className={styles.username}>
-              یوزرنیم: {this.props.user.username}
+              {this.props.user.username}@
             </p>
           </Link>
-        </Box>
+        </div>
       </div>
     );
   }
