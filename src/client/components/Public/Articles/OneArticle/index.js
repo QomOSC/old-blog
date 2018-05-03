@@ -80,12 +80,13 @@ class ArticlesHome extends Component {
         article: data.data.article
       });
 
-      const { ip } = await fetch('https://json.geoiplookup.io/api')
-        .then(res => res.json());
-
-      this.props.dispatch(addViewer(data.data.article._id, ip));
-
       this.setState({ loading: false });
+
+      fetch('https://json.geoiplookup.io/api')
+        .then(res => res.json())
+        .then(ipData => {
+          this.props.dispatch(addViewer(data.data.article._id, ipData.ip));
+        });
     });
   }
 
