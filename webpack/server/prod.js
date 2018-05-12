@@ -5,7 +5,7 @@ const { resolve } = require('path');
 
 module.exports = {
   output: {
-    filename: 'app.js'
+    filename: 'app.js',
   },
   module: {
     rules: [
@@ -16,15 +16,15 @@ module.exports = {
         query: {
           cacheDirectory: true,
           presets: babelConfig.presets,
-          plugins: babelConfig.plugins
-        }
-      }
-    ]
+          plugins: babelConfig.plugins,
+        },
+      },
+    ],
   },
   resolve: {
     alias: {
       Root: resolve(__dirname, '../../', 'src/server'),
-    }
+    },
   },
   target: 'node',
   externals: [nodeExternals()],
@@ -34,6 +34,6 @@ module.exports = {
   plugins: [
     new UglifyJsPlugin({
       cache: true
-    })
-  ]
+    }),
+  ],
 };

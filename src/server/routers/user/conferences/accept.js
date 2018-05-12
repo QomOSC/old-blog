@@ -9,15 +9,16 @@ import { url } from 'Root/config';
 
 const router = new Router();
 
+
 router.post('/panel/conferences/accept', admin, async (req, res) => {
   try {
     const conf = await Conference.findOne({ _id: req.body._id, type: 1 });
 
-    conf.type = 2;
-    conf.end = req.body.end;
+    conf.description = req.body.description;
     conf.start = req.body.start;
     conf.title = req.body.title;
-    conf.description = req.body.description;
+    conf.end = req.body.end;
+    conf.type = 2;
 
     await conf.save();
 

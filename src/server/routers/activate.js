@@ -7,6 +7,7 @@ import { login } from 'Root/perms';
 
 const router = new Router();
 
+
 router.post('/activate', login, async (req, res) => {
   const AL = await ActivationLink.findOne({ code: req.body.code });
 

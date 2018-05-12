@@ -11,6 +11,7 @@ const upload = multer({ dest: config.uploadDir, limits: 3000000, storage });
 
 const router = new Router();
 
+
 router.post(
   '/panel/conferences/gallery',
   admin,
@@ -22,6 +23,7 @@ router.post(
 
     if (!conf) {
       res.json({ type: 2 });
+
       return;
     }
 

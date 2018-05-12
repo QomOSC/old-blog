@@ -7,5 +7,5 @@ const validatePassword = password => password.length < 8 ? false : true;
 export {
   validateEmail as email,
   validatePassword as password,
-  validateUsername as username
+  validateUsername as username,
 };

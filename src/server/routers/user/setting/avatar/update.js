@@ -4,13 +4,13 @@ import multer from 'multer';
 import User from 'Root/models/User';
 
 import storage from 'Root/utils/storage';
-
-import config from 'Root/config';
 import { logged } from 'Root/perms';
+import config from 'Root/config';
+
+const upload = multer({ dest: config.uploadDir, limits: 3000000, storage });
 
 const router = new Router();
 
-const upload = multer({ dest: config.uploadDir, limits: 3000000, storage });
 
 router.post(
   '/panel/user/setting/avatar/update',
@@ -20,14 +20,10 @@ router.post(
 
   const user = await User.findById(req.session.user);
 
-  if (!user) {
-    res.json({ type: 2 });
-    return;
-  }
-
-  user.avatar = req.file.filename;
 
   try {
+    user.avatar = req.file.filename;
+
     await user.save();
 
     res.json({ type: 0, avatar: req.file.filename });

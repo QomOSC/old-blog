@@ -14,6 +14,9 @@ import config from './config';
 import schema from './graphql';
 import routers from './routers';
 
+/**
+ * database configurations
+ */
 mongoose.Promise = global.Promise;
 
 mongoose.connect(config.db, () => {
@@ -34,12 +37,21 @@ mongoose.connection.on('disconnected', () => {
 
 const app = express();
 
+/**
+ * logger
+ */
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('short'));
 }
 
+/**
+ * serve static files
+ */
 app.use('/static', express.static(join(__dirname, './static')));
 
+/**
+ * body parser
+ */
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({ limit: 100000000 }));
 
@@ -56,10 +68,10 @@ let MongoStore = connectMongo(session);
 app.use(session({
   secret: process.env.SECRET_KEY || 'QIFE564%?sKb]JTqeN0Uz.9vH4ahjM1l~',
   resave: true,
-  saveUninitialized: false,
   cookie: {
     maxAge: 60 * 60 * 1000 * 24
   },
+  saveUninitialized: false,
   store: new MongoStore({
     url: process.env.DB || config.db
   })
@@ -90,6 +102,9 @@ app.use((req, res) => {
   res.sendFile(join(__dirname, '/index.html'));
 });
 
+/**
+ * port
+ */
 app.listen(config.port, () => {
   console.log(`The server is running on port ${config.port}`);
 });

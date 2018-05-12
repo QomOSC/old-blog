@@ -9,6 +9,7 @@ import { url } from 'Root/config';
 
 const router = new Router();
 
+
 router.post('/panel/articles/accept', admin, async (req, res) => {
   try {
     const article = await Article.findById(req.body._id);
@@ -18,10 +19,10 @@ router.post('/panel/articles/accept', admin, async (req, res) => {
       return;
     }
 
-    article.type = 2;
-    article.title = req.body.title;
     article.content = req.body.content;
     article.minutes = req.body.minutes;
+    article.title = req.body.title;
+    article.type = 2;
 
     await article.save();
 

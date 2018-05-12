@@ -20,6 +20,7 @@ router.post('/signup', login, async (req, res) => {
 
   if (email) {
     res.json({ type: 2, text: 1 });
+
     return;
   }
 
@@ -27,6 +28,7 @@ router.post('/signup', login, async (req, res) => {
 
   if (username) {
     res.json({ type: 2, text: 2 });
+
     return;
   }
 
@@ -65,8 +67,7 @@ router.post('/signup', login, async (req, res) => {
     });
 
   } catch (e) {
-    res.json({ type: 2, text: 3 });
-    return;
+    res.json({ type: 2, text: 3 });    
   }
 });
 

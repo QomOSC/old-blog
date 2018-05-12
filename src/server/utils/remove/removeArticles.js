@@ -17,7 +17,6 @@ export default id => new Promise(async (res, rej) => {
       }
 
       await i.remove();
-
     }
 
     res();

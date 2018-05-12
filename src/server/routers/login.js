@@ -4,13 +4,13 @@ import ActivationLink from 'Root/models/ActivationLink';
 import User from 'Root/models/User';
 
 import sendEmail from 'Root/utils/email';
-
 import { hmac } from 'Root/utils/crypto';
 import { dbkey, url } from 'Root/config';
 import random from 'Root/utils/random';
 import { login } from 'Root/perms';
 
 const router = new Router();
+
 
 router.post('/login', login, async (req, res) => {
   req.body.email = req.body.email.toLowerCase();
@@ -24,12 +24,14 @@ router.post('/login', login, async (req, res) => {
 
   if (!user) {
     res.json({ type: 2, text: 0 });
+
     return;
   }
 
   if (user.type === 1) {
     // Account is deactive
     res.json({ type: 2, text: 1 });
+
     return;
   }
 

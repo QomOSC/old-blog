@@ -6,6 +6,7 @@ import { logged } from 'Root/perms';
 
 const router = new Router();
 
+
 router.post('/panel/conferences/add', logged, async (req, res) => {
   const conf = new Conference({
     description: req.body.description,

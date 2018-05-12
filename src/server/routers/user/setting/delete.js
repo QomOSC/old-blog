@@ -6,12 +6,11 @@ import User from 'Root/models/User';
 import removeConferences from 'Root/utils/remove/removeConferences';
 import removeArticles from 'Root/utils/remove/removeArticles';
 import removeImage from 'Root/utils/removeImage';
-
 import sendEmail from 'Root/utils/email';
-
 import { logged } from 'Root/perms';
 
 const router = new Router();
+
 
 router.post('/panel/user/setting/delete', logged, async (req, res) => {
   try {

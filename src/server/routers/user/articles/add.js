@@ -6,13 +6,13 @@ import User from 'Root/models/User';
 import Tag from 'Root/models/Tag';
 
 import storage from 'Root/utils/storage';
-
-import config from 'Root/config';
 import { logged } from 'Root/perms';
+import config from 'Root/config';
 
 const upload = multer({ dest: config.uploadDir, limits: 3000000, storage });
 
 const router = new Router();
+
 
 router.post(
   '/panel/articles/add',
@@ -33,10 +33,6 @@ router.post(
 
     const user = await User.findById(req.session.user);
 
-    if (!user) {
-      res.json({ type: 2 });
-    }
-
     user.articles.push(article._id);
 
     await user.save();
@@ -46,7 +42,7 @@ router.post(
       let tags = req.body.tags.split(',');
       tags = tags.map(v => v.trim());
       tags = [...new Set(tags)];
-  
+
       for (const i of tags) {
         const newTag = new Tag({
           article: article._id,

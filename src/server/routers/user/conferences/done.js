@@ -6,12 +6,14 @@ import { admin } from 'Root/perms';
 
 const router = new Router();
 
+
 router.post('/panel/conferences/done', admin, async (req, res) => {
   try {
     const conf = await Conference.findById(req.body._id);
 
     if (!conf) {
       res.json({ type: 2 });
+
       return;
     }
 

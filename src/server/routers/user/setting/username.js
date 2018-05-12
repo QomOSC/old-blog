@@ -3,22 +3,19 @@ import { Router } from 'express';
 import User from 'Root/models/User';
 
 import { username } from 'Root/utils/validator';
-
 import { logged } from 'Root/perms';
 
 const router = new Router();
+
 
 router.post('/panel/user/setting/username', logged, async (req, res) => {
   req.body.username = req.body.username.toLowerCase();
 
   const user = await User.findById(req.session.user);
 
-  if (!user) {
-    res.json({ type: 2, text: 0 });
-  }
-
   if (!username(req.body.username)) {
     res.json({ type: 2, text: 3 });
+
     return;
   }
 
@@ -26,6 +23,7 @@ router.post('/panel/user/setting/username', logged, async (req, res) => {
 
   if (checkUsername) {
     res.json({ type: 2, text: 1 });
+
     return;
   }
 

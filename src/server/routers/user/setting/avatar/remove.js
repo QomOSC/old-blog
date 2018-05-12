@@ -7,13 +7,9 @@ import { logged } from 'Root/perms';
 
 const router = new Router();
 
+
 router.post('/panel/user/setting/avatar/remove', logged, async (req, res) => {
   const user = await User.findById(req.session.user);
-
-  if (!user) {
-    res.json({ type: 2 });
-    return;
-  }
 
   try {
     await removeImage(user.avatar);

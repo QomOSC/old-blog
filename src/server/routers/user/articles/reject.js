@@ -4,11 +4,11 @@ import Article from 'Root/models/Article';
 import User from 'Root/models/User';
 import Tag from 'Root/models/Tag';
 
+import removeImage from 'Root/utils/removeImage';
 import { admin } from 'Root/perms';
 
-import removeImage from 'Root/utils/removeImage';
-
 const router = new Router();
+
 
 router.post('/panel/articles/reject', admin, async (req, res) => {
   try {
@@ -16,6 +16,7 @@ router.post('/panel/articles/reject', admin, async (req, res) => {
 
     if (!article) {
       res.json({ type: 2, text: 0 });
+      
       return;
     }
 

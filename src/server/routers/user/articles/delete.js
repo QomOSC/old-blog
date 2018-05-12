@@ -9,6 +9,7 @@ import { logged } from 'Root/perms';
 
 const router = new Router();
 
+
 router.post('/panel/articles/delete', logged, async (req, res) => {
   try {
     const article = await Article.findOne({

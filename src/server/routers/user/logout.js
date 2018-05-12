@@ -4,6 +4,7 @@ import { logged } from 'Root/perms';
 
 const router = new Router();
 
+
 router.post('/panel/logout', logged, (req, res) => {
   req.session.user = null;
 

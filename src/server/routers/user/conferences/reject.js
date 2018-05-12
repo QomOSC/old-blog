@@ -6,6 +6,7 @@ import { admin } from 'Root/perms';
 
 const router = new Router();
 
+
 router.post('/panel/conferences/reject', admin, async (req, res) => {
   try {
     const conf = await Conference.findOne({ _id: req.body._id, type: 1 });

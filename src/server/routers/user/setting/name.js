@@ -6,17 +6,13 @@ import { logged } from 'Root/perms';
 
 const router = new Router();
 
+
 router.post('/panel/user/setting/name', logged, async (req, res) => {
-  const user = await User.findById(req.session.user);
-
-  if (!user) {
-    res.json({ type: 2, text: 0 });
-    return;
-  }
-
-  user.name = req.body.name;
-
   try {
+    const user = await User.findById(req.session.user);
+
+    user.name = req.body.name;
+
     await user.save();
 
     res.json({ type: 0 });

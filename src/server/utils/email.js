@@ -6,7 +6,7 @@ const transport = createTransport({
   service: 'gmail',
   auth: {
     user: emailAddress,
-    pass: emailPassword
+    pass: emailPassword,
   }
 });
 
