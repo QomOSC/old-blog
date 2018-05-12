@@ -7,11 +7,11 @@ export default {
   type: ArticleSchema,
   args: {
     _id: {
-      type: GraphQLID
+      type: GraphQLID,
     },
     type: {
-      type: GraphQLInt
-    }
+      type: GraphQLInt,
+    },
   },
-  resolve
+  resolve,
 };

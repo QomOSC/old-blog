@@ -19,47 +19,47 @@ export default new GraphQLObjectType({
   name: 'Article',
   fields: () => ({
     _id: {
-      type: GraphQLID
+      type: GraphQLID,
     },
     title: {
-      type: GraphQLString
+      type: GraphQLString,
     },
     content: {
-      type: GraphQLString
+      type: GraphQLString,
     },
     minutes: {
-      type: GraphQLInt
+      type: GraphQLInt,
     },
     avatar: {
-      type: GraphQLString
+      type: GraphQLString,
     },
     createdAt: {
-      type: GraphQLString
+      type: GraphQLString,
     },
     viewerLength: {
-      type: GraphQLInt
+      type: GraphQLInt,
     },
     likeLength: {
-      type: GraphQLInt
+      type: GraphQLInt,
     },
     type: {
-      type: GraphQLInt
+      type: GraphQLInt,
     },
     user: {
       type: UserSchema,
-      resolve
+      resolve,
     },
     comments: {
       type: new GraphQLList(CommentSchema),
-      resolve: resolveComment
+      resolve: resolveComment,
     },
     liked: {
       type: GraphQLBoolean,
-      resolve: resolveLike
+      resolve: resolveLike,
     },
     tags: {
       type: new GraphQLList(TagSchema),
-      resolve: resolveTag
-    }
+      resolve: resolveTag,
+    },
   })
 });

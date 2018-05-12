@@ -17,59 +17,59 @@ export default new GraphQLObjectType({
   name: 'Conference',
   fields: () => ({
     _id: {
-      type: GraphQLID
+      type: GraphQLID,
     },
     title: {
-      type: GraphQLString
+      type: GraphQLString,
     },
     description: {
-      type: GraphQLString
+      type: GraphQLString,
     },
     start: {
-      type: GraphQLString
+      type: GraphQLString,
     },
     end: {
-      type: GraphQLString
+      type: GraphQLString,
     },
     type: {
-      type: GraphQLInt
+      type: GraphQLInt,
     },
     createdAt: {
-      type: GraphQLString
+      type: GraphQLString,
     },
     author: {
-      type: GraphQLID
+      type: GraphQLID,
     },
     authorInfo: {
       type: UserSchema,
-      resolve: resolveAuthor
+      resolve: resolveAuthor,
     },
     providers: {
-      type: new GraphQLList(GraphQLString)
+      type: new GraphQLList(GraphQLString),
     },
     done: {
-      type: GraphQLBoolean
+      type: GraphQLBoolean,
     },
     embeds: {
-      type: new GraphQLList(GraphQLString)
+      type: new GraphQLList(GraphQLString),
     },
     attenders: {
-      type: new GraphQLList(GraphQLString)
+      type: new GraphQLList(GraphQLString),
     },
     attendersLength: {
       type: GraphQLInt,
-      resolve: attendersLengthResolve
+      resolve: attendersLengthResolve,
     },
     attendersInfo: {
       type: new GraphQLList(UserSchema),
-      resolve: attendersInfoResolve
+      resolve: attendersInfoResolve,
     },
     galleries: {
-      type: new GraphQLList(GraphQLString)
+      type: new GraphQLList(GraphQLString),
     },
     providersInfo: {
       type: new GraphQLList(UserSchema),
-      resolve: resolveProviders
-    }
+      resolve: resolveProviders,
+    },
   })
 });

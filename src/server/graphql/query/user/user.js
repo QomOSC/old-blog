@@ -7,8 +7,8 @@ export default {
   type: UserSchema,
   args: {
     username: {
-      type: GraphQLString
-    }
+      type: GraphQLString,
+    },
   },
-  resolve
+  resolve,
 };

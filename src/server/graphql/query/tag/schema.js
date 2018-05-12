@@ -11,11 +11,11 @@ export default new GraphQLObjectType({
   name: 'Tags',
   fields: () => ({
     tagname: {
-      type: GraphQLString
+      type: GraphQLString,
     },
     articles: {
       type: new GraphQLList(ArticleSchema),
-      resolve
-    }
+      resolve,
+    },
   })
 });

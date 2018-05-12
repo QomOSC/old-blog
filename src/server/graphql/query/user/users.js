@@ -7,8 +7,8 @@ export default {
   type: new GraphQLList(UserSchema),
   args: {
     type: {
-      type: GraphQLID
-    }
+      type: GraphQLID,
+    },
   },
-  resolve
+  resolve,
 };

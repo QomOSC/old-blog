@@ -7,11 +7,11 @@ export default {
   type: ConferenceSchema,
   args: {
     _id: {
-      type: GraphQLID
+      type: GraphQLID,
     },
     type: {
-      type: GraphQLInt
-    }
+      type: GraphQLInt,
+    },
   },
-  resolve
+  resolve,
 };

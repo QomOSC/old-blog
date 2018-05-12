@@ -13,41 +13,41 @@ export default new GraphQLObjectType({
   name: 'Comment',
   fields: () => ({
     _id: {
-      type: GraphQLID
+      type: GraphQLID,
     },
     name: {
-      type: GraphQLString
+      type: GraphQLString,
     },
     email: {
-      type: GraphQLString
+      type: GraphQLString,
     },
     description: {
-      type: GraphQLString
+      type: GraphQLString,
     },
     admin: {
-      type: GraphQLString
+      type: GraphQLString,
     },
     answer: {
-      type: GraphQLString
+      type: GraphQLString,
     },
     type: {
-      type: GraphQLInt
+      type: GraphQLInt,
     },
     contact: {
-      type: GraphQLBoolean
+      type: GraphQLBoolean,
     },
     article: {
-      type: GraphQLID
+      type: GraphQLID,
     },
     articleData: {
       type: ArticleSchema,
-      resolve
+      resolve,
     },
     author: {
-      type: GraphQLID
+      type: GraphQLID,
     },
     createdAt: {
-      type: GraphQLString
-    }
+      type: GraphQLString,
+    },
   })
 });

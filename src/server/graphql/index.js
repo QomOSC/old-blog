@@ -5,5 +5,5 @@ import query from './query';
 
 export default new GraphQLSchema({
   mutation,
-  query
+  query,
 });

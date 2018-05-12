@@ -5,6 +5,6 @@ import changeName from './user/name';
 export default new GraphQLObjectType({
   name: 'Mutation',
   fields: () => ({
-    changeName
-  })
+    changeName,
+  }),
 });

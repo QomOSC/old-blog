@@ -7,8 +7,8 @@ export default {
   type: TagsSchema,
   args: {
     tagname: {
-      type: GraphQLString
-    }
+      type: GraphQLString,
+    },
   },
-  resolve
+  resolve,
 };

@@ -19,6 +19,6 @@ export default new GraphQLObjectType({
     comment,
     users,
     user,
-    tag
-  }
+    tag,
+  },
 });

@@ -7,11 +7,11 @@ export default {
   type: new GraphQLList(ArticleSchema),
   args: {
     type: {
-      type: GraphQLInt
+      type: GraphQLInt,
     },
     limit: {
-      type: GraphQLInt
-    }
+      type: GraphQLInt,
+    },
   },
-  resolve
+  resolve,
 };

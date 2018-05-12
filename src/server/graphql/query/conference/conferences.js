@@ -7,8 +7,8 @@ export default {
   type: new GraphQLList(ConferenceSchema),
   args: {
     type: {
-      type: GraphQLInt
-    }
+      type: GraphQLInt,
+    },
   },
-  resolve
+  resolve,
 };

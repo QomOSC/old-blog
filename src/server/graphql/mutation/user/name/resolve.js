@@ -9,6 +9,7 @@ export default async (parent, args, context) => {
 
       return user.save();
     }
+
     catch (e) {
       return {};
     }

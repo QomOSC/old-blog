@@ -12,17 +12,17 @@ export default {
   type: new GraphQLList(CommentSchema),
   args: {
     article: {
-      type: GraphQLID
+      type: GraphQLID,
     },
     contact: {
-      type: GraphQLBoolean
+      type: GraphQLBoolean,
     },
     myArticles: {
-      type: GraphQLBoolean
+      type: GraphQLBoolean,
     },
     type: {
-      type: GraphQLInt
-    }
+      type: GraphQLInt,
+    },
   },
-  resolve
+  resolve,
 };

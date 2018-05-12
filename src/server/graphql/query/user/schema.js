@@ -16,53 +16,53 @@ export default new GraphQLObjectType({
   name: 'User',
   fields: () => ({
     _id: {
-      type: GraphQLID
+      type: GraphQLID,
     },
     name: {
-      type: GraphQLString
+      type: GraphQLString,
     },
     email: {
-      type: GraphQLString
+      type: GraphQLString,
     },
     username: {
-      type: GraphQLString
+      type: GraphQLString,
     },
     description: {
-      type: GraphQLString
+      type: GraphQLString,
     },
     type: {
-      type: GraphQLInt
+      type: GraphQLInt,
     },
     avatar: {
-      type: GraphQLString
+      type: GraphQLString,
     },
     createdAt: {
-      type: GraphQLString
+      type: GraphQLString,
     },
     articles: {
-      type: GraphQLInt
+      type: GraphQLInt,
     },
     userArticles: {
       type: new GraphQLList(ArticleSchema),
-      resolve: resolveUserArticles
+      resolve: resolveUserArticles,
     },
     article: {
       type: ArticleSchema,
       args: {
         _id: {
-          type: GraphQLID
-        }
+          type: GraphQLID,
+        },
       },
-      resolve: resolveArticle
+      resolve: resolveArticle,
     },
     conferences: {
       type: new GraphQLList(ConferenceSchema),
       args: {
         type: {
-          type: GraphQLInt
-        }
+          type: GraphQLInt,
+        },
       },
-      resolve: resolveConference
-    }
+      resolve: resolveConference,
+    },
   })
 });
