@@ -3,11 +3,11 @@ import { Router } from 'express';
 import User from 'Root/models/User';
 
 import sendEmail from 'Root/utils/email';
-
-import { url } from 'Root/config';
 import { admin } from 'Root/perms';
+import { url } from 'Root/config';
 
 const router = new Router();
+
 
 router.post('/panel/manage/accept', admin, async (req, res) => {
   try {
@@ -15,6 +15,7 @@ router.post('/panel/manage/accept', admin, async (req, res) => {
 
     if (!user) {
       res.json({ type: 2 });
+
       return;
     }
 
@@ -36,6 +37,7 @@ router.post('/panel/manage/accept', admin, async (req, res) => {
 
     res.json({ type: 0 });
   }
+
   catch (e) {
     res.json({ type: 2 });
   }

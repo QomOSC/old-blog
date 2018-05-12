@@ -7,6 +7,7 @@ import { god } from 'Root/perms';
 
 const router = new Router();
 
+
 router.post('/panel/god/promote/togod', god, async (req, res) => {
   req.body.username = req.body.username.toLowerCase();
 
@@ -17,12 +18,14 @@ router.post('/panel/god/promote/togod', god, async (req, res) => {
 
   if (!user) {
     res.json({ type: 2, text: 0 });
+
     return;
   }
 
-  user.type = 4;
 
   try {
+    user.type = 4;
+
     await user.save();
 
     sendEmail({

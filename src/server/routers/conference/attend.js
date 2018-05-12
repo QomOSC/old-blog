@@ -8,6 +8,7 @@ import { logged } from 'Root/perms';
 
 const router = new Router();
 
+
 router.post('/conference/attend', logged, async (req, res) => {
   try {
     const conf = await Conference.findById(req.body._id);

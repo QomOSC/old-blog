@@ -6,19 +6,21 @@ import { email } from 'Root/utils/validator';
 
 const router = new Router();
 
+
 router.post('/contact', async (req, res) => {
   req.body.email = req.body.email.toLowerCase();
 
   if (!email(req.body.email)) {
     res.json({ type: 2 });
+
     return;
   }
 
   const comment = new Comment({
-    contact: true,
-    name: req.body.name,
-    email: req.body.email,
     description: req.body.description,
+    email: req.body.email,
+    name: req.body.name,
+    contact: true,
   });
 
   try {

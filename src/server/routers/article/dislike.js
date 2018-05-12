@@ -6,17 +6,20 @@ import { logged } from 'Root/perms';
 
 const router = new Router();
 
+
 router.post('/article/dislike', logged, async (req, res) => {
   try {
     const article = await Article.findById(req.body._id);
 
     if (!article) {
       res.json({ type: 2 });
+
       return;
     }
 
     if (!article.likes.includes(req.session.user)) {
       res.json({ type: 2 });
+
       return;
     }
 

@@ -4,6 +4,7 @@ import Comment from 'Root/models/Comment';
 
 const router = new Router();
 
+
 router.post('/article/comment/reject', async (req, res) => {
   const comment = await Comment.findOne({
     author: req.session.user,
@@ -13,13 +14,16 @@ router.post('/article/comment/reject', async (req, res) => {
 
   if (!comment) {
     res.json({ type: 2 });
+
     return;
   }
 
   try {
     await comment.remove();
+
     res.json({ type: 0 });
   }
+
   catch (e) {
     res.json({ type: 2 });
   }

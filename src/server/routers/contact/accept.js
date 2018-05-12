@@ -8,17 +8,19 @@ import { url } from 'Root/config';
 
 const router = new Router();
 
+
 router.post('/contact/accept', admin, async (req, res) => {
   try {
     const comment = await Comment.findOne({ _id: req.body._id, type: 1 });
 
     if (!comment) {
       res.json({ type: 2 });
+
       return;
     }
 
-    comment.type = 2;
     comment.admin = req.session.user;
+    comment.type = 2;
 
     if (req.body.answer) {
       comment.answer = req.body.answer;

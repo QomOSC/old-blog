@@ -6,12 +6,11 @@ import User from 'Root/models/User';
 import removeConferences from 'Root/utils/remove/removeConferences';
 import removeArticles from 'Root/utils/remove/removeArticles';
 import removeImage from 'Root/utils/removeImage';
-
 import sendEmail from 'Root/utils/email';
-
 import { god } from 'Root/perms';
 
 const router = new Router();
+
 
 router.post('/panel/god/remove', god, async (req, res) => {
   req.body.username = req.body.username.toLowerCase();
@@ -40,7 +39,6 @@ router.post('/panel/god/remove', god, async (req, res) => {
   const newsletter = await Newsletter.findOne({ email: user.email });
 
   try {
-
     if (user.avatar) {
       await removeImage(user.avatar);
     }

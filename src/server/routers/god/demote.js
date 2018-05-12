@@ -7,6 +7,7 @@ import { god } from 'Root/perms';
 
 const router = new Router();
 
+
 router.post('/panel/god/demote', god, async (req, res) => {
   req.body.username = req.body.username.toLowerCase();
 
@@ -15,15 +16,15 @@ router.post('/panel/god/demote', god, async (req, res) => {
     type: { $in: [3, 4] }
   });
 
-  console.log(user);
-
   if (!user) {
     res.json({ type: 2, text: 0 });
+
     return;
   }
 
   if (user.type === 4) {
     res.json({ type: 2, text: 2 });
+
     return;
   }
 

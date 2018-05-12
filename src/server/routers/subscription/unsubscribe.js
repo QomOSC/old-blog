@@ -8,6 +8,7 @@ import { url } from 'Root/config';
 
 const router = new Router();
 
+
 router.post('/unsubscribe', async (req, res) => {
   req.body.email = req.body.email.toLowerCase();
 
@@ -19,7 +20,6 @@ router.post('/unsubscribe', async (req, res) => {
   }
 
   try {
-
     sendEmail({
       to: req.body.email,
       subject: 'خروج از خبرنامه',
@@ -32,6 +32,7 @@ router.post('/unsubscribe', async (req, res) => {
 
     res.json({ type: 0 });
   }
+
   catch (e) {
     res.json({ type: 2, text: 1 });
   }

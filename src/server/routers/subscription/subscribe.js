@@ -8,6 +8,7 @@ import { url } from 'Root/config';
 
 const router = new Router();
 
+
 router.post('/subscribe', async (req, res) => {
   req.body.email = req.body.email.toLowerCase();
 
@@ -63,6 +64,7 @@ router.post('/subscribe', async (req, res) => {
 
     res.json({ type: 0, text: 1 });
   }
+
   catch (e) {
     res.json({ type: 2, text: 1 });
   }

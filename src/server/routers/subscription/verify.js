@@ -4,6 +4,7 @@ import Newsletter from 'Root/models/Newsletter';
 
 const router = new Router();
 
+
 router.post('/subscribe/verify', async (req, res) => {
   const member = await Newsletter.findOne({
     token: req.body.token,
@@ -16,9 +17,10 @@ router.post('/subscribe/verify', async (req, res) => {
     return;
   }
 
-  member.verified = true;
 
   try {
+    member.verified = true;
+
     await member.save();
 
     res.json({ type: 0 });

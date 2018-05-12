@@ -7,6 +7,7 @@ import { god } from 'Root/perms';
 
 const router = new Router();
 
+
 router.post('/panel/god/promote/toadmin', god, async (req, res) => {
   req.body.username = req.body.username.toLowerCase();
 
@@ -17,9 +18,10 @@ router.post('/panel/god/promote/toadmin', god, async (req, res) => {
     return;
   }
 
-  user.type = 3;
 
   try {
+    user.type = 3;
+
     await user.save();
 
     sendEmail({

@@ -3,10 +3,10 @@ import { Router } from 'express';
 import Comment from 'Root/models/Comment';
 
 import sendEmail from 'Root/utils/email';
-
 import { url } from 'Root/config';
 
 const router = new Router();
+
 
 router.post('/article/comment/accept', async (req, res) => {
   const comment = await Comment.findOne({
@@ -17,16 +17,18 @@ router.post('/article/comment/accept', async (req, res) => {
 
   if (!comment) {
     res.json({ type: 2 });
+
     return;
   }
 
-  comment.type = 2;
-
-  if (req.body.answer) {
-    comment.answer = req.body.answer;
-  }
 
   try {
+    comment.type = 2;
+
+    if (req.body.answer) {
+      comment.answer = req.body.answer;
+    }
+
     await comment.save();
 
     sendEmail({
@@ -43,6 +45,7 @@ router.post('/article/comment/accept', async (req, res) => {
 
     res.json({ type: 0 });
   }
+
   catch (e) {
     res.json({ type: 2 });
   }

@@ -5,17 +5,18 @@ import User from 'Root/models/User';
 
 import sendEmail from 'Root/utils/email';
 import random from 'Root/utils/random';
-
-import { url } from 'Root/config';
 import { login } from 'Root/perms';
+import { url } from 'Root/config';
 
 const router = new Router();
+
 
 router.post('/recovery', login, async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
 
   if (!user) {
     res.json({ type: 2, text: 0 });
+
     return;
   }
 
@@ -33,6 +34,7 @@ router.post('/recovery', login, async (req, res) => {
     });
 
     res.json({ type: 0 });
+
     return;
   }
 
@@ -57,7 +59,9 @@ router.post('/recovery', login, async (req, res) => {
     });
 
     res.json({ type: 0 });
-  } catch (e) {
+  }
+
+  catch (e) {
     res.json({ type: 2, text: 1 });
   }
 });
