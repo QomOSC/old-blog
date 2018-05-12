@@ -2,20 +2,21 @@ import mongoose, { Schema } from 'mongoose';
 
 export default mongoose.model('Recovery', new Schema({
   code: {
+    trim: true,
     type: String,
-    required: true,
-    trim: true
+    required: [true, 'code'],
   },
   user: {
-    type: Schema.Types.ObjectId,
+    trim: true,
     ref: 'User',
     unique: true,
-    required: true,
-    trim: true
+    required: [true, 'user'],
+    type: Schema.Types.ObjectId,
   },
   createdAt: {
+    trim: true,
     type: Date,
+    default: Date.now,
     expires: 60 * 60 * 5,
-    default: Date.now
   }
 }));

@@ -2,61 +2,61 @@ import mongoose, { Schema } from 'mongoose';
 
 export default mongoose.model('Conference', new Schema({
   providers: [{ // The ID from Member model
+    trim: true,
     type: String,
-    trim: true
   }],
   author: {
+    trim: true,
     type: String,
-    trim: true
   },
   title: {
+    trim: true,
     type: String,
-    required: [true, 'title'],
     maxlength: 100,
-    trim: true
+    required: [true, 'title'],
   },
   description: {
+    trim: true,
     type: String,
     required: [true, 'content'],
-    trim: true
   },
   createdAt: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
   attenders: [{
+    trim: true,
     type: String,
-    trim: true
   }],
   type: { // 1: just requested 2: declined 3: accepted 4: done
+    default: 1,
+    trim: true,
     type: Number,
     enum: [1, 2, 3, 4],
     required: [true, 'type'],
-    trim: true,
-    default: 1
   },
   start: {
-    type: String,
     trim: true,
-    required: true
+    type: String,
+    required: true,
   },
   end: {
-    type: String,
     trim: true,
-    required: true
+    type: String,
+    required: true,
   },
   galleries: [{
+    trim: true,
     type: String,
-    trim: true
   }],
   embeds: [{
+    trim: true,
     type: String,
-    trim: true
   }],
   done: {
     type: Boolean,
-    default: false
+    default: false,
   }
 }, {
-  usePushEach: true
+  usePushEach: true,
 }));

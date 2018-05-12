@@ -4,76 +4,76 @@ import { email, username, password } from 'Root/utils/validator';
 
 export default mongoose.model('User', new Schema({
   name: {
-    type: String,
     trim: true,
+    type: String,
+    maxlength: 100,
     required: [true, 'name'],
-    maxlength: 100
   },
   email: {
-    type: String,
-    unique: true,
-    lowercase: true,
     trim: true,
+    unique: true,
+    type: String,
+    maxlength: 200,
+    lowercase: true,
+    required: [true, 'email'],
     validate: {
       validator(v) {
         return email(v);
       },
-      message: 'It is not a valid email'
+      message: 'Not a valid email'
     },
-    required: [true, 'email'],
-    maxlength: 200
   },
   password: {
-    type: String,
     trim: true,
+    type: String,
     required: [true, 'password'],
     validate: {
       validator(v) {
         return password(v);
       },
-      message: 'It is not a valid password'
+      message: 'Not a valid password'
     },
   },
   username: {
-    lowercase: true,
+    trim: true,
+    unique: true,
     type: String,
+    maxlength: 100,
+    lowercase: true,
     required: [true, 'username'],
     validate: {
       validator(v) {
         return username(v);
       },
-      message: 'It is not a valid username'
+      message: 'Not a valid username'
     },
-    trim: true,
-    unique: true,
-    maxlength: 100
   },
   description: {
-    type: String,
     trim: true,
+    type: String,
     maxlength: 250
   },
   type: {
+    default: 1,
+    trim: true,
     type: Number,
     enum: [1, 2, 3, 4],
-    required: [true, 'type'],
-    trim: true,
-    default: 1
+    required: [true, 'type']
   },
   verified: {
-    type: Boolean,
-    required: true,
     trim: true,
-    default: false
+    type: Boolean,
+    default: false,
+    required: true,
   },
   avatar: {
-    type: String,
     trim: true,
-    maxlength: 100
+    type: String,
+    maxlength: 100,
   },
   createdAt: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
   articles: [{ // The ID of your articles
     type: Number,
@@ -83,4 +83,6 @@ export default mongoose.model('User', new Schema({
     type: String,
     trim: true
   }],
-}, { usePushEach: true }));
+}, {
+  usePushEach: true,
+}));

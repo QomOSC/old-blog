@@ -4,26 +4,26 @@ import { email } from 'Root/utils/validator';
 
 export default mongoose.model('Newsletter', new Schema({
   email: {
-    type: String,
-    unique: true,
-    lowercase: true,
     trim: true,
+    unique: true,
+    type: String,
+    maxlength: 200,
+    lowercase: true,
+    required: [true, 'email'],
     validate: {
       validator(v) {
         return email(v);
       },
-      message: 'It is not a valid email'
+      message: 'Not a valid email'
     },
-    required: [true, 'email'],
-    maxlength: 200
   },
   verified: {
-    default: false,
+    trim: true,
     type: Boolean,
-    trim: true
+    default: false,
   },
   token: {
+    trim: true,
     type: String,
-    trim: true
   }
 }));

@@ -4,60 +4,61 @@ import { email } from 'Root/utils/validator';
 
 export default mongoose.model('Comment', new Schema({
   name: {
-    type: String,
     trim: true,
+    type: String,
     maxlength: 80,
-    required: [true, 'name']
+    required: [true, 'name'],
   },
   email: {
-    type: String,
-    lowercase: true,
     trim: true,
+    type: String,
+    maxlength: 200,
+    lowercase: true,
+    required: [true, 'email'],
     validate: {
       validator(v) {
         return email(v);
       },
-      message: 'It is not a valid email'
+      message: 'Not a valid email'
     },
-    required: [true, 'email'],
-    maxlength: 200
   },
   description: {
+    trim: true,
     type: String,
     required: [true, 'description'],
-    trim: true
   },
   admin: {
+    trim: true,
     type: String,
-    trim: true
   },
   answer: {
+    trim: true,
     type: String,
-    trim: true
   },
   type: {
-    type: Number,
-    enum: [1, 2], // 1: requested, 2: accepted
-    required: [true, 'type'],
+    default: 1,
     trim: true,
-    default: 1
+    type: Number,
+    required: [true, 'type'],
+    enum: [1, 2], // 1: requested, 2: accepted
   },
   contact: {
-    type: Boolean, // true = it's from /contact,   false = it's from an article
-    required: [true, 'contact'],
     trim: true,
-    default: true
+    default: true,
+    required: [true, 'contact'],
+    type: Boolean, // true = it's from /contact,   false = it's from an article
   },
   article: {
+    trim: true,
     type: Number,
-    trim: true
   },
   author: {
+    ref: 'User',
+    required: [true, 'author'],
     type: Schema.Types.ObjectId,
-    ref: 'User'
   },
   createdAt: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   }
 }));

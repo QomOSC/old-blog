@@ -2,20 +2,20 @@ import mongoose, { Schema } from 'mongoose';
 
 export default mongoose.model('ActivationLink', new Schema({
   code: {
+    trim: true,
     type: String,
     required: true,
-    trim: true
   },
   user: {
-    type: Schema.Types.ObjectId,
+    trim: true,
     ref: 'User',
     unique: true,
     required: true,
-    trim: true
+    type: Schema.Types.ObjectId,
   },
   createdAt: {
     type: Date,
+    default: Date.now,
     expires: 60 * 60 * 5,
-    default: Date.now
   }
 }));

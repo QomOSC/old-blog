@@ -6,52 +6,51 @@ const schema = new Schema({
     type: Number
   },
   author: { // The ID from Member model
-    type: Schema.Types.ObjectId,
     ref: 'User',
-    required: true
+    required: [true, 'author'],
+    type: Schema.Types.ObjectId,
   },
   title: {
+    trim: true,
     type: String,
-    required: [true, 'title'],
     maxlength: 100,
-    trim: true
+    required: [true, 'title'],
   },
   content: {
+    trim: true,
     type: String,
     required: [true, 'content'],
-    trim: true
   },
   minutes: {
+    trim: true,
     type: Number,
-    required: false,
-    trim: true
   },
   avatar: {
-    type: String,
     trim: true,
+    type: String,
   },
   createdAt: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
   viewers: [{ // The IP of viewers
+    trim: true,
     type: String,
-    trim: true
   }],
   likes: [{ // The ID of members
+    trim: true,
     type: String,
-    trim: true
   }],
   type: {
     enum: [1, 2], // 1: Not Accepted, 2: Accepted
+    trim: true,
+    default: 1,
     type: Number,
     required: true,
-    default: 1,
-    trim: true
   }
 }, {
   _id: false,
-  usePushEach: true
+  usePushEach: true,
 });
 
 schema.plugin(AutoIncrement);
