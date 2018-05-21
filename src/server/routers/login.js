@@ -3,23 +3,21 @@ import { Router } from 'express';
 import ActivationLink from 'Root/models/ActivationLink';
 import User from 'Root/models/User';
 
+import requirements from 'Root/middlewares/requirements';
+import login from 'Root/middlewares/permissions/login';
 import sendEmail from 'Root/utils/email';
 import { hmac } from 'Root/utils/crypto';
 import { dbkey, url } from 'Root/config';
 import random from 'Root/utils/random';
-import { login } from 'Root/perms';
 
 const router = new Router();
 
 
-router.post('/login', login, async (req, res) => {
-  if (!req.body.email || !req.body.password) {
-    // Not enough parameters
-    res.json({ type: 4 });
-
-    return;
-  }
-
+router.post(
+  '/login',
+  login,
+  requirements(['email', 'password']),
+  async (req, res) => {
   req.body.email = req.body.email.toLowerCase();
 
   const user = await User

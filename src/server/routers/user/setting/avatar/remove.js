@@ -2,22 +2,16 @@ import { Router } from 'express';
 
 import User from 'Root/models/User';
 
+import logged from 'Root/middlewares/permissions/logged';
 import removeImage from 'Root/utils/removeImage';
-import { logged } from 'Root/perms';
 
 const router = new Router();
 
 
 router.post('/panel/user/setting/avatar/remove', logged, async (req, res) => {
-  if (!req.session.user) {
-    res.json({ type: 4 });
-
-    return;
-  }
-
-  const user = await User.findById(req.session.user);
-
   try {
+    const user = await User.findById(req.session.user);
+
     await removeImage(user.avatar);
 
     user.avatar = null;

@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { logged } from 'Root/perms';
+import logged from 'Root/middlewares/permissions/logged';
 
 const router = new Router();
 

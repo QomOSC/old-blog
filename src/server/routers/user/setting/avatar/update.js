@@ -3,8 +3,8 @@ import multer from 'multer';
 
 import User from 'Root/models/User';
 
+import logged from 'Root/middlewares/permissions/logged';
 import storage from 'Root/utils/storage';
-import { logged } from 'Root/perms';
 import config from 'Root/config';
 
 const upload = multer({ dest: config.uploadDir, limits: 3000000, storage });
@@ -18,7 +18,7 @@ router.post(
   upload.single('avatar'),
   async (req, res) => {
 
-  if (!req.file || !res.session.user) {
+  if (!req.file) {
     res.json({ type: 4 });
 
     return;

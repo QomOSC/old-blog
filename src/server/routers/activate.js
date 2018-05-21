@@ -3,18 +3,14 @@ import { Router } from 'express';
 import ActivationLink from 'Root/models/ActivationLink';
 import User from 'Root/models/User';
 
-import { login } from 'Root/perms';
+import requirements from 'Root/middlewares/requirements';
+import login from 'Root/middlewares/permissions/login';
 
 const router = new Router();
 
 
-router.post('/activate', login, async (req, res) => {
-  if (!req.body.code) {
-    res.json({ type: 4 });
+router.post('/activate', login, requirements(['code']), async (req, res) => {
 
-    return;
-  }
-  
   const AL = await ActivationLink.findOne({ code: req.body.code });
 
   if (!AL) {

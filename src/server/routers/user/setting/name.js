@@ -2,17 +2,17 @@ import { Router } from 'express';
 
 import User from 'Root/models/User';
 
-import { logged } from 'Root/perms';
+import requirements from 'Root/middlewares/requirements';
+import logged from 'Root/middlewares/permissions/logged';
 
 const router = new Router();
 
 
-router.post('/panel/user/setting/name', logged, async (req, res) => {
-  if (!req.session.user || !req.body.name) {
-    res.json({ type: 4 });
-
-    return;
-  }
+router.post(
+  '/panel/user/setting/name',
+  logged,
+  requirements(['name']),
+  async (req, res) => {
 
   try {
     const user = await User.findById(req.session.user);

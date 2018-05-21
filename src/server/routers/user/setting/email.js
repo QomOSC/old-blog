@@ -3,19 +3,19 @@ import { Router } from 'express';
 import Newsletter from 'Root/models/Newsletter';
 import User from 'Root/models/User';
 
+import requirements from 'Root/middlewares/requirements';
+import logged from 'Root/middlewares/permissions/logged';
 import { email } from 'Root/utils/validator';
 import sendEmail from 'Root/utils/email';
-import { logged } from 'Root/perms';
 
 const router = new Router();
 
 
-router.post('/panel/user/setting/email', logged, async (req, res) => {
-  if (!req.body.email || !res.session.user) {
-    res.json({ type: 4 });
-
-    return;
-  }
+router.post(
+  '/panel/user/setting/email',
+  logged,
+  requirements(['email']),
+  async (req, res) => {
 
   req.body.email = req.body.email.toLowerCase();
 

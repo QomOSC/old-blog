@@ -2,21 +2,21 @@ import { Router } from 'express';
 
 import User from 'Root/models/User';
 
+import requirements from 'Root/middlewares/requirements';
+import logged from 'Root/middlewares/permissions/logged';
 import { password } from 'Root/utils/validator';
 import { hmac } from 'Root/utils/crypto';
-import { logged } from 'Root/perms';
 import config from 'Root/config';
 
 const router = new Router();
 
 
-router.post('/panel/user/setting/password', logged, async (req, res) => {
-  if (!req.body.fresh || !req.body.old || !req.session.user) {
-    res.json({ type: 4 });
+router.post(
+  '/panel/user/setting/password',
+  logged,
+  requirements(['fresh', 'old']),
+  async (req, res) => {
 
-    return;
-  }
-  
   const user = await User.findById(req.session.user);
 
   if (!password(req.body.fresh)) {

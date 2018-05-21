@@ -2,19 +2,18 @@ import { Router } from 'express';
 
 import User from 'Root/models/User';
 
+import requirements from 'Root/middlewares/requirements';
+import logged from 'Root/middlewares/permissions/logged';
 import { username } from 'Root/utils/validator';
-import { logged } from 'Root/perms';
 
 const router = new Router();
 
 
-router.post('/panel/user/setting/username', logged, async (req, res) => {
-  if (!req.body.username || !req.session.user) {
-    res.json({ type: 4 });
-
-    return;
-  }
-
+router.post(
+  '/panel/user/setting/username',
+  logged,
+  requirements(['username']),
+  async (req, res) => {
   req.body.username = req.body.username.toLowerCase();
 
   const user = await User.findById(req.session.user);

@@ -5,20 +5,14 @@ import User from 'Root/models/User';
 
 import removeConferences from 'Root/utils/remove/removeConferences';
 import removeArticles from 'Root/utils/remove/removeArticles';
+import logged from 'Root/middlewares/permissions/logged';
 import removeImage from 'Root/utils/removeImage';
 import sendEmail from 'Root/utils/email';
-import { logged } from 'Root/perms';
 
 const router = new Router();
 
 
 router.post('/panel/user/setting/delete', logged, async (req, res) => {
-  if (!req.session.user) {
-    res.json({ type: 4 });
-
-    return;
-  }
-  
   try {
     const user = await User.findById(req.session.user);
     const newsletter = await Newsletter.findOne({ email: user.email });
