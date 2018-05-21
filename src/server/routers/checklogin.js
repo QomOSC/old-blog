@@ -8,6 +8,7 @@ const router = new Router();
 router.post('/checklogin', async (req, res) => {
   if (!req.session.user) {
     res.json({ type: 2 });
+    
     return;
   }
 

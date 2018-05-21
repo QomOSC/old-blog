@@ -8,6 +8,12 @@ const router = new Router();
 
 
 router.post('/panel/user/setting/name', logged, async (req, res) => {
+  if (!req.session.user || !req.body.name) {
+    res.json({ type: 4 });
+
+    return;
+  }
+
   try {
     const user = await User.findById(req.session.user);
 

@@ -9,6 +9,12 @@ const router = new Router();
 
 
 router.post('/panel/user/setting/username', logged, async (req, res) => {
+  if (!req.body.username || !req.session.user) {
+    res.json({ type: 4 });
+
+    return;
+  }
+
   req.body.username = req.body.username.toLowerCase();
 
   const user = await User.findById(req.session.user);

@@ -11,6 +11,12 @@ const router = new Router();
 
 
 router.post('/panel/user/setting/password', logged, async (req, res) => {
+  if (!req.body.fresh || !req.body.old || !req.session.user) {
+    res.json({ type: 4 });
+
+    return;
+  }
+  
   const user = await User.findById(req.session.user);
 
   if (!password(req.body.fresh)) {

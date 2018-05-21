@@ -9,10 +9,17 @@ const router = new Router();
 
 
 router.post('/activate', login, async (req, res) => {
+  if (!req.body.code) {
+    res.json({ type: 4 });
+
+    return;
+  }
+  
   const AL = await ActivationLink.findOne({ code: req.body.code });
 
   if (!AL) {
     res.json({ type: 2 });
+
     return;
   }
 
@@ -21,6 +28,7 @@ router.post('/activate', login, async (req, res) => {
 
     if (!user) {
       res.json({ type: 2 });
+
       return;
     }
 
