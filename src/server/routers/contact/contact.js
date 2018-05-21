@@ -8,6 +8,12 @@ const router = new Router();
 
 
 router.post('/contact', async (req, res) => {
+  if (!req.body.description || !req.body.email || !req.body.name) {
+    res.json({ type: 4 });
+
+    return;
+  }
+
   req.body.email = req.body.email.toLowerCase();
 
   if (!email(req.body.email)) {

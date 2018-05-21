@@ -10,6 +10,12 @@ const router = new Router();
 
 
 router.post('/conference/attend', logged, async (req, res) => {
+  if (!req.session.user || !req.body._id) {
+    res.json({ type: 4 });
+
+    return;
+  }
+
   try {
     const conf = await Conference.findById(req.body._id);
 

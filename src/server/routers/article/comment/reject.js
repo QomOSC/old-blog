@@ -6,6 +6,12 @@ const router = new Router();
 
 
 router.post('/article/comment/reject', async (req, res) => {
+  if (!req.session.user || !req.body._id) {
+    res.json({ type: 4 });
+
+    return;
+  }
+
   const comment = await Comment.findOne({
     author: req.session.user,
     _id: req.body._id,

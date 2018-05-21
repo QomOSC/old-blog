@@ -8,6 +8,12 @@ const router = new Router();
 
 
 router.post('/article/viewer', logged, async (req, res) => {
+  if (!req.body._id) {
+    res.json({ type: 4 });
+
+    return;
+  }
+
   try {
     const article = await Article.findById(req.body._id);
 
@@ -19,7 +25,7 @@ router.post('/article/viewer', logged, async (req, res) => {
 
     if (article.viewers.includes(req.body.ip)) {
       res.json({ type: 0, text: 1 });
-      
+
       return;
     }
 
