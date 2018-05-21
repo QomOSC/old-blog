@@ -11,6 +11,12 @@ const router = new Router();
 
 
 router.post('/panel/user/setting/email', logged, async (req, res) => {
+  if (!req.body.email || !res.session.user) {
+    res.json({ type: 4 });
+
+    return;
+  }
+
   req.body.email = req.body.email.toLowerCase();
 
   const user = await User.findById(req.session.user);
@@ -38,7 +44,7 @@ router.post('/panel/user/setting/email', logged, async (req, res) => {
     if (newsletter) {
       newsletter.email = req.body.email;
     }
-    
+
     await newsletter.save();
     await user.save();
 

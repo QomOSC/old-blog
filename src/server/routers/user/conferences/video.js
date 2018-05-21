@@ -8,6 +8,12 @@ const router = new Router();
 
 
 router.post('/panel/conferences/video', admin, async (req, res) => {
+  if (!req.body._id || req.body.embed) {
+    res.json({ type: 4 });
+
+    return;
+  }
+  
   try {
     const conf = await Conference.findById(req.body._id);
 

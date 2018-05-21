@@ -18,6 +18,12 @@ router.post(
   upload.single('avatar'),
   async (req, res) => {
 
+  if (!req.body._id || !req.file) {
+    res.json({ type: 4 });
+
+    return;
+  }
+
   try {
     const conf = await Conference.findById(req.body._id);
 

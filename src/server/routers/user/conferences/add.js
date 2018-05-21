@@ -8,6 +8,19 @@ const router = new Router();
 
 
 router.post('/panel/conferences/add', logged, async (req, res) => {
+  if (
+    !req.body.description ||
+    !req.body.providers ||
+    !req.session.user ||
+    !req.body.title ||
+    !req.body.start ||
+    !req.body.end
+  ) {
+    res.json({ type: 4 });
+
+    return;
+  }
+  
   const conf = new Conference({
     description: req.body.description,
     providers: req.body.providers,

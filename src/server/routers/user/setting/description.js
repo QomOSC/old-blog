@@ -8,8 +8,13 @@ const router = new Router();
 
 
 router.post('/panel/user/setting/description', logged, async (req, res) => {
-  const user = await User.findById(req.session.user);
+  if (!req.body.description || !res.session.user) {
+    res.json({ type: 4 });
 
+    return;
+  }
+
+  const user = await User.findById(req.session.user);
 
   try {
     user.description = req.body.description;

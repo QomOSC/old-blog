@@ -11,6 +11,18 @@ const router = new Router();
 
 
 router.post('/panel/conferences/accept', admin, async (req, res) => {
+  if (
+    !req.body.description ||
+    !req.body.start ||
+    !req.body.title ||
+    !req.body.end ||
+    !req.body._id
+  ) {
+    res.json({ type: 4 });
+
+    return;
+  }
+
   try {
     const conf = await Conference.findOne({ _id: req.body._id, type: 1 });
 

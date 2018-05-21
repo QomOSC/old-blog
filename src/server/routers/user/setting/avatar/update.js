@@ -18,6 +18,12 @@ router.post(
   upload.single('avatar'),
   async (req, res) => {
 
+  if (!req.file || !res.session.user) {
+    res.json({ type: 4 });
+
+    return;
+  }
+
   const user = await User.findById(req.session.user);
 
 

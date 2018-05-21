@@ -9,6 +9,12 @@ const router = new Router();
 
 
 router.post('/panel/user/setting/avatar/remove', logged, async (req, res) => {
+  if (!req.session.user) {
+    res.json({ type: 4 });
+
+    return;
+  }
+
   const user = await User.findById(req.session.user);
 
   try {
