@@ -6,6 +6,12 @@ const router = new Router();
 
 
 router.post('/recovery/check', async (req, res) => {
+  if (!req.body.code) {
+    res.json({ type: 4 });
+
+    return;
+  }
+
   const rec = await Recovery.findOne({ code: req.body.code });
 
   if (rec) {

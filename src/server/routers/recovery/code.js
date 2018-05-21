@@ -11,6 +11,12 @@ const router = new Router();
 
 
 router.post('/recovery/:code', login, async (req, res) => {
+  if (!req.params.code || !req.body.password) {
+    res.json({ type: 4 });
+
+    return;
+  }
+
   const rec = await Recovery.findOne({ code: req.params.code });
 
   if (!rec) {

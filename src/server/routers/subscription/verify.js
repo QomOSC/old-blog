@@ -6,6 +6,12 @@ const router = new Router();
 
 
 router.post('/subscribe/verify', async (req, res) => {
+  if (!req.body.token) {
+    res.json({ type: 4 });
+
+    return;
+  }
+  
   const member = await Newsletter.findOne({
     token: req.body.token,
     verified: false

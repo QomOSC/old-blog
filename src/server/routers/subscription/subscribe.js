@@ -10,6 +10,12 @@ const router = new Router();
 
 
 router.post('/subscribe', async (req, res) => {
+  if (!req.body.email) {
+    res.json({ type: 4 });
+
+    return;
+  }
+
   req.body.email = req.body.email.toLowerCase();
 
   let newsletter = await Newsletter.findOne({

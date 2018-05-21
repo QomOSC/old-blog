@@ -8,6 +8,12 @@ const router = new Router();
 
 
 router.post('/panel/manage/reject', admin, async (req, res) => {
+  if (!req.body._id) {
+    res.json({ type: 4 });
+
+    return;
+  }
+  
   try {
     const user = await User.findOne({ _id: req.body._id, type: 1 });
 

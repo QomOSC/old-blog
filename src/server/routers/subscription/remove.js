@@ -6,6 +6,12 @@ const router = new Router();
 
 
 router.post('/unsubscribe/remove', async (req, res) => {
+  if (!req.body._id) {
+    res.json({ type: 4 });
+
+    return;
+  }
+  
   try {
     let newsletter = await Newsletter.findById(req.body._id);
 

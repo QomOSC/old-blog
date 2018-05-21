@@ -9,6 +9,12 @@ const router = new Router();
 
 
 router.post('/panel/god/promote/toadmin', god, async (req, res) => {
+  if (!req.body.username) {
+    res.json({ type: 4 });
+
+    return;
+  }
+  
   req.body.username = req.body.username.toLowerCase();
 
   const user = await User.findOne({ username: req.body.username, type: 2 });

@@ -12,6 +12,12 @@ const router = new Router();
 
 
 router.post('/recovery', login, async (req, res) => {
+  if (!req.body.email) {
+    res.json({ type: 4 });
+
+    return;
+  }
+  
   const user = await User.findOne({ email: req.body.email });
 
   if (!user) {
