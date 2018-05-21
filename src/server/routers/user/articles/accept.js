@@ -11,6 +11,17 @@ const router = new Router();
 
 
 router.post('/panel/articles/accept', admin, async (req, res) => {
+  if (
+    !req.body.content ||
+    !req.body.minutes ||
+    !req.body.title ||
+    !req.body._id
+  ) {
+    res.json({ type: 4 });
+
+    return;
+  }
+  
   try {
     const article = await Article.findById(req.body._id);
 

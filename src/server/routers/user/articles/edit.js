@@ -8,6 +8,17 @@ const router = new Router();
 
 
 router.post('/panel/articles/edit', logged, async (req, res) => {
+  if (
+    !req.body.content ||
+    !req.session.user ||
+    !req.body.title ||
+    !req.body.id
+  ) {
+    res.json({ type: 4 });
+
+    return;
+  }
+
   const article = await Article.findOne({
     _id: req.body.id,
     author: req.session.user
@@ -15,7 +26,7 @@ router.post('/panel/articles/edit', logged, async (req, res) => {
 
   if (!article) {
     res.json({ type: 2 });
-  
+
     return;
   }
 

@@ -11,6 +11,12 @@ const router = new Router();
 
 
 router.post('/panel/articles/delete', logged, async (req, res) => {
+  if (!req.session.user || req.body.id) {
+    res.json({ type: 4 });
+
+    return;
+  }
+
   try {
     const article = await Article.findOne({
       _id: req.body.id,

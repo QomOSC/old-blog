@@ -20,12 +20,24 @@ router.post(
   upload.single('avatar'),
   async (req, res) => {
 
+  if (
+    !req.body.content ||
+    !req.body.minutes ||
+    !req.session.user ||
+    !req.body.title ||
+    !req.file
+  ) {
+    res.json({ type: 4 });
+
+    return;
+  }
+
   let article = new Article({
-    title: req.body.title,
     content: req.body.content,
-    author: req.session.user,
+    avatar: req.file.filename,
     minutes: req.body.minutes,
-    avatar: req.file.filename
+    author: req.session.user,
+    title: req.body.title,
   });
 
   try {
