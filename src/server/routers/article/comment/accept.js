@@ -2,18 +2,19 @@ import { Router } from 'express';
 
 import Comment from 'Root/models/Comment';
 
+import requirements from 'Root/middlewares/requirements';
+import logged from 'Root/middlewares/permissions/logged';
 import sendEmail from 'Root/utils/email';
 import { url } from 'Root/config';
 
 const router = new Router();
 
 
-router.post('/article/comment/accept', async (req, res) => {
-  if (!req.body.answer || !req.session.user || !req.body._id) {
-    res.json({ type: 4 });
-
-    return;
-  }
+router.post(
+  '/article/comment/accept',
+  logged,
+  requirements(['answer', '_id']),
+  async (req, res) => {
 
   const comment = await Comment.findOne({
     author: req.session.user,

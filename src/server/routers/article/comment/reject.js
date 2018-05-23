@@ -2,10 +2,17 @@ import { Router } from 'express';
 
 import Comment from 'Root/models/Comment';
 
+import requirements from 'Root/middlewares/requirements';
+import logged from 'Root/middlewares/permissions/logged';
+
 const router = new Router();
 
 
-router.post('/article/comment/reject', async (req, res) => {
+router.post(
+  '/article/comment/reject',
+  logged,
+  requirements(['_id']),
+  async (req, res) => {
   if (!req.session.user || !req.body._id) {
     res.json({ type: 4 });
 

@@ -2,21 +2,17 @@ import { Router } from 'express';
 
 import Comment from 'Root/models/Comment';
 
+import requirements from 'Root/middlewares/requirements';
+import logged from 'Root/middlewares/permissions/logged';
+
 const router = new Router();
 
 
-router.post('/article/comment/send', async (req, res) => {
-  if (
-    !req.body.description ||
-    !req.session.user ||
-    !req.body.email ||
-    !req.body.name ||
-    !req.body.id
-  ) {
-    res.json({ type: 4 });
-
-    return;
-  }
+router.post(
+  '/article/comment/send',
+  logged,
+  requirements(['description', 'email', 'name', 'id']),
+  async (req, res) => {
 
   const comment = new Comment({
     description: req.body.description,

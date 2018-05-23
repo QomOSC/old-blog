@@ -2,17 +2,17 @@ import { Router } from 'express';
 
 import Article from 'Root/models/Article';
 
-import { logged } from 'Root/perms';
+import requirements from 'Root/middlewares/requirements';
+import logged from 'Root/middlewares/permissions/logged';
 
 const router = new Router();
 
 
-router.post('/article/like', logged, async (req, res) => {
-  if (!req.session.user || !req.body._id) {
-    res.json({ type: 4 });
-
-    return;
-  }
+router.post(
+  '/article/like',
+  logged,
+  requirements(['_id']),
+  async (req, res) => {
 
   try {
     const article = await Article.findById(req.body._id);
