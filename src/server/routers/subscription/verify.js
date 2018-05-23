@@ -2,16 +2,16 @@ import { Router } from 'express';
 
 import Newsletter from 'Root/models/Newsletter';
 
+import requirements from 'Root/middlewares/requirements';
+
 const router = new Router();
 
 
-router.post('/subscribe/verify', async (req, res) => {
-  if (!req.body.token) {
-    res.json({ type: 4 });
+router.post(
+  '/subscribe/verify',
+  requirements(['token']),
+  async (req, res) => {
 
-    return;
-  }
-  
   const member = await Newsletter.findOne({
     token: req.body.token,
     verified: false

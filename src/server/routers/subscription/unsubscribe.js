@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 import Newsletter from 'Root/models/Newsletter';
 
+import requirements from 'Root/middlewares/requirements';
 import sendEmail from 'Root/utils/email';
 
 import { url } from 'Root/config';
@@ -9,13 +10,11 @@ import { url } from 'Root/config';
 const router = new Router();
 
 
-router.post('/unsubscribe', async (req, res) => {
-  if (!req.body.email) {
-    res.json({ type: 4 });
+router.post(
+  '/unsubscribe',
+  requirements(['email']),
+  async (req, res) => {
 
-    return;
-  }
-  
   req.body.email = req.body.email.toLowerCase();
 
   let newsletter = await Newsletter.findOne({ email: req.body.email });

@@ -3,15 +3,21 @@ import { Router } from 'express';
 import Recovery from 'Root/models/Recovery';
 import User from 'Root/models/User';
 
+import requirements from 'Root/middlewares/requirements';
+import login from 'Root/middlewares/permissions/login';
 import { hmac } from 'Root/utils/crypto';
-import { login } from 'Root/perms';
 import config from 'Root/config';
 
 const router = new Router();
 
 
-router.post('/recovery/:code', login, async (req, res) => {
-  if (!req.params.code || !req.body.password) {
+router.post(
+  '/recovery/:code',
+  login,
+  requirements(['password']),
+  async (req, res) => {
+
+  if (!req.params.code) {
     res.json({ type: 4 });
 
     return;

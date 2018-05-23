@@ -2,16 +2,16 @@ import { Router } from 'express';
 
 import Newsletter from 'Root/models/Newsletter';
 
+import requirements from 'Root/middlewares/requirements';
+
 const router = new Router();
 
 
-router.post('/unsubscribe/remove', async (req, res) => {
-  if (!req.body._id) {
-    res.json({ type: 4 });
+router.post(
+  '/unsubscribe/remove',
+  requirements(['_id']),
+  async (req, res) => {
 
-    return;
-  }
-  
   try {
     let newsletter = await Newsletter.findById(req.body._id);
 

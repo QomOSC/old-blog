@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 import Newsletter from 'Root/models/Newsletter';
 
+import requirements from 'Root/middlewares/requirements';
 import sendEmail from 'Root/utils/email';
 import random from 'Root/utils/random';
 import { url } from 'Root/config';
@@ -9,12 +10,10 @@ import { url } from 'Root/config';
 const router = new Router();
 
 
-router.post('/subscribe', async (req, res) => {
-  if (!req.body.email) {
-    res.json({ type: 4 });
-
-    return;
-  }
+router.post(
+  '/subscribe',
+  requirements(['email']),
+  async (req, res) => {
 
   req.body.email = req.body.email.toLowerCase();
 

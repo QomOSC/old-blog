@@ -3,21 +3,21 @@ import { Router } from 'express';
 import Recovery from 'Root/models/Recovery';
 import User from 'Root/models/User';
 
+import requirements from 'Root/middlewares/requirements';
+import login from 'Root/middlewares/permissions/login';
 import sendEmail from 'Root/utils/email';
 import random from 'Root/utils/random';
-import { login } from 'Root/perms';
 import { url } from 'Root/config';
 
 const router = new Router();
 
 
-router.post('/recovery', login, async (req, res) => {
-  if (!req.body.email) {
-    res.json({ type: 4 });
+router.post(
+  '/recovery',
+  login,
+  requirements(['email']),
+  async (req, res) => {
 
-    return;
-  }
-  
   const user = await User.findOne({ email: req.body.email });
 
   if (!user) {

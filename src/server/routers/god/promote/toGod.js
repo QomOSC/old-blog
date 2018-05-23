@@ -2,19 +2,21 @@ import { Router } from 'express';
 
 import User from 'Root/models/User';
 
+import requirements from 'Root/middlewares/requirements';
+import logged from 'Root/middlewares/permissions/logged';
+import god from 'Root/middlewares/permissions/god';
 import sendEmail from 'Root/utils/email';
-import { god } from 'Root/perms';
 
 const router = new Router();
 
 
-router.post('/panel/god/promote/togod', god, async (req, res) => {
-  if (!req.body.username) {
-    res.json({ type: 4 });
+router.post(
+  '/panel/god/promote/togod',
+  logged,
+  god,
+  requirements(['username']),
+  async (req, res) => {
 
-    return;
-  }
-  
   req.body.username = req.body.username.toLowerCase();
 
   const user = await User.findOne({

@@ -2,19 +2,21 @@ import { Router } from 'express';
 
 import User from 'Root/models/User';
 
+import requirements from 'Root/middlewares/requirements';
+import logged from 'Root/middlewares/permissions/logged';
+import admin from 'Root/middlewares/permissions/admin';
 import sendEmail from 'Root/utils/email';
-import { admin } from 'Root/perms';
 import { url } from 'Root/config';
 
 const router = new Router();
 
 
-router.post('/panel/manage/accept', admin, async (req, res) => {
-  if (!req.body._id) {
-    res.json({ type: 4 });
-
-    return;
-  }
+router.post(
+  '/panel/manage/accept',
+  logged,
+  admin,
+  requirements(['_id']),
+  async (req, res) => {
 
   try {
     const user = await User.findOne({ _id: req.body._id, type: 1 });

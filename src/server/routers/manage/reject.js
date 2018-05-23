@@ -2,18 +2,20 @@ import { Router } from 'express';
 
 import User from 'Root/models/User';
 
-import { admin } from 'Root/perms';
+import requirements from 'Root/middlewares/requirements';
+import logged from 'Root/middlewares/permissions/logged';
+import admin from 'Root/middlewares/permissions/admin';
 
 const router = new Router();
 
 
-router.post('/panel/manage/reject', admin, async (req, res) => {
-  if (!req.body._id) {
-    res.json({ type: 4 });
+router.post(
+  '/panel/manage/reject',
+  logged,
+  admin,
+  requirements(['_id']),
+  async (req, res) => {
 
-    return;
-  }
-  
   try {
     const user = await User.findOne({ _id: req.body._id, type: 1 });
 

@@ -5,20 +5,27 @@ import User from 'Root/models/User';
 
 import removeConferences from 'Root/utils/remove/removeConferences';
 import removeArticles from 'Root/utils/remove/removeArticles';
+import requirements from 'Root/middlewares/requirements';
+import logged from 'Root/middlewares/permissions/logged';
+import god from 'Root/middlewares/permissions/god';
 import removeImage from 'Root/utils/removeImage';
 import sendEmail from 'Root/utils/email';
-import { god } from 'Root/perms';
 
 const router = new Router();
 
 
-router.post('/panel/god/remove', god, async (req, res) => {
+router.post(
+  '/panel/god/remove',
+  logged,
+  god,
+  requirements(['username']),
+  async (req, res) => {
   if (!req.body.username || !req.session.user) {
     res.json({ type: 4 });
 
     return;
   }
-  
+
   req.body.username = req.body.username.toLowerCase();
 
   const user = await User.findOne({ username: req.body.username });

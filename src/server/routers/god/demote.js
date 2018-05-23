@@ -2,18 +2,20 @@ import { Router } from 'express';
 
 import User from 'Root/models/User';
 
+import requirements from 'Root/middlewares/requirements';
+import logged from 'Root/middlewares/permissions/logged';
+import god from 'Root/middlewares/permissions/god';
 import sendEmail from 'Root/utils/email';
-import { god } from 'Root/perms';
 
 const router = new Router();
 
 
-router.post('/panel/god/demote', god, async (req, res) => {
-  if (!req.body.username) {
-    res.json({ type: 4 });
-
-    return;
-  }
+router.post(
+  '/panel/god/demote',
+  logged,
+  god,
+  requirements(['username']),
+  async (req, res) => {
 
   req.body.username = req.body.username.toLowerCase();
 
