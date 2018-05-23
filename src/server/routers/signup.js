@@ -3,16 +3,22 @@ import { Router } from 'express';
 import ActivationLink from 'Root/models/ActivationLink';
 import User from 'Root/models/User';
 
+import requirements from 'Root/middlewares/requirements';
+import login from 'Root/middlewares/permissions/login';
 import { hmac } from 'Root/utils/crypto';
 import { dbkey, url } from 'Root/config';
 import sendEmail from 'Root/utils/email';
 import random from 'Root/utils/random';
-import { login } from 'Root/perms';
 
 const router = new Router();
 
 
-router.post('/signup', login, async (req, res) => {
+router.post(
+  '/signup',
+  login,
+  requirements(['username', 'password', 'email', 'name']),
+  async (req, res) => {
+
   req.body.username = req.body.username.toLowerCase();
   req.body.email = req.body.email.toLowerCase();
 
@@ -33,8 +39,10 @@ router.post('/signup', login, async (req, res) => {
   }
 
   const user = new User({
-    ...req.body,
-    password: hmac(req.body.password, dbkey)
+    name: req.body.name,
+    email: req.body.name,
+    username: req.body.username,
+    password: hmac(req.body.password, dbkey),
   });
 
   const code = await random(25);
@@ -66,8 +74,10 @@ router.post('/signup', login, async (req, res) => {
       `
     });
 
+    res.json({ type: 0 });
+
   } catch (e) {
-    res.json({ type: 2, text: 3 });    
+    res.json({ type: 2, text: 3 });
   }
 });
 
