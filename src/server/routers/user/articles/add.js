@@ -5,8 +5,9 @@ import Article from 'Root/models/Article';
 import User from 'Root/models/User';
 import Tag from 'Root/models/Tag';
 
+import requirements from 'Root/middlewares/requirements';
+import logged from 'Root/middlewares/permissions/logged';
 import storage from 'Root/utils/storage';
-import { logged } from 'Root/perms';
 import config from 'Root/config';
 
 const upload = multer({ dest: config.uploadDir, limits: 3000000, storage });
@@ -17,16 +18,11 @@ const router = new Router();
 router.post(
   '/panel/articles/add',
   logged,
+  requirements(['content', 'minutes', 'title']),
   upload.single('avatar'),
   async (req, res) => {
 
-  if (
-    !req.body.content ||
-    !req.body.minutes ||
-    !req.session.user ||
-    !req.body.title ||
-    !req.file
-  ) {
+  if (!req.file) {
     res.json({ type: 4 });
 
     return;

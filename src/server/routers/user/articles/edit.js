@@ -2,22 +2,17 @@ import { Router } from 'express';
 
 import Article from 'Root/models/Article';
 
-import { logged } from 'Root/perms';
+import requirements from 'Root/middlewares/requirements';
+import logged from 'Root/middlewares/permissions/logged';
 
 const router = new Router();
 
 
-router.post('/panel/articles/edit', logged, async (req, res) => {
-  if (
-    !req.body.content ||
-    !req.session.user ||
-    !req.body.title ||
-    !req.body.id
-  ) {
-    res.json({ type: 4 });
-
-    return;
-  }
+router.post(
+  '/panel/articles/edit',
+  logged,
+  requirements(['content', 'title', 'id']),
+  async (req, res) => {
 
   const article = await Article.findOne({
     _id: req.body.id,

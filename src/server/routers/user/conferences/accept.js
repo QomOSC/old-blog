@@ -3,25 +3,21 @@ import { Router } from 'express';
 import Newsletter from 'Root/models/Newsletter';
 import Conference from 'Root/models/Conference';
 
+import requirements from 'Root/middlewares/requirements';
+import logged from 'Root/middlewares/permissions/logged';
+import admin from 'Root/middlewares/permissions/admin';
 import sendEmail from 'Root/utils/email';
-import { admin } from 'Root/perms';
 import { url } from 'Root/config';
 
 const router = new Router();
 
 
-router.post('/panel/conferences/accept', admin, async (req, res) => {
-  if (
-    !req.body.description ||
-    !req.body.start ||
-    !req.body.title ||
-    !req.body.end ||
-    !req.body._id
-  ) {
-    res.json({ type: 4 });
-
-    return;
-  }
+router.post(
+  '/panel/conferences/accept',
+  logged,
+  admin,
+  requirements(['description', 'start', 'title', 'end', '_id']),
+  async (req, res) => {
 
   try {
     const conf = await Conference.findOne({ _id: req.body._id, type: 1 });

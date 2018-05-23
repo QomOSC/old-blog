@@ -4,13 +4,20 @@ import Article from 'Root/models/Article';
 import User from 'Root/models/User';
 import Tag from 'Root/models/Tag';
 
+import requirements from 'Root/middlewares/requirements';
+import logged from 'Root/middlewares/permissions/logged';
+import admin from 'Root/middlewares/permissions/admin';
 import removeImage from 'Root/utils/removeImage';
-import { admin } from 'Root/perms';
 
 const router = new Router();
 
 
-router.post('/panel/articles/reject', admin, async (req, res) => {
+router.post(
+  '/panel/articles/reject',
+  logged,
+  admin,
+  requirements(['id']),
+  async (req, res) => {
   if (!req.body.id) {
     res.json({ type: 4 });
 

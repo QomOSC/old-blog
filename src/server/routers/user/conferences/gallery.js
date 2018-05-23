@@ -3,8 +3,10 @@ import multer from 'multer';
 
 import Conference from 'Root/models/Conference';
 
+import requirements from 'Root/middlewares/requirements';
+import logged from 'Root/middlewares/permissions/logged';
+import admin from 'Root/middlewares/permissions/admin';
 import storage from 'Root/utils/storage';
-import { admin } from 'Root/perms';
 import config from 'Root/config';
 
 const upload = multer({ dest: config.uploadDir, limits: 3000000, storage });
@@ -14,11 +16,13 @@ const router = new Router();
 
 router.post(
   '/panel/conferences/gallery',
+  logged,
   admin,
+  requirements(['_id']),
   upload.single('avatar'),
   async (req, res) => {
 
-  if (!req.body._id || !req.file) {
+  if (!req.file) {
     res.json({ type: 4 });
 
     return;

@@ -2,25 +2,18 @@ import { Router } from 'express';
 
 import Conference from 'Root/models/Conference';
 
-import { logged } from 'Root/perms';
+import requirements from 'Root/middlewares/requirements';
+import logged from 'Root/middlewares/permissions/logged';
 
 const router = new Router();
 
 
-router.post('/panel/conferences/add', logged, async (req, res) => {
-  if (
-    !req.body.description ||
-    !req.body.providers ||
-    !req.session.user ||
-    !req.body.title ||
-    !req.body.start ||
-    !req.body.end
-  ) {
-    res.json({ type: 4 });
+router.post(
+  '/panel/conferences/add',
+  logged,
+  requirements(['description', 'providers', 'title', 'start', 'end']),
+  async (req, res) => {
 
-    return;
-  }
-  
   const conf = new Conference({
     description: req.body.description,
     providers: req.body.providers,

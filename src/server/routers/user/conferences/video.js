@@ -2,17 +2,19 @@ import { Router } from 'express';
 
 import Conference from 'Root/models/Conference';
 
-import { admin } from 'Root/perms';
+import requirements from 'Root/middlewares/requirements';
+import logged from 'Root/middlewares/permissions/logged';
+import admin from 'Root/middlewares/permissions/admin';
 
 const router = new Router();
 
 
-router.post('/panel/conferences/video', admin, async (req, res) => {
-  if (!req.body._id || req.body.embed) {
-    res.json({ type: 4 });
-
-    return;
-  }
+router.post(
+  '/panel/conferences/video',
+  logged,
+  admin,
+  requirements(['_id', 'embed']),
+  async (req, res) => {
   
   try {
     const conf = await Conference.findById(req.body._id);
