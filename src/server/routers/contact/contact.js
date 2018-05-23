@@ -2,17 +2,16 @@ import { Router } from 'express';
 
 import Comment from 'Root/models/Comment';
 
+import requirements from 'Root/middlewares/requirements';
 import { email } from 'Root/utils/validator';
 
 const router = new Router();
 
 
-router.post('/contact', async (req, res) => {
-  if (!req.body.description || !req.body.email || !req.body.name) {
-    res.json({ type: 4 });
-
-    return;
-  }
+router.post(
+  '/contact',
+  requirements(['description', 'email', 'name']),
+  async (req, res) => {
 
   req.body.email = req.body.email.toLowerCase();
 

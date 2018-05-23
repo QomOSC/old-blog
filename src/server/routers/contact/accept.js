@@ -2,14 +2,21 @@ import { Router } from 'express';
 
 import Comment from 'Root/models/Comment';
 
+import requirements from 'Root/middlewares/requirements';
+import logged from 'Root/middlewares/permissions/logged';
+import admin from 'Root/middlewares/permissions/admin';
 import sendEmail from 'Root/utils/email';
-import { admin } from 'Root/perms';
 import { url } from 'Root/config';
 
 const router = new Router();
 
 
-router.post('/contact/accept', admin, async (req, res) => {
+router.post(
+  '/contact/accept',
+  logged,
+  admin,
+  requirements(['answer', '_id']),
+  async (req, res) => {
   if (!req.body.answer || !req.session.user || !req.body._id) {
     res.json({ type: 4 });
 

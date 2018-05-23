@@ -3,18 +3,18 @@ import { Router } from 'express';
 import Conference from 'Root/models/Conference';
 import User from 'Root/models/User';
 
+import requirements from 'Root/middlewares/requirements';
+import logged from 'Root/middlewares/permissions/logged';
 import sendEmail from 'Root/utils/email';
-import { logged } from 'Root/perms';
 
 const router = new Router();
 
 
-router.post('/conference/attend', logged, async (req, res) => {
-  if (!req.session.user || !req.body._id) {
-    res.json({ type: 4 });
-
-    return;
-  }
+router.post(
+  '/conference/attend',
+  logged,
+  requirements(['_id']),
+  async (req, res) => {
 
   try {
     const conf = await Conference.findById(req.body._id);
