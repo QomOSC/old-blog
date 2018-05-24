@@ -18,6 +18,7 @@ router.post(
   login,
   requirements(['email', 'password']),
   async (req, res) => {
+
   req.body.email = req.body.email.toLowerCase();
 
   const user = await User
