@@ -73,7 +73,7 @@ class About extends Component {
                   className={`${styles.developerImage} ${styles.msm}`}
                 />
                 <h1>محمد سیفی مرندی</h1>
-                <p>طراحی وب</p>
+                <p>طراح وب</p>
                 <div className={styles.icons}>
                   <Link to='https://github.com/sgerami'>
                     <div

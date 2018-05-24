@@ -61,7 +61,7 @@ class Login extends Component {
       },
       {
         tag: 'button',
-        html: 'ثبت نام',
+        html: 'ورود',
         attrs: {
           type: 'submit'
         }
