@@ -5,6 +5,11 @@ export default requirements => (req, res, next) => {
 
     if (requirement in req.body) {
       req.body[requirement] = sanitize(req.body[requirement]);
+
+      if (typeof req.body[requirement] === 'object') {
+        req.body[requirement] = JSON.stringify(req.body[requirement]);
+      }
+
     }
 
     else {
