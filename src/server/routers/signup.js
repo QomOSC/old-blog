@@ -25,17 +25,13 @@ router.post(
   const email = await User.findOne({ email: req.body.email });
 
   if (email) {
-    res.json({ type: 2, text: 1 });
-
-    return;
+    return res.json({ type: 2, text: 1 });
   }
 
   const username = await User.findOne({ username: req.body.username });
 
   if (username) {
-    res.json({ type: 2, text: 2 });
-
-    return;
+    return res.json({ type: 2, text: 2 });
   }
 
   const user = new User({

@@ -18,15 +18,11 @@ router.post(
     const article = await Article.findById(req.body._id);
 
     if (!article) {
-      res.json({ type: 2 });
-
-      return;
+      return res.json({ type: 2 });
     }
 
     if (!article.likes.includes(req.session.user)) {
-      res.json({ type: 2 });
-
-      return;
+      return res.json({ type: 2 });
     }
 
     article.likes.splice(req.session.user, 1);

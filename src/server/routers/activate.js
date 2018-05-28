@@ -14,18 +14,14 @@ router.post('/activate', login, requirements(['code']), async (req, res) => {
   const AL = await ActivationLink.findOne({ code: req.body.code });
 
   if (!AL) {
-    res.json({ type: 2 });
-
-    return;
+    return res.json({ type: 2 });
   }
 
   try {
     const user = await User.findById(AL.user);
 
     if (!user) {
-      res.json({ type: 2 });
-
-      return;
+      return res.json({ type: 2 });
     }
 
     user.verified = true;

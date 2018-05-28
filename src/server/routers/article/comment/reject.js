@@ -13,11 +13,6 @@ router.post(
   logged,
   requirements(['_id']),
   async (req, res) => {
-  if (!req.session.user || !req.body._id) {
-    res.json({ type: 4 });
-
-    return;
-  }
 
   const comment = await Comment.findOne({
     author: req.session.user,
@@ -26,9 +21,7 @@ router.post(
   });
 
   if (!comment) {
-    res.json({ type: 2 });
-
-    return;
+    return res.json({ type: 2 });
   }
 
   try {

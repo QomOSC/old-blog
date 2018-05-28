@@ -23,9 +23,7 @@ router.post(
   });
 
   if (!comment) {
-    res.json({ type: 2 });
-
-    return;
+    return res.json({ type: 2 });
   }
 
 

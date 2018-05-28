@@ -18,15 +18,11 @@ router.post(
     const article = await Article.findById(req.body._id);
 
     if (!article) {
-      res.json({ type: 2 });
-
-      return;
+      return res.json({ type: 2 });
     }
 
     if (article.viewers.includes(req.body.ip)) {
-      res.json({ type: 0, text: 1 });
-
-      return;
+      return res.json({ type: 0, text: 1 });
     }
 
     article.viewers.push(req.body.ip);

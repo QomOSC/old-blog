@@ -29,16 +29,12 @@ router.post(
     .select('_id name type email avatar username description verified');
 
   if (!user) {
-    res.json({ type: 2, text: 0 });
-
-    return;
+    return res.json({ type: 2, text: 0 });
   }
 
   if (user.type === 1) {
     // Account is deactive
-    res.json({ type: 2, text: 1 });
-
-    return;
+    return res.json({ type: 2, text: 1 });
   }
 
   if (!user.verified) {
