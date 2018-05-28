@@ -16,9 +16,7 @@ router.post(
   req.body.email = req.body.email.toLowerCase();
 
   if (!email(req.body.email)) {
-    res.json({ type: 2 });
-
-    return;
+    return res.json({ type: 2 });
   }
 
   const comment = new Comment({

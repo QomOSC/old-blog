@@ -20,32 +20,21 @@ router.post(
   god,
   requirements(['username']),
   async (req, res) => {
-  if (!req.body.username || !req.session.user) {
-    res.json({ type: 4 });
-
-    return;
-  }
 
   req.body.username = req.body.username.toLowerCase();
 
   const user = await User.findOne({ username: req.body.username });
 
   if (!user) {
-    res.json({ type: 2, text: 0 });
-
-    return;
+    return res.json({ type: 2, text: 0 });
   }
 
   if (user._id.toString() === req.session.user) {
-    res.json({ type: 2, text: 2 });
-
-    return;
+    return res.json({ type: 2, text: 2 });
   }
 
   if (user.type === 4) {
-    res.json({ type: 2, text: 1 });
-
-    return;
+    return res.json({ type: 2, text: 1 });
   }
 
 

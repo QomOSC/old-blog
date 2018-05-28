@@ -17,19 +17,12 @@ router.post(
   admin,
   requirements(['answer', '_id']),
   async (req, res) => {
-  if (!req.body.answer || !req.session.user || !req.body._id) {
-    res.json({ type: 4 });
-
-    return;
-  }
 
   try {
     const comment = await Comment.findOne({ _id: req.body._id, type: 1 });
 
     if (!comment) {
-      res.json({ type: 2 });
-
-      return;
+      return res.json({ type: 2 });
     }
 
     comment.admin = req.session.user;

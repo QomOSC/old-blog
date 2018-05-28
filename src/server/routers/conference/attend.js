@@ -20,8 +20,7 @@ router.post(
     const conf = await Conference.findById(req.body._id);
 
     if (!conf) {
-      res.json({ type: 2, text: 0 });
-      return;
+      return res.json({ type: 2, text: 0 });
     }
 
     const user = await User.findById(req.session.user);

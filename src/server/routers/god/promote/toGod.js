@@ -25,9 +25,7 @@ router.post(
   });
 
   if (!user) {
-    res.json({ type: 2, text: 0 });
-
-    return;
+    return res.json({ type: 2, text: 0 });
   }
 
 

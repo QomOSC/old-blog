@@ -25,15 +25,11 @@ router.post(
   });
 
   if (!user) {
-    res.json({ type: 2, text: 0 });
-
-    return;
+    return res.json({ type: 2, text: 0 });
   }
 
   if (user.type === 4) {
-    res.json({ type: 2, text: 2 });
-
-    return;
+    return res.json({ type: 2, text: 2 });
   }
 
   user.type = 2;

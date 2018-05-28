@@ -20,9 +20,7 @@ router.post(
     const comment = await Comment.findOne({ _id: req.body._id, type: 1 });
 
     if (!comment) {
-      res.json({ type: 2 });
-
-      return;
+      return res.json({ type: 2 });
     }
 
     await comment.remove();
