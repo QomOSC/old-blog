@@ -17,9 +17,7 @@ router.post(
   const rec = await Recovery.findOne({ code: req.body.code });
 
   if (rec) {
-    res.json({ type: 0 });
-
-    return;
+    return res.json({ type: 0 });
   }
 
   res.json({ type: 2 });

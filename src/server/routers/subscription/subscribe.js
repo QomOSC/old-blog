@@ -40,9 +40,7 @@ router.post(
   }
 
   if (newsletter && newsletter.verified) {
-    res.json({ type: 0, text: 0 });
-
-    return;
+    return res.json({ type: 0, text: 0 });
   }
 
   const token = await random(25);

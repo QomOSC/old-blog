@@ -22,9 +22,7 @@ router.post(
     const user = await User.findOne({ _id: req.body._id, type: 1 });
 
     if (!user) {
-      res.json({ type: 2 });
-
-      return;
+      return res.json({ type: 2 });
     }
 
     user.type = 2;

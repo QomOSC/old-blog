@@ -18,27 +18,16 @@ router.post(
   async (req, res) => {
 
   if (!req.params.code) {
-    res.json({ type: 4 });
-
-    return;
+    return res.json({ type: 4 });
   }
 
   const rec = await Recovery.findOne({ code: req.params.code });
 
   if (!rec) {
-    res.json({ type: 2, text: 0 });
-
-    return;
-  }
-
-  if (!req.body.password) {
-    res.json({ type: 2, text: 1 });
-
-    return;
+    return res.json({ type: 2, text: 0 });
   }
 
   const user = await User.findById(rec.user);
-
 
   try {
     user.password = hmac(req.body.password, config.dbkey);

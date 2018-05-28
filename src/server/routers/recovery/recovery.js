@@ -21,9 +21,7 @@ router.post(
   const user = await User.findOne({ email: req.body.email });
 
   if (!user) {
-    res.json({ type: 2, text: 0 });
-
-    return;
+    return res.json({ type: 2, text: 0 });
   }
 
   let rec = await Recovery.findOne({ user: user._id });

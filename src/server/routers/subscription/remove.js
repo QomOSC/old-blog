@@ -16,9 +16,7 @@ router.post(
     let newsletter = await Newsletter.findById(req.body._id);
 
     if (!newsletter) {
-      res.json({ type: 2 });
-
-      return;
+      return res.json({ type: 2 });
     }
 
     await newsletter.remove();

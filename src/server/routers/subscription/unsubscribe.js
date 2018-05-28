@@ -20,8 +20,7 @@ router.post(
   let newsletter = await Newsletter.findOne({ email: req.body.email });
 
   if (!newsletter) {
-    res.json({ type: 2, text: 0 });
-    return;
+    return res.json({ type: 2, text: 0 });
   }
 
   try {
