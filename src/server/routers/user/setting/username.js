@@ -19,17 +19,13 @@ router.post(
   const user = await User.findById(req.session.user);
 
   if (!username(req.body.username)) {
-    res.json({ type: 2, text: 3 });
-
-    return;
+    return res.json({ type: 2, text: 3 });
   }
 
   const checkUsername = await User.findOne({ username: req.body.username });
 
   if (checkUsername) {
-    res.json({ type: 2, text: 1 });
-
-    return;
+    return res.json({ type: 2, text: 1 });
   }
 
   user.username = req.body.username;

@@ -23,8 +23,7 @@ router.post(
     const article = await Article.findById(req.body._id);
 
     if (!article) {
-      res.json({ type: 2, text: 0 });
-      return;
+      return res.json({ type: 2, text: 0 });
     }
 
     article.content = req.body.content;

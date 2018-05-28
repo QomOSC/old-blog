@@ -24,7 +24,7 @@ router.post(
     });
 
     if (!article) {
-      res.json({ type: 2, text: 0 });
+      return res.json({ type: 2, text: 0 });
     }
 
     const author = await User.findById(req.session.user);

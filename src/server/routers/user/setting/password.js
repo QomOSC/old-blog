@@ -20,15 +20,11 @@ router.post(
   const user = await User.findById(req.session.user);
 
   if (!password(req.body.fresh)) {
-    res.json({ type: 2, text: 1 });
-
-    return;
+    return res.json({ type: 2, text: 1 });
   }
 
   if (hmac(req.body.old, config.dbkey) !== user.password) {
-    res.json({ type: 2, text: 2 });
-
-    return;
+    return res.json({ type: 2, text: 2 });
   }
 
 

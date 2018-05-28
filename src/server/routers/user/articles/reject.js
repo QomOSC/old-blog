@@ -18,19 +18,12 @@ router.post(
   admin,
   requirements(['id']),
   async (req, res) => {
-  if (!req.body.id) {
-    res.json({ type: 4 });
-
-    return;
-  }
 
   try {
     const article = await Article.findById(req.body.id);
 
     if (!article) {
-      res.json({ type: 2, text: 0 });
-
-      return;
+      return res.json({ type: 2, text: 0 });
     }
 
     const author = await User.findById(article.author);

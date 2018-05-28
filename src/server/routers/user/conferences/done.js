@@ -20,9 +20,7 @@ router.post(
     const conf = await Conference.findById(req.body._id);
 
     if (!conf) {
-      res.json({ type: 2 });
-
-      return;
+      return res.json({ type: 2 });
     }
 
     conf.done = true;

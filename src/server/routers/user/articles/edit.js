@@ -20,9 +20,7 @@ router.post(
   });
 
   if (!article) {
-    res.json({ type: 2 });
-
-    return;
+    return res.json({ type: 2 });
   }
 
   article.content = req.body.content;

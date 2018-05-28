@@ -15,14 +15,12 @@ router.post(
   admin,
   requirements(['_id', 'embed']),
   async (req, res) => {
-  
+
   try {
     const conf = await Conference.findById(req.body._id);
 
     if (!conf) {
-      res.json({ type: 2, text: 0 });
-
-      return;
+      return res.json({ type: 2, text: 0 });
     }
 
     conf.embeds.push(req.body.embed);
