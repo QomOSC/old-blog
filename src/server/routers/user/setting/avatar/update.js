@@ -19,9 +19,7 @@ router.post(
   async (req, res) => {
 
   if (!req.file) {
-    res.json({ type: 4 });
-
-    return;
+    return res.json({ type: 4 });
   }
 
   const user = await User.findById(req.session.user);

@@ -22,17 +22,13 @@ router.post(
   const user = await User.findById(req.session.user);
 
   if (!email(req.body.email)) {
-    res.json({ type: 2, text: 3 });
-
-    return;
+    return res.json({ type: 2, text: 3 });
   }
 
   const checkEmail = await User.findOne({ email: req.body.email });
 
   if (checkEmail) {
-    res.json({ type: 2, text: 1 });
-
-    return;
+    return res.json({ type: 2, text: 1 });
   }
 
   const newsletter = await Newsletter.findOne({ email: user.email });
