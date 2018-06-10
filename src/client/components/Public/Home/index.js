@@ -93,9 +93,14 @@ class Home extends Component {
         <div className={styles.intro}>
           <img src='/static/images/qomosc.png' />
           <h1>جامعه متن باز قم</h1>
+          <p>
+            جامعه متن باز قم با هدف فراهم کردن محیطی برای
+            به اشتراک گذاری دانش و تجربیات افرادی که در زمینه
+            های مختلف متن باز فعالیت میکنند تاسیس شده است.
+          </p>
         </div>
 
-        <div className={styles.description}>
+        {/* <div className={styles.description}>
           <div>
             <p>
               جامعه متن باز قم با هدف فراهم کردن محیطی برای
@@ -113,7 +118,7 @@ class Home extends Component {
               <li> آموزش تکنولوژی‌های متن باز</li>
             </ul>
           </div>
-        </div>
+        </div> */}
 
         {this.state.articles.length ?
           <h2 className={styles.title}>مقالات اخیر</h2> :
