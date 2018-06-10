@@ -146,7 +146,7 @@ class ArticlesHome extends Component {
     return (
       <div className={styles.container}>
         <div className={styles.user} style={{ backgroundImage: `url(/static/uploads/${this.props.article.avatar})` }}>
-          <span>{this.props.article.user.name}</span>
+
           {this.props.article.user.description ?
             <p>
             درباره: {this.props.article.user.description}
@@ -154,8 +154,10 @@ class ArticlesHome extends Component {
             ''
           }
           <h1>{this.props.article.title}</h1>
-          <p>{moment(new Date(this.props.article.createdAt))}</p>
-          <p>{this.props.article.minutes} دقیقه خواندن</p>
+          <div className={styles.articleinfo}>
+          <span>{this.props.article.user.name}</span>
+          <span>{moment(new Date(this.props.article.createdAt))}</span>
+          </div>
         </div>
 
         <div className={styles.article}>
@@ -163,7 +165,7 @@ class ArticlesHome extends Component {
 
           <br />
 
-        
+
 
           <div
             className={styles.articleContent}
