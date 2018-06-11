@@ -5,7 +5,6 @@ import Article from 'Root/models/Article';
 import User from 'Root/models/User';
 import Tag from 'Root/models/Tag';
 
-import requirements from 'Root/middlewares/requirements';
 import logged from 'Root/middlewares/permissions/logged';
 import storage from 'Root/utils/storage';
 import config from 'Root/config';
@@ -18,7 +17,6 @@ const router = new Router();
 router.post(
   '/panel/articles/add',
   logged,
-  requirements(['content', 'minutes', 'title']),
   upload.single('avatar'),
   async (req, res) => {
 

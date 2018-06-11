@@ -10,9 +10,7 @@ export default requirements => (req, res, next) => {
       }
     }
     else {
-      res.json({ type: 4 });
-
-      return;
+      return res.json({ type: 4 });
     }
   }
 

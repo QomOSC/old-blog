@@ -24,7 +24,6 @@ router.post(
 
   const user = await User.findById(req.session.user);
 
-
   try {
     user.avatar = req.file.filename;
 
