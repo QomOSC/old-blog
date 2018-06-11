@@ -12,8 +12,24 @@
   }
 
   > div:last-child {
-    width: 70%;
+    width: 85%;
     margin: 40px 0;
+    box-shadow: 8px 14px 38px rgba(39,44,49,.06),1px 3px 8px rgba(39,44,49,.03);
+    border-radius: 5px;
+    background: #dc3737;
+    transition: 0.3s;
+
+    &:hover {
+      box-shadow: 8px 14px 38px rgba(39,44,49,.02),1px 3px 8px rgba(39,44,49,.02);
+    }
+
+    h1 {
+      color: #faf15d;
+    }
+
+    p {
+      color: #ffefef;
+    }
 
     > div {
       display: flex;
@@ -28,6 +44,7 @@
 
       input, textarea {
         margin: 10px 0;
+        width: 100%;
         .input();
       }
     }
