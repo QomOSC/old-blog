@@ -1,16 +1,28 @@
 :local(.container) {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
 
-  > div {
-    width: 50%;
-    margin: 20px 0;
+  > h1 {
+    text-align: center;
+    background: #222831;
+    width: auto;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    color: #fff;
   }
 }
 
+:local(.allarticle) {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  flex-wrap: wrap;
+
+  > div {
+    margin: 20px;
+  }
+
+}
 
 @media (min-width: 120px) and (max-width: 580px) {
   :local(.container) > div {

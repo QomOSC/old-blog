@@ -53,7 +53,7 @@ class ArticlesHome extends Component {
           <h1>مقالات اخیر</h1> :
           <h1>مقاله ای وجود ندارد</h1>
         }
-
+          <div className={styles.allarticle}>
         {this.state.articles.map((v, i) =>
           <Article
             key={i}
@@ -62,6 +62,7 @@ class ArticlesHome extends Component {
             id={v._id}
           />
         )}
+        </div>
       </div>
     );
   }
