@@ -139,7 +139,7 @@ class Home extends Component {
 
               <Button
                 handleClick={this.contact}
-                color='blue'>
+                color='dark'>
                 ارسال
               </Button>
             </div>
