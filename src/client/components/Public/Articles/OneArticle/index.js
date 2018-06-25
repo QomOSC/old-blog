@@ -18,7 +18,6 @@ import gql from 'Root/js/gql';
 import LoadingProgress from 'Root/components/Utils/LoadingProgress';
 import Button from 'Root/components/Utils/Button';
 
-import userDefault from 'Root/images/u.png';
 import styles from './index.less';
 
 const md = new MarkdownIt();
@@ -145,7 +144,17 @@ class ArticlesHome extends Component {
 
     return (
       <div className={styles.container}>
-        <div className={styles.user} style={{ backgroundImage: `url(/static/uploads/${this.props.article.avatar})` }}>
+      <br />
+      <br />
+      <br />
+        <div className={styles.user}>
+          <div className={styles.articleinfo}>
+          <span>{this.props.article.user.name}</span>
+          <span className={styles.slash}>/</span>
+          <span>{moment(new Date(this.props.article.createdAt))}</span>
+          </div>
+          <h1>{this.props.article.title}</h1>
+          <img src={`/static/uploads/${this.props.article.avatar}`} />
 
           {this.props.article.user.description ?
             <p>
@@ -153,18 +162,12 @@ class ArticlesHome extends Component {
             </p> :
             ''
           }
-          <h1>{this.props.article.title}</h1>
-          <div className={styles.articleinfo}>
-          <span>{this.props.article.user.name}</span>
-          <span>{moment(new Date(this.props.article.createdAt))}</span>
-          </div>
+
+
         </div>
 
         <div className={styles.article}>
           <br />
-
-          <br />
-
 
 
           <div
@@ -174,8 +177,28 @@ class ArticlesHome extends Component {
           }} />
         </div>
 
+
+        {this.props.article.tags.length ?
+          <div className={styles.tags}>
+            {this.props.article.tags.map((v, i) =>
+              <Link to={`/tag/${v.tagname}`} key={i}>
+                <p className={styles.tag}>
+                  &nbsp;&nbsp;#{v.tagname}
+                </p>
+              </Link>
+            )}
+
+          </div> :
+          ''
+        }
+
+        <div className={styles.line} />
+
+        <div className={styles.postutile}>
         <p>تعداد بازدید ها: {this.props.article.viewerLength}</p>
-        <p>تعداد لایک: {this.props.article.likeLength}</p>
+
+        <div className={styles.like}>
+          <p>{this.props.article.likeLength}</p>
 
         {this.props.article.liked ?
           <div
@@ -189,41 +212,30 @@ class ArticlesHome extends Component {
             className={`icon icon-heart ${styles.disliked}`}
           />
         }
-
-        {this.props.article.tags.length ?
-          <div className={styles.tags}>
-            <p>برچسب ها: </p>
-            {this.props.article.tags.map((v, i) =>
-              <Link to={`/tag/${v.tagname}`} key={i}>
-                <p className={styles.tag}>
-                  &nbsp;&nbsp;#{v.tagname}
-                </p>
-              </Link>
-            )}
-          </div> :
-          ''
-        }
-
+        </div>
+        </div>
 
         <div className={styles.comment}>
+
+          <div>
+            <label>نام : </label>
           <input
             type='text'
             placeholder='نام'
             ref='name'
           />
-
+            <label>ایمیل : </label>
           <input
             type='email'
             placeholder='ایمیل'
             ref='email'
           />
-
+          </div>
           <textarea
-            placeholder='نظر'
+            placeholder='نظر خود را درباره این پست بنویسید'
             ref='description'
           />
-
-          <Button color='blue' handleClick={this.comment}>
+          <Button color='green' handleClick={this.comment}>
             ثبت نظر
           </Button>
         </div>
