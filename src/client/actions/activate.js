@@ -11,9 +11,7 @@ export default async (code, push) => {
       title: 'حساب شما با موفقیت تایید شد'
     });
 
-    push('/login');
-
-    return;
+    return push('/login');
   }
 
   push('/notfound');
