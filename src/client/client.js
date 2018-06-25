@@ -9,6 +9,7 @@ import store from './store';
 
 import 'izitoast/dist/css/iziToast.min.css';
 import 'nprogress/nprogress.css';
+import './css/iransans.css';
 import './css/font-fa.less';
 import './css/index.less';
 import './css/icon.less';
