@@ -3,13 +3,16 @@
 
 :local(.article) {
   background: #fff 50%;
-  box-shadow: 8px 14px 38px rgba(39,44,49,.06),1px 3px 8px rgba(39,44,49,.03);
+  box-shadow: 8px 14px 38px rgba(39,44,49,.07),1px 3px 8px rgba(39,44,49,.05);
   color: #444;
   overflow: hidden;
   border-radius: 5px;
   min-height: 300px;
-  transition: all .5s ease;
+  transition: 0.3s;
 
+  &:hover {
+    box-shadow: 8px 14px 38px rgba(39,44,49,.02),1px 3px 8px rgba(39,44,49,.02);
+  }
 
 
   h1 {
@@ -61,8 +64,21 @@
 
   a {
     color: #555;
-    margin-right: -6px;
+    transition: 0.2s;
+
+    &:first-child {
+      margin-right: -25px;
+      &:hover {
+        color: #333;
+      }
+    }
+
+    &:last-child {
+      &:hover {color: @green-base;}
+    }
   }
+
+
 
 }
 

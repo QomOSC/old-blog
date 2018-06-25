@@ -21,7 +21,7 @@ class Article extends Component {
             ''
           }
 
-          <p>متن</p>
+          <p>{this.props.art.content}</p>
 
         </Link>
 
@@ -38,7 +38,7 @@ class Article extends Component {
             <Link to={`/user/${this.props.user.username}`}>
                 {this.props.user.name}
             </Link>
-            <a>ادامه مطلب  . . .</a>
+              <Link to={`/articles/${this.props.id}`}>ادامه مطلب . . .</Link>
           </div>
         </div>
 

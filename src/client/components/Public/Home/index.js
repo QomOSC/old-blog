@@ -23,20 +23,14 @@ class Home extends Component {
     const query = `
       query {
         articles(type: 2, limit: 10) {
-          createdAt
-          minutes
           avatar
+          content
           title
           _id
 
           user {
-            description
-            createdAt
-            articles
             username
             avatar
-            email
-            type
             name
           }
         }
@@ -99,26 +93,6 @@ class Home extends Component {
             های مختلف متن باز فعالیت میکنند تاسیس شده است
           </p>
         </div>
-
-        {/* <div className={styles.description}>
-          <div>
-            <p>
-              جامعه متن باز قم با هدف فراهم کردن محیطی برای
-              به اشتراک گذاری دانش و تجربیات افرادی که در زمینه
-              های مختلف متن باز فعالیت میکنند تاسیس شده است.
-            </p>
-          </div>
-
-          <div>
-            <h2>اهداف</h2>
-            <ul>
-              <li>حمایت و پشتیبانی از کاربران تکنولوژی‌های متن باز</li>
-              <li>فرهنگ‌سازی استفاده از تکنولوژی‌های متن باز</li>
-              <li>کمک به توسعه تکنولوژی‌های متن باز</li>
-              <li> آموزش تکنولوژی‌های متن باز</li>
-            </ul>
-          </div>
-        </div> */}
 
         {this.state.articles.length ?
           <h2 className={styles.title}>مقالات اخیر</h2> :
