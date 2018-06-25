@@ -9,11 +9,11 @@
   border-radius: 5px;
   min-height: 300px;
   transition: 0.3s;
+  position: relative;
 
   &:hover {
     box-shadow: 8px 14px 38px rgba(39,44,49,.02),1px 3px 8px rgba(39,44,49,.02);
   }
-
 
   h1 {
     font-size: 22px;
@@ -46,6 +46,10 @@
 :local(.user) {
   display: flex;
   font-size: 14px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 
     div {
       display: flex;

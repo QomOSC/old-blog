@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import short from 'Root/js/short';
+
 import userDefault from 'Root/images/u.png';
 import styles from './index.less';
 
@@ -20,8 +22,8 @@ class Article extends Component {
             <h1>{this.props.art.title}</h1> :
             ''
           }
-
-          <p>{this.props.art.content}</p>
+          
+          <p>{short(this.props.art.content)}</p>
 
         </Link>
 
