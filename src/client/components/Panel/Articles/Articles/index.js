@@ -33,6 +33,7 @@ class Articles extends Component {
 
           userArticles {
             createdAt
+            content
             minutes
             avatar
             title

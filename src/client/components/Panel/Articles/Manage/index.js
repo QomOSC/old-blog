@@ -19,20 +19,15 @@ class Manage extends Component {
     const query = `
       query {
         articles(type: 1) {
-          _id
           createdAt
-          minutes
+          content
           avatar
           title
+          _id
 
           user {
-            description
-            createdAt
-            articles
             username
             avatar
-            email
-            type
             name
           }
         }
@@ -70,9 +65,7 @@ class Manage extends Component {
                 وارد قسمت تغییر دادن شوید
               </h1>
               <Link to={`/panel/articles/manage/${v._id}`}>
-                <Button
-                  color='blue'
-                >
+                <Button color='blue'>
                   تغییر دادن
                 </Button>
               </Link>
