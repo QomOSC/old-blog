@@ -1,21 +1,21 @@
 @import 'colors';
 
 .boxShadow() {
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+box-shadow: 8px 14px 38px rgba(39,44,49,.06),1px 3px 8px rgba(39,44,49,.03);
 }
 
 .input() {
   border: 1px solid @grey-base;
   border-radius: 4px;
   padding: 7px;
-  transition: border 300ms;
+  transition: 300ms;
 
   &:hover {
-    border: 1px solid @blue-1;
+    border: 1px solid @green-base;
   }
 
   &:active, &:focus {
-    border: 1px solid @blue-2;
+    border: 1px solid @green-base;
   }
 }
 
@@ -30,15 +30,16 @@
   z-index: 2;
 
   > a {
-    font-family: SB;
+    font-family: IRANSans;
+    font-weight: 500;
     color: #fff;
     font-size: 30px;
     z-index: 2;
-    text-shadow: 0 3px 1px rgb(0,0,0,0.5);
+    text-shadow:1px 3px 3px rgba(0,0,0,0.3);
     transition: 0.3s;
 
     &:active, &:hover {
-      text-shadow: 0 0 1px rgb(0,0,0,0.1);
+      text-shadow:1px 2px 2px rgba(0,0,0,0.1);
     }
   }
 
