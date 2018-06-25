@@ -48,7 +48,7 @@ class Footer extends Component {
             placeholder='ایمیل'
           />
 
-          <Button color='blue' handleClick={this.subscribe}>
+          <Button color='green' handleClick={this.subscribe}>
             عضویت در خبرنامه
           </Button>
         </div>
