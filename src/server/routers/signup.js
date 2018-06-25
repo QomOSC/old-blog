@@ -36,7 +36,7 @@ router.post(
 
   const user = new User({
     name: req.body.name,
-    email: req.body.name,
+    email: req.body.email,
     username: req.body.username,
     password: hmac(req.body.password, dbkey),
   });
@@ -73,6 +73,7 @@ router.post(
     res.json({ type: 0 });
 
   } catch (e) {
+    console.log(e);
     res.json({ type: 2, text: 3 });
   }
 });
