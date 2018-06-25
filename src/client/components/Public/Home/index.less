@@ -12,14 +12,21 @@
   }
 
   > div:last-child {
-    width: 85%;
+    width: 75%;
     margin: 40px 0;
     box-shadow: 8px 14px 38px rgba(39,44,49,.06),1px 3px 8px rgba(39,44,49,.03);
     border-radius: 5px;
     background: #40AA54;
 
+    &:hover {
+      box-shadow:0 0 1px rgba(39,44,49,.1),0 3px 16px rgba(39,44,49,.07);
+      transition:all .3s ease;
+      transform: translate3d(0,-1px,0);
+    }
+
     h1 {
       color: #faf15d;
+      font-weight: 500;
     }
 
     p {
