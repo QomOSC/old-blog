@@ -7,7 +7,7 @@ export default {
   uploadDir: resolve(__dirname, 'static/uploads'),
   otkey: 'l4E7MDeLCt3SbrIoY2UHWBiONVh9f1RPGvg',
   emailAddress: 'oscqom@gmail.com',
-  emailPassword: 'qomoscqomosc',
+  emailPassword: '6UBhVbueFh95eNbs',
   title: 'QOM OSC',
   port: '8080'
 };
