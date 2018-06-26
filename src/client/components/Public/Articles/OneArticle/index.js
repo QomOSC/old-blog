@@ -141,6 +141,7 @@ class ArticlesHome extends Component {
     if (this.state.loading) {
       return <LoadingProgress />;
     }
+    console.log(this.props.article.comments);
 
     return (
       <div className={styles.container}>
@@ -252,7 +253,6 @@ class ArticlesHome extends Component {
               {v.answer ?
                 <div>
                   <p>پاسخ</p>
-                  {this.renderImage()}
                   <p>{v.answer}</p>
                 </div> :
                 ''
