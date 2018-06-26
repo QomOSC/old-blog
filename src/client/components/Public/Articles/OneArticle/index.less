@@ -77,7 +77,7 @@
 :local(.comment) {
   width: 60%;
   padding: 10px;
-  background-color: #fff;
+  background-color: @green-base;
   border-radius: 5px;
   margin: 20px  auto;
   .boxShadow();
@@ -85,7 +85,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: #e2e2e2 1px solid;
 
   > * {
     display: block;
@@ -124,7 +123,7 @@
 
   label {
     font-size: 15px;
-    color: #555;
+    color: #fff;
   }
 }
 
@@ -273,10 +272,24 @@
   :local(.comment) {
     width: 90%;
     padding: 30px;
+    flex-direction: column;
+
+    label {
+      display: none;
+    }
+
+    div {
+      flex-direction: column;
+
+      input {
+        width: 100%;
+      }
+    }
   }
 
   :local(.tags) {
-    flex-direction: column;
+    flex-wrap: wrap;
+    width: 85%;
   }
 
   :local(.articleContent) {
@@ -284,4 +297,23 @@
     padding: 20px;
   }
 
+  :local(.imgcover) {
+    width: 95%;
+    height: 200px;
+  }
+
+  :local(.user) {
+
+    h1 {
+      font-size: 30px;
+    }
+  }
+
+  :local(.line) {
+    width: 85%;
+  }
+:local(.postutile) {
+  width: 85%;
+  justify-content: center;
+}
 }

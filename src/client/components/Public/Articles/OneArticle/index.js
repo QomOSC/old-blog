@@ -241,7 +241,7 @@ class ArticlesHome extends Component {
             placeholder='نظر خود را درباره این پست بنویسید'
             ref='description'
           />
-          <Button color='green' handleClick={this.comment}>
+          <Button color='dark' handleClick={this.comment}>
             ثبت نظر
           </Button>
         </div>
