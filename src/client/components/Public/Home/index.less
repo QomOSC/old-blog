@@ -102,7 +102,7 @@
   width: 100%;
   text-align: center;
   background-color: #2b2b2b;
-  height: 450px;
+  height: 550px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -118,7 +118,7 @@
   }
 
   img {
-    width: 37%;
+    width: 40%;
     z-index: -1;
     opacity: 0.4;
     position: absolute;
@@ -131,7 +131,7 @@
     0% {z-index: 1;}
     25% {opacity: 1;}
     50% {width: 20%;}
-    75% {width: 37%;}
+    75% {width: 40%;}
     100% {transform: rotate(360deg);}
   }
 
@@ -154,12 +154,66 @@
   border-bottom-right-radius: 30px;
 }
 
+:local(.divrow) {
+  display: flex;
+  justify-content: space-around;
+  width: 75%;
+  margin: auto auto;
+
+  > div {
+    background: #fff;
+    width: 50%;
+    padding: 10px;
+    height: 130px;
+    margin: 10px;
+    border-radius: 5px;
+    .boxShadow();
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.6);
+    text-align: center;
+
+    &:hover {
+      box-shadow:0 0 1px rgba(39,44,49,.1),0 3px 16px rgba(39,44,49,.07);
+      transition:all .3s ease;
+      transform: translate3d(0,-1px,0);
+    }
+
+    &:hover img {
+      transform: scale(1.1);
+      transition: all 0.3s ease;
+    }
+
+    img {
+      position: absolute;
+      width: 100%;
+      object-fit: scale-down;
+      background-position: center;
+      top:0;
+      bottom: 0;
+      left:0;
+      right:0;
+      z-index: -1;
+      filter: blur(2px) brightness(0.7);
+    }
+  }
+}
+
 @media (min-width: 120px) and (max-width: 580px) {
   :local(.container) {
     flex-direction: column;
 
     > div:last-child {
-      width: 100%;
+      width: 95%;
       text-align: center;
 
       > div {
@@ -177,7 +231,34 @@
 
     > div {
       width: 95%;
-      margin: 5px;
+      margin: 5px auto;
+    }
+  }
+
+  :local(.intro) {
+    height: 300px;
+
+    h1 {
+      font-size: 35px;
+    }
+
+    p {
+      width: 85%;
+    }
+
+    img {
+      animation: none;
+      width: 70%;
+    }
+  }
+
+  :local(.divrow)  {
+    flex-direction: column;
+    width: 100%;
+
+    > div {
+      width: 95%;
+      margin: 10px auto;
     }
   }
 
