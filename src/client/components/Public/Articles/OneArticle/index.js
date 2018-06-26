@@ -146,7 +146,6 @@ class ArticlesHome extends Component {
       <div className={styles.container}>
       <br />
       <br />
-      <br />
         <div className={styles.user}>
           <div className={styles.articleinfo}>
           <span>{this.props.article.user.name}</span>
@@ -154,8 +153,14 @@ class ArticlesHome extends Component {
           <span>{moment(new Date(this.props.article.createdAt))}</span>
           </div>
           <h1>{this.props.article.title}</h1>
+          <div className={styles.imgcover}>
           <img src={`/static/uploads/${this.props.article.avatar}`} />
 
+          {/* <div className={styles.artinfo}>
+              <img src="/static/images/developers/mm.jpg" />
+              <span>محمد سیفی مرندی</span>
+          </div> */}
+          </div>
           {this.props.article.user.description ?
             <p>
             درباره: {this.props.article.user.description}
