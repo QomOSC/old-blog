@@ -149,6 +149,7 @@ class ArticlesHome extends Component {
       <br />
         <div className={styles.user}>
           <div className={styles.articleinfo}>
+          <img src="/static/images/developers/mm.jpg" />
           <span>{this.props.article.user.name}</span>
           <span className={styles.slash}>/</span>
           <span>{moment(new Date(this.props.article.createdAt))}</span>
@@ -168,7 +169,9 @@ class ArticlesHome extends Component {
             </p> :
             ''
           }
-
+          <div className={styles.dimg}>
+          <img src={`/static/uploads/${this.props.article.avatar}`} className={styles.imgback}/>
+          </div>
 
         </div>
 
