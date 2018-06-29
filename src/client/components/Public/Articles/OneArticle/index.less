@@ -53,6 +53,7 @@
 
   span {
     color: #40AA54;
+    .textshadow();
   }
 
   img {
@@ -83,6 +84,7 @@
   color: #3c484e;
   line-height: 1.9em;
   word-wrap: break-word;
+  font-weight: 300;
 }
 
 :local(.comment) {
@@ -144,28 +146,111 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-}
+  }
 
 :local(.oneComment) {
-  width: 50%;
-  background-color: white;
+  width: 70%;
   margin: 15px 0;
   padding: 15px;
   text-align: right;
   display: flex;
-  justify-content: space-between;
-  .boxShadow();
+  flex-direction: column;
 
-  > div {
-    text-align: center;
+  > div:first-child {
+    text-align: right;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    margin: 8px;
+    height: 150px;
+    background: #f2f2f2;
+    .boxShadow();
+    border-radius: 7px;
+
+
+
+    div:first-child {
+      background: #40AA54;
+      width: 15%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 150px;
+      padding: 10px;
+      border-top-right-radius: 7px;
+      border-bottom-right-radius: 7px;
+
+      span {
+        font-size: 14px;
+        margin-top: 8px;
+
+      }
+    }
+
+    img {
+      width: 60%;
+      border-radius: 100%;
+    }
+
+    div:last-child {
+      padding: 10px;
+      position: relative;
+
+      label {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background: #f45;
+        font-size: 12px;
+        padding: 8px;
+      }
+    }
+  }
+
+  :local(.answer) {
+    height: 150px;
+    transform: translateX(-20px);
+    display: flex;
+    .boxShadow();
+
+    img {
+      width: 50%;
+      border-radius: 100%;
+    }
+
+    div:first-child {
+      background: #40AA54;
+      width: 15%;
+      max-width: 20%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-top-right-radius: 7px;
+      border-bottom-right-radius: 7px;
+      text-align: center;
+
+
+      span {
+        font-size: 14px;
+        margin-top: 8px;
+      }
+    }
+
+    div:last-child {
+      padding: 10px;
+      background: #ccc;
+      width: 100%;
+      word-wrap: break-word;
+      border-top-left-radius: 7px;
+      border-bottom-left-radius: 7px;
+    }
   }
 
   p {
-    max-width: 200px;
     word-break: break-all;
+    font-size: 15px;
   }
 }
 

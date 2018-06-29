@@ -18,6 +18,7 @@ import gql from 'Root/js/gql';
 import LoadingProgress from 'Root/components/Utils/LoadingProgress';
 import Button from 'Root/components/Utils/Button';
 
+import defaultImage from 'Root/images/u.png';
 import styles from './index.less';
 
 const md = new MarkdownIt();
@@ -169,6 +170,7 @@ class ArticlesHome extends Component {
             </p> :
             ''
           }
+
           <div className={styles.dimg}>
           <img src={`/static/uploads/${this.props.article.avatar}`} className={styles.imgback}/>
           </div>
@@ -177,7 +179,6 @@ class ArticlesHome extends Component {
 
         <div className={styles.article}>
           <br />
-
 
           <div
             className={styles.articleContent}
@@ -253,15 +254,25 @@ class ArticlesHome extends Component {
           {this.props.article.comments.map((v, i) =>
             <div key={i} className={styles.oneComment}>
               <div>
-                <p>نام: {v.name}</p>
-                <p>توضیحات: {v.description}</p>
-                <p>{moment(v.createdAt)}</p>
+                <div>
+                  <img src={defaultImage} />
+                  <span>{v.name}</span>
+                </div>
+                <div>
+                  <p> {v.description}</p>
+                  <label>{moment(v.createdAt)}</label>
+                </div>
               </div>
 
               {v.answer ?
-                <div>
-                  <p>پاسخ</p>
+                <div className={styles.answer}>
+                  <div>
+                    <img src={defaultImage} />
+                    <span>{v.name}</span>
+                  </div>
+                  <div>
                   <p>{v.answer}</p>
+                  </div>
                 </div> :
                 ''
               }
