@@ -6,7 +6,14 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 10px 0;
+}
+
+:local(.allconfer) {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 :local(.conf) {
@@ -15,8 +22,22 @@
   background-color: white;
   padding: 20px;
   .boxShadow();
-  margin: 20px 0;
+  margin: 20px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #f2f2f2;
+
+  div {
+    display: flex;
+
+    p {
+      margin: 15px;
+    }
+
+  }
 
   span {
     color: #666;
@@ -24,10 +45,13 @@
   }
 }
 
+:local(.pc) {
+  color: #fe2018;
+  font-weight: 600;
+}
+
 :local(.title) {
-  color: #222;
-  font-size: 30px;
-  text-align: center;
+  .title();
 }
 
 @media (min-width: 120px) and (max-width: 580px) {

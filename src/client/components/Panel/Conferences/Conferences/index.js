@@ -58,14 +58,16 @@ class MyConferences extends Component {
             'شما هیچ کنفرانسی ندارید'
           }
         </h1>
-
+        <div className={styles.allconfer}>
         {this.props.conferences.map((v, i) =>
           <div key={i} className={styles.conf}>
             <Link to={`/conferences/${v._id}`}>
-              <p>موضوع: {v.title}</p>
+              <h3>موضوع: {v.title}</h3>
+              <div>
               <p>شروع:‌ {v.start}</p>
               <p>اتمام: {v.end}</p>
-              <p>{v.done ? 'کنفرانس به اتمام رسیده است' : ''}</p>
+              </div>
+              <p className={styles.pc}>{v.done ? 'کنفرانس به اتمام رسیده است' : ''}</p>
 
               <span>{moment(new Date(v.createdAt))}</span>
             </Link>
@@ -77,6 +79,7 @@ class MyConferences extends Component {
             </Link>
           </div>
         )}
+        </div>
       </div>
     );
   }
