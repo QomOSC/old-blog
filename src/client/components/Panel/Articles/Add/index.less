@@ -1,3 +1,6 @@
+@import '~Root/css/colors';
+@import '~Root/css/mixins';
+
 :local(.container) {
   display: flex;
   justify-content: center;
@@ -14,8 +17,17 @@
   }
 }
 
+:local(.simplemde) {
+  width: 70%;
+  max-width: 70%;
+}
+
 :local(.avatarInput) {
   display: none;
+}
+
+:local(.title) {
+  .title();
 }
 
 @media (min-width: 120px) and (max-width: 580px) {
