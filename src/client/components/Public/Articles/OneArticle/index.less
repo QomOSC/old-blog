@@ -85,6 +85,7 @@
   line-height: 1.9em;
   word-wrap: break-word;
   font-weight: 300;
+  padding-bottom: 60px;
 }
 
 :local(.comment) {
@@ -196,14 +197,15 @@
     div:last-child {
       padding: 10px;
       position: relative;
+      width: 100%;
 
       label {
         position: absolute;
         bottom: 0;
         left: 0;
-        background: #f45;
         font-size: 12px;
         padding: 8px;
+        color: #aaa;
       }
     }
   }
@@ -245,6 +247,16 @@
       word-wrap: break-word;
       border-top-left-radius: 7px;
       border-bottom-left-radius: 7px;
+      position: relative;
+
+      label {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        font-size: 12px;
+        padding: 8px;
+        color: #ccc;
+      }
     }
   }
 
@@ -336,6 +348,12 @@
     object-position: center;
     .boxShadow();
     border-radius: 8px;
+    transition: all 0.3s ease;
+    filter: brightness(0.9);
+
+    &:hover {
+      filter: brightness(1);
+    }
   }
 
   :local(.artinfo) {

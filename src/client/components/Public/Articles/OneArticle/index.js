@@ -272,6 +272,7 @@ class ArticlesHome extends Component {
                   </div>
                   <div>
                   <p>{v.answer}</p>
+                  <label>{moment(v.createdAt)}</label>
                   </div>
                 </div> :
                 ''
