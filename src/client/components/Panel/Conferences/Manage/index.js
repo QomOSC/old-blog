@@ -55,21 +55,25 @@ class Manage extends Component {
             'کنفرانس جدیدی برای مدیریت وجود ندارد'
           }
         </h1>
-
+        <div className={styles.allconf}>
         {this.props.conferences.map((v, i) =>
           <div key={i} className={styles.conf}>
+            <p>{v.family}</p>
             <p>موضوع: {v.title}</p>
+            <div>
             <p>شروع:‌ {v.start}</p>
             <p>اتمام: {v.end}</p>
+            </div>
             <span>{moment(new Date(v.createdAt))}</span>
             <p />
             <Link to={`/panel/conferences/manage/${v._id}`}>
-              <Button color='blue'>
+              <Button color='green'>
                 تغییر دادن
               </Button>
             </Link>
           </div>
         )}
+        </div>
       </div>
     );
   }
