@@ -1,3 +1,6 @@
+@import '~Root/css/colors';
+@import '~Root/css/mixins';
+
 :local(.container) {
   width: 100%;
   display: flex;
@@ -5,26 +8,48 @@
   align-items: center;
   flex-direction: column;
 
+
+}
+
+:local(.articles) {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
   > div {
-    width: 50%;
-    margin: 20px 0;
+    width: 40%;
+    margin: 20px;
   }
 }
 
 :local(.title) {
-  margin: 20px;
-  font-size: 30px;
-  color: #222;
+  .title();
 }
 
 @media (min-width: 120px) and (max-width: 580px) {
-  :local(.container) > div {
-    width: 95%;
+  :local(.container) {
 
     button {
       display: flex;
       justify-content: center;
       align-self: center;
+      align-items: center;
+    }
+  }
+
+  :local(.articles) {
+
+    div {
+      width: 98%;
+      margin: 10px;
+      padding-bottom: 15px;
+
+      button {
+        width: 90%;
+      }
     }
   }
 }

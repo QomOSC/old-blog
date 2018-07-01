@@ -75,7 +75,7 @@ class Articles extends Component {
             'شما مقاله ای ندارید'
           }
         </h1>
-
+        <div className={styles.articles}>
         {this.props.articles.map((v, i) =>
           <Article
             key={i}
@@ -100,6 +100,7 @@ class Articles extends Component {
             </div>
           </Article>
         )}
+        </div>
       </div>
     );
   }
