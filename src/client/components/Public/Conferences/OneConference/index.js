@@ -100,21 +100,27 @@ class Conference extends Component {
       <div className={styles.container}>
         <div>
           <Link to={`/user/${this.state.conference.authorInfo.username}`}>
-            <h1>اطلاعات نویسنده</h1>
+            <h1 className={styles.title}>اطلاعات نویسنده</h1>
+            <div className={styles.userconf}>
+              {this.renderImage(this.state.conference.authorInfo.avatar)}
+              <div>
             <p>نام: {this.state.conference.authorInfo.name}</p>
-            <p>ایمیل: {this.state.conference.authorInfo.email}</p>
             <p className={styles.username}>
               {this.state.conference.authorInfo.username}@
             </p>
-            {this.renderImage(this.state.conference.authorInfo.avatar)}
+            </div>
+            <p>ایمیل: {this.state.conference.authorInfo.email}</p>
+            </div>
           </Link>
         </div>
 
-        <div>
-          <h1>اطلاعات کنفرانس</h1>
-          <p>عنوان: {this.state.conference.title}</p>
-          <p>شروع کنفرانس: {this.state.conference.start}</p>
-          <p>اتمام کنفرانس: {this.state.conference.end}</p>
+        <h1 className={styles.title}>اطلاعات کنفرانس</h1>
+        <div className={styles.infoconf}>
+          <h3>عنوان : {this.state.conference.title}</h3>
+          <div className={styles.rowtime}>
+            <p>شروع کنفرانس: {this.state.conference.start}</p>
+            <p>اتمام کنفرانس: {this.state.conference.end}</p>
+          </div>
           <p>
             {this.state.conference.done ? 'کنفرانس به اتمام رسیده است' : ''}
           </p>
@@ -159,7 +165,7 @@ class Conference extends Component {
         </div>
 
         <div className={styles.providers}>
-          <h1>ارائه دهندگان</h1>
+          <h1 className={styles.title}>ارائه دهندگان</h1>
 
           {this.state.conference.providersInfo.map((v, i) => {
             if (v) {
