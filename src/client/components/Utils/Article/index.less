@@ -3,7 +3,7 @@
 
 :local(.article) {
   background: #fff 50%;
-  box-shadow: 8px 14px 38px rgba(39,44,49,.07),1px 3px 8px rgba(39,44,49,.05);
+  .boxShadow();
   color: #444;
   overflow: hidden;
   border-radius: 5px;
@@ -54,6 +54,9 @@
   bottom: 0;
   left: 0;
   right: 0;
+  border-top: 1px solid rgba(0,0,0,0.10);
+  border-top-left-radius:20px;
+  border-top-right-radius:20px;
 
   div {
     display: flex;
