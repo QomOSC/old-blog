@@ -29,18 +29,20 @@ class God extends Component {
   render() {
     return (
       <div className={styles.container}>
-        <h1>حذف فوری</h1>
-
+        <h1 className={styles.title}>حذف فوری</h1>
+        <div>
         <input
           type='text'
           ref='username'
           placeholder='یوزرنیم کاربر'
         />
 
-        <Button color='blue' handleClick={this.remove}>
+        <Button color='green' handleClick={this.remove}>
           حذف فوری کاربر
         </Button>
+        </div>
       </div>
+
     );
   }
 }

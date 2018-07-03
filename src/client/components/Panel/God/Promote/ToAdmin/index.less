@@ -7,21 +7,29 @@
   align-items: center;
   flex-direction: column;
 
-  > * {
-    margin: 20px 0;
-  }
-
-  p, h1 {
+  > div {
+    background: #333;
+    margin: 25px;
+    padding: 15px;
+    border-radius: 5px;
     text-align: center;
+
+    p {
+      color: red;
+    }
   }
 
   input {
     .input();
+    margin: 20px;
+    width: 220px;
+  }
+
+  button {
+    width: 150px;
   }
 }
 
 :local(.title) {
-  font-size: 30px;
-  color: #222;
-  margin: 20px 0;
+  .title();
 }

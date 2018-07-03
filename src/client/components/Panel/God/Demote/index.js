@@ -40,7 +40,7 @@ class Demote extends Component {
     return (
       <div className={styles.container}>
         <h1 className={styles.title}>عزل مدیر</h1>
-
+        <div>
         <p>
           توجه! کاربر باید در سایت ثبت نام کرده و از طرف مدیران تایید شده باشد
         </p>
@@ -58,6 +58,7 @@ class Demote extends Component {
         <Button color='green' handleClick={this.demote}>
           عزل کردن
         </Button>
+        </div>
       </div>
     );
   }
