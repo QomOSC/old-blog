@@ -63,16 +63,18 @@ class Manage extends Component {
             'کاربر جدیدی وجود ندارد'
           }
         </h1>
-
+        <div className={styles.alluser}>
         {this.props.users.map((v, i) =>
           <div key={i} className={styles.user}>
-            <p>نام: {v.name}</p>
-            <p>ایمیل: {v.email}</p>
-            <p>نام کاربری: {v.username}</p>
+            <div>
+            <p>نام : {v.name}</p>
+            <p>ایمیل : {v.email}</p>
+            <p>نام کاربری : {v.username}</p>
+            </div>
 
             <div className={styles.buttons}>
               <Button
-                color='blue'
+                color='green'
                 handleClick={this.acceptUser(v._id)}>
                 پذیرفتن کاربر
               </Button>
@@ -85,6 +87,7 @@ class Manage extends Component {
             </div>
           </div>
         )}
+        </div>
       </div>
     );
   }

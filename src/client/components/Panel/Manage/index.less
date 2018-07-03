@@ -7,27 +7,68 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 10px;
 }
 
 :local(.user) {
-  background-color: white;
+  background-color: @dark-base;
   margin: 20px;
-  padding: 50px;
+  padding: 20px;
   text-align: center;
   .boxShadow();
+  border-radius: 5px;
+  border: 2px solid #40AA54;
+  color: #f9f9f9;
+  text-align: right;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 400px;
+  max-width: 400px;
+
+  p:nth-child(2) {
+    word-wrap: break-word;
+    font-size: 15px;
+  }
 }
 
 :local(.title) {
-  font-size: 30px;
-  color: #222;
-  margin: 20px 0;
+  .title();
+}
+
+:local(.alluser) {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+:local(.buttons) {
+  display: flex;
+  flex-direction: column;
+
+  button {
+    margin: 8px;
+    width: 110%;
+  }
 }
 
 @media (min-width: 120px) and (max-width: 580px) {
   :local(.user) {
-    width: 90%;
-    margin: 25px;
+    width: 320px;
+    margin: 10px;
     padding: 20px;
+    flex-direction: column;
   }
+
+:local(.buttons) {
+  flex-direction: row;
+
+  button {
+    width: 120px;
+  }
+}
+
 }
