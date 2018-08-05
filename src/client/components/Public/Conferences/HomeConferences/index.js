@@ -115,14 +115,17 @@ class ConferencesHome extends Component {
     if (this.state.loading) {
       return <LoadingProgress />;
     }
-
+        
+      
     return (
       <div className={styles.container}>
+     
         {this.props.conferences.length ?
-          <h1>کنفرانس های اخیر</h1> :
+          <h1 className={styles.title}>کنفرانس های اخیر</h1> :
           <h1>کنفرانسی وجود ندارد</h1>
         }
-
+        <div className={styles.droww}>
+        
         {this.props.conferences.map((v, i) =>
           <div key={i} className={styles.conf}>
             <div className={styles.user}>
@@ -131,19 +134,21 @@ class ConferencesHome extends Component {
               </Link>
               <div>
                 <Link to={`/user/${v.authorInfo.username}`}>
-                  <p>{v.authorInfo.username}</p>
-                  <p>{v.authorInfo.email}</p>
-                  <p>{v.authorInfo.name}</p>
+                    <p><b>نام :</b> {v.authorInfo.name}</p>
+                    <p> <b>نام کاربری</b> : {v.authorInfo.username}</p>
+                    <p><b>ایمیل :</b> {v.authorInfo.email}</p>
                 </Link>
               </div>
             </div>
-            <p>موضوع: {v.title}</p>
-            <p>شروع:‌ {v.start}</p>
-            <p>اتمام: {v.end}</p>
-            <p>{v.done ? 'به اتمام رسیده است' : 'به اتمام نرسیده است'}</p>
-            <span>{moment(new Date(v.createdAt))}</span>
+              <h2><b>موضوع : </b> {v.title}</h2>
+            <div className={styles.rowd}>
+                <p>شروع:‌ {v.start}</p>
+                <p>اتمام: {v.end}</p>
+            </div>
+            <b>{v.done ? 'به اتمام رسیده است' : 'به اتمام نرسیده است'}</b>
+            <p>{moment(new Date(v.createdAt))}</p>
             <p />
-            <Link to={`/conferences/${v._id}`}>
+            <Link to={`/conferences/${v._id}`} className={styles.btnview}>
               <Button color='blue'>
                 مشاهده
               </Button>
@@ -151,7 +156,9 @@ class ConferencesHome extends Component {
 
             {this.galleryLink(v._id, v.done)}
           </div>
+
         )}
+      </div>
       </div>
     );
   }
