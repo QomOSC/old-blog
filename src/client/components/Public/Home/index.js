@@ -112,10 +112,10 @@ class Home extends Component {
 
           <section className={styles.divrow}>
             <div>اضافه کردن مقاله
-                <img src="/static/images/developers/mm.jpg" />
+                <img src="/static/images/banner.png" />
             </div>
             <div>برای مشاهده همه مقالات کلیک کنید
-              <img src="/static/images/developers/mm.jpg" />
+              <img src="/static/images/banner.png" />
             </div>
           </section>
 
